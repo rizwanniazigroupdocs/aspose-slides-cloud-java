@@ -43,19 +43,19 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(ExternalFontsHandling.Adapter.class)
 public enum ExternalFontsHandling {
   
-  AddLinksToFontFiles(0),
+  ADDLINKSTOFONTFILES("AddLinksToFontFiles"),
   
-  Embed(1),
+  EMBED("Embed"),
   
-  Vectorize(2);
+  VECTORIZE("Vectorize");
 
-  private Integer value;
+  private String value;
 
-  ExternalFontsHandling(Integer value) {
+  ExternalFontsHandling(String value) {
     this.value = value;
   }
 
-  public Integer getValue() {
+  public String getValue() {
     return value;
   }
 
@@ -76,7 +76,7 @@ public enum ExternalFontsHandling {
 
     @Override
     public ExternalFontsHandling read(final JsonReader jsonReader) throws IOException {
-      Integer value = jsonReader.nextInt();
+      String value = jsonReader.nextString();
       return ExternalFontsHandling.fromValue(String.valueOf(value));
     }
   }

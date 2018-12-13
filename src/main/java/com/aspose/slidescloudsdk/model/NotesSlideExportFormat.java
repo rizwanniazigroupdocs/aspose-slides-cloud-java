@@ -43,23 +43,23 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(NotesSlideExportFormat.Adapter.class)
 public enum NotesSlideExportFormat {
   
-  Jpeg(0),
+  JPEG("Jpeg"),
   
-  Png(1),
+  PNG("Png"),
   
-  Gif(2),
+  GIF("Gif"),
   
-  Bmp(3),
+  BMP("Bmp"),
   
-  Tiff(4);
+  TIFF("Tiff");
 
-  private Integer value;
+  private String value;
 
-  NotesSlideExportFormat(Integer value) {
+  NotesSlideExportFormat(String value) {
     this.value = value;
   }
 
-  public Integer getValue() {
+  public String getValue() {
     return value;
   }
 
@@ -80,7 +80,7 @@ public enum NotesSlideExportFormat {
 
     @Override
     public NotesSlideExportFormat read(final JsonReader jsonReader) throws IOException {
-      Integer value = jsonReader.nextInt();
+      String value = jsonReader.nextString();
       return NotesSlideExportFormat.fromValue(String.valueOf(value));
     }
   }

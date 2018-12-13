@@ -509,7 +509,7 @@ public class LayoutSlidesApi extends ApiBase {
     }
 
     /**
-     * Read presentation layoutSlide info.
+     * Update a layoutSlide.
      * 
      * @param request Request for putLayoutSlide. (required)
      * @return LayoutSlideResponse
@@ -526,7 +526,7 @@ public class LayoutSlidesApi extends ApiBase {
     }
 
     /**
-     * Read presentation layoutSlide info.
+     * Update a layoutSlide.
      * 
      * @param request Request for putLayoutSlide. (required)
      * @return ApiResponse&lt;LayoutSlideResponse&gt;
@@ -539,7 +539,7 @@ public class LayoutSlidesApi extends ApiBase {
     }
 
     /**
-     * Read presentation layoutSlide info. (asynchronously)
+     * Update a layoutSlide. (asynchronously)
      * 
      * @param request Request for putLayoutSlide. (required)
      * @param callback The callback to be executed when the API call finishes

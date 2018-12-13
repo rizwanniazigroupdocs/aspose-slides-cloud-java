@@ -62,7 +62,7 @@ public class MergeDocumentApiTest extends ApiTest {
 
     
     /**
-     * Merge presentations.
+     * Merge the presentation with other presentations specified in the request parameter.
      *
      * 
      *
@@ -82,12 +82,12 @@ public class MergeDocumentApiTest extends ApiTest {
             assertSuccessfulException(ex, "postPresentationMerge");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
     /**
-     * Merge presentations.
+     * Merge the presentation with other presentations specified in the request parameter.
      *
      * 
      *
@@ -111,7 +111,7 @@ public class MergeDocumentApiTest extends ApiTest {
         }
     }
     /**
-     * Merge presentations.
+     * Merge the presentation with other presentations specified in the request parameter.
      *
      * 
      *
@@ -135,7 +135,7 @@ public class MergeDocumentApiTest extends ApiTest {
         }
     }
     /**
-     * Merge presentations.
+     * Merge the presentation with other presentations specified in the request parameter.
      *
      * 
      *
@@ -159,7 +159,7 @@ public class MergeDocumentApiTest extends ApiTest {
         }
     }
     /**
-     * Merge presentations.
+     * Merge the presentation with other presentations specified in the request parameter.
      *
      * 
      *
@@ -183,7 +183,7 @@ public class MergeDocumentApiTest extends ApiTest {
         }
     }
     /**
-     * Merge presentations.
+     * Merge the presentation with other presentations specified in the request parameter.
      *
      * 
      *
@@ -218,7 +218,7 @@ public class MergeDocumentApiTest extends ApiTest {
     }
     
     /**
-     * Merge presentations.
+     * Merge the presentation with other presentations or some of their slides specified in the request parameter.
      *
      * 
      *
@@ -238,12 +238,12 @@ public class MergeDocumentApiTest extends ApiTest {
             assertSuccessfulException(ex, "putPresentationMerge");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
     /**
-     * Merge presentations.
+     * Merge the presentation with other presentations or some of their slides specified in the request parameter.
      *
      * 
      *
@@ -267,7 +267,7 @@ public class MergeDocumentApiTest extends ApiTest {
         }
     }
     /**
-     * Merge presentations.
+     * Merge the presentation with other presentations or some of their slides specified in the request parameter.
      *
      * 
      *
@@ -291,7 +291,7 @@ public class MergeDocumentApiTest extends ApiTest {
         }
     }
     /**
-     * Merge presentations.
+     * Merge the presentation with other presentations or some of their slides specified in the request parameter.
      *
      * 
      *
@@ -315,7 +315,7 @@ public class MergeDocumentApiTest extends ApiTest {
         }
     }
     /**
-     * Merge presentations.
+     * Merge the presentation with other presentations or some of their slides specified in the request parameter.
      *
      * 
      *
@@ -339,7 +339,7 @@ public class MergeDocumentApiTest extends ApiTest {
         }
     }
     /**
-     * Merge presentations.
+     * Merge the presentation with other presentations or some of their slides specified in the request parameter.
      *
      * 
      *

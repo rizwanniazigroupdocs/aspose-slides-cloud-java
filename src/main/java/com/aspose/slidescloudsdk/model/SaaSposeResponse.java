@@ -28,7 +28,6 @@
 package com.aspose.slidescloudsdk.model;
 
 import java.util.Objects;
-import com.aspose.slidescloudsdk.model.HttpStatusCode;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -44,12 +43,12 @@ import java.io.IOException;
 @ApiModel(description = "The basic SaaSposeResponse response class kept from the old Aspose for Cloud Platform. We keep this base class and use it because most probably users are already using it to get API responses. The plan in future is to get rid of this name, but who knows when ?!")
 public class SaaSposeResponse {
   @SerializedName("Code")
-  private HttpStatusCode code = null;
+  private int code = 0;
 
   @SerializedName("Status")
   private String status = null;
 
-  public SaaSposeResponse code(HttpStatusCode code) {
+  public SaaSposeResponse code(int code) {
     this.code = code;
     return this;
   }
@@ -59,11 +58,11 @@ public class SaaSposeResponse {
    * @return code
   **/
   @ApiModelProperty(required = true, value = "")
-  public HttpStatusCode getCode() {
+  public int getCode() {
     return code;
   }
 
-  public void setCode(HttpStatusCode code) {
+  public void setCode(int code) {
     this.code = code;
   }
 

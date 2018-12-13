@@ -191,6 +191,8 @@ public enum TableStylePreset {
   
   DARKSTYLE2ACCENT5ACCENT6("DarkStyle2Accent5Accent6"),
   
+  LIGHTSTYLE1ACCENT5("LightStyle1Accent5"),
+  
   CUSTOM("Custom");
 
   private String value;

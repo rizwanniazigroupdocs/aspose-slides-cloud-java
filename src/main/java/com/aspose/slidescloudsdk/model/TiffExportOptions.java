@@ -79,6 +79,9 @@ public class TiffExportOptions extends ExportOptions {
   @SerializedName("CommentsAreaColor")
   private String commentsAreaColor = null;
 
+  @SerializedName("ShowCommentsByNoAuthor")
+  private Boolean showCommentsByNoAuthor = null;
+
   public TiffExportOptions compression(TiffCompressionType compression) {
     this.compression = compression;
     return this;
@@ -277,6 +280,24 @@ public class TiffExportOptions extends ExportOptions {
     this.commentsAreaColor = commentsAreaColor;
   }
 
+  public TiffExportOptions showCommentsByNoAuthor(Boolean showCommentsByNoAuthor) {
+    this.showCommentsByNoAuthor = showCommentsByNoAuthor;
+    return this;
+  }
+
+   /**
+   * True if comments that have no author are displayed. (Applies only if comments are displayed).
+   * @return showCommentsByNoAuthor
+  **/
+  @ApiModelProperty(value = "True if comments that have no author are displayed. (Applies only if comments are displayed).")
+  public Boolean isShowCommentsByNoAuthor() {
+    return showCommentsByNoAuthor;
+  }
+
+  public void setShowCommentsByNoAuthor(Boolean showCommentsByNoAuthor) {
+    this.showCommentsByNoAuthor = showCommentsByNoAuthor;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -287,12 +308,12 @@ public class TiffExportOptions extends ExportOptions {
       return false;
     }
     TiffExportOptions tiffExportOptions = (TiffExportOptions) o;
-    return true && Objects.equals(this.compression, tiffExportOptions.compression) && Objects.equals(this.width, tiffExportOptions.width) && Objects.equals(this.height, tiffExportOptions.height) && Objects.equals(this.dpiX, tiffExportOptions.dpiX) && Objects.equals(this.dpiY, tiffExportOptions.dpiY) && Objects.equals(this.showHiddenSlides, tiffExportOptions.showHiddenSlides) && Objects.equals(this.pixelFormat, tiffExportOptions.pixelFormat) && Objects.equals(this.notesPosition, tiffExportOptions.notesPosition) && Objects.equals(this.commentsPosition, tiffExportOptions.commentsPosition) && Objects.equals(this.commentsAreaWidth, tiffExportOptions.commentsAreaWidth) && Objects.equals(this.commentsAreaColor, tiffExportOptions.commentsAreaColor) && super.equals(o);
+    return true && Objects.equals(this.compression, tiffExportOptions.compression) && Objects.equals(this.width, tiffExportOptions.width) && Objects.equals(this.height, tiffExportOptions.height) && Objects.equals(this.dpiX, tiffExportOptions.dpiX) && Objects.equals(this.dpiY, tiffExportOptions.dpiY) && Objects.equals(this.showHiddenSlides, tiffExportOptions.showHiddenSlides) && Objects.equals(this.pixelFormat, tiffExportOptions.pixelFormat) && Objects.equals(this.notesPosition, tiffExportOptions.notesPosition) && Objects.equals(this.commentsPosition, tiffExportOptions.commentsPosition) && Objects.equals(this.commentsAreaWidth, tiffExportOptions.commentsAreaWidth) && Objects.equals(this.commentsAreaColor, tiffExportOptions.commentsAreaColor) && Objects.equals(this.showCommentsByNoAuthor, tiffExportOptions.showCommentsByNoAuthor) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(compression, width, height, dpiX, dpiY, showHiddenSlides, pixelFormat, notesPosition, commentsPosition, commentsAreaWidth, commentsAreaColor, super.hashCode());
+    return Objects.hash(compression, width, height, dpiX, dpiY, showHiddenSlides, pixelFormat, notesPosition, commentsPosition, commentsAreaWidth, commentsAreaColor, showCommentsByNoAuthor, super.hashCode());
   }
 
 
@@ -312,6 +333,7 @@ public class TiffExportOptions extends ExportOptions {
     sb.append("    commentsPosition: ").append(toIndentedString(commentsPosition)).append("\n");
     sb.append("    commentsAreaWidth: ").append(toIndentedString(commentsAreaWidth)).append("\n");
     sb.append("    commentsAreaColor: ").append(toIndentedString(commentsAreaColor)).append("\n");
+    sb.append("    showCommentsByNoAuthor: ").append(toIndentedString(showCommentsByNoAuthor)).append("\n");
     sb.append("}");
     return sb.toString();
   }

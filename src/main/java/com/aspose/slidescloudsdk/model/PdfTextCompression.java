@@ -43,17 +43,17 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(PdfTextCompression.Adapter.class)
 public enum PdfTextCompression {
   
-  None(0),
+  NONE("None"),
   
-  Flate(1);
+  FLATE("Flate");
 
-  private Integer value;
+  private String value;
 
-  PdfTextCompression(Integer value) {
+  PdfTextCompression(String value) {
     this.value = value;
   }
 
-  public Integer getValue() {
+  public String getValue() {
     return value;
   }
 
@@ -74,7 +74,7 @@ public enum PdfTextCompression {
 
     @Override
     public PdfTextCompression read(final JsonReader jsonReader) throws IOException {
-      Integer value = jsonReader.nextInt();
+      String value = jsonReader.nextString();
       return PdfTextCompression.fromValue(String.valueOf(value));
     }
   }

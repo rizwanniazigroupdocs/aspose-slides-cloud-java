@@ -76,6 +76,9 @@ public class HtmlExportOptions extends ExportOptions {
   @SerializedName("CommentsAreaColor")
   private String commentsAreaColor = null;
 
+  @SerializedName("ShowCommentsByNoAuthor")
+  private Boolean showCommentsByNoAuthor = null;
+
   public HtmlExportOptions saveAsZip(Boolean saveAsZip) {
     this.saveAsZip = saveAsZip;
     return this;
@@ -256,6 +259,24 @@ public class HtmlExportOptions extends ExportOptions {
     this.commentsAreaColor = commentsAreaColor;
   }
 
+  public HtmlExportOptions showCommentsByNoAuthor(Boolean showCommentsByNoAuthor) {
+    this.showCommentsByNoAuthor = showCommentsByNoAuthor;
+    return this;
+  }
+
+   /**
+   * True if comments that have no author are displayed. (Applies only if comments are displayed).
+   * @return showCommentsByNoAuthor
+  **/
+  @ApiModelProperty(value = "True if comments that have no author are displayed. (Applies only if comments are displayed).")
+  public Boolean isShowCommentsByNoAuthor() {
+    return showCommentsByNoAuthor;
+  }
+
+  public void setShowCommentsByNoAuthor(Boolean showCommentsByNoAuthor) {
+    this.showCommentsByNoAuthor = showCommentsByNoAuthor;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -266,12 +287,12 @@ public class HtmlExportOptions extends ExportOptions {
       return false;
     }
     HtmlExportOptions htmlExportOptions = (HtmlExportOptions) o;
-    return true && Objects.equals(this.saveAsZip, htmlExportOptions.saveAsZip) && Objects.equals(this.subDirectoryName, htmlExportOptions.subDirectoryName) && Objects.equals(this.showHiddenSlides, htmlExportOptions.showHiddenSlides) && Objects.equals(this.jpegQuality, htmlExportOptions.jpegQuality) && Objects.equals(this.picturesCompression, htmlExportOptions.picturesCompression) && Objects.equals(this.deletePicturesCroppedAreas, htmlExportOptions.deletePicturesCroppedAreas) && Objects.equals(this.notesPosition, htmlExportOptions.notesPosition) && Objects.equals(this.commentsPosition, htmlExportOptions.commentsPosition) && Objects.equals(this.commentsAreaWidth, htmlExportOptions.commentsAreaWidth) && Objects.equals(this.commentsAreaColor, htmlExportOptions.commentsAreaColor) && super.equals(o);
+    return true && Objects.equals(this.saveAsZip, htmlExportOptions.saveAsZip) && Objects.equals(this.subDirectoryName, htmlExportOptions.subDirectoryName) && Objects.equals(this.showHiddenSlides, htmlExportOptions.showHiddenSlides) && Objects.equals(this.jpegQuality, htmlExportOptions.jpegQuality) && Objects.equals(this.picturesCompression, htmlExportOptions.picturesCompression) && Objects.equals(this.deletePicturesCroppedAreas, htmlExportOptions.deletePicturesCroppedAreas) && Objects.equals(this.notesPosition, htmlExportOptions.notesPosition) && Objects.equals(this.commentsPosition, htmlExportOptions.commentsPosition) && Objects.equals(this.commentsAreaWidth, htmlExportOptions.commentsAreaWidth) && Objects.equals(this.commentsAreaColor, htmlExportOptions.commentsAreaColor) && Objects.equals(this.showCommentsByNoAuthor, htmlExportOptions.showCommentsByNoAuthor) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(saveAsZip, subDirectoryName, showHiddenSlides, jpegQuality, picturesCompression, deletePicturesCroppedAreas, notesPosition, commentsPosition, commentsAreaWidth, commentsAreaColor, super.hashCode());
+    return Objects.hash(saveAsZip, subDirectoryName, showHiddenSlides, jpegQuality, picturesCompression, deletePicturesCroppedAreas, notesPosition, commentsPosition, commentsAreaWidth, commentsAreaColor, showCommentsByNoAuthor, super.hashCode());
   }
 
 
@@ -290,6 +311,7 @@ public class HtmlExportOptions extends ExportOptions {
     sb.append("    commentsPosition: ").append(toIndentedString(commentsPosition)).append("\n");
     sb.append("    commentsAreaWidth: ").append(toIndentedString(commentsAreaWidth)).append("\n");
     sb.append("    commentsAreaColor: ").append(toIndentedString(commentsAreaColor)).append("\n");
+    sb.append("    showCommentsByNoAuthor: ").append(toIndentedString(showCommentsByNoAuthor)).append("\n");
     sb.append("}");
     return sb.toString();
   }

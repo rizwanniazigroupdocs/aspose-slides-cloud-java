@@ -39,8 +39,9 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * ReplaceText
+ * Replace text task.
  */
+@ApiModel(description = "Replace text task.")
 public class ReplaceText extends Task {
   @SerializedName("OldText")
   private String oldText = null;
@@ -60,10 +61,10 @@ public class ReplaceText extends Task {
   }
 
    /**
-   * Get oldText
+   * Text to be replaced.
    * @return oldText
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Text to be replaced.")
   public String getOldText() {
     return oldText;
   }
@@ -78,10 +79,10 @@ public class ReplaceText extends Task {
   }
 
    /**
-   * Get newText
+   * Text to replace with.
    * @return newText
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Text to replace with.")
   public String getNewText() {
     return newText;
   }
@@ -96,10 +97,10 @@ public class ReplaceText extends Task {
   }
 
    /**
-   * Get ignoreCase
+   * True to ignore case in replace pattern search.
    * @return ignoreCase
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "True to ignore case in replace pattern search.")
   public Boolean isIgnoreCase() {
     return ignoreCase;
   }
@@ -114,10 +115,10 @@ public class ReplaceText extends Task {
   }
 
    /**
-   * Get slidePosition
+   * One-based position of the slide to perform the replace in. 0 to make the replace throughout the presentation.
    * @return slidePosition
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "One-based position of the slide to perform the replace in. 0 to make the replace throughout the presentation.")
   public Integer getSlidePosition() {
     return slidePosition;
   }

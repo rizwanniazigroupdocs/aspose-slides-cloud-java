@@ -43,19 +43,19 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(PlaceholderSize.Adapter.class)
 public enum PlaceholderSize {
   
-  Full(0),
+  FULL("Full"),
   
-  Half(1),
+  HALF("Half"),
   
-  Quarter(2);
+  QUARTER("Quarter");
 
-  private Integer value;
+  private String value;
 
-  PlaceholderSize(Integer value) {
+  PlaceholderSize(String value) {
     this.value = value;
   }
 
-  public Integer getValue() {
+  public String getValue() {
     return value;
   }
 
@@ -76,7 +76,7 @@ public enum PlaceholderSize {
 
     @Override
     public PlaceholderSize read(final JsonReader jsonReader) throws IOException {
-      Integer value = jsonReader.nextInt();
+      String value = jsonReader.nextString();
       return PlaceholderSize.fromValue(String.valueOf(value));
     }
   }

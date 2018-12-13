@@ -43,8 +43,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * SmartArtNode
+ * Smart art node.
  */
+@ApiModel(description = "Smart art node.")
 public class SmartArtNode {
   @SerializedName("Nodes")
   private List<SmartArtNode> nodes = null;
@@ -75,10 +76,10 @@ public class SmartArtNode {
   }
 
    /**
-   * Get nodes
+   * Node list.
    * @return nodes
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Node list.")
   public List<SmartArtNode> getNodes() {
     return nodes;
   }
@@ -111,10 +112,10 @@ public class SmartArtNode {
   }
 
    /**
-   * Get isAssistant
+   * True for and assistant node.
    * @return isAssistant
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "True for and assistant node.")
   public Boolean isIsAssistant() {
     return isAssistant;
   }
@@ -129,10 +130,10 @@ public class SmartArtNode {
   }
 
    /**
-   * Get text
+   * Node text.
    * @return text
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Node text.")
   public String getText() {
     return text;
   }
@@ -147,10 +148,10 @@ public class SmartArtNode {
   }
 
    /**
-   * Get orgChartLayout
+   * Organization chart layout type associated with current node.
    * @return orgChartLayout
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Organization chart layout type associated with current node.")
   public OrganizationChartLayoutType getOrgChartLayout() {
     return orgChartLayout;
   }

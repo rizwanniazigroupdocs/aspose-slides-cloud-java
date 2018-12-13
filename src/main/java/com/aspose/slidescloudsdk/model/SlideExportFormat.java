@@ -43,51 +43,51 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(SlideExportFormat.Adapter.class)
 public enum SlideExportFormat {
   
-  Jpeg(0),
+  JPEG("Jpeg"),
   
-  Png(1),
+  PNG("Png"),
   
-  Gif(2),
+  GIF("Gif"),
   
-  Bmp(3),
+  BMP("Bmp"),
   
-  Tiff(4),
+  TIFF("Tiff"),
   
-  Html(5),
+  HTML("Html"),
   
-  Pdf(6),
+  PDF("Pdf"),
   
-  Xps(7),
+  XPS("Xps"),
   
-  Pptx(8),
+  PPTX("Pptx"),
   
-  Odp(9),
+  ODP("Odp"),
   
-  Otp(10),
+  OTP("Otp"),
   
-  Ppt(11),
+  PPT("Ppt"),
   
-  Pps(12),
+  PPS("Pps"),
   
-  Ppsx(13),
+  PPSX("Ppsx"),
   
-  Pptm(14),
+  PPTM("Pptm"),
   
-  Ppsm(15),
+  PPSM("Ppsm"),
   
-  Potx(16),
+  POTX("Potx"),
   
-  Potm(17),
+  POTM("Potm"),
   
-  Svg(18);
+  SVG("Svg");
 
-  private Integer value;
+  private String value;
 
-  SlideExportFormat(Integer value) {
+  SlideExportFormat(String value) {
     this.value = value;
   }
 
-  public Integer getValue() {
+  public String getValue() {
     return value;
   }
 
@@ -108,7 +108,7 @@ public enum SlideExportFormat {
 
     @Override
     public SlideExportFormat read(final JsonReader jsonReader) throws IOException {
-      Integer value = jsonReader.nextInt();
+      String value = jsonReader.nextString();
       return SlideExportFormat.fromValue(String.valueOf(value));
     }
   }

@@ -43,45 +43,45 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(PlaceholderType.Adapter.class)
 public enum PlaceholderType {
   
-  Title(0),
+  TITLE("Title"),
   
-  Body(1),
+  BODY("Body"),
   
-  CenteredTitle(2),
+  CENTEREDTITLE("CenteredTitle"),
   
-  Subtitle(3),
+  SUBTITLE("Subtitle"),
   
-  DateAndTime(4),
+  DATEANDTIME("DateAndTime"),
   
-  SlideNumber(5),
+  SLIDENUMBER("SlideNumber"),
   
-  Footer(6),
+  FOOTER("Footer"),
   
-  Header(7),
+  HEADER("Header"),
   
-  Object(8),
+  OBJECT("Object"),
   
-  Chart(9),
+  CHART("Chart"),
   
-  Table(10),
+  TABLE("Table"),
   
-  ClipArt(11),
+  CLIPART("ClipArt"),
   
-  Diagram(12),
+  DIAGRAM("Diagram"),
   
-  Media(13),
+  MEDIA("Media"),
   
-  SlideImage(14),
+  SLIDEIMAGE("SlideImage"),
   
-  Picture(15);
+  PICTURE("Picture");
 
-  private Integer value;
+  private String value;
 
-  PlaceholderType(Integer value) {
+  PlaceholderType(String value) {
     this.value = value;
   }
 
-  public Integer getValue() {
+  public String getValue() {
     return value;
   }
 
@@ -102,7 +102,7 @@ public enum PlaceholderType {
 
     @Override
     public PlaceholderType read(final JsonReader jsonReader) throws IOException {
-      Integer value = jsonReader.nextInt();
+      String value = jsonReader.nextString();
       return PlaceholderType.fromValue(String.valueOf(value));
     }
   }

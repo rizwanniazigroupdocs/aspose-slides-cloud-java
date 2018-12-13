@@ -77,7 +77,7 @@ public class PipelineTest extends ApiTest {
         output.setType(OutputFileType.RESPONSE);
 
         Save task = new Save();
-        task.setFormat(ExportFormat.Pptx);
+        task.setFormat(ExportFormat.PPTX);
         task.setOutput(output);
         task.setType(TaskType.SAVE);
         List<Task> tasks = new ArrayList<Task>();

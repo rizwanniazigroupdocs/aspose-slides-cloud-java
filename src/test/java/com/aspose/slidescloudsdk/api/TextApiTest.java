@@ -84,7 +84,7 @@ public class TextApiTest extends ApiTest {
             assertSuccessfulException(ex, "getSlidesPresentationTextItems");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -240,7 +240,7 @@ public class TextApiTest extends ApiTest {
             assertSuccessfulException(ex, "getSlidesSlideTextItems");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -421,7 +421,7 @@ public class TextApiTest extends ApiTest {
             assertSuccessfulException(ex, "postSlidesPresentationReplaceText");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -627,7 +627,7 @@ public class TextApiTest extends ApiTest {
             assertSuccessfulException(ex, "postSlidesSlideReplaceText");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 

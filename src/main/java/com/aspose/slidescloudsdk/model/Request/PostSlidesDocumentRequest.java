@@ -73,14 +73,14 @@ public class PostSlidesDocumentRequest {
     this.templateStorage = templateStorage;
   }
 
-  private Boolean isImageDataEmbeeded;
+  private Boolean isImageDataEmbedded;
 
-  public Boolean getIsImageDataEmbeeded() {
-    return isImageDataEmbeeded;
+  public Boolean getIsImageDataEmbedded() {
+    return isImageDataEmbedded;
   }
 
-  public void setIsImageDataEmbeeded(Boolean isImageDataEmbeeded) {
-    this.isImageDataEmbeeded = isImageDataEmbeeded;
+  public void setIsImageDataEmbedded(Boolean isImageDataEmbedded) {
+    this.isImageDataEmbedded = isImageDataEmbedded;
   }
 
   private String password;

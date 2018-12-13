@@ -43,17 +43,17 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(PlaceholderOrientation.Adapter.class)
 public enum PlaceholderOrientation {
   
-  Horizontal(0),
+  HORIZONTAL("Horizontal"),
   
-  Vertical(1);
+  VERTICAL("Vertical");
 
-  private Integer value;
+  private String value;
 
-  PlaceholderOrientation(Integer value) {
+  PlaceholderOrientation(String value) {
     this.value = value;
   }
 
-  public Integer getValue() {
+  public String getValue() {
     return value;
   }
 
@@ -74,7 +74,7 @@ public enum PlaceholderOrientation {
 
     @Override
     public PlaceholderOrientation read(final JsonReader jsonReader) throws IOException {
-      Integer value = jsonReader.nextInt();
+      String value = jsonReader.nextString();
       return PlaceholderOrientation.fromValue(String.valueOf(value));
     }
   }

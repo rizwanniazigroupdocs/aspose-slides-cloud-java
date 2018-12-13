@@ -43,19 +43,19 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(ScaleType.Adapter.class)
 public enum ScaleType {
   
-  DoNotScale(0),
+  DONOTSCALE("DoNotScale"),
   
-  EnsureFit(1),
+  ENSUREFIT("EnsureFit"),
   
-  Maximize(2);
+  MAXIMIZE("Maximize");
 
-  private Integer value;
+  private String value;
 
-  ScaleType(Integer value) {
+  ScaleType(String value) {
     this.value = value;
   }
 
-  public Integer getValue() {
+  public String getValue() {
     return value;
   }
 
@@ -76,7 +76,7 @@ public enum ScaleType {
 
     @Override
     public ScaleType read(final JsonReader jsonReader) throws IOException {
-      Integer value = jsonReader.nextInt();
+      String value = jsonReader.nextString();
       return ScaleType.fromValue(String.valueOf(value));
     }
   }

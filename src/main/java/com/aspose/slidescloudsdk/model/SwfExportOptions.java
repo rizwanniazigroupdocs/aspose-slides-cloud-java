@@ -102,6 +102,9 @@ public class SwfExportOptions extends ExportOptions {
   @SerializedName("CommentsAreaColor")
   private String commentsAreaColor = null;
 
+  @SerializedName("ShowCommentsByNoAuthor")
+  private Boolean showCommentsByNoAuthor = null;
+
   public SwfExportOptions showHiddenSlides(Boolean showHiddenSlides) {
     this.showHiddenSlides = showHiddenSlides;
     return this;
@@ -444,6 +447,24 @@ public class SwfExportOptions extends ExportOptions {
     this.commentsAreaColor = commentsAreaColor;
   }
 
+  public SwfExportOptions showCommentsByNoAuthor(Boolean showCommentsByNoAuthor) {
+    this.showCommentsByNoAuthor = showCommentsByNoAuthor;
+    return this;
+  }
+
+   /**
+   * True if comments that have no author are displayed. (Applies only if comments are displayed).
+   * @return showCommentsByNoAuthor
+  **/
+  @ApiModelProperty(value = "True if comments that have no author are displayed. (Applies only if comments are displayed).")
+  public Boolean isShowCommentsByNoAuthor() {
+    return showCommentsByNoAuthor;
+  }
+
+  public void setShowCommentsByNoAuthor(Boolean showCommentsByNoAuthor) {
+    this.showCommentsByNoAuthor = showCommentsByNoAuthor;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -454,12 +475,12 @@ public class SwfExportOptions extends ExportOptions {
       return false;
     }
     SwfExportOptions swfExportOptions = (SwfExportOptions) o;
-    return true && Objects.equals(this.showHiddenSlides, swfExportOptions.showHiddenSlides) && Objects.equals(this.compressed, swfExportOptions.compressed) && Objects.equals(this.viewerIncluded, swfExportOptions.viewerIncluded) && Objects.equals(this.showPageBorder, swfExportOptions.showPageBorder) && Objects.equals(this.showFullScreen, swfExportOptions.showFullScreen) && Objects.equals(this.showPageStepper, swfExportOptions.showPageStepper) && Objects.equals(this.showSearch, swfExportOptions.showSearch) && Objects.equals(this.showTopPane, swfExportOptions.showTopPane) && Objects.equals(this.showBottomPane, swfExportOptions.showBottomPane) && Objects.equals(this.showLeftPane, swfExportOptions.showLeftPane) && Objects.equals(this.startOpenLeftPane, swfExportOptions.startOpenLeftPane) && Objects.equals(this.enableContextMenu, swfExportOptions.enableContextMenu) && Objects.equals(this.logoImage, swfExportOptions.logoImage) && Objects.equals(this.logoLink, swfExportOptions.logoLink) && Objects.equals(this.jpegQuality, swfExportOptions.jpegQuality) && Objects.equals(this.notesPosition, swfExportOptions.notesPosition) && Objects.equals(this.commentsPosition, swfExportOptions.commentsPosition) && Objects.equals(this.commentsAreaWidth, swfExportOptions.commentsAreaWidth) && Objects.equals(this.commentsAreaColor, swfExportOptions.commentsAreaColor) && super.equals(o);
+    return true && Objects.equals(this.showHiddenSlides, swfExportOptions.showHiddenSlides) && Objects.equals(this.compressed, swfExportOptions.compressed) && Objects.equals(this.viewerIncluded, swfExportOptions.viewerIncluded) && Objects.equals(this.showPageBorder, swfExportOptions.showPageBorder) && Objects.equals(this.showFullScreen, swfExportOptions.showFullScreen) && Objects.equals(this.showPageStepper, swfExportOptions.showPageStepper) && Objects.equals(this.showSearch, swfExportOptions.showSearch) && Objects.equals(this.showTopPane, swfExportOptions.showTopPane) && Objects.equals(this.showBottomPane, swfExportOptions.showBottomPane) && Objects.equals(this.showLeftPane, swfExportOptions.showLeftPane) && Objects.equals(this.startOpenLeftPane, swfExportOptions.startOpenLeftPane) && Objects.equals(this.enableContextMenu, swfExportOptions.enableContextMenu) && Objects.equals(this.logoImage, swfExportOptions.logoImage) && Objects.equals(this.logoLink, swfExportOptions.logoLink) && Objects.equals(this.jpegQuality, swfExportOptions.jpegQuality) && Objects.equals(this.notesPosition, swfExportOptions.notesPosition) && Objects.equals(this.commentsPosition, swfExportOptions.commentsPosition) && Objects.equals(this.commentsAreaWidth, swfExportOptions.commentsAreaWidth) && Objects.equals(this.commentsAreaColor, swfExportOptions.commentsAreaColor) && Objects.equals(this.showCommentsByNoAuthor, swfExportOptions.showCommentsByNoAuthor) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(showHiddenSlides, compressed, viewerIncluded, showPageBorder, showFullScreen, showPageStepper, showSearch, showTopPane, showBottomPane, showLeftPane, startOpenLeftPane, enableContextMenu, logoImage, logoLink, jpegQuality, notesPosition, commentsPosition, commentsAreaWidth, commentsAreaColor, super.hashCode());
+    return Objects.hash(showHiddenSlides, compressed, viewerIncluded, showPageBorder, showFullScreen, showPageStepper, showSearch, showTopPane, showBottomPane, showLeftPane, startOpenLeftPane, enableContextMenu, logoImage, logoLink, jpegQuality, notesPosition, commentsPosition, commentsAreaWidth, commentsAreaColor, showCommentsByNoAuthor, super.hashCode());
   }
 
 
@@ -487,6 +508,7 @@ public class SwfExportOptions extends ExportOptions {
     sb.append("    commentsPosition: ").append(toIndentedString(commentsPosition)).append("\n");
     sb.append("    commentsAreaWidth: ").append(toIndentedString(commentsAreaWidth)).append("\n");
     sb.append("    commentsAreaColor: ").append(toIndentedString(commentsAreaColor)).append("\n");
+    sb.append("    showCommentsByNoAuthor: ").append(toIndentedString(showCommentsByNoAuthor)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -38,7 +38,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * 
+ * Dash style of a line.
  */
 @JsonAdapter(LineDashStyle.Adapter.class)
 public enum LineDashStyle {

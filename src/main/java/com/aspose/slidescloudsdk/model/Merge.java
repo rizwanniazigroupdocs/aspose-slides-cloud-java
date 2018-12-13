@@ -42,8 +42,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Merge
+ * Merge presentations task.
  */
+@ApiModel(description = "Merge presentations task.")
 public class Merge extends Task {
   @SerializedName("Presentations")
   private List<MergingSource> presentations = null;
@@ -62,10 +63,10 @@ public class Merge extends Task {
   }
 
    /**
-   * Get presentations
+   * Information about documents and slides being merging sources.
    * @return presentations
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Information about documents and slides being merging sources.")
   public List<MergingSource> getPresentations() {
     return presentations;
   }

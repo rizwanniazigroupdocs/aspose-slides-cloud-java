@@ -43,25 +43,25 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(TiffCompressionType.Adapter.class)
 public enum TiffCompressionType {
   
-  Default(0),
+  DEFAULT("Default"),
   
-  None(1),
+  NONE("None"),
   
-  CCITT3(2),
+  CCITT3("CCITT3"),
   
-  CCITT4(3),
+  CCITT4("CCITT4"),
   
-  LZW(4),
+  LZW("LZW"),
   
-  RLE(5);
+  RLE("RLE");
 
-  private Integer value;
+  private String value;
 
-  TiffCompressionType(Integer value) {
+  TiffCompressionType(String value) {
     this.value = value;
   }
 
-  public Integer getValue() {
+  public String getValue() {
     return value;
   }
 
@@ -82,7 +82,7 @@ public enum TiffCompressionType {
 
     @Override
     public TiffCompressionType read(final JsonReader jsonReader) throws IOException {
-      Integer value = jsonReader.nextInt();
+      String value = jsonReader.nextString();
       return TiffCompressionType.fromValue(String.valueOf(value));
     }
   }

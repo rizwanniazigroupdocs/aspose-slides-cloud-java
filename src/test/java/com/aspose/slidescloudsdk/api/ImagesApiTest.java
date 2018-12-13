@@ -263,7 +263,7 @@ public class ImagesApiTest extends ApiTest {
             assertSuccessfulException(ex, "getSlidesImages");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -394,7 +394,7 @@ public class ImagesApiTest extends ApiTest {
             assertSuccessfulException(ex, "getSlidesSlideImages");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 

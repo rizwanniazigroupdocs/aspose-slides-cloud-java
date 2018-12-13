@@ -43,23 +43,23 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(ImageExportFormat.Adapter.class)
 public enum ImageExportFormat {
   
-  Jpeg(0),
+  JPEG("Jpeg"),
   
-  Png(1),
+  PNG("Png"),
   
-  Gif(2),
+  GIF("Gif"),
   
-  Bmp(3),
+  BMP("Bmp"),
   
-  Tiff(4);
+  TIFF("Tiff");
 
-  private Integer value;
+  private String value;
 
-  ImageExportFormat(Integer value) {
+  ImageExportFormat(String value) {
     this.value = value;
   }
 
-  public Integer getValue() {
+  public String getValue() {
     return value;
   }
 
@@ -80,7 +80,7 @@ public enum ImageExportFormat {
 
     @Override
     public ImageExportFormat read(final JsonReader jsonReader) throws IOException {
-      Integer value = jsonReader.nextInt();
+      String value = jsonReader.nextString();
       return ImageExportFormat.fromValue(String.valueOf(value));
     }
   }

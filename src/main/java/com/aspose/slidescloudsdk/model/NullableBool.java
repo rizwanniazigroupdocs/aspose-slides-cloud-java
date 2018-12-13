@@ -43,19 +43,19 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(NullableBool.Adapter.class)
 public enum NullableBool {
   
-  False(0),
+  FALSE("False"),
   
-  True(1),
+  TRUE("True"),
   
-  NotDefined(-1);
+  NOTDEFINED("NotDefined");
 
-  private Integer value;
+  private String value;
 
-  NullableBool(Integer value) {
+  NullableBool(String value) {
     this.value = value;
   }
 
-  public Integer getValue() {
+  public String getValue() {
     return value;
   }
 
@@ -76,7 +76,7 @@ public enum NullableBool {
 
     @Override
     public NullableBool read(final JsonReader jsonReader) throws IOException {
-      Integer value = jsonReader.nextInt();
+      String value = jsonReader.nextString();
       return NullableBool.fromValue(String.valueOf(value));
     }
   }

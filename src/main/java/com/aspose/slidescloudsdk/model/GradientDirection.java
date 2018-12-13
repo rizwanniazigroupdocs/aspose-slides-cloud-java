@@ -38,7 +38,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * 
+ * Gradient style.
  */
 @JsonAdapter(GradientDirection.Adapter.class)
 public enum GradientDirection {

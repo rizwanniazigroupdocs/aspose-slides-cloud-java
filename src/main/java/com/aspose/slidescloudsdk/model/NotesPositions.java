@@ -43,19 +43,19 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(NotesPositions.Adapter.class)
 public enum NotesPositions {
   
-  None(0),
+  NONE("None"),
   
-  BottomFull(1),
+  BOTTOMFULL("BottomFull"),
   
-  BottomTruncated(2);
+  BOTTOMTRUNCATED("BottomTruncated");
 
-  private Integer value;
+  private String value;
 
-  NotesPositions(Integer value) {
+  NotesPositions(String value) {
     this.value = value;
   }
 
-  public Integer getValue() {
+  public String getValue() {
     return value;
   }
 
@@ -76,7 +76,7 @@ public enum NotesPositions {
 
     @Override
     public NotesPositions read(final JsonReader jsonReader) throws IOException {
-      Integer value = jsonReader.nextInt();
+      String value = jsonReader.nextString();
       return NotesPositions.fromValue(String.valueOf(value));
     }
   }

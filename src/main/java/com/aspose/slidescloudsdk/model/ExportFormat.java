@@ -43,43 +43,53 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(ExportFormat.Adapter.class)
 public enum ExportFormat {
   
-  Pdf(0),
+  PDF("Pdf"),
   
-  Xps(1),
+  XPS("Xps"),
   
-  Tiff(2),
+  TIFF("Tiff"),
   
-  Pptx(3),
+  PPTX("Pptx"),
   
-  Odp(4),
+  ODP("Odp"),
   
-  Otp(5),
+  OTP("Otp"),
   
-  Ppt(6),
+  PPT("Ppt"),
   
-  Pps(7),
+  PPS("Pps"),
   
-  Ppsx(8),
+  PPSX("Ppsx"),
   
-  Pptm(9),
+  PPTM("Pptm"),
   
-  Ppsm(10),
+  PPSM("Ppsm"),
   
-  Potx(11),
+  POTX("Potx"),
   
-  Potm(12),
+  POTM("Potm"),
   
-  Html(13),
+  HTML("Html"),
   
-  Swf(14);
+  SWF("Swf"),
+  
+  SVG("Svg"),
+  
+  JPEG("Jpeg"),
+  
+  PNG("Png"),
+  
+  GIF("Gif"),
+  
+  BMP("Bmp");
 
-  private Integer value;
+  private String value;
 
-  ExportFormat(Integer value) {
+  ExportFormat(String value) {
     this.value = value;
   }
 
-  public Integer getValue() {
+  public String getValue() {
     return value;
   }
 
@@ -100,7 +110,7 @@ public enum ExportFormat {
 
     @Override
     public ExportFormat read(final JsonReader jsonReader) throws IOException {
-      Integer value = jsonReader.nextInt();
+      String value = jsonReader.nextString();
       return ExportFormat.fromValue(String.valueOf(value));
     }
   }

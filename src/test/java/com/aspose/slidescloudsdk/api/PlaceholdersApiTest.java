@@ -81,7 +81,7 @@ public class PlaceholdersApiTest extends ApiTest {
             assertSuccessfulException(ex, "getSlidesPlaceholder");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -262,7 +262,7 @@ public class PlaceholdersApiTest extends ApiTest {
             assertSuccessfulException(ex, "getSlidesPlaceholders");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 

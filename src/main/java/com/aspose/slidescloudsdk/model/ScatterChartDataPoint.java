@@ -38,8 +38,9 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * ScatterChartDataPoint
+ * Scatter chart (two-dimensional) data point
  */
+@ApiModel(description = "Scatter chart (two-dimensional) data point")
 public class ScatterChartDataPoint {
   @SerializedName("XValue")
   private Double xvalue = null;
@@ -53,10 +54,10 @@ public class ScatterChartDataPoint {
   }
 
    /**
-   * Get xvalue
+   * X-value
    * @return xvalue
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "X-value")
   public Double getXvalue() {
     return xvalue;
   }
@@ -71,10 +72,10 @@ public class ScatterChartDataPoint {
   }
 
    /**
-   * Get yvalue
+   * Y-value
    * @return yvalue
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Y-value")
   public Double getYvalue() {
     return yvalue;
   }

@@ -97,7 +97,7 @@ public class SlidesApiTest extends ApiTest {
             assertSuccessfulException(ex, "deleteSlideByIndex");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -253,7 +253,7 @@ public class SlidesApiTest extends ApiTest {
             assertSuccessfulException(ex, "deleteSlidesCleanSlidesList");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -409,7 +409,7 @@ public class SlidesApiTest extends ApiTest {
             assertSuccessfulException(ex, "deleteSlidesSlideBackground");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -846,7 +846,7 @@ public class SlidesApiTest extends ApiTest {
             assertSuccessfulException(ex, "getSlidesSlide");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -1002,7 +1002,7 @@ public class SlidesApiTest extends ApiTest {
             assertSuccessfulException(ex, "getSlidesSlideBackground");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -1158,7 +1158,7 @@ public class SlidesApiTest extends ApiTest {
             assertSuccessfulException(ex, "getSlidesSlideComments");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -1314,7 +1314,7 @@ public class SlidesApiTest extends ApiTest {
             assertSuccessfulException(ex, "getSlidesSlidesList");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -1751,7 +1751,7 @@ public class SlidesApiTest extends ApiTest {
             assertSuccessfulException(ex, "postSlidesReorderPosition");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -2057,7 +2057,7 @@ public class SlidesApiTest extends ApiTest {
             assertSuccessfulException(ex, "putSlidesSlide");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -2238,7 +2238,7 @@ public class SlidesApiTest extends ApiTest {
             assertSuccessfulException(ex, "putSlidesSlideBackground");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 

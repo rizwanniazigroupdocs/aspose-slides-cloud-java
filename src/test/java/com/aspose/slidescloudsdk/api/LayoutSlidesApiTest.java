@@ -84,7 +84,7 @@ public class LayoutSlidesApiTest extends ApiTest {
             assertSuccessfulException(ex, "getLayoutSlide");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -240,7 +240,7 @@ public class LayoutSlidesApiTest extends ApiTest {
             assertSuccessfulException(ex, "getLayoutSlidesList");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -371,7 +371,7 @@ public class LayoutSlidesApiTest extends ApiTest {
             assertSuccessfulException(ex, "postCopyLayoutSlideFromSourcePresentation");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -582,7 +582,7 @@ public class LayoutSlidesApiTest extends ApiTest {
     }
     
     /**
-     * Read presentation layoutSlide info.
+     * Update a layoutSlide.
      *
      * 
      *
@@ -602,12 +602,12 @@ public class LayoutSlidesApiTest extends ApiTest {
             assertSuccessfulException(ex, "putLayoutSlide");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
     /**
-     * Read presentation layoutSlide info.
+     * Update a layoutSlide.
      *
      * 
      *
@@ -631,7 +631,7 @@ public class LayoutSlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Read presentation layoutSlide info.
+     * Update a layoutSlide.
      *
      * 
      *
@@ -655,7 +655,7 @@ public class LayoutSlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Read presentation layoutSlide info.
+     * Update a layoutSlide.
      *
      * 
      *
@@ -679,7 +679,7 @@ public class LayoutSlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Read presentation layoutSlide info.
+     * Update a layoutSlide.
      *
      * 
      *
@@ -703,7 +703,7 @@ public class LayoutSlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Read presentation layoutSlide info.
+     * Update a layoutSlide.
      *
      * 
      *
@@ -727,7 +727,7 @@ public class LayoutSlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Read presentation layoutSlide info.
+     * Update a layoutSlide.
      *
      * 
      *

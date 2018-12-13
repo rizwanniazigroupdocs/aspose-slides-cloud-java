@@ -94,6 +94,15 @@ public class PdfExportOptions extends ExportOptions {
   @SerializedName("CommentsAreaColor")
   private String commentsAreaColor = null;
 
+  @SerializedName("ShowCommentsByNoAuthor")
+  private Boolean showCommentsByNoAuthor = null;
+
+  @SerializedName("ImageTransparentColor")
+  private String imageTransparentColor = null;
+
+  @SerializedName("ApplyImageTransparent")
+  private Boolean applyImageTransparent = null;
+
   public PdfExportOptions textCompression(PdfTextCompression textCompression) {
     this.textCompression = textCompression;
     return this;
@@ -372,6 +381,60 @@ public class PdfExportOptions extends ExportOptions {
     this.commentsAreaColor = commentsAreaColor;
   }
 
+  public PdfExportOptions showCommentsByNoAuthor(Boolean showCommentsByNoAuthor) {
+    this.showCommentsByNoAuthor = showCommentsByNoAuthor;
+    return this;
+  }
+
+   /**
+   * True if comments that have no author are displayed. (Applies only if comments are displayed).
+   * @return showCommentsByNoAuthor
+  **/
+  @ApiModelProperty(value = "True if comments that have no author are displayed. (Applies only if comments are displayed).")
+  public Boolean isShowCommentsByNoAuthor() {
+    return showCommentsByNoAuthor;
+  }
+
+  public void setShowCommentsByNoAuthor(Boolean showCommentsByNoAuthor) {
+    this.showCommentsByNoAuthor = showCommentsByNoAuthor;
+  }
+
+  public PdfExportOptions imageTransparentColor(String imageTransparentColor) {
+    this.imageTransparentColor = imageTransparentColor;
+    return this;
+  }
+
+   /**
+   * Image transparent color.
+   * @return imageTransparentColor
+  **/
+  @ApiModelProperty(value = "Image transparent color.")
+  public String getImageTransparentColor() {
+    return imageTransparentColor;
+  }
+
+  public void setImageTransparentColor(String imageTransparentColor) {
+    this.imageTransparentColor = imageTransparentColor;
+  }
+
+  public PdfExportOptions applyImageTransparent(Boolean applyImageTransparent) {
+    this.applyImageTransparent = applyImageTransparent;
+    return this;
+  }
+
+   /**
+   * True to apply specified   to an image.
+   * @return applyImageTransparent
+  **/
+  @ApiModelProperty(value = "True to apply specified   to an image.")
+  public Boolean isApplyImageTransparent() {
+    return applyImageTransparent;
+  }
+
+  public void setApplyImageTransparent(Boolean applyImageTransparent) {
+    this.applyImageTransparent = applyImageTransparent;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -382,12 +445,12 @@ public class PdfExportOptions extends ExportOptions {
       return false;
     }
     PdfExportOptions pdfExportOptions = (PdfExportOptions) o;
-    return true && Objects.equals(this.textCompression, pdfExportOptions.textCompression) && Objects.equals(this.embedFullFonts, pdfExportOptions.embedFullFonts) && Objects.equals(this.compliance, pdfExportOptions.compliance) && Objects.equals(this.sufficientResolution, pdfExportOptions.sufficientResolution) && Objects.equals(this.jpegQuality, pdfExportOptions.jpegQuality) && Objects.equals(this.drawSlidesFrame, pdfExportOptions.drawSlidesFrame) && Objects.equals(this.showHiddenSlides, pdfExportOptions.showHiddenSlides) && Objects.equals(this.saveMetafilesAsPng, pdfExportOptions.saveMetafilesAsPng) && Objects.equals(this.password, pdfExportOptions.password) && Objects.equals(this.embedTrueTypeFontsForASCII, pdfExportOptions.embedTrueTypeFontsForASCII) && Objects.equals(this.additionalCommonFontFamilies, pdfExportOptions.additionalCommonFontFamilies) && Objects.equals(this.notesPosition, pdfExportOptions.notesPosition) && Objects.equals(this.commentsPosition, pdfExportOptions.commentsPosition) && Objects.equals(this.commentsAreaWidth, pdfExportOptions.commentsAreaWidth) && Objects.equals(this.commentsAreaColor, pdfExportOptions.commentsAreaColor) && super.equals(o);
+    return true && Objects.equals(this.textCompression, pdfExportOptions.textCompression) && Objects.equals(this.embedFullFonts, pdfExportOptions.embedFullFonts) && Objects.equals(this.compliance, pdfExportOptions.compliance) && Objects.equals(this.sufficientResolution, pdfExportOptions.sufficientResolution) && Objects.equals(this.jpegQuality, pdfExportOptions.jpegQuality) && Objects.equals(this.drawSlidesFrame, pdfExportOptions.drawSlidesFrame) && Objects.equals(this.showHiddenSlides, pdfExportOptions.showHiddenSlides) && Objects.equals(this.saveMetafilesAsPng, pdfExportOptions.saveMetafilesAsPng) && Objects.equals(this.password, pdfExportOptions.password) && Objects.equals(this.embedTrueTypeFontsForASCII, pdfExportOptions.embedTrueTypeFontsForASCII) && Objects.equals(this.additionalCommonFontFamilies, pdfExportOptions.additionalCommonFontFamilies) && Objects.equals(this.notesPosition, pdfExportOptions.notesPosition) && Objects.equals(this.commentsPosition, pdfExportOptions.commentsPosition) && Objects.equals(this.commentsAreaWidth, pdfExportOptions.commentsAreaWidth) && Objects.equals(this.commentsAreaColor, pdfExportOptions.commentsAreaColor) && Objects.equals(this.showCommentsByNoAuthor, pdfExportOptions.showCommentsByNoAuthor) && Objects.equals(this.imageTransparentColor, pdfExportOptions.imageTransparentColor) && Objects.equals(this.applyImageTransparent, pdfExportOptions.applyImageTransparent) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(textCompression, embedFullFonts, compliance, sufficientResolution, jpegQuality, drawSlidesFrame, showHiddenSlides, saveMetafilesAsPng, password, embedTrueTypeFontsForASCII, additionalCommonFontFamilies, notesPosition, commentsPosition, commentsAreaWidth, commentsAreaColor, super.hashCode());
+    return Objects.hash(textCompression, embedFullFonts, compliance, sufficientResolution, jpegQuality, drawSlidesFrame, showHiddenSlides, saveMetafilesAsPng, password, embedTrueTypeFontsForASCII, additionalCommonFontFamilies, notesPosition, commentsPosition, commentsAreaWidth, commentsAreaColor, showCommentsByNoAuthor, imageTransparentColor, applyImageTransparent, super.hashCode());
   }
 
 
@@ -411,6 +474,9 @@ public class PdfExportOptions extends ExportOptions {
     sb.append("    commentsPosition: ").append(toIndentedString(commentsPosition)).append("\n");
     sb.append("    commentsAreaWidth: ").append(toIndentedString(commentsAreaWidth)).append("\n");
     sb.append("    commentsAreaColor: ").append(toIndentedString(commentsAreaColor)).append("\n");
+    sb.append("    showCommentsByNoAuthor: ").append(toIndentedString(showCommentsByNoAuthor)).append("\n");
+    sb.append("    imageTransparentColor: ").append(toIndentedString(imageTransparentColor)).append("\n");
+    sb.append("    applyImageTransparent: ").append(toIndentedString(applyImageTransparent)).append("\n");
     sb.append("}");
     return sb.toString();
   }

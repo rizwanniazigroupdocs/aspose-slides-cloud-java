@@ -190,7 +190,7 @@ public class ApiTest {
                     dto = new Shape();
                     Shape shape = (Shape)dto;
                     shape.setType(ShapeType.SHAPE);
-                    shape.setShapeType(CombinedShapeType.BentArrow);
+                    shape.setShapeType(CombinedShapeType.BENTARROW);
                     shape.setGeometryShapeType(GeometryShapeType.RECTANGLE);
                     shape.setText("testShape");
                 }
@@ -251,7 +251,6 @@ public class ApiTest {
             } else if (("propertyName".equals(name) && !functionName.startsWith("put"))
                     || (("name".equals(name) || "folder".equals(name) || "cloneFrom".equals(name))
                        && !("putSlidesDocumentFromHtml".equals(functionName)
-                            || "putNewPresentation".equals(functionName)
                             || "putNewPresentation".equals(functionName)
                             || "postAddNotesSlide".equals(functionName)
                             || (functionName.startsWith("put")
@@ -324,7 +323,7 @@ public class ApiTest {
                 } else if ("document".equals(name)) {
                     assertThat(ex.getMessage(), startsWith("The stream is empty."));
                 } else if ("pipeline".equals(name)) {
-                    assertThat(ex.getMessage(), startsWith("Pilepile dto expected."));
+                    assertThat(ex.getMessage(), startsWith("Pipeline dto expected."));
                 } else if ("to".equals(name)) {
                     assertThat(ex.getMessage(), startsWith("Invalid 'to' parameter"));
                 } else if ("slideDto".equals(name)) {

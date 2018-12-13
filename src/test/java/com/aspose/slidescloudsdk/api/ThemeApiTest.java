@@ -85,7 +85,7 @@ public class ThemeApiTest extends ApiTest {
             assertSuccessfulException(ex, "getSlidesTheme");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -241,7 +241,7 @@ public class ThemeApiTest extends ApiTest {
             assertSuccessfulException(ex, "getSlidesThemeColorScheme");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -397,7 +397,7 @@ public class ThemeApiTest extends ApiTest {
             assertSuccessfulException(ex, "getSlidesThemeFontScheme");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -553,7 +553,7 @@ public class ThemeApiTest extends ApiTest {
             assertSuccessfulException(ex, "getSlidesThemeFormatScheme");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 

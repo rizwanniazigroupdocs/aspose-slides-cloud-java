@@ -121,7 +121,7 @@ public class MergeDocumentApi extends ApiBase {
     }
 
     /**
-     * Merge presentations.
+     * Merge the presentation with other presentations specified in the request parameter.
      * 
      * @param request Request for postPresentationMerge. (required)
      * @return DocumentResponse
@@ -138,7 +138,7 @@ public class MergeDocumentApi extends ApiBase {
     }
 
     /**
-     * Merge presentations.
+     * Merge the presentation with other presentations specified in the request parameter.
      * 
      * @param request Request for postPresentationMerge. (required)
      * @return ApiResponse&lt;DocumentResponse&gt;
@@ -151,7 +151,7 @@ public class MergeDocumentApi extends ApiBase {
     }
 
     /**
-     * Merge presentations. (asynchronously)
+     * Merge the presentation with other presentations specified in the request parameter. (asynchronously)
      * 
      * @param request Request for postPresentationMerge. (required)
      * @param callback The callback to be executed when the API call finishes
@@ -241,7 +241,7 @@ public class MergeDocumentApi extends ApiBase {
     }
 
     /**
-     * Merge presentations.
+     * Merge the presentation with other presentations or some of their slides specified in the request parameter.
      * 
      * @param request Request for putPresentationMerge. (required)
      * @return DocumentResponse
@@ -258,7 +258,7 @@ public class MergeDocumentApi extends ApiBase {
     }
 
     /**
-     * Merge presentations.
+     * Merge the presentation with other presentations or some of their slides specified in the request parameter.
      * 
      * @param request Request for putPresentationMerge. (required)
      * @return ApiResponse&lt;DocumentResponse&gt;
@@ -271,7 +271,7 @@ public class MergeDocumentApi extends ApiBase {
     }
 
     /**
-     * Merge presentations. (asynchronously)
+     * Merge the presentation with other presentations or some of their slides specified in the request parameter. (asynchronously)
      * 
      * @param request Request for putPresentationMerge. (required)
      * @param callback The callback to be executed when the API call finishes

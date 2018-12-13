@@ -95,7 +95,7 @@ public class DocumentApiTest extends ApiTest {
             assertSuccessfulException(ex, "getSlidesApiInfo");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -126,7 +126,7 @@ public class DocumentApiTest extends ApiTest {
             assertSuccessfulException(ex, "getSlidesDocument");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -488,7 +488,7 @@ public class DocumentApiTest extends ApiTest {
             assertSuccessfulException(ex, "postSlidesDocument");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -597,19 +597,19 @@ public class DocumentApiTest extends ApiTest {
      *          if the Api call fails
      */
     @Test
-    public void postSlidesDocumentInvalidIsImageDataEmbeededTest() throws ApiException {
+    public void postSlidesDocumentInvalidIsImageDataEmbeddedTest() throws ApiException {
         Boolean needAssertResponse = false;
         try {
             PostSlidesDocumentRequest request = createPostSlidesDocumentRequest();
-            request.setIsImageDataEmbeeded((Boolean)invalidizeTestValue(request.getIsImageDataEmbeeded(), "isImageDataEmbeeded", "Boolean"));
-            initialize("postSlidesDocument", "isImageDataEmbeeded", request.getIsImageDataEmbeeded());
+            request.setIsImageDataEmbedded((Boolean)invalidizeTestValue(request.getIsImageDataEmbedded(), "isImageDataEmbedded", "Boolean"));
+            initialize("postSlidesDocument", "isImageDataEmbedded", request.getIsImageDataEmbedded());
             DocumentResponse response = api.postSlidesDocument(request);
             needAssertResponse = true;
         } catch (ApiException ex) {
-            assertException(ex, "isImageDataEmbeeded", "postSlidesDocument");
+            assertException(ex, "isImageDataEmbedded", "postSlidesDocument");
         }
         if (needAssertResponse) {
-            assertResponse("isImageDataEmbeeded", "postSlidesDocument");
+            assertResponse("isImageDataEmbedded", "postSlidesDocument");
         }
     }
     /**
@@ -691,7 +691,7 @@ public class DocumentApiTest extends ApiTest {
         request.setData((String)getTestValue("postSlidesDocument", "data", "String"));
         request.setTemplatePath((String)getTestValue("postSlidesDocument", "templatePath", "String"));
         request.setTemplateStorage((String)getTestValue("postSlidesDocument", "templateStorage", "String"));
-        request.setIsImageDataEmbeeded((Boolean)getTestValue("postSlidesDocument", "isImageDataEmbeeded", "Boolean"));
+        request.setIsImageDataEmbedded((Boolean)getTestValue("postSlidesDocument", "isImageDataEmbedded", "Boolean"));
         request.setPassword((String)getTestValue("postSlidesDocument", "password", "String"));
         request.setStorage((String)getTestValue("postSlidesDocument", "storage", "String"));
         request.setFolder((String)getTestValue("postSlidesDocument", "folder", "String"));
@@ -1031,7 +1031,7 @@ public class DocumentApiTest extends ApiTest {
             assertSuccessfulException(ex, "postSlidesSplit");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -1337,7 +1337,7 @@ public class DocumentApiTest extends ApiTest {
             assertSuccessfulException(ex, "putNewPresentation");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -1724,7 +1724,7 @@ public class DocumentApiTest extends ApiTest {
             assertSuccessfulException(ex, "putSlidesDocumentFromHtml");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -1880,7 +1880,7 @@ public class DocumentApiTest extends ApiTest {
             assertSuccessfulException(ex, "putSlidesSlideSize");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 

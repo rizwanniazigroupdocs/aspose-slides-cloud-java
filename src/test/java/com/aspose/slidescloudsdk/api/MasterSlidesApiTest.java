@@ -82,7 +82,7 @@ public class MasterSlidesApiTest extends ApiTest {
             assertSuccessfulException(ex, "getMasterSlide");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -238,7 +238,7 @@ public class MasterSlidesApiTest extends ApiTest {
             assertSuccessfulException(ex, "getMasterSlidesList");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -369,7 +369,7 @@ public class MasterSlidesApiTest extends ApiTest {
             assertSuccessfulException(ex, "postCopyMasterSlideFromSourcePresentation");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 

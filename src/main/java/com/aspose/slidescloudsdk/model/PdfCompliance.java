@@ -43,17 +43,17 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(PdfCompliance.Adapter.class)
 public enum PdfCompliance {
   
-  Pdf15(0),
+  PDF15("Pdf15"),
   
-  PdfA1b(1);
+  PDFA1B("PdfA1b");
 
-  private Integer value;
+  private String value;
 
-  PdfCompliance(Integer value) {
+  PdfCompliance(String value) {
     this.value = value;
   }
 
-  public Integer getValue() {
+  public String getValue() {
     return value;
   }
 
@@ -74,7 +74,7 @@ public enum PdfCompliance {
 
     @Override
     public PdfCompliance read(final JsonReader jsonReader) throws IOException {
-      Integer value = jsonReader.nextInt();
+      String value = jsonReader.nextString();
       return PdfCompliance.fromValue(String.valueOf(value));
     }
   }

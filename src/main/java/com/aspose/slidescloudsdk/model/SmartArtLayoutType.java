@@ -311,7 +311,9 @@ public enum SmartArtLayoutType {
   
   VERTICALPROCESS("VerticalProcess"),
   
-  CUSTOM("Custom");
+  CUSTOM("Custom"),
+  
+  PICTUREORGANIZATIONCHART("PictureOrganizationChart");
 
   private String value;
 

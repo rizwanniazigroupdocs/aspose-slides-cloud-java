@@ -38,7 +38,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * 
+ * Shape type
  */
 @JsonAdapter(ShapeType.Adapter.class)
 public enum ShapeType {

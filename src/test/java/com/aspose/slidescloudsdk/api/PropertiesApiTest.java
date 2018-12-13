@@ -87,7 +87,7 @@ public class PropertiesApiTest extends ApiTest {
             assertSuccessfulException(ex, "deleteSlidesDocumentProperties");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -218,7 +218,7 @@ public class PropertiesApiTest extends ApiTest {
             assertSuccessfulException(ex, "deleteSlidesDocumentProperty");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -374,7 +374,7 @@ public class PropertiesApiTest extends ApiTest {
             assertSuccessfulException(ex, "getSlidesDocumentProperties");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -505,7 +505,7 @@ public class PropertiesApiTest extends ApiTest {
             assertSuccessfulException(ex, "getSlidesDocumentProperty");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -661,7 +661,7 @@ public class PropertiesApiTest extends ApiTest {
             assertSuccessfulException(ex, "postSlidesSetDocumentProperties");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 
@@ -817,7 +817,7 @@ public class PropertiesApiTest extends ApiTest {
             assertSuccessfulException(ex, "putSlidesSetDocumentProperty");
         }
         if (needAssertResponse) {
-            assertThat(response.getCode(), anyOf(equalTo(HttpStatusCode.OK), equalTo(HttpStatusCode.Created)));
+            assertThat(response.getCode(), anyOf(equalTo(200), equalTo(201)));
         }
     }
 

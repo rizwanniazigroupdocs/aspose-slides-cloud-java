@@ -43,45 +43,45 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(SizeType.Adapter.class)
 public enum SizeType {
   
-  OnScreen(0),
+  ONSCREEN("OnScreen"),
   
-  LetterPaper(1),
+  LETTERPAPER("LetterPaper"),
   
-  A4Paper(2),
+  A4PAPER("A4Paper"),
   
-  Slide35mm(3),
+  SLIDE35MM("Slide35mm"),
   
-  Overhead(4),
+  OVERHEAD("Overhead"),
   
-  Banner(5),
+  BANNER("Banner"),
   
-  Custom(6),
+  CUSTOM("Custom"),
   
-  Ledger(7),
+  LEDGER("Ledger"),
   
-  A3Paper(8),
+  A3PAPER("A3Paper"),
   
-  B4IsoPaper(9),
+  B4ISOPAPER("B4IsoPaper"),
   
-  B5IsoPaper(10),
+  B5ISOPAPER("B5IsoPaper"),
   
-  B4JisPaper(11),
+  B4JISPAPER("B4JisPaper"),
   
-  B5JisPaper(12),
+  B5JISPAPER("B5JisPaper"),
   
-  HagakiCard(13),
+  HAGAKICARD("HagakiCard"),
   
-  OnScreen16x9(14),
+  ONSCREEN16X9("OnScreen16x9"),
   
-  OnScreen16x10(15);
+  ONSCREEN16X10("OnScreen16x10");
 
-  private Integer value;
+  private String value;
 
-  SizeType(Integer value) {
+  SizeType(String value) {
     this.value = value;
   }
 
-  public Integer getValue() {
+  public String getValue() {
     return value;
   }
 
@@ -102,7 +102,7 @@ public enum SizeType {
 
     @Override
     public SizeType read(final JsonReader jsonReader) throws IOException {
-      Integer value = jsonReader.nextInt();
+      String value = jsonReader.nextString();
       return SizeType.fromValue(String.valueOf(value));
     }
   }

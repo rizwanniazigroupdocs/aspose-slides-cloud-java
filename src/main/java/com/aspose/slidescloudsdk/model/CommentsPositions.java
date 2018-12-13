@@ -43,19 +43,19 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(CommentsPositions.Adapter.class)
 public enum CommentsPositions {
   
-  None(0),
+  NONE("None"),
   
-  Bottom(1),
+  BOTTOM("Bottom"),
   
-  Right(2);
+  RIGHT("Right");
 
-  private Integer value;
+  private String value;
 
-  CommentsPositions(Integer value) {
+  CommentsPositions(String value) {
     this.value = value;
   }
 
-  public Integer getValue() {
+  public String getValue() {
     return value;
   }
 
@@ -76,7 +76,7 @@ public enum CommentsPositions {
 
     @Override
     public CommentsPositions read(final JsonReader jsonReader) throws IOException {
-      Integer value = jsonReader.nextInt();
+      String value = jsonReader.nextString();
       return CommentsPositions.fromValue(String.valueOf(value));
     }
   }

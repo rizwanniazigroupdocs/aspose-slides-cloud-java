@@ -40,8 +40,9 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * AddMasterSlide
+ * Add master slide task.
  */
+@ApiModel(description = "Add master slide task.")
 public class AddMasterSlide extends Task {
   @SerializedName("CloneFromFile")
   private InputFile cloneFromFile = null;
@@ -58,10 +59,10 @@ public class AddMasterSlide extends Task {
   }
 
    /**
-   * Get cloneFromFile
+   * Source presentation clone from.
    * @return cloneFromFile
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Source presentation clone from.")
   public InputFile getCloneFromFile() {
     return cloneFromFile;
   }
@@ -76,10 +77,10 @@ public class AddMasterSlide extends Task {
   }
 
    /**
-   * Get cloneFromPosition
+   * Index of slide to clone.
    * @return cloneFromPosition
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Index of slide to clone.")
   public Integer getCloneFromPosition() {
     return cloneFromPosition;
   }
@@ -94,10 +95,10 @@ public class AddMasterSlide extends Task {
   }
 
    /**
-   * Get applyToAll
+   * True if cloned master slide is applied to all slides.
    * @return applyToAll
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "True if cloned master slide is applied to all slides.")
   public Boolean isApplyToAll() {
     return applyToAll;
   }

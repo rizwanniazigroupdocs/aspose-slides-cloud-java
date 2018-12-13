@@ -43,23 +43,23 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(ImagePixelFormat.Adapter.class)
 public enum ImagePixelFormat {
   
-  Format1bppIndexed(1),
+  FORMAT1BPPINDEXED("Format1bppIndexed"),
   
-  Format4bppIndexed(4),
+  FORMAT4BPPINDEXED("Format4bppIndexed"),
   
-  Format8bppIndexed(8),
+  FORMAT8BPPINDEXED("Format8bppIndexed"),
   
-  Format24bppRgb(24),
+  FORMAT24BPPRGB("Format24bppRgb"),
   
-  Format32bppArgb(32);
+  FORMAT32BPPARGB("Format32bppArgb");
 
-  private Integer value;
+  private String value;
 
-  ImagePixelFormat(Integer value) {
+  ImagePixelFormat(String value) {
     this.value = value;
   }
 
-  public Integer getValue() {
+  public String getValue() {
     return value;
   }
 
@@ -80,7 +80,7 @@ public enum ImagePixelFormat {
 
     @Override
     public ImagePixelFormat read(final JsonReader jsonReader) throws IOException {
-      Integer value = jsonReader.nextInt();
+      String value = jsonReader.nextString();
       return ImagePixelFormat.fromValue(String.valueOf(value));
     }
   }

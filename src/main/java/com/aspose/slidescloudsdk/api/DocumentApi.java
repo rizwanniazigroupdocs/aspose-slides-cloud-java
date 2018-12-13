@@ -471,7 +471,7 @@ public class DocumentApi extends ApiBase {
         List<Pair> queryParams = new ArrayList<Pair>();
         getApiClient().addQueryParameter(queryParams, "templatePath", request.getTemplatePath());
         getApiClient().addQueryParameter(queryParams, "templateStorage", request.getTemplateStorage());
-        getApiClient().addQueryParameter(queryParams, "isImageDataEmbeeded", request.getIsImageDataEmbeeded());
+        getApiClient().addQueryParameter(queryParams, "isImageDataEmbedded", request.getIsImageDataEmbedded());
         getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
         getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
         getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());

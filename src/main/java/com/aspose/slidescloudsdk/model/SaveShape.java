@@ -42,8 +42,9 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * SaveShape
+ * Save shape task.
  */
+@ApiModel(description = "Save shape task.")
 public class SaveShape extends Task {
   @SerializedName("Format")
   private ShapeExportFormat format = null;
@@ -63,10 +64,10 @@ public class SaveShape extends Task {
   }
 
    /**
-   * Get format
+   * Format.
    * @return format
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Format.")
   public ShapeExportFormat getFormat() {
     return format;
   }
@@ -81,10 +82,10 @@ public class SaveShape extends Task {
   }
 
    /**
-   * Get shapePath
+   * Shape path.
    * @return shapePath
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Shape path.")
   public String getShapePath() {
     return shapePath;
   }
@@ -99,10 +100,10 @@ public class SaveShape extends Task {
   }
 
    /**
-   * Get output
+   * Output file.
    * @return output
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Output file.")
   public OutputFile getOutput() {
     return output;
   }
@@ -117,10 +118,10 @@ public class SaveShape extends Task {
   }
 
    /**
-   * Get options
+   * Save options.
    * @return options
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Save options.")
   public IShapeExportOptions getOptions() {
     return options;
   }

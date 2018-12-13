@@ -43,25 +43,25 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(PicturesCompression.Adapter.class)
 public enum PicturesCompression {
   
-  Dpi330(0),
+  DPI330("Dpi330"),
   
-  Dpi220(1),
+  DPI220("Dpi220"),
   
-  Dpi150(2),
+  DPI150("Dpi150"),
   
-  Dpi96(3),
+  DPI96("Dpi96"),
   
-  Dpi72(4),
+  DPI72("Dpi72"),
   
-  DocumentResolution(5);
+  DOCUMENTRESOLUTION("DocumentResolution");
 
-  private Integer value;
+  private String value;
 
-  PicturesCompression(Integer value) {
+  PicturesCompression(String value) {
     this.value = value;
   }
 
-  public Integer getValue() {
+  public String getValue() {
     return value;
   }
 
@@ -82,7 +82,7 @@ public enum PicturesCompression {
 
     @Override
     public PicturesCompression read(final JsonReader jsonReader) throws IOException {
-      Integer value = jsonReader.nextInt();
+      String value = jsonReader.nextString();
       return PicturesCompression.fromValue(String.valueOf(value));
     }
   }

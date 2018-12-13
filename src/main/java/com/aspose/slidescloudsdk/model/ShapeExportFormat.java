@@ -43,25 +43,25 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(ShapeExportFormat.Adapter.class)
 public enum ShapeExportFormat {
   
-  Jpeg(0),
+  JPEG("Jpeg"),
   
-  Png(1),
+  PNG("Png"),
   
-  Gif(2),
+  GIF("Gif"),
   
-  Bmp(3),
+  BMP("Bmp"),
   
-  Tiff(4),
+  TIFF("Tiff"),
   
-  Svg(5);
+  SVG("Svg");
 
-  private Integer value;
+  private String value;
 
-  ShapeExportFormat(Integer value) {
+  ShapeExportFormat(String value) {
     this.value = value;
   }
 
-  public Integer getValue() {
+  public String getValue() {
     return value;
   }
 
@@ -82,7 +82,7 @@ public enum ShapeExportFormat {
 
     @Override
     public ShapeExportFormat read(final JsonReader jsonReader) throws IOException {
-      Integer value = jsonReader.nextInt();
+      String value = jsonReader.nextString();
       return ShapeExportFormat.fromValue(String.valueOf(value));
     }
   }

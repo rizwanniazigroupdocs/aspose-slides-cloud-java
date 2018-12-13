@@ -43,409 +43,409 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(CombinedShapeType.Adapter.class)
 public enum CombinedShapeType {
   
-  Custom(0),
+  CUSTOM("Custom"),
   
-  Line(1),
+  LINE("Line"),
   
-  LineInverse(2),
+  LINEINVERSE("LineInverse"),
   
-  Triangle(3),
+  TRIANGLE("Triangle"),
   
-  RightTriangle(4),
+  RIGHTTRIANGLE("RightTriangle"),
   
-  Rectangle(5),
+  RECTANGLE("Rectangle"),
   
-  Diamond(6),
+  DIAMOND("Diamond"),
   
-  Parallelogram(7),
+  PARALLELOGRAM("Parallelogram"),
   
-  Trapezoid(8),
+  TRAPEZOID("Trapezoid"),
   
-  NonIsoscelesTrapezoid(9),
+  NONISOSCELESTRAPEZOID("NonIsoscelesTrapezoid"),
   
-  Pentagon(10),
+  PENTAGON("Pentagon"),
   
-  Hexagon(11),
+  HEXAGON("Hexagon"),
   
-  Heptagon(12),
+  HEPTAGON("Heptagon"),
   
-  Octagon(13),
+  OCTAGON("Octagon"),
   
-  Decagon(14),
+  DECAGON("Decagon"),
   
-  Dodecagon(15),
+  DODECAGON("Dodecagon"),
   
-  FourPointedStar(16),
+  FOURPOINTEDSTAR("FourPointedStar"),
   
-  FivePointedStar(17),
+  FIVEPOINTEDSTAR("FivePointedStar"),
   
-  SixPointedStar(18),
+  SIXPOINTEDSTAR("SixPointedStar"),
   
-  SevenPointedStar(19),
+  SEVENPOINTEDSTAR("SevenPointedStar"),
   
-  EightPointedStar(20),
+  EIGHTPOINTEDSTAR("EightPointedStar"),
   
-  TenPointedStar(21),
+  TENPOINTEDSTAR("TenPointedStar"),
   
-  TwelvePointedStar(22),
+  TWELVEPOINTEDSTAR("TwelvePointedStar"),
   
-  SixteenPointedStar(23),
+  SIXTEENPOINTEDSTAR("SixteenPointedStar"),
   
-  TwentyFourPointedStar(24),
+  TWENTYFOURPOINTEDSTAR("TwentyFourPointedStar"),
   
-  ThirtyTwoPointedStar(25),
+  THIRTYTWOPOINTEDSTAR("ThirtyTwoPointedStar"),
   
-  RoundCornerRectangle(26),
+  ROUNDCORNERRECTANGLE("RoundCornerRectangle"),
   
-  OneRoundCornerRectangle(27),
+  ONEROUNDCORNERRECTANGLE("OneRoundCornerRectangle"),
   
-  TwoSamesideRoundCornerRectangle(28),
+  TWOSAMESIDEROUNDCORNERRECTANGLE("TwoSamesideRoundCornerRectangle"),
   
-  TwoDiagonalRoundCornerRectangle(29),
+  TWODIAGONALROUNDCORNERRECTANGLE("TwoDiagonalRoundCornerRectangle"),
   
-  OneSnipOneRoundCornerRectangle(30),
+  ONESNIPONEROUNDCORNERRECTANGLE("OneSnipOneRoundCornerRectangle"),
   
-  OneSnipCornerRectangle(31),
+  ONESNIPCORNERRECTANGLE("OneSnipCornerRectangle"),
   
-  TwoSamesideSnipCornerRectangle(32),
+  TWOSAMESIDESNIPCORNERRECTANGLE("TwoSamesideSnipCornerRectangle"),
   
-  TwoDiagonalSnipCornerRectangle(33),
+  TWODIAGONALSNIPCORNERRECTANGLE("TwoDiagonalSnipCornerRectangle"),
   
-  Plaque(34),
+  PLAQUE("Plaque"),
   
-  Ellipse(35),
+  ELLIPSE("Ellipse"),
   
-  Teardrop(36),
+  TEARDROP("Teardrop"),
   
-  HomePlate(37),
+  HOMEPLATE("HomePlate"),
   
-  Chevron(38),
+  CHEVRON("Chevron"),
   
-  PieWedge(39),
+  PIEWEDGE("PieWedge"),
   
-  Pie(40),
+  PIE("Pie"),
   
-  BlockArc(41),
+  BLOCKARC("BlockArc"),
   
-  Donut(42),
+  DONUT("Donut"),
   
-  NoSmoking(43),
+  NOSMOKING("NoSmoking"),
   
-  RightArrow(44),
+  RIGHTARROW("RightArrow"),
   
-  LeftArrow(45),
+  LEFTARROW("LeftArrow"),
   
-  UpArrow(46),
+  UPARROW("UpArrow"),
   
-  DownArrow(47),
+  DOWNARROW("DownArrow"),
   
-  StripedRightArrow(48),
+  STRIPEDRIGHTARROW("StripedRightArrow"),
   
-  NotchedRightArrow(49),
+  NOTCHEDRIGHTARROW("NotchedRightArrow"),
   
-  BentUpArrow(50),
+  BENTUPARROW("BentUpArrow"),
   
-  LeftRightArrow(51),
+  LEFTRIGHTARROW("LeftRightArrow"),
   
-  UpDownArrow(52),
+  UPDOWNARROW("UpDownArrow"),
   
-  LeftUpArrow(53),
+  LEFTUPARROW("LeftUpArrow"),
   
-  LeftRightUpArrow(54),
+  LEFTRIGHTUPARROW("LeftRightUpArrow"),
   
-  QuadArrow(55),
+  QUADARROW("QuadArrow"),
   
-  CalloutLeftArrow(56),
+  CALLOUTLEFTARROW("CalloutLeftArrow"),
   
-  CalloutRightArrow(57),
+  CALLOUTRIGHTARROW("CalloutRightArrow"),
   
-  CalloutUpArrow(58),
+  CALLOUTUPARROW("CalloutUpArrow"),
   
-  CalloutDownArrow(59),
+  CALLOUTDOWNARROW("CalloutDownArrow"),
   
-  CalloutLeftRightArrow(60),
+  CALLOUTLEFTRIGHTARROW("CalloutLeftRightArrow"),
   
-  CalloutUpDownArrow(61),
+  CALLOUTUPDOWNARROW("CalloutUpDownArrow"),
   
-  CalloutQuadArrow(62),
+  CALLOUTQUADARROW("CalloutQuadArrow"),
   
-  BentArrow(63),
+  BENTARROW("BentArrow"),
   
-  UTurnArrow(64),
+  UTURNARROW("UTurnArrow"),
   
-  CircularArrow(65),
+  CIRCULARARROW("CircularArrow"),
   
-  LeftCircularArrow(66),
+  LEFTCIRCULARARROW("LeftCircularArrow"),
   
-  LeftRightCircularArrow(67),
+  LEFTRIGHTCIRCULARARROW("LeftRightCircularArrow"),
   
-  CurvedRightArrow(68),
+  CURVEDRIGHTARROW("CurvedRightArrow"),
   
-  CurvedLeftArrow(69),
+  CURVEDLEFTARROW("CurvedLeftArrow"),
   
-  CurvedUpArrow(70),
+  CURVEDUPARROW("CurvedUpArrow"),
   
-  CurvedDownArrow(71),
+  CURVEDDOWNARROW("CurvedDownArrow"),
   
-  SwooshArrow(72),
+  SWOOSHARROW("SwooshArrow"),
   
-  Cube(73),
+  CUBE("Cube"),
   
-  Can(74),
+  CAN("Can"),
   
-  LightningBolt(75),
+  LIGHTNINGBOLT("LightningBolt"),
   
-  Heart(76),
+  HEART("Heart"),
   
-  Sun(77),
+  SUN("Sun"),
   
-  Moon(78),
+  MOON("Moon"),
   
-  SmileyFace(79),
+  SMILEYFACE("SmileyFace"),
   
-  IrregularSeal1(80),
+  IRREGULARSEAL1("IrregularSeal1"),
   
-  IrregularSeal2(81),
+  IRREGULARSEAL2("IrregularSeal2"),
   
-  FoldedCorner(82),
+  FOLDEDCORNER("FoldedCorner"),
   
-  Bevel(83),
+  BEVEL("Bevel"),
   
-  Frame(84),
+  FRAME("Frame"),
   
-  HalfFrame(85),
+  HALFFRAME("HalfFrame"),
   
-  Corner(86),
+  CORNER("Corner"),
   
-  DiagonalStripe(87),
+  DIAGONALSTRIPE("DiagonalStripe"),
   
-  Chord(88),
+  CHORD("Chord"),
   
-  CurvedArc(89),
+  CURVEDARC("CurvedArc"),
   
-  LeftBracket(90),
+  LEFTBRACKET("LeftBracket"),
   
-  RightBracket(91),
+  RIGHTBRACKET("RightBracket"),
   
-  LeftBrace(92),
+  LEFTBRACE("LeftBrace"),
   
-  RightBrace(93),
+  RIGHTBRACE("RightBrace"),
   
-  BracketPair(94),
+  BRACKETPAIR("BracketPair"),
   
-  BracePair(95),
+  BRACEPAIR("BracePair"),
   
-  StraightConnector1(96),
+  STRAIGHTCONNECTOR1("StraightConnector1"),
   
-  BentConnector2(97),
+  BENTCONNECTOR2("BentConnector2"),
   
-  BentConnector3(98),
+  BENTCONNECTOR3("BentConnector3"),
   
-  BentConnector4(99),
+  BENTCONNECTOR4("BentConnector4"),
   
-  BentConnector5(100),
+  BENTCONNECTOR5("BentConnector5"),
   
-  CurvedConnector2(101),
+  CURVEDCONNECTOR2("CurvedConnector2"),
   
-  CurvedConnector3(102),
+  CURVEDCONNECTOR3("CurvedConnector3"),
   
-  CurvedConnector4(103),
+  CURVEDCONNECTOR4("CurvedConnector4"),
   
-  CurvedConnector5(104),
+  CURVEDCONNECTOR5("CurvedConnector5"),
   
-  Callout1(105),
+  CALLOUT1("Callout1"),
   
-  Callout2(106),
+  CALLOUT2("Callout2"),
   
-  Callout3(107),
+  CALLOUT3("Callout3"),
   
-  Callout1WithAccent(108),
+  CALLOUT1WITHACCENT("Callout1WithAccent"),
   
-  Callout2WithAccent(109),
+  CALLOUT2WITHACCENT("Callout2WithAccent"),
   
-  Callout3WithAccent(110),
+  CALLOUT3WITHACCENT("Callout3WithAccent"),
   
-  Callout1WithBorder(111),
+  CALLOUT1WITHBORDER("Callout1WithBorder"),
   
-  Callout2WithBorder(112),
+  CALLOUT2WITHBORDER("Callout2WithBorder"),
   
-  Callout3WithBorder(113),
+  CALLOUT3WITHBORDER("Callout3WithBorder"),
   
-  Callout1WithBorderAndAccent(114),
+  CALLOUT1WITHBORDERANDACCENT("Callout1WithBorderAndAccent"),
   
-  Callout2WithBorderAndAccent(115),
+  CALLOUT2WITHBORDERANDACCENT("Callout2WithBorderAndAccent"),
   
-  Callout3WithBorderAndAccent(116),
+  CALLOUT3WITHBORDERANDACCENT("Callout3WithBorderAndAccent"),
   
-  CalloutWedgeRectangle(117),
+  CALLOUTWEDGERECTANGLE("CalloutWedgeRectangle"),
   
-  CalloutWedgeRoundRectangle(118),
+  CALLOUTWEDGEROUNDRECTANGLE("CalloutWedgeRoundRectangle"),
   
-  CalloutWedgeEllipse(119),
+  CALLOUTWEDGEELLIPSE("CalloutWedgeEllipse"),
   
-  CalloutCloud(120),
+  CALLOUTCLOUD("CalloutCloud"),
   
-  Cloud(121),
+  CLOUD("Cloud"),
   
-  Ribbon(122),
+  RIBBON("Ribbon"),
   
-  Ribbon2(123),
+  RIBBON2("Ribbon2"),
   
-  EllipseRibbon(124),
+  ELLIPSERIBBON("EllipseRibbon"),
   
-  EllipseRibbon2(125),
+  ELLIPSERIBBON2("EllipseRibbon2"),
   
-  LeftRightRibbon(126),
+  LEFTRIGHTRIBBON("LeftRightRibbon"),
   
-  VerticalScroll(127),
+  VERTICALSCROLL("VerticalScroll"),
   
-  HorizontalScroll(128),
+  HORIZONTALSCROLL("HorizontalScroll"),
   
-  Wave(129),
+  WAVE("Wave"),
   
-  DoubleWave(130),
+  DOUBLEWAVE("DoubleWave"),
   
-  Plus(131),
+  PLUS("Plus"),
   
-  ProcessFlow(132),
+  PROCESSFLOW("ProcessFlow"),
   
-  DecisionFlow(133),
+  DECISIONFLOW("DecisionFlow"),
   
-  InputOutputFlow(134),
+  INPUTOUTPUTFLOW("InputOutputFlow"),
   
-  PredefinedProcessFlow(135),
+  PREDEFINEDPROCESSFLOW("PredefinedProcessFlow"),
   
-  InternalStorageFlow(136),
+  INTERNALSTORAGEFLOW("InternalStorageFlow"),
   
-  DocumentFlow(137),
+  DOCUMENTFLOW("DocumentFlow"),
   
-  MultiDocumentFlow(138),
+  MULTIDOCUMENTFLOW("MultiDocumentFlow"),
   
-  TerminatorFlow(139),
+  TERMINATORFLOW("TerminatorFlow"),
   
-  PreparationFlow(140),
+  PREPARATIONFLOW("PreparationFlow"),
   
-  ManualInputFlow(141),
+  MANUALINPUTFLOW("ManualInputFlow"),
   
-  ManualOperationFlow(142),
+  MANUALOPERATIONFLOW("ManualOperationFlow"),
   
-  ConnectorFlow(143),
+  CONNECTORFLOW("ConnectorFlow"),
   
-  PunchedCardFlow(144),
+  PUNCHEDCARDFLOW("PunchedCardFlow"),
   
-  PunchedTapeFlow(145),
+  PUNCHEDTAPEFLOW("PunchedTapeFlow"),
   
-  SummingJunctionFlow(146),
+  SUMMINGJUNCTIONFLOW("SummingJunctionFlow"),
   
-  OrFlow(147),
+  ORFLOW("OrFlow"),
   
-  CollateFlow(148),
+  COLLATEFLOW("CollateFlow"),
   
-  SortFlow(149),
+  SORTFLOW("SortFlow"),
   
-  ExtractFlow(150),
+  EXTRACTFLOW("ExtractFlow"),
   
-  MergeFlow(151),
+  MERGEFLOW("MergeFlow"),
   
-  OfflineStorageFlow(152),
+  OFFLINESTORAGEFLOW("OfflineStorageFlow"),
   
-  OnlineStorageFlow(153),
+  ONLINESTORAGEFLOW("OnlineStorageFlow"),
   
-  MagneticTapeFlow(154),
+  MAGNETICTAPEFLOW("MagneticTapeFlow"),
   
-  MagneticDiskFlow(155),
+  MAGNETICDISKFLOW("MagneticDiskFlow"),
   
-  MagneticDrumFlow(156),
+  MAGNETICDRUMFLOW("MagneticDrumFlow"),
   
-  DisplayFlow(157),
+  DISPLAYFLOW("DisplayFlow"),
   
-  DelayFlow(158),
+  DELAYFLOW("DelayFlow"),
   
-  AlternateProcessFlow(159),
+  ALTERNATEPROCESSFLOW("AlternateProcessFlow"),
   
-  OffPageConnectorFlow(160),
+  OFFPAGECONNECTORFLOW("OffPageConnectorFlow"),
   
-  BlankButton(161),
+  BLANKBUTTON("BlankButton"),
   
-  HomeButton(162),
+  HOMEBUTTON("HomeButton"),
   
-  HelpButton(163),
+  HELPBUTTON("HelpButton"),
   
-  InformationButton(164),
+  INFORMATIONBUTTON("InformationButton"),
   
-  ForwardOrNextButton(165),
+  FORWARDORNEXTBUTTON("ForwardOrNextButton"),
   
-  BackOrPreviousButton(166),
+  BACKORPREVIOUSBUTTON("BackOrPreviousButton"),
   
-  EndButton(167),
+  ENDBUTTON("EndButton"),
   
-  BeginningButton(168),
+  BEGINNINGBUTTON("BeginningButton"),
   
-  ReturnButton(169),
+  RETURNBUTTON("ReturnButton"),
   
-  DocumentButton(170),
+  DOCUMENTBUTTON("DocumentButton"),
   
-  SoundButton(171),
+  SOUNDBUTTON("SoundButton"),
   
-  MovieButton(172),
+  MOVIEBUTTON("MovieButton"),
   
-  Gear6(173),
+  GEAR6("Gear6"),
   
-  Gear9(174),
+  GEAR9("Gear9"),
   
-  Funnel(175),
+  FUNNEL("Funnel"),
   
-  PlusMath(176),
+  PLUSMATH("PlusMath"),
   
-  MinusMath(177),
+  MINUSMATH("MinusMath"),
   
-  MultiplyMath(178),
+  MULTIPLYMATH("MultiplyMath"),
   
-  DivideMath(179),
+  DIVIDEMATH("DivideMath"),
   
-  EqualMath(180),
+  EQUALMATH("EqualMath"),
   
-  NotEqualMath(181),
+  NOTEQUALMATH("NotEqualMath"),
   
-  CornerTabs(182),
+  CORNERTABS("CornerTabs"),
   
-  SquareTabs(183),
+  SQUARETABS("SquareTabs"),
   
-  PlaqueTabs(184),
+  PLAQUETABS("PlaqueTabs"),
   
-  ChartX(185),
+  CHARTX("ChartX"),
   
-  ChartStar(186),
+  CHARTSTAR("ChartStar"),
   
-  ChartPlus(187),
+  CHARTPLUS("ChartPlus"),
   
-  Chart(188),
+  CHART("Chart"),
   
-  Table(189),
+  TABLE("Table"),
   
-  PictureFrame(190),
+  PICTUREFRAME("PictureFrame"),
   
-  VideoFrame(191),
+  VIDEOFRAME("VideoFrame"),
   
-  AudioFrame(192),
+  AUDIOFRAME("AudioFrame"),
   
-  Diagram(193),
+  DIAGRAM("Diagram"),
   
-  OleObjectFrame(194),
+  OLEOBJECTFRAME("OleObjectFrame"),
   
-  GroupShape(195),
+  GROUPSHAPE("GroupShape"),
   
-  GraphicalObject(196),
+  GRAPHICALOBJECT("GraphicalObject"),
   
-  NotDefined(-1);
+  NOTDEFINED("NotDefined");
 
-  private Integer value;
+  private String value;
 
-  CombinedShapeType(Integer value) {
+  CombinedShapeType(String value) {
     this.value = value;
   }
 
-  public Integer getValue() {
+  public String getValue() {
     return value;
   }
 
@@ -466,7 +466,7 @@ public enum CombinedShapeType {
 
     @Override
     public CombinedShapeType read(final JsonReader jsonReader) throws IOException {
-      Integer value = jsonReader.nextInt();
+      String value = jsonReader.nextString();
       return CombinedShapeType.fromValue(String.valueOf(value));
     }
   }
