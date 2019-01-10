@@ -1,39 +1,36 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>aspose</groupId>
-  <artifactId>aspose-slides-cloud-sdk</artifactId>
+  <groupId>com.aspose</groupId>
+  <artifactId>aspose.slides.cloud</artifactId>
   <packaging>jar</packaging>
-  <name>aspose-slides-cloud-sdk</name>
-  <version>18.11.0</version>
-  <url>https://github.com/swagger-api/swagger-codegen</url>
+  <name>aspose.slides.cloud</name>
+  <version>18.12.0</version>
+  <url>https://github.com/aspose-slides-cloud/aspose-slides-cloud-java</url>
   <description>SDK for Aspose.Slides for Cloud</description>
   <scm>
-    <connection>scm:git:git@github.com:swagger-api/swagger-codegen.git</connection>
-    <developerConnection>scm:git:git@github.com:swagger-api/swagger-codegen.git</developerConnection>
-    <url>https://github.com/swagger-api/swagger-codegen</url>
+    <connection>scm:git:git@github.com:aspose-slides-cloud/aspose-slides-cloud-java</connection>
+    <developerConnection>scm:git:git@github.com:aspose-slides-cloud/aspose-slides-cloud-java</developerConnection>
+    <url>https://github.com/aspose-slides-cloud/aspose-slides-cloud-java</url>
   </scm>
   <prerequisites>
     <maven>2.2.0</maven>
   </prerequisites>
-
   <licenses>
     <license>
-      <name>Unlicense</name>
-      <url>http://unlicense.org</url>
+      <name>MIT License</name>
+      <url>http://www.opensource.org/licenses/mit-license.php</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
-
   <developers>
     <developer>
-      <name>Swagger</name>
-      <email>apiteam@swagger.io</email>
-      <organization>Swagger</organization>
-      <organizationUrl>http://swagger.io</organizationUrl>
+      <name>Victor Putrov</name>
+      <email>victor.putrov@aspose.com</email>
+      <organization>Aspose</organization>
+      <organizationUrl>http://www.aspose.com</organizationUrl>
     </developer>
   </developers>
-
   <build>
     <resources>
       <resource>
