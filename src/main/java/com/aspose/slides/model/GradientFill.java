@@ -81,10 +81,10 @@ public class GradientFill extends FillFormat {
   }
 
    /**
-   * Get direction
+   * Gradient style.
    * @return direction
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Gradient style.")
   public GradientDirection getDirection() {
     return direction;
   }
@@ -99,10 +99,10 @@ public class GradientFill extends FillFormat {
   }
 
    /**
-   * Get shape
+   * Gradient shape.
    * @return shape
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Gradient shape.")
   public GradientShapeType getShape() {
     return shape;
   }
@@ -125,10 +125,10 @@ public class GradientFill extends FillFormat {
   }
 
    /**
-   * Get stops
+   * Gradient stops.
    * @return stops
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Gradient stops.")
   public List<GradientFillStop> getStops() {
     return stops;
   }
@@ -143,10 +143,10 @@ public class GradientFill extends FillFormat {
   }
 
    /**
-   * Get linearAngle
+   * Gradient angle.
    * @return linearAngle
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Gradient angle.")
   public Double getLinearAngle() {
     return linearAngle;
   }
@@ -161,10 +161,10 @@ public class GradientFill extends FillFormat {
   }
 
    /**
-   * Get isScaled
+   * True if the gradient is scaled.
    * @return isScaled
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "True if the gradient is scaled.")
   public Boolean isIsScaled() {
     return isScaled;
   }
@@ -179,10 +179,10 @@ public class GradientFill extends FillFormat {
   }
 
    /**
-   * Get tileFlip
+   * Gradient flipping mode.
    * @return tileFlip
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Gradient flipping mode.")
   public GradientTileFlip getTileFlip() {
     return tileFlip;
   }

@@ -1735,7 +1735,7 @@ public class SlidesApiTest extends ApiTest {
     }
     
     /**
-     * Reorder presentation slide position
+     * Create a slide.
      *
      * 
      *
@@ -1760,7 +1760,7 @@ public class SlidesApiTest extends ApiTest {
     }
 
     /**
-     * Reorder presentation slide position
+     * Create a slide.
      *
      * 
      *
@@ -1784,7 +1784,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Reorder presentation slide position
+     * Create a slide.
      *
      * 
      *
@@ -1808,7 +1808,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Reorder presentation slide position
+     * Create a slide.
      *
      * 
      *
@@ -1832,7 +1832,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Reorder presentation slide position
+     * Create a slide.
      *
      * 
      *
@@ -1856,7 +1856,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Reorder presentation slide position
+     * Create a slide.
      *
      * 
      *
@@ -1880,7 +1880,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Reorder presentation slide position
+     * Create a slide.
      *
      * 
      *
@@ -1916,7 +1916,7 @@ public class SlidesApiTest extends ApiTest {
     }
     
     /**
-     * Reorder presentation slide position
+     * Copy a slide from the current or another presentation.
      *
      * 
      *
@@ -1941,7 +1941,7 @@ public class SlidesApiTest extends ApiTest {
     }
 
     /**
-     * Reorder presentation slide position
+     * Copy a slide from the current or another presentation.
      *
      * 
      *
@@ -1965,7 +1965,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Reorder presentation slide position
+     * Copy a slide from the current or another presentation.
      *
      * 
      *
@@ -1989,7 +1989,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Reorder presentation slide position
+     * Copy a slide from the current or another presentation.
      *
      * 
      *
@@ -2013,7 +2013,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Reorder presentation slide position
+     * Copy a slide from the current or another presentation.
      *
      * 
      *
@@ -2037,7 +2037,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Reorder presentation slide position
+     * Copy a slide from the current or another presentation.
      *
      * 
      *
@@ -2061,7 +2061,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Reorder presentation slide position
+     * Copy a slide from the current or another presentation.
      *
      * 
      *
@@ -2085,7 +2085,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Reorder presentation slide position
+     * Copy a slide from the current or another presentation.
      *
      * 
      *
@@ -2109,7 +2109,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Reorder presentation slide position
+     * Copy a slide from the current or another presentation.
      *
      * 
      *
@@ -2147,7 +2147,7 @@ public class SlidesApiTest extends ApiTest {
     }
     
     /**
-     * Reorder presentation slide position
+     * Reorder presentation slide position.
      *
      * 
      *
@@ -2172,7 +2172,7 @@ public class SlidesApiTest extends ApiTest {
     }
 
     /**
-     * Reorder presentation slide position
+     * Reorder presentation slide position.
      *
      * 
      *
@@ -2196,7 +2196,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Reorder presentation slide position
+     * Reorder presentation slide position.
      *
      * 
      *
@@ -2220,7 +2220,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Reorder presentation slide position
+     * Reorder presentation slide position.
      *
      * 
      *
@@ -2244,7 +2244,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Reorder presentation slide position
+     * Reorder presentation slide position.
      *
      * 
      *
@@ -2268,7 +2268,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Reorder presentation slide position
+     * Reorder presentation slide position.
      *
      * 
      *
@@ -2292,7 +2292,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Reorder presentation slide position
+     * Reorder presentation slide position.
      *
      * 
      *
@@ -2328,7 +2328,7 @@ public class SlidesApiTest extends ApiTest {
     }
     
     /**
-     * Reorder presentation slide position
+     * Reorder presentation slides positions.
      *
      * 
      *
@@ -2353,7 +2353,7 @@ public class SlidesApiTest extends ApiTest {
     }
 
     /**
-     * Reorder presentation slide position
+     * Reorder presentation slides positions.
      *
      * 
      *
@@ -2377,7 +2377,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Reorder presentation slide position
+     * Reorder presentation slides positions.
      *
      * 
      *
@@ -2401,7 +2401,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Reorder presentation slide position
+     * Reorder presentation slides positions.
      *
      * 
      *
@@ -2425,7 +2425,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Reorder presentation slide position
+     * Reorder presentation slides positions.
      *
      * 
      *
@@ -2449,7 +2449,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Reorder presentation slide position
+     * Reorder presentation slides positions.
      *
      * 
      *
@@ -2473,7 +2473,7 @@ public class SlidesApiTest extends ApiTest {
         }
     }
     /**
-     * Reorder presentation slide position
+     * Reorder presentation slides positions.
      *
      * 
      *

@@ -1285,7 +1285,7 @@ public class SlidesApi extends ApiBase {
     }
 
     /**
-     * Reorder presentation slide position
+     * Create a slide.
      * 
      * @param request Request for postSlidesAdd. (required)
      * @return SlideListResponse
@@ -1302,7 +1302,7 @@ public class SlidesApi extends ApiBase {
     }
 
     /**
-     * Reorder presentation slide position
+     * Create a slide.
      * 
      * @param request Request for postSlidesAdd. (required)
      * @return ApiResponse&lt;SlideListResponse&gt;
@@ -1315,7 +1315,7 @@ public class SlidesApi extends ApiBase {
     }
 
     /**
-     * Reorder presentation slide position (asynchronously)
+     * Create a slide. (asynchronously)
      * 
      * @param request Request for postSlidesAdd. (required)
      * @param callback The callback to be executed when the API call finishes
@@ -1414,7 +1414,7 @@ public class SlidesApi extends ApiBase {
     }
 
     /**
-     * Reorder presentation slide position
+     * Copy a slide from the current or another presentation.
      * 
      * @param request Request for postSlidesCopy. (required)
      * @return SlideListResponse
@@ -1431,7 +1431,7 @@ public class SlidesApi extends ApiBase {
     }
 
     /**
-     * Reorder presentation slide position
+     * Copy a slide from the current or another presentation.
      * 
      * @param request Request for postSlidesCopy. (required)
      * @return ApiResponse&lt;SlideListResponse&gt;
@@ -1444,7 +1444,7 @@ public class SlidesApi extends ApiBase {
     }
 
     /**
-     * Reorder presentation slide position (asynchronously)
+     * Copy a slide from the current or another presentation. (asynchronously)
      * 
      * @param request Request for postSlidesCopy. (required)
      * @param callback The callback to be executed when the API call finishes
@@ -1546,7 +1546,7 @@ public class SlidesApi extends ApiBase {
     }
 
     /**
-     * Reorder presentation slide position
+     * Reorder presentation slide position.
      * 
      * @param request Request for postSlidesReorder. (required)
      * @return SlideListResponse
@@ -1563,7 +1563,7 @@ public class SlidesApi extends ApiBase {
     }
 
     /**
-     * Reorder presentation slide position
+     * Reorder presentation slide position.
      * 
      * @param request Request for postSlidesReorder. (required)
      * @return ApiResponse&lt;SlideListResponse&gt;
@@ -1576,7 +1576,7 @@ public class SlidesApi extends ApiBase {
     }
 
     /**
-     * Reorder presentation slide position (asynchronously)
+     * Reorder presentation slide position. (asynchronously)
      * 
      * @param request Request for postSlidesReorder. (required)
      * @param callback The callback to be executed when the API call finishes
@@ -1668,7 +1668,7 @@ public class SlidesApi extends ApiBase {
     }
 
     /**
-     * Reorder presentation slide position
+     * Reorder presentation slides positions.
      * 
      * @param request Request for postSlidesReorderMany. (required)
      * @return SlideListResponse
@@ -1685,7 +1685,7 @@ public class SlidesApi extends ApiBase {
     }
 
     /**
-     * Reorder presentation slide position
+     * Reorder presentation slides positions.
      * 
      * @param request Request for postSlidesReorderMany. (required)
      * @return ApiResponse&lt;SlideListResponse&gt;
@@ -1698,7 +1698,7 @@ public class SlidesApi extends ApiBase {
     }
 
     /**
-     * Reorder presentation slide position (asynchronously)
+     * Reorder presentation slides positions. (asynchronously)
      * 
      * @param request Request for postSlidesReorderMany. (required)
      * @param callback The callback to be executed when the API call finishes

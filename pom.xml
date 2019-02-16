@@ -2,10 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.aspose</groupId>
-  <artifactId>aspose.slides.cloud</artifactId>
+  <artifactId>aspose-slides-cloud</artifactId>
   <packaging>jar</packaging>
-  <name>aspose.slides.cloud</name>
-  <version>18.12.0</version>
+  <name>aspose-slides-cloud</name>
+  <version>19.1.0</version>
   <url>https://github.com/aspose-slides-cloud/aspose-slides-cloud-java</url>
   <description>SDK for Aspose.Slides for Cloud</description>
   <scm>

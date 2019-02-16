@@ -28,7 +28,8 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.TableCell;
+import com.aspose.slides.model.Conformance;
+import com.aspose.slides.model.ExportOptions;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -38,89 +39,36 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.ArrayList;
 
 /**
- * Table Row.
+ * PptxExportOptions
  */
-@ApiModel(description = "Table Row.")
-public class TableRow {
-  @SerializedName("Cells")
-  private List<TableCell> cells = null;
-
-  @SerializedName("MinimalHeight")
-  private Double minimalHeight;
-
-  @SerializedName("Height")
-  private Double height;
+public class PptxExportOptions extends ExportOptions {
+  @SerializedName("Conformance")
+  private Conformance conformance;
 
 
-  public TableRow() {
+  public PptxExportOptions() {
     super();
-    setCells(new ArrayList<TableCell>());
+    setFormat("pptx");
   }
 
-  public TableRow cells(List<TableCell> cells) {
-    this.cells = cells;
-    return this;
-  }
-
-  public TableRow addCellsItem(TableCell cellsItem) {
-    if (this.cells == null) {
-      this.cells = new ArrayList<TableCell>();
-    }
-    this.cells.add(cellsItem);
+  public PptxExportOptions conformance(Conformance conformance) {
+    this.conformance = conformance;
     return this;
   }
 
    /**
-   * Cells for the row.
-   * @return cells
+   * The conformance class to which the PresentationML document conforms. Read/write .
+   * @return conformance
   **/
-  @ApiModelProperty(value = "Cells for the row.")
-  public List<TableCell> getCells() {
-    return cells;
+  @ApiModelProperty(value = "The conformance class to which the PresentationML document conforms. Read/write .")
+  public Conformance getConformance() {
+    return conformance;
   }
 
-  public void setCells(List<TableCell> cells) {
-    this.cells = cells;
-  }
-
-  public TableRow minimalHeight(Double minimalHeight) {
-    this.minimalHeight = minimalHeight;
-    return this;
-  }
-
-   /**
-   * Minimal height of the row.
-   * @return minimalHeight
-  **/
-  @ApiModelProperty(required = true, value = "Minimal height of the row.")
-  public Double getMinimalHeight() {
-    return minimalHeight;
-  }
-
-  public void setMinimalHeight(Double minimalHeight) {
-    this.minimalHeight = minimalHeight;
-  }
-
-  public TableRow height(Double height) {
-    this.height = height;
-    return this;
-  }
-
-   /**
-   * Height of the row.
-   * @return height
-  **/
-  @ApiModelProperty(required = true, value = "Height of the row.")
-  public Double getHeight() {
-    return height;
-  }
-
-  public void setHeight(Double height) {
-    this.height = height;
+  public void setConformance(Conformance conformance) {
+    this.conformance = conformance;
   }
 
 
@@ -132,24 +80,22 @@ public class TableRow {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TableRow tableRow = (TableRow) o;
-    return true && Objects.equals(this.cells, tableRow.cells) && Objects.equals(this.minimalHeight, tableRow.minimalHeight) && Objects.equals(this.height, tableRow.height);
+    PptxExportOptions pptxExportOptions = (PptxExportOptions) o;
+    return true && Objects.equals(this.conformance, pptxExportOptions.conformance) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cells, minimalHeight, height);
+    return Objects.hash(conformance, super.hashCode());
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class TableRow {\n");
-    
-    sb.append("    cells: ").append(toIndentedString(cells)).append("\n");
-    sb.append("    minimalHeight: ").append(toIndentedString(minimalHeight)).append("\n");
-    sb.append("    height: ").append(toIndentedString(height)).append("\n");
+    sb.append("class PptxExportOptions {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    conformance: ").append(toIndentedString(conformance)).append("\n");
     sb.append("}");
     return sb.toString();
   }
