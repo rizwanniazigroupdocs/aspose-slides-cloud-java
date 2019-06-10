@@ -36,7 +36,6 @@ import com.aspose.slides.model.ResourceUriElement;
 import com.aspose.slides.model.ShapeBase;
 import com.aspose.slides.model.TableColumn;
 import com.aspose.slides.model.TableRow;
-import com.aspose.slides.model.TableStylePreset;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -54,8 +53,203 @@ import java.util.ArrayList;
  */
 @ApiModel(description = "Represents Table shape resource.")
 public class Table extends ShapeBase {
+  /**
+   * Builtin table style.
+   */
+  @JsonAdapter(StyleEnum.Adapter.class)
+  public enum StyleEnum {
+    NONE("None"),
+    
+    MEDIUMSTYLE2ACCENT1("MediumStyle2Accent1"),
+    
+    MEDIUMSTYLE2("MediumStyle2"),
+    
+    NOSTYLENOGRID("NoStyleNoGrid"),
+    
+    THEMEDSTYLE1ACCENT1("ThemedStyle1Accent1"),
+    
+    THEMEDSTYLE1ACCENT2("ThemedStyle1Accent2"),
+    
+    THEMEDSTYLE1ACCENT3("ThemedStyle1Accent3"),
+    
+    THEMEDSTYLE1ACCENT4("ThemedStyle1Accent4"),
+    
+    THEMEDSTYLE1ACCENT5("ThemedStyle1Accent5"),
+    
+    THEMEDSTYLE1ACCENT6("ThemedStyle1Accent6"),
+    
+    NOSTYLETABLEGRID("NoStyleTableGrid"),
+    
+    THEMEDSTYLE2ACCENT1("ThemedStyle2Accent1"),
+    
+    THEMEDSTYLE2ACCENT2("ThemedStyle2Accent2"),
+    
+    THEMEDSTYLE2ACCENT3("ThemedStyle2Accent3"),
+    
+    THEMEDSTYLE2ACCENT4("ThemedStyle2Accent4"),
+    
+    THEMEDSTYLE2ACCENT5("ThemedStyle2Accent5"),
+    
+    THEMEDSTYLE2ACCENT6("ThemedStyle2Accent6"),
+    
+    LIGHTSTYLE1("LightStyle1"),
+    
+    LIGHTSTYLE1ACCENT1("LightStyle1Accent1"),
+    
+    LIGHTSTYLE1ACCENT2("LightStyle1Accent2"),
+    
+    LIGHTSTYLE1ACCENT3("LightStyle1Accent3"),
+    
+    LIGHTSTYLE1ACCENT4("LightStyle1Accent4"),
+    
+    LIGHTSTYLE2ACCENT5("LightStyle2Accent5"),
+    
+    LIGHTSTYLE1ACCENT6("LightStyle1Accent6"),
+    
+    LIGHTSTYLE2("LightStyle2"),
+    
+    LIGHTSTYLE2ACCENT1("LightStyle2Accent1"),
+    
+    LIGHTSTYLE2ACCENT2("LightStyle2Accent2"),
+    
+    LIGHTSTYLE2ACCENT3("LightStyle2Accent3"),
+    
+    MEDIUMSTYLE2ACCENT3("MediumStyle2Accent3"),
+    
+    MEDIUMSTYLE2ACCENT4("MediumStyle2Accent4"),
+    
+    MEDIUMSTYLE2ACCENT5("MediumStyle2Accent5"),
+    
+    LIGHTSTYLE2ACCENT6("LightStyle2Accent6"),
+    
+    LIGHTSTYLE2ACCENT4("LightStyle2Accent4"),
+    
+    LIGHTSTYLE3("LightStyle3"),
+    
+    LIGHTSTYLE3ACCENT1("LightStyle3Accent1"),
+    
+    MEDIUMSTYLE2ACCENT2("MediumStyle2Accent2"),
+    
+    LIGHTSTYLE3ACCENT2("LightStyle3Accent2"),
+    
+    LIGHTSTYLE3ACCENT3("LightStyle3Accent3"),
+    
+    LIGHTSTYLE3ACCENT4("LightStyle3Accent4"),
+    
+    LIGHTSTYLE3ACCENT5("LightStyle3Accent5"),
+    
+    LIGHTSTYLE3ACCENT6("LightStyle3Accent6"),
+    
+    MEDIUMSTYLE1("MediumStyle1"),
+    
+    MEDIUMSTYLE1ACCENT1("MediumStyle1Accent1"),
+    
+    MEDIUMSTYLE1ACCENT2("MediumStyle1Accent2"),
+    
+    MEDIUMSTYLE1ACCENT3("MediumStyle1Accent3"),
+    
+    MEDIUMSTYLE1ACCENT4("MediumStyle1Accent4"),
+    
+    MEDIUMSTYLE1ACCENT5("MediumStyle1Accent5"),
+    
+    MEDIUMSTYLE1ACCENT6("MediumStyle1Accent6"),
+    
+    MEDIUMSTYLE2ACCENT6("MediumStyle2Accent6"),
+    
+    MEDIUMSTYLE3("MediumStyle3"),
+    
+    MEDIUMSTYLE3ACCENT1("MediumStyle3Accent1"),
+    
+    MEDIUMSTYLE3ACCENT2("MediumStyle3Accent2"),
+    
+    MEDIUMSTYLE3ACCENT3("MediumStyle3Accent3"),
+    
+    MEDIUMSTYLE3ACCENT4("MediumStyle3Accent4"),
+    
+    MEDIUMSTYLE3ACCENT5("MediumStyle3Accent5"),
+    
+    MEDIUMSTYLE3ACCENT6("MediumStyle3Accent6"),
+    
+    MEDIUMSTYLE4("MediumStyle4"),
+    
+    MEDIUMSTYLE4ACCENT1("MediumStyle4Accent1"),
+    
+    MEDIUMSTYLE4ACCENT2("MediumStyle4Accent2"),
+    
+    MEDIUMSTYLE4ACCENT3("MediumStyle4Accent3"),
+    
+    MEDIUMSTYLE4ACCENT4("MediumStyle4Accent4"),
+    
+    MEDIUMSTYLE4ACCENT5("MediumStyle4Accent5"),
+    
+    MEDIUMSTYLE4ACCENT6("MediumStyle4Accent6"),
+    
+    DARKSTYLE1("DarkStyle1"),
+    
+    DARKSTYLE1ACCENT1("DarkStyle1Accent1"),
+    
+    DARKSTYLE1ACCENT2("DarkStyle1Accent2"),
+    
+    DARKSTYLE1ACCENT3("DarkStyle1Accent3"),
+    
+    DARKSTYLE1ACCENT4("DarkStyle1Accent4"),
+    
+    DARKSTYLE1ACCENT5("DarkStyle1Accent5"),
+    
+    DARKSTYLE1ACCENT6("DarkStyle1Accent6"),
+    
+    DARKSTYLE2("DarkStyle2"),
+    
+    DARKSTYLE2ACCENT1ACCENT2("DarkStyle2Accent1Accent2"),
+    
+    DARKSTYLE2ACCENT3ACCENT4("DarkStyle2Accent3Accent4"),
+    
+    DARKSTYLE2ACCENT5ACCENT6("DarkStyle2Accent5Accent6"),
+    
+    LIGHTSTYLE1ACCENT5("LightStyle1Accent5"),
+    
+    CUSTOM("Custom");
+
+    private String value;
+
+    StyleEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StyleEnum fromValue(String text) {
+      for (StyleEnum b : StyleEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<StyleEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StyleEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StyleEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return StyleEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("Style")
-  private TableStylePreset style;
+  private StyleEnum style;
 
   @SerializedName("Rows")
   private List<TableRow> rows = null;
@@ -88,14 +282,13 @@ public class Table extends ShapeBase {
   public Table() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
-    setLinks(new ArrayList<ResourceUri>());
-    setType(com.aspose.slides.model.ShapeType.TABLE);
-    setShapeType(com.aspose.slides.model.CombinedShapeType.TABLE);
+    setType(TypeEnum.TABLE);
+    setShapeType(ShapeTypeEnum.TABLE);
     setRows(new ArrayList<TableRow>());
     setColumns(new ArrayList<TableColumn>());
   }
 
-  public Table style(TableStylePreset style) {
+  public Table style(StyleEnum style) {
     this.style = style;
     return this;
   }
@@ -104,12 +297,12 @@ public class Table extends ShapeBase {
    * Builtin table style.
    * @return style
   **/
-  @ApiModelProperty(value = "Builtin table style.")
-  public TableStylePreset getStyle() {
+  @ApiModelProperty(required = true, value = "Builtin table style.")
+  public StyleEnum getStyle() {
     return style;
   }
 
-  public void setStyle(TableStylePreset style) {
+  public void setStyle(StyleEnum style) {
     this.style = style;
   }
 
@@ -174,7 +367,7 @@ public class Table extends ShapeBase {
    * Determines whether the first column of a table has to be drawn with a special formatting.
    * @return firstCol
   **/
-  @ApiModelProperty(value = "Determines whether the first column of a table has to be drawn with a special formatting.")
+  @ApiModelProperty(required = true, value = "Determines whether the first column of a table has to be drawn with a special formatting.")
   public Boolean isFirstCol() {
     return firstCol;
   }
@@ -192,7 +385,7 @@ public class Table extends ShapeBase {
    * Determines whether the first row of a table has to be drawn with a special formatting.
    * @return firstRow
   **/
-  @ApiModelProperty(value = "Determines whether the first row of a table has to be drawn with a special formatting.")
+  @ApiModelProperty(required = true, value = "Determines whether the first row of a table has to be drawn with a special formatting.")
   public Boolean isFirstRow() {
     return firstRow;
   }
@@ -210,7 +403,7 @@ public class Table extends ShapeBase {
    * Determines whether the even rows has to be drawn with a different formatting.
    * @return horizontalBanding
   **/
-  @ApiModelProperty(value = "Determines whether the even rows has to be drawn with a different formatting.")
+  @ApiModelProperty(required = true, value = "Determines whether the even rows has to be drawn with a different formatting.")
   public Boolean isHorizontalBanding() {
     return horizontalBanding;
   }
@@ -228,7 +421,7 @@ public class Table extends ShapeBase {
    * Determines whether the last column of a table has to be drawn with a special formatting.
    * @return lastCol
   **/
-  @ApiModelProperty(value = "Determines whether the last column of a table has to be drawn with a special formatting.")
+  @ApiModelProperty(required = true, value = "Determines whether the last column of a table has to be drawn with a special formatting.")
   public Boolean isLastCol() {
     return lastCol;
   }
@@ -246,7 +439,7 @@ public class Table extends ShapeBase {
    * Determines whether the last row of a table has to be drawn with a special formatting.
    * @return lastRow
   **/
-  @ApiModelProperty(value = "Determines whether the last row of a table has to be drawn with a special formatting.")
+  @ApiModelProperty(required = true, value = "Determines whether the last row of a table has to be drawn with a special formatting.")
   public Boolean isLastRow() {
     return lastRow;
   }
@@ -264,7 +457,7 @@ public class Table extends ShapeBase {
    * Determines whether the table has right to left reading order.
    * @return rightToLeft
   **/
-  @ApiModelProperty(value = "Determines whether the table has right to left reading order.")
+  @ApiModelProperty(required = true, value = "Determines whether the table has right to left reading order.")
   public Boolean isRightToLeft() {
     return rightToLeft;
   }
@@ -282,7 +475,7 @@ public class Table extends ShapeBase {
    * Determines whether the even columns has to be drawn with a different formatting.
    * @return verticalBanding
   **/
-  @ApiModelProperty(value = "Determines whether the even columns has to be drawn with a different formatting.")
+  @ApiModelProperty(required = true, value = "Determines whether the even columns has to be drawn with a different formatting.")
   public Boolean isVerticalBanding() {
     return verticalBanding;
   }

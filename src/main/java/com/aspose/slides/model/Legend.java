@@ -30,7 +30,6 @@ package com.aspose.slides.model;
 import java.util.Objects;
 import com.aspose.slides.model.EffectFormat;
 import com.aspose.slides.model.FillFormat;
-import com.aspose.slides.model.LegendPositionType;
 import com.aspose.slides.model.LineFormat;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -47,8 +46,61 @@ import java.util.ArrayList;
  */
 @ApiModel(description = "Represents a chart legend")
 public class Legend {
+  /**
+   * position
+   */
+  @JsonAdapter(PositionEnum.Adapter.class)
+  public enum PositionEnum {
+    BOTTOM("Bottom"),
+    
+    LEFT("Left"),
+    
+    RIGHT("Right"),
+    
+    TOP("Top"),
+    
+    TOPRIGHT("TopRight");
+
+    private String value;
+
+    PositionEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PositionEnum fromValue(String text) {
+      for (PositionEnum b : PositionEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<PositionEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PositionEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PositionEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return PositionEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("Position")
-  private LegendPositionType position;
+  private PositionEnum position;
 
   @SerializedName("X")
   private Double X;
@@ -79,7 +131,7 @@ public class Legend {
     super();
   }
 
-  public Legend position(LegendPositionType position) {
+  public Legend position(PositionEnum position) {
     this.position = position;
     return this;
   }
@@ -89,11 +141,11 @@ public class Legend {
    * @return position
   **/
   @ApiModelProperty(required = true, value = "position")
-  public LegendPositionType getPosition() {
+  public PositionEnum getPosition() {
     return position;
   }
 
-  public void setPosition(LegendPositionType position) {
+  public void setPosition(PositionEnum position) {
     this.position = position;
   }
 

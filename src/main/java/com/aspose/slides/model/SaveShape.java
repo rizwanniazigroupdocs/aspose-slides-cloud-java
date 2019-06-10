@@ -30,7 +30,6 @@ package com.aspose.slides.model;
 import java.util.Objects;
 import com.aspose.slides.model.IShapeExportOptions;
 import com.aspose.slides.model.OutputFile;
-import com.aspose.slides.model.ShapeExportFormat;
 import com.aspose.slides.model.Task;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -47,8 +46,63 @@ import java.util.ArrayList;
  */
 @ApiModel(description = "Save shape task.")
 public class SaveShape extends Task {
+  /**
+   * Format.
+   */
+  @JsonAdapter(FormatEnum.Adapter.class)
+  public enum FormatEnum {
+    JPEG("Jpeg"),
+    
+    PNG("Png"),
+    
+    GIF("Gif"),
+    
+    BMP("Bmp"),
+    
+    TIFF("Tiff"),
+    
+    SVG("Svg");
+
+    private String value;
+
+    FormatEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static FormatEnum fromValue(String text) {
+      for (FormatEnum b : FormatEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<FormatEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final FormatEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public FormatEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return FormatEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("Format")
-  private ShapeExportFormat format;
+  private FormatEnum format;
 
   @SerializedName("ShapePath")
   private String shapePath;
@@ -62,10 +116,10 @@ public class SaveShape extends Task {
 
   public SaveShape() {
     super();
-    setType(com.aspose.slides.model.TaskType.SAVESHAPE);
+    setType(TypeEnum.SAVESHAPE);
   }
 
-  public SaveShape format(ShapeExportFormat format) {
+  public SaveShape format(FormatEnum format) {
     this.format = format;
     return this;
   }
@@ -74,12 +128,12 @@ public class SaveShape extends Task {
    * Format.
    * @return format
   **/
-  @ApiModelProperty(value = "Format.")
-  public ShapeExportFormat getFormat() {
+  @ApiModelProperty(required = true, value = "Format.")
+  public FormatEnum getFormat() {
     return format;
   }
 
-  public void setFormat(ShapeExportFormat format) {
+  public void setFormat(FormatEnum format) {
     this.format = format;
   }
 

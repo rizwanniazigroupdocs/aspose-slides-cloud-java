@@ -30,7 +30,6 @@ package com.aspose.slides.model;
 import java.util.Objects;
 import com.aspose.slides.model.Axes;
 import com.aspose.slides.model.ChartTitle;
-import com.aspose.slides.model.ChartType;
 import com.aspose.slides.model.ChartWall;
 import com.aspose.slides.model.EffectFormat;
 import com.aspose.slides.model.FillFormat;
@@ -58,8 +57,199 @@ import java.util.ArrayList;
  */
 @ApiModel(description = "Represents chart resource")
 public class Chart extends ShapeBase {
+  /**
+   * Gets or sets the type of the chart.
+   */
+  @JsonAdapter(ChartTypeEnum.Adapter.class)
+  public enum ChartTypeEnum {
+    CLUSTEREDCOLUMN("ClusteredColumn"),
+    
+    STACKEDCOLUMN("StackedColumn"),
+    
+    PERCENTSSTACKEDCOLUMN("PercentsStackedColumn"),
+    
+    CLUSTEREDCOLUMN3D("ClusteredColumn3D"),
+    
+    STACKEDCOLUMN3D("StackedColumn3D"),
+    
+    PERCENTSSTACKEDCOLUMN3D("PercentsStackedColumn3D"),
+    
+    COLUMN3D("Column3D"),
+    
+    CLUSTEREDCYLINDER("ClusteredCylinder"),
+    
+    STACKEDCYLINDER("StackedCylinder"),
+    
+    PERCENTSSTACKEDCYLINDER("PercentsStackedCylinder"),
+    
+    CYLINDER3D("Cylinder3D"),
+    
+    CLUSTEREDCONE("ClusteredCone"),
+    
+    STACKEDCONE("StackedCone"),
+    
+    PERCENTSSTACKEDCONE("PercentsStackedCone"),
+    
+    CONE3D("Cone3D"),
+    
+    CLUSTEREDPYRAMID("ClusteredPyramid"),
+    
+    STACKEDPYRAMID("StackedPyramid"),
+    
+    PERCENTSSTACKEDPYRAMID("PercentsStackedPyramid"),
+    
+    PYRAMID3D("Pyramid3D"),
+    
+    LINE("Line"),
+    
+    STACKEDLINE("StackedLine"),
+    
+    PERCENTSSTACKEDLINE("PercentsStackedLine"),
+    
+    LINEWITHMARKERS("LineWithMarkers"),
+    
+    STACKEDLINEWITHMARKERS("StackedLineWithMarkers"),
+    
+    PERCENTSSTACKEDLINEWITHMARKERS("PercentsStackedLineWithMarkers"),
+    
+    LINE3D("Line3D"),
+    
+    PIE("Pie"),
+    
+    PIE3D("Pie3D"),
+    
+    PIEOFPIE("PieOfPie"),
+    
+    EXPLODEDPIE("ExplodedPie"),
+    
+    EXPLODEDPIE3D("ExplodedPie3D"),
+    
+    BAROFPIE("BarOfPie"),
+    
+    PERCENTSSTACKEDBAR("PercentsStackedBar"),
+    
+    CLUSTEREDBAR3D("ClusteredBar3D"),
+    
+    CLUSTEREDBAR("ClusteredBar"),
+    
+    STACKEDBAR("StackedBar"),
+    
+    STACKEDBAR3D("StackedBar3D"),
+    
+    PERCENTSSTACKEDBAR3D("PercentsStackedBar3D"),
+    
+    CLUSTEREDHORIZONTALCYLINDER("ClusteredHorizontalCylinder"),
+    
+    STACKEDHORIZONTALCYLINDER("StackedHorizontalCylinder"),
+    
+    PERCENTSSTACKEDHORIZONTALCYLINDER("PercentsStackedHorizontalCylinder"),
+    
+    CLUSTEREDHORIZONTALCONE("ClusteredHorizontalCone"),
+    
+    STACKEDHORIZONTALCONE("StackedHorizontalCone"),
+    
+    PERCENTSSTACKEDHORIZONTALCONE("PercentsStackedHorizontalCone"),
+    
+    CLUSTEREDHORIZONTALPYRAMID("ClusteredHorizontalPyramid"),
+    
+    STACKEDHORIZONTALPYRAMID("StackedHorizontalPyramid"),
+    
+    PERCENTSSTACKEDHORIZONTALPYRAMID("PercentsStackedHorizontalPyramid"),
+    
+    AREA("Area"),
+    
+    STACKEDAREA("StackedArea"),
+    
+    PERCENTSSTACKEDAREA("PercentsStackedArea"),
+    
+    AREA3D("Area3D"),
+    
+    STACKEDAREA3D("StackedArea3D"),
+    
+    PERCENTSSTACKEDAREA3D("PercentsStackedArea3D"),
+    
+    SCATTERWITHMARKERS("ScatterWithMarkers"),
+    
+    SCATTERWITHSMOOTHLINESANDMARKERS("ScatterWithSmoothLinesAndMarkers"),
+    
+    SCATTERWITHSMOOTHLINES("ScatterWithSmoothLines"),
+    
+    SCATTERWITHSTRAIGHTLINESANDMARKERS("ScatterWithStraightLinesAndMarkers"),
+    
+    SCATTERWITHSTRAIGHTLINES("ScatterWithStraightLines"),
+    
+    HIGHLOWCLOSE("HighLowClose"),
+    
+    OPENHIGHLOWCLOSE("OpenHighLowClose"),
+    
+    VOLUMEHIGHLOWCLOSE("VolumeHighLowClose"),
+    
+    VOLUMEOPENHIGHLOWCLOSE("VolumeOpenHighLowClose"),
+    
+    SURFACE3D("Surface3D"),
+    
+    WIREFRAMESURFACE3D("WireframeSurface3D"),
+    
+    CONTOUR("Contour"),
+    
+    WIREFRAMECONTOUR("WireframeContour"),
+    
+    DOUGHNUT("Doughnut"),
+    
+    EXPLODEDDOUGHNUT("ExplodedDoughnut"),
+    
+    BUBBLE("Bubble"),
+    
+    BUBBLEWITH3D("BubbleWith3D"),
+    
+    RADAR("Radar"),
+    
+    RADARWITHMARKERS("RadarWithMarkers"),
+    
+    FILLEDRADAR("FilledRadar"),
+    
+    SERIESOFMIXEDTYPES("SeriesOfMixedTypes");
+
+    private String value;
+
+    ChartTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ChartTypeEnum fromValue(String text) {
+      for (ChartTypeEnum b : ChartTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<ChartTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ChartTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ChartTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return ChartTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("ChartType")
-  private ChartType chartType;
+  private ChartTypeEnum chartType;
 
   @SerializedName("Series")
   private List<Series> series = null;
@@ -92,14 +282,13 @@ public class Chart extends ShapeBase {
   public Chart() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
-    setLinks(new ArrayList<ResourceUri>());
-    setType(com.aspose.slides.model.ShapeType.CHART);
-    setShapeType(com.aspose.slides.model.CombinedShapeType.CHART);
+    setType(TypeEnum.CHART);
+    setShapeType(ShapeTypeEnum.CHART);
     setSeries(new ArrayList<Series>());
     setCategories(new ArrayList<String>());
   }
 
-  public Chart chartType(ChartType chartType) {
+  public Chart chartType(ChartTypeEnum chartType) {
     this.chartType = chartType;
     return this;
   }
@@ -108,12 +297,12 @@ public class Chart extends ShapeBase {
    * Gets or sets the type of the chart.
    * @return chartType
   **/
-  @ApiModelProperty(value = "Gets or sets the type of the chart.")
-  public ChartType getChartType() {
+  @ApiModelProperty(required = true, value = "Gets or sets the type of the chart.")
+  public ChartTypeEnum getChartType() {
     return chartType;
   }
 
-  public void setChartType(ChartType chartType) {
+  public void setChartType(ChartTypeEnum chartType) {
     this.chartType = chartType;
   }
 

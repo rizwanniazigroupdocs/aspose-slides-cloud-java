@@ -28,7 +28,6 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.ShapeThumbnailBounds;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,8 +49,57 @@ public class ShapeImageExportOptions {
   @SerializedName("ScaleY")
   private Double scaleY;
 
+  /**
+   * Get or sets thumbnail bounds
+   */
+  @JsonAdapter(ThumbnailBoundsEnum.Adapter.class)
+  public enum ThumbnailBoundsEnum {
+    SLIDE("Slide"),
+    
+    SHAPE("Shape"),
+    
+    APPEARANCE("Appearance");
+
+    private String value;
+
+    ThumbnailBoundsEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ThumbnailBoundsEnum fromValue(String text) {
+      for (ThumbnailBoundsEnum b : ThumbnailBoundsEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<ThumbnailBoundsEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ThumbnailBoundsEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ThumbnailBoundsEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return ThumbnailBoundsEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("ThumbnailBounds")
-  private ShapeThumbnailBounds thumbnailBounds;
+  private ThumbnailBoundsEnum thumbnailBounds;
 
   @SerializedName("Format")
   private String format;
@@ -97,7 +145,7 @@ public class ShapeImageExportOptions {
     this.scaleY = scaleY;
   }
 
-  public ShapeImageExportOptions thumbnailBounds(ShapeThumbnailBounds thumbnailBounds) {
+  public ShapeImageExportOptions thumbnailBounds(ThumbnailBoundsEnum thumbnailBounds) {
     this.thumbnailBounds = thumbnailBounds;
     return this;
   }
@@ -107,11 +155,11 @@ public class ShapeImageExportOptions {
    * @return thumbnailBounds
   **/
   @ApiModelProperty(required = true, value = "Get or sets thumbnail bounds")
-  public ShapeThumbnailBounds getThumbnailBounds() {
+  public ThumbnailBoundsEnum getThumbnailBounds() {
     return thumbnailBounds;
   }
 
-  public void setThumbnailBounds(ShapeThumbnailBounds thumbnailBounds) {
+  public void setThumbnailBounds(ThumbnailBoundsEnum thumbnailBounds) {
     this.thumbnailBounds = thumbnailBounds;
   }
 

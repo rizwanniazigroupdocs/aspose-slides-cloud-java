@@ -58,7 +58,6 @@ public class DocumentProperty extends ResourceBase {
   public DocumentProperty() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
-    setLinks(new ArrayList<ResourceUri>());
   }
 
   public DocumentProperty name(String name) {
@@ -106,7 +105,7 @@ public class DocumentProperty extends ResourceBase {
    * Get builtIn
    * @return builtIn
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public Boolean isBuiltIn() {
     return builtIn;
   }

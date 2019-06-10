@@ -83,7 +83,6 @@ public class Slide extends ResourceBase {
   public Slide() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
-    setLinks(new ArrayList<ResourceUri>());
   }
 
   public Slide width(Double width) {
@@ -95,7 +94,7 @@ public class Slide extends ResourceBase {
    * Gets or sets the width.
    * @return width
   **/
-  @ApiModelProperty(value = "Gets or sets the width.")
+  @ApiModelProperty(required = true, value = "Gets or sets the width.")
   public Double getWidth() {
     return width;
   }
@@ -113,7 +112,7 @@ public class Slide extends ResourceBase {
    * Gets or sets the height.
    * @return height
   **/
-  @ApiModelProperty(value = "Gets or sets the height.")
+  @ApiModelProperty(required = true, value = "Gets or sets the height.")
   public Double getHeight() {
     return height;
   }
@@ -131,7 +130,7 @@ public class Slide extends ResourceBase {
    * Specifies if shapes of the master slide should be shown on the slide. True by default.
    * @return showMasterShapes
   **/
-  @ApiModelProperty(value = "Specifies if shapes of the master slide should be shown on the slide. True by default.")
+  @ApiModelProperty(required = true, value = "Specifies if shapes of the master slide should be shown on the slide. True by default.")
   public Boolean isShowMasterShapes() {
     return showMasterShapes;
   }

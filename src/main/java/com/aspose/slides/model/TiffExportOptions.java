@@ -28,11 +28,7 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.CommentsPositions;
 import com.aspose.slides.model.ExportOptions;
-import com.aspose.slides.model.ImagePixelFormat;
-import com.aspose.slides.model.NotesPositions;
-import com.aspose.slides.model.TiffCompressionType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -47,8 +43,63 @@ import java.util.ArrayList;
  * TiffExportOptions
  */
 public class TiffExportOptions extends ExportOptions {
+  /**
+   * Gets or Sets compression
+   */
+  @JsonAdapter(CompressionEnum.Adapter.class)
+  public enum CompressionEnum {
+    DEFAULT("Default"),
+    
+    NONE("None"),
+    
+    CCITT3("CCITT3"),
+    
+    CCITT4("CCITT4"),
+    
+    LZW("LZW"),
+    
+    RLE("RLE");
+
+    private String value;
+
+    CompressionEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static CompressionEnum fromValue(String text) {
+      for (CompressionEnum b : CompressionEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<CompressionEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final CompressionEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public CompressionEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return CompressionEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("Compression")
-  private TiffCompressionType compression;
+  private CompressionEnum compression;
 
   @SerializedName("Width")
   private Integer width;
@@ -65,14 +116,165 @@ public class TiffExportOptions extends ExportOptions {
   @SerializedName("ShowHiddenSlides")
   private Boolean showHiddenSlides;
 
+  /**
+   * Specifies the pixel format for the generated images. Read/write ImagePixelFormat.
+   */
+  @JsonAdapter(PixelFormatEnum.Adapter.class)
+  public enum PixelFormatEnum {
+    FORMAT1BPPINDEXED("Format1bppIndexed"),
+    
+    FORMAT4BPPINDEXED("Format4bppIndexed"),
+    
+    FORMAT8BPPINDEXED("Format8bppIndexed"),
+    
+    FORMAT24BPPRGB("Format24bppRgb"),
+    
+    FORMAT32BPPARGB("Format32bppArgb");
+
+    private String value;
+
+    PixelFormatEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PixelFormatEnum fromValue(String text) {
+      for (PixelFormatEnum b : PixelFormatEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<PixelFormatEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PixelFormatEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PixelFormatEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return PixelFormatEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("PixelFormat")
-  private ImagePixelFormat pixelFormat;
+  private PixelFormatEnum pixelFormat;
+
+  /**
+   * Gets or sets the position of the notes on the page.
+   */
+  @JsonAdapter(NotesPositionEnum.Adapter.class)
+  public enum NotesPositionEnum {
+    NONE("None"),
+    
+    BOTTOMFULL("BottomFull"),
+    
+    BOTTOMTRUNCATED("BottomTruncated");
+
+    private String value;
+
+    NotesPositionEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static NotesPositionEnum fromValue(String text) {
+      for (NotesPositionEnum b : NotesPositionEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<NotesPositionEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final NotesPositionEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public NotesPositionEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return NotesPositionEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("NotesPosition")
-  private NotesPositions notesPosition;
+  private NotesPositionEnum notesPosition;
+
+  /**
+   * Gets or sets the position of the comments on the page.
+   */
+  @JsonAdapter(CommentsPositionEnum.Adapter.class)
+  public enum CommentsPositionEnum {
+    NONE("None"),
+    
+    BOTTOM("Bottom"),
+    
+    RIGHT("Right");
+
+    private String value;
+
+    CommentsPositionEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static CommentsPositionEnum fromValue(String text) {
+      for (CommentsPositionEnum b : CommentsPositionEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<CommentsPositionEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final CommentsPositionEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public CommentsPositionEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return CommentsPositionEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("CommentsPosition")
-  private CommentsPositions commentsPosition;
+  private CommentsPositionEnum commentsPosition;
 
   @SerializedName("CommentsAreaWidth")
   private Integer commentsAreaWidth;
@@ -86,10 +288,10 @@ public class TiffExportOptions extends ExportOptions {
 
   public TiffExportOptions() {
     super();
-    setFormat("tiff");
+    setFormat("TIFF");
   }
 
-  public TiffExportOptions compression(TiffCompressionType compression) {
+  public TiffExportOptions compression(CompressionEnum compression) {
     this.compression = compression;
     return this;
   }
@@ -98,12 +300,12 @@ public class TiffExportOptions extends ExportOptions {
    * Get compression
    * @return compression
   **/
-  @ApiModelProperty(value = "")
-  public TiffCompressionType getCompression() {
+  @ApiModelProperty(required = true, value = "")
+  public CompressionEnum getCompression() {
     return compression;
   }
 
-  public void setCompression(TiffCompressionType compression) {
+  public void setCompression(CompressionEnum compression) {
     this.compression = compression;
   }
 
@@ -188,7 +390,7 @@ public class TiffExportOptions extends ExportOptions {
    * Specifies whether the generated document should include hidden slides or not. Default is false. 
    * @return showHiddenSlides
   **/
-  @ApiModelProperty(value = "Specifies whether the generated document should include hidden slides or not. Default is false. ")
+  @ApiModelProperty(required = true, value = "Specifies whether the generated document should include hidden slides or not. Default is false. ")
   public Boolean isShowHiddenSlides() {
     return showHiddenSlides;
   }
@@ -197,25 +399,25 @@ public class TiffExportOptions extends ExportOptions {
     this.showHiddenSlides = showHiddenSlides;
   }
 
-  public TiffExportOptions pixelFormat(ImagePixelFormat pixelFormat) {
+  public TiffExportOptions pixelFormat(PixelFormatEnum pixelFormat) {
     this.pixelFormat = pixelFormat;
     return this;
   }
 
    /**
-   * Specifies the pixel format for the generated images. Read/write .
+   * Specifies the pixel format for the generated images. Read/write ImagePixelFormat.
    * @return pixelFormat
   **/
-  @ApiModelProperty(value = "Specifies the pixel format for the generated images. Read/write .")
-  public ImagePixelFormat getPixelFormat() {
+  @ApiModelProperty(required = true, value = "Specifies the pixel format for the generated images. Read/write ImagePixelFormat.")
+  public PixelFormatEnum getPixelFormat() {
     return pixelFormat;
   }
 
-  public void setPixelFormat(ImagePixelFormat pixelFormat) {
+  public void setPixelFormat(PixelFormatEnum pixelFormat) {
     this.pixelFormat = pixelFormat;
   }
 
-  public TiffExportOptions notesPosition(NotesPositions notesPosition) {
+  public TiffExportOptions notesPosition(NotesPositionEnum notesPosition) {
     this.notesPosition = notesPosition;
     return this;
   }
@@ -224,16 +426,16 @@ public class TiffExportOptions extends ExportOptions {
    * Gets or sets the position of the notes on the page.
    * @return notesPosition
   **/
-  @ApiModelProperty(value = "Gets or sets the position of the notes on the page.")
-  public NotesPositions getNotesPosition() {
+  @ApiModelProperty(required = true, value = "Gets or sets the position of the notes on the page.")
+  public NotesPositionEnum getNotesPosition() {
     return notesPosition;
   }
 
-  public void setNotesPosition(NotesPositions notesPosition) {
+  public void setNotesPosition(NotesPositionEnum notesPosition) {
     this.notesPosition = notesPosition;
   }
 
-  public TiffExportOptions commentsPosition(CommentsPositions commentsPosition) {
+  public TiffExportOptions commentsPosition(CommentsPositionEnum commentsPosition) {
     this.commentsPosition = commentsPosition;
     return this;
   }
@@ -242,12 +444,12 @@ public class TiffExportOptions extends ExportOptions {
    * Gets or sets the position of the comments on the page.
    * @return commentsPosition
   **/
-  @ApiModelProperty(value = "Gets or sets the position of the comments on the page.")
-  public CommentsPositions getCommentsPosition() {
+  @ApiModelProperty(required = true, value = "Gets or sets the position of the comments on the page.")
+  public CommentsPositionEnum getCommentsPosition() {
     return commentsPosition;
   }
 
-  public void setCommentsPosition(CommentsPositions commentsPosition) {
+  public void setCommentsPosition(CommentsPositionEnum commentsPosition) {
     this.commentsPosition = commentsPosition;
   }
 
@@ -260,7 +462,7 @@ public class TiffExportOptions extends ExportOptions {
    * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
    * @return commentsAreaWidth
   **/
-  @ApiModelProperty(value = "Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).")
+  @ApiModelProperty(required = true, value = "Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).")
   public Integer getCommentsAreaWidth() {
     return commentsAreaWidth;
   }
@@ -296,7 +498,7 @@ public class TiffExportOptions extends ExportOptions {
    * True if comments that have no author are displayed. (Applies only if comments are displayed).
    * @return showCommentsByNoAuthor
   **/
-  @ApiModelProperty(value = "True if comments that have no author are displayed. (Applies only if comments are displayed).")
+  @ApiModelProperty(required = true, value = "True if comments that have no author are displayed. (Applies only if comments are displayed).")
   public Boolean isShowCommentsByNoAuthor() {
     return showCommentsByNoAuthor;
   }

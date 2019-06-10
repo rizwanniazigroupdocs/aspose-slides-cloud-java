@@ -31,7 +31,6 @@ import java.util.Objects;
 import com.aspose.slides.model.EffectFormat;
 import com.aspose.slides.model.FillFormat;
 import com.aspose.slides.model.LineFormat;
-import com.aspose.slides.model.MarkerStyleType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,8 +49,75 @@ public class SeriesMarker {
   @SerializedName("Size")
   private Integer size;
 
+  /**
+   * symbol
+   */
+  @JsonAdapter(SymbolEnum.Adapter.class)
+  public enum SymbolEnum {
+    CIRCLE("Circle"),
+    
+    DASH("Dash"),
+    
+    DIAMOND("Diamond"),
+    
+    DOT("Dot"),
+    
+    NONE("None"),
+    
+    PICTURE("Picture"),
+    
+    PLUS("Plus"),
+    
+    SQUARE("Square"),
+    
+    STAR("Star"),
+    
+    TRIANGLE("Triangle"),
+    
+    X("X"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    SymbolEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static SymbolEnum fromValue(String text) {
+      for (SymbolEnum b : SymbolEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<SymbolEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final SymbolEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public SymbolEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return SymbolEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("Symbol")
-  private MarkerStyleType symbol;
+  private SymbolEnum symbol;
 
   @SerializedName("FillFormat")
   private FillFormat fillFormat;
@@ -85,7 +151,7 @@ public class SeriesMarker {
     this.size = size;
   }
 
-  public SeriesMarker symbol(MarkerStyleType symbol) {
+  public SeriesMarker symbol(SymbolEnum symbol) {
     this.symbol = symbol;
     return this;
   }
@@ -95,11 +161,11 @@ public class SeriesMarker {
    * @return symbol
   **/
   @ApiModelProperty(required = true, value = "symbol")
-  public MarkerStyleType getSymbol() {
+  public SymbolEnum getSymbol() {
     return symbol;
   }
 
-  public void setSymbol(MarkerStyleType symbol) {
+  public void setSymbol(SymbolEnum symbol) {
     this.symbol = symbol;
   }
 

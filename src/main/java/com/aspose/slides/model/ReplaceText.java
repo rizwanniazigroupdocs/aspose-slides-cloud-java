@@ -59,7 +59,7 @@ public class ReplaceText extends Task {
 
   public ReplaceText() {
     super();
-    setType(com.aspose.slides.model.TaskType.REPLACETEXT);
+    setType(TypeEnum.REPLACETEXT);
   }
 
   public ReplaceText oldText(String oldText) {
@@ -107,7 +107,7 @@ public class ReplaceText extends Task {
    * True to ignore case in replace pattern search.
    * @return ignoreCase
   **/
-  @ApiModelProperty(value = "True to ignore case in replace pattern search.")
+  @ApiModelProperty(required = true, value = "True to ignore case in replace pattern search.")
   public Boolean isIgnoreCase() {
     return ignoreCase;
   }
@@ -125,7 +125,7 @@ public class ReplaceText extends Task {
    * One-based position of the slide to perform the replace in. 0 to make the replace throughout the presentation.
    * @return slidePosition
   **/
-  @ApiModelProperty(value = "One-based position of the slide to perform the replace in. 0 to make the replace throughout the presentation.")
+  @ApiModelProperty(required = true, value = "One-based position of the slide to perform the replace in. 0 to make the replace throughout the presentation.")
   public Integer getSlidePosition() {
     return slidePosition;
   }

@@ -40,9 +40,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Represents text item, referenced by 
+ * Represents text item, referenced by TextItems
  */
-@ApiModel(description = "Represents text item, referenced by ")
+@ApiModel(description = "Represents text item, referenced by TextItems")
 public class TextItem {
   @SerializedName("Uri")
   private ResourceUri uri;

@@ -29,7 +29,6 @@ package com.aspose.slides.model;
 
 import java.util.Objects;
 import com.aspose.slides.model.FillFormat;
-import com.aspose.slides.model.PictureFillMode;
 import com.aspose.slides.model.ResourceUriElement;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -69,13 +68,60 @@ public class PictureFill extends FillFormat {
   @SerializedName("SvgData")
   private String svgData;
 
+  /**
+   * Gets or Sets pictureFillMode
+   */
+  @JsonAdapter(PictureFillModeEnum.Adapter.class)
+  public enum PictureFillModeEnum {
+    TILE("Tile"),
+    
+    STRETCH("Stretch");
+
+    private String value;
+
+    PictureFillModeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PictureFillModeEnum fromValue(String text) {
+      for (PictureFillModeEnum b : PictureFillModeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<PictureFillModeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PictureFillModeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PictureFillModeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return PictureFillModeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("PictureFillMode")
-  private PictureFillMode pictureFillMode;
+  private PictureFillModeEnum pictureFillMode;
 
 
   public PictureFill() {
     super();
-    setType(com.aspose.slides.model.FillType.PICTURE);
+    setType(TypeEnum.PICTURE);
   }
 
   public PictureFill cropBottom(Double cropBottom) {
@@ -87,7 +133,7 @@ public class PictureFill extends FillFormat {
    * Get cropBottom
    * @return cropBottom
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public Double getCropBottom() {
     return cropBottom;
   }
@@ -105,7 +151,7 @@ public class PictureFill extends FillFormat {
    * Get cropLeft
    * @return cropLeft
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public Double getCropLeft() {
     return cropLeft;
   }
@@ -123,7 +169,7 @@ public class PictureFill extends FillFormat {
    * Get cropRight
    * @return cropRight
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public Double getCropRight() {
     return cropRight;
   }
@@ -141,7 +187,7 @@ public class PictureFill extends FillFormat {
    * Get cropTop
    * @return cropTop
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public Double getCropTop() {
     return cropTop;
   }
@@ -159,7 +205,7 @@ public class PictureFill extends FillFormat {
    * Get dpi
    * @return dpi
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public Integer getDpi() {
     return dpi;
   }
@@ -222,7 +268,7 @@ public class PictureFill extends FillFormat {
     this.svgData = svgData;
   }
 
-  public PictureFill pictureFillMode(PictureFillMode pictureFillMode) {
+  public PictureFill pictureFillMode(PictureFillModeEnum pictureFillMode) {
     this.pictureFillMode = pictureFillMode;
     return this;
   }
@@ -231,12 +277,12 @@ public class PictureFill extends FillFormat {
    * Get pictureFillMode
    * @return pictureFillMode
   **/
-  @ApiModelProperty(value = "")
-  public PictureFillMode getPictureFillMode() {
+  @ApiModelProperty(required = true, value = "")
+  public PictureFillModeEnum getPictureFillMode() {
     return pictureFillMode;
   }
 
-  public void setPictureFillMode(PictureFillMode pictureFillMode) {
+  public void setPictureFillMode(PictureFillModeEnum pictureFillMode) {
     this.pictureFillMode = pictureFillMode;
   }
 

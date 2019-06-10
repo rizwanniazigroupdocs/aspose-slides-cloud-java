@@ -50,7 +50,7 @@ public class Base64InputFile extends InputFile {
 
   public Base64InputFile() {
     super();
-    setType(com.aspose.slides.model.InputFileType.BASE64);
+    setType(TypeEnum.BASE64);
   }
 
   public Base64InputFile data(String data) {

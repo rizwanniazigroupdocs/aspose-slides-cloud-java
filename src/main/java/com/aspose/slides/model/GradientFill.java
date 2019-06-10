@@ -29,10 +29,7 @@ package com.aspose.slides.model;
 
 import java.util.Objects;
 import com.aspose.slides.model.FillFormat;
-import com.aspose.slides.model.GradientDirection;
 import com.aspose.slides.model.GradientFillStop;
-import com.aspose.slides.model.GradientShapeType;
-import com.aspose.slides.model.GradientTileFlip;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,11 +47,119 @@ import java.util.ArrayList;
  */
 @ApiModel(description = "Represents gradient fill format")
 public class GradientFill extends FillFormat {
+  /**
+   * Gradient style.
+   */
+  @JsonAdapter(DirectionEnum.Adapter.class)
+  public enum DirectionEnum {
+    FROMCORNER1("FromCorner1"),
+    
+    FROMCORNER2("FromCorner2"),
+    
+    FROMCORNER3("FromCorner3"),
+    
+    FROMCORNER4("FromCorner4"),
+    
+    FROMCENTER("FromCenter"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    DirectionEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static DirectionEnum fromValue(String text) {
+      for (DirectionEnum b : DirectionEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<DirectionEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final DirectionEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public DirectionEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return DirectionEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("Direction")
-  private GradientDirection direction;
+  private DirectionEnum direction;
+
+  /**
+   * Gradient shape.
+   */
+  @JsonAdapter(ShapeEnum.Adapter.class)
+  public enum ShapeEnum {
+    LINEAR("Linear"),
+    
+    RECTANGLE("Rectangle"),
+    
+    RADIAL("Radial"),
+    
+    PATH("Path"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    ShapeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ShapeEnum fromValue(String text) {
+      for (ShapeEnum b : ShapeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<ShapeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ShapeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ShapeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return ShapeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("Shape")
-  private GradientShapeType shape;
+  private ShapeEnum shape;
 
   @SerializedName("Stops")
   private List<GradientFillStop> stops = null;
@@ -65,17 +170,70 @@ public class GradientFill extends FillFormat {
   @SerializedName("IsScaled")
   private Boolean isScaled;
 
+  /**
+   * Gradient flipping mode.
+   */
+  @JsonAdapter(TileFlipEnum.Adapter.class)
+  public enum TileFlipEnum {
+    NOFLIP("NoFlip"),
+    
+    FLIPX("FlipX"),
+    
+    FLIPY("FlipY"),
+    
+    FLIPBOTH("FlipBoth"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    TileFlipEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TileFlipEnum fromValue(String text) {
+      for (TileFlipEnum b : TileFlipEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TileFlipEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TileFlipEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TileFlipEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return TileFlipEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("TileFlip")
-  private GradientTileFlip tileFlip;
+  private TileFlipEnum tileFlip;
 
 
   public GradientFill() {
     super();
-    setType(com.aspose.slides.model.FillType.GRADIENT);
+    setType(TypeEnum.GRADIENT);
     setStops(new ArrayList<GradientFillStop>());
   }
 
-  public GradientFill direction(GradientDirection direction) {
+  public GradientFill direction(DirectionEnum direction) {
     this.direction = direction;
     return this;
   }
@@ -84,16 +242,16 @@ public class GradientFill extends FillFormat {
    * Gradient style.
    * @return direction
   **/
-  @ApiModelProperty(value = "Gradient style.")
-  public GradientDirection getDirection() {
+  @ApiModelProperty(required = true, value = "Gradient style.")
+  public DirectionEnum getDirection() {
     return direction;
   }
 
-  public void setDirection(GradientDirection direction) {
+  public void setDirection(DirectionEnum direction) {
     this.direction = direction;
   }
 
-  public GradientFill shape(GradientShapeType shape) {
+  public GradientFill shape(ShapeEnum shape) {
     this.shape = shape;
     return this;
   }
@@ -102,12 +260,12 @@ public class GradientFill extends FillFormat {
    * Gradient shape.
    * @return shape
   **/
-  @ApiModelProperty(value = "Gradient shape.")
-  public GradientShapeType getShape() {
+  @ApiModelProperty(required = true, value = "Gradient shape.")
+  public ShapeEnum getShape() {
     return shape;
   }
 
-  public void setShape(GradientShapeType shape) {
+  public void setShape(ShapeEnum shape) {
     this.shape = shape;
   }
 
@@ -146,7 +304,7 @@ public class GradientFill extends FillFormat {
    * Gradient angle.
    * @return linearAngle
   **/
-  @ApiModelProperty(value = "Gradient angle.")
+  @ApiModelProperty(required = true, value = "Gradient angle.")
   public Double getLinearAngle() {
     return linearAngle;
   }
@@ -164,7 +322,7 @@ public class GradientFill extends FillFormat {
    * True if the gradient is scaled.
    * @return isScaled
   **/
-  @ApiModelProperty(value = "True if the gradient is scaled.")
+  @ApiModelProperty(required = true, value = "True if the gradient is scaled.")
   public Boolean isIsScaled() {
     return isScaled;
   }
@@ -173,7 +331,7 @@ public class GradientFill extends FillFormat {
     this.isScaled = isScaled;
   }
 
-  public GradientFill tileFlip(GradientTileFlip tileFlip) {
+  public GradientFill tileFlip(TileFlipEnum tileFlip) {
     this.tileFlip = tileFlip;
     return this;
   }
@@ -182,12 +340,12 @@ public class GradientFill extends FillFormat {
    * Gradient flipping mode.
    * @return tileFlip
   **/
-  @ApiModelProperty(value = "Gradient flipping mode.")
-  public GradientTileFlip getTileFlip() {
+  @ApiModelProperty(required = true, value = "Gradient flipping mode.")
+  public TileFlipEnum getTileFlip() {
     return tileFlip;
   }
 
-  public void setTileFlip(GradientTileFlip tileFlip) {
+  public void setTileFlip(TileFlipEnum tileFlip) {
     this.tileFlip = tileFlip;
   }
 

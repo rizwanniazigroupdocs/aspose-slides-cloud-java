@@ -55,7 +55,6 @@ public class DocumentProperties extends ResourceBase {
   public DocumentProperties() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
-    setLinks(new ArrayList<ResourceUri>());
     setList(new ArrayList<DocumentProperty>());
   }
 

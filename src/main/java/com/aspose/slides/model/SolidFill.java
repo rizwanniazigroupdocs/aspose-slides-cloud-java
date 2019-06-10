@@ -50,7 +50,7 @@ public class SolidFill extends FillFormat {
 
   public SolidFill() {
     super();
-    setType(com.aspose.slides.model.FillType.SOLID);
+    setType(TypeEnum.SOLID);
   }
 
   public SolidFill color(String color) {

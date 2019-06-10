@@ -31,7 +31,6 @@ import java.util.Objects;
 import com.aspose.slides.model.EffectFormat;
 import com.aspose.slides.model.FillFormat;
 import com.aspose.slides.model.GeometryShape;
-import com.aspose.slides.model.GeometryShapeType;
 import com.aspose.slides.model.LineFormat;
 import com.aspose.slides.model.PictureFill;
 import com.aspose.slides.model.ResourceUri;
@@ -59,9 +58,8 @@ public class PictureFrame extends GeometryShape {
   public PictureFrame() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
-    setLinks(new ArrayList<ResourceUri>());
-    setType(com.aspose.slides.model.ShapeType.PICTUREFRAME);
-    setShapeType(com.aspose.slides.model.CombinedShapeType.PICTUREFRAME);
+    setType(TypeEnum.PICTUREFRAME);
+    setShapeType(ShapeTypeEnum.PICTUREFRAME);
   }
 
   public PictureFrame pictureFillFormat(PictureFill pictureFillFormat) {

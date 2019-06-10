@@ -25,9 +25,9 @@
  * --------------------------------------------------------------------------------------------------------------------
  */
 
-package com.aspose.slides.Extra;
+package com.aspose.slides.extra;
 
-import com.aspose.slides.api.DocumentApi;
+import com.aspose.slides.api.SlidesApi;
 import com.aspose.slides.ApiException;
 import org.junit.Test;
 
@@ -48,7 +48,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class PipelineTest extends ApiTest {
 
-    private final DocumentApi api = new DocumentApi(getConfiguration());
+    private final SlidesApi api = new SlidesApi(getConfiguration());
 
     
     /**
@@ -62,11 +62,9 @@ public class PipelineTest extends ApiTest {
     @Test
     public void placeholderTest() throws ApiException, IOException {
         RequestInputFile file1 = new RequestInputFile();
-        file1.setType(InputFileType.REQUEST);
         file1.setIndex(0);
 
         RequestInputFile file2 = new RequestInputFile();
-        file2.setType(InputFileType.REQUEST);
         file2.setIndex(1);
 
         Input input = new Input();
@@ -74,12 +72,10 @@ public class PipelineTest extends ApiTest {
         input.setTemplate(file2);
 
         OutputFile output = new OutputFile();
-        output.setType(OutputFileType.RESPONSE);
 
         Save task = new Save();
-        task.setFormat(ExportFormat.PPTX);
+        task.setFormat(Save.FormatEnum.PPTX);
         task.setOutput(output);
-        task.setType(TaskType.SAVE);
         List<Task> tasks = new ArrayList<Task>();
         tasks.add(task);
 

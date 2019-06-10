@@ -52,14 +52,10 @@ public class ResourceBase {
   @SerializedName("AlternateLinks")
   private List<ResourceUri> alternateLinks = null;
 
-  @SerializedName("Links")
-  private List<ResourceUri> links = null;
-
 
   public ResourceBase() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
-    setLinks(new ArrayList<ResourceUri>());
   }
 
   public ResourceBase selfUri(ResourceUri selfUri) {
@@ -106,32 +102,6 @@ public class ResourceBase {
     this.alternateLinks = alternateLinks;
   }
 
-  public ResourceBase links(List<ResourceUri> links) {
-    this.links = links;
-    return this;
-  }
-
-  public ResourceBase addLinksItem(ResourceUri linksItem) {
-    if (this.links == null) {
-      this.links = new ArrayList<ResourceUri>();
-    }
-    this.links.add(linksItem);
-    return this;
-  }
-
-   /**
-   * A list of links that originate from this document.
-   * @return links
-  **/
-  @ApiModelProperty(value = "A list of links that originate from this document.")
-  public List<ResourceUri> getLinks() {
-    return links;
-  }
-
-  public void setLinks(List<ResourceUri> links) {
-    this.links = links;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -142,12 +112,12 @@ public class ResourceBase {
       return false;
     }
     ResourceBase resourceBase = (ResourceBase) o;
-    return true && Objects.equals(this.selfUri, resourceBase.selfUri) && Objects.equals(this.alternateLinks, resourceBase.alternateLinks) && Objects.equals(this.links, resourceBase.links);
+    return true && Objects.equals(this.selfUri, resourceBase.selfUri) && Objects.equals(this.alternateLinks, resourceBase.alternateLinks);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(selfUri, alternateLinks, links);
+    return Objects.hash(selfUri, alternateLinks);
   }
 
 
@@ -158,7 +128,6 @@ public class ResourceBase {
     
     sb.append("    selfUri: ").append(toIndentedString(selfUri)).append("\n");
     sb.append("    alternateLinks: ").append(toIndentedString(alternateLinks)).append("\n");
-    sb.append("    links: ").append(toIndentedString(links)).append("\n");
     sb.append("}");
     return sb.toString();
   }

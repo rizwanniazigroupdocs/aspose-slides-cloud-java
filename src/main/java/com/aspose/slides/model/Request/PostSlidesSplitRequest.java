@@ -143,4 +143,14 @@ public class PostSlidesSplitRequest {
     this.folder = folder;
   }
 
+  private String fontsFolder;
+
+  public String getFontsFolder() {
+    return fontsFolder;
+  }
+
+  public void setFontsFolder(String fontsFolder) {
+    this.fontsFolder = fontsFolder;
+  }
+
 }

@@ -30,8 +30,6 @@ package com.aspose.slides.model;
 import java.util.Objects;
 import com.aspose.slides.model.FillFormat;
 import com.aspose.slides.model.LineFormat;
-import com.aspose.slides.model.TextAnchorType;
-import com.aspose.slides.model.TextVerticalType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -68,11 +66,125 @@ public class TableCell {
   @SerializedName("MarginBottom")
   private Double marginBottom;
 
+  /**
+   * Text anchor type.
+   */
+  @JsonAdapter(TextAnchorTypeEnum.Adapter.class)
+  public enum TextAnchorTypeEnum {
+    TOP("Top"),
+    
+    CENTER("Center"),
+    
+    BOTTOM("Bottom"),
+    
+    JUSTIFIED("Justified"),
+    
+    DISTRIBUTED("Distributed"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    TextAnchorTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TextAnchorTypeEnum fromValue(String text) {
+      for (TextAnchorTypeEnum b : TextAnchorTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TextAnchorTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TextAnchorTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TextAnchorTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return TextAnchorTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("TextAnchorType")
-  private TextAnchorType textAnchorType;
+  private TextAnchorTypeEnum textAnchorType;
+
+  /**
+   * The type of vertical text.
+   */
+  @JsonAdapter(TextVerticalTypeEnum.Adapter.class)
+  public enum TextVerticalTypeEnum {
+    HORIZONTAL("Horizontal"),
+    
+    VERTICAL("Vertical"),
+    
+    VERTICAL270("Vertical270"),
+    
+    WORDARTVERTICAL("WordArtVertical"),
+    
+    EASTASIANVERTICAL("EastAsianVertical"),
+    
+    MONGOLIANVERTICAL("MongolianVertical"),
+    
+    WORDARTVERTICALRIGHTTOLEFT("WordArtVerticalRightToLeft"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    TextVerticalTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TextVerticalTypeEnum fromValue(String text) {
+      for (TextVerticalTypeEnum b : TextVerticalTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TextVerticalTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TextVerticalTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TextVerticalTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return TextVerticalTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("TextVerticalType")
-  private TextVerticalType textVerticalType;
+  private TextVerticalTypeEnum textVerticalType;
 
   @SerializedName("FillFormat")
   private FillFormat fillFormat;
@@ -226,7 +338,7 @@ public class TableCell {
     this.marginBottom = marginBottom;
   }
 
-  public TableCell textAnchorType(TextAnchorType textAnchorType) {
+  public TableCell textAnchorType(TextAnchorTypeEnum textAnchorType) {
     this.textAnchorType = textAnchorType;
     return this;
   }
@@ -236,15 +348,15 @@ public class TableCell {
    * @return textAnchorType
   **/
   @ApiModelProperty(required = true, value = "Text anchor type.")
-  public TextAnchorType getTextAnchorType() {
+  public TextAnchorTypeEnum getTextAnchorType() {
     return textAnchorType;
   }
 
-  public void setTextAnchorType(TextAnchorType textAnchorType) {
+  public void setTextAnchorType(TextAnchorTypeEnum textAnchorType) {
     this.textAnchorType = textAnchorType;
   }
 
-  public TableCell textVerticalType(TextVerticalType textVerticalType) {
+  public TableCell textVerticalType(TextVerticalTypeEnum textVerticalType) {
     this.textVerticalType = textVerticalType;
     return this;
   }
@@ -254,11 +366,11 @@ public class TableCell {
    * @return textVerticalType
   **/
   @ApiModelProperty(required = true, value = "The type of vertical text.")
-  public TextVerticalType getTextVerticalType() {
+  public TextVerticalTypeEnum getTextVerticalType() {
     return textVerticalType;
   }
 
-  public void setTextVerticalType(TextVerticalType textVerticalType) {
+  public void setTextVerticalType(TextVerticalTypeEnum textVerticalType) {
     this.textVerticalType = textVerticalType;
   }
 

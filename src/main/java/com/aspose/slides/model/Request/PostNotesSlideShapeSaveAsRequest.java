@@ -53,6 +53,16 @@ public class PostNotesSlideShapeSaveAsRequest {
     this.slideIndex = slideIndex;
   }
 
+  private String path;
+
+  public String getPath() {
+    return path;
+  }
+
+  public void setPath(String path) {
+    this.path = path;
+  }
+
   private Integer shapeIndex;
 
   public Integer getShapeIndex() {
@@ -63,13 +73,13 @@ public class PostNotesSlideShapeSaveAsRequest {
     this.shapeIndex = shapeIndex;
   }
 
-  private ShapeExportFormat format;
+  private ShapeExportFormat2 format;
 
-  public ShapeExportFormat getFormat() {
+  public ShapeExportFormat2 getFormat() {
     return format;
   }
 
-  public void setFormat(ShapeExportFormat format) {
+  public void setFormat(ShapeExportFormat2 format) {
     this.format = format;
   }
 
@@ -133,24 +143,14 @@ public class PostNotesSlideShapeSaveAsRequest {
     this.scaleY = scaleY;
   }
 
-  private String bounds;
+  private ShapeThumbnailBounds2 bounds;
 
-  public String getBounds() {
+  public ShapeThumbnailBounds2 getBounds() {
     return bounds;
   }
 
-  public void setBounds(String bounds) {
+  public void setBounds(ShapeThumbnailBounds2 bounds) {
     this.bounds = bounds;
-  }
-
-  private String outPath;
-
-  public String getOutPath() {
-    return outPath;
-  }
-
-  public void setOutPath(String outPath) {
-    this.outPath = outPath;
   }
 
   private String fontsFolder;

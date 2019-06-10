@@ -53,7 +53,7 @@ public class PathOutputFile extends OutputFile {
 
   public PathOutputFile() {
     super();
-    setType(com.aspose.slides.model.OutputFileType.PATH);
+    setType(TypeEnum.PATH);
   }
 
   public PathOutputFile path(String path) {

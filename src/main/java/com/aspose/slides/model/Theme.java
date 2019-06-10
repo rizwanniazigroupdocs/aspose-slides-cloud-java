@@ -63,7 +63,6 @@ public class Theme extends ResourceBase {
   public Theme() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
-    setLinks(new ArrayList<ResourceUri>());
   }
 
   public Theme name(String name) {

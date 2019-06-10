@@ -85,7 +85,7 @@ public class OAuth extends Authentication {
     }
     
     private synchronized void doTokenRequest(Map<String, Object> formParams) throws ApiException {
-        Call call = apiClient.buildCall("/oauth2/token", "POST", null, null, null, formParams, null, null);
+        Call call = apiClient.buildCall("/connect/token", "POST", null, null, null, formParams, null, null);
         ApiResponse<OAuthResponse> response = apiClient.execute(call, new TypeToken<OAuthResponse>(){}.getType());
         accessToken = response.getData().getAccessToken();
         refreshToken = response.getData().getRefreshToken();

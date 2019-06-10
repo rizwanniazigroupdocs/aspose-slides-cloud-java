@@ -55,7 +55,7 @@ public class UpdateBackground extends Task {
 
   public UpdateBackground() {
     super();
-    setType(com.aspose.slides.model.TaskType.UPDATEBACKGROUND);
+    setType(TypeEnum.UPDATEBACKGROUND);
     setSlides(new ArrayList<Integer>());
   }
 

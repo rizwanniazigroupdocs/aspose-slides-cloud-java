@@ -28,7 +28,6 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.PresetShadowType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,8 +49,91 @@ public class PresetShadowEffect {
   @SerializedName("Distance")
   private Double distance;
 
+  /**
+   * preset
+   */
+  @JsonAdapter(PresetEnum.Adapter.class)
+  public enum PresetEnum {
+    TOPLEFTDROPSHADOW("TopLeftDropShadow"),
+    
+    TOPLEFTLARGEDROPSHADOW("TopLeftLargeDropShadow"),
+    
+    BACKLEFTLONGPERSPECTIVESHADOW("BackLeftLongPerspectiveShadow"),
+    
+    BACKRIGHTLONGPERSPECTIVESHADOW("BackRightLongPerspectiveShadow"),
+    
+    TOPLEFTDOUBLEDROPSHADOW("TopLeftDoubleDropShadow"),
+    
+    BOTTOMRIGHTSMALLDROPSHADOW("BottomRightSmallDropShadow"),
+    
+    FRONTLEFTLONGPERSPECTIVESHADOW("FrontLeftLongPerspectiveShadow"),
+    
+    FRONTRIGHTLONGPERSPECTIVESHADOW("FrontRightLongPerspectiveShadow"),
+    
+    OUTERBOXSHADOW3D("OuterBoxShadow3D"),
+    
+    INNERBOXSHADOW3D("InnerBoxShadow3D"),
+    
+    BACKCENTERPERSPECTIVESHADOW("BackCenterPerspectiveShadow"),
+    
+    TOPRIGHTDROPSHADOW("TopRightDropShadow"),
+    
+    FRONTBOTTOMSHADOW("FrontBottomShadow"),
+    
+    BACKLEFTPERSPECTIVESHADOW("BackLeftPerspectiveShadow"),
+    
+    BACKRIGHTPERSPECTIVESHADOW("BackRightPerspectiveShadow"),
+    
+    BOTTOMLEFTDROPSHADOW("BottomLeftDropShadow"),
+    
+    BOTTOMRIGHTDROPSHADOW("BottomRightDropShadow"),
+    
+    FRONTLEFTPERSPECTIVESHADOW("FrontLeftPerspectiveShadow"),
+    
+    FRONTRIGHTPERSPECTIVESHADOW("FrontRightPerspectiveShadow"),
+    
+    TOPLEFTSMALLDROPSHADOW("TopLeftSmallDropShadow");
+
+    private String value;
+
+    PresetEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PresetEnum fromValue(String text) {
+      for (PresetEnum b : PresetEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<PresetEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PresetEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PresetEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return PresetEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("Preset")
-  private PresetShadowType preset;
+  private PresetEnum preset;
 
   @SerializedName("ShadowColor")
   private String shadowColor;
@@ -97,7 +179,7 @@ public class PresetShadowEffect {
     this.distance = distance;
   }
 
-  public PresetShadowEffect preset(PresetShadowType preset) {
+  public PresetShadowEffect preset(PresetEnum preset) {
     this.preset = preset;
     return this;
   }
@@ -107,11 +189,11 @@ public class PresetShadowEffect {
    * @return preset
   **/
   @ApiModelProperty(required = true, value = "preset")
-  public PresetShadowType getPreset() {
+  public PresetEnum getPreset() {
     return preset;
   }
 
-  public void setPreset(PresetShadowType preset) {
+  public void setPreset(PresetEnum preset) {
     this.preset = preset;
   }
 

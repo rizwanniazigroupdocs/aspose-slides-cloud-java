@@ -28,10 +28,7 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.CommentsPositions;
 import com.aspose.slides.model.ExportOptions;
-import com.aspose.slides.model.NotesPositions;
-import com.aspose.slides.model.PicturesCompression;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -59,17 +56,170 @@ public class HtmlExportOptions extends ExportOptions {
   @SerializedName("JpegQuality")
   private Integer jpegQuality;
 
+  /**
+   * Represents the pictures compression level
+   */
+  @JsonAdapter(PicturesCompressionEnum.Adapter.class)
+  public enum PicturesCompressionEnum {
+    DPI330("Dpi330"),
+    
+    DPI220("Dpi220"),
+    
+    DPI150("Dpi150"),
+    
+    DPI96("Dpi96"),
+    
+    DPI72("Dpi72"),
+    
+    DOCUMENTRESOLUTION("DocumentResolution");
+
+    private String value;
+
+    PicturesCompressionEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PicturesCompressionEnum fromValue(String text) {
+      for (PicturesCompressionEnum b : PicturesCompressionEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<PicturesCompressionEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PicturesCompressionEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PicturesCompressionEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return PicturesCompressionEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("PicturesCompression")
-  private PicturesCompression picturesCompression;
+  private PicturesCompressionEnum picturesCompression;
 
   @SerializedName("DeletePicturesCroppedAreas")
   private Boolean deletePicturesCroppedAreas;
 
+  /**
+   * Gets or sets the position of the notes on the page.
+   */
+  @JsonAdapter(NotesPositionEnum.Adapter.class)
+  public enum NotesPositionEnum {
+    NONE("None"),
+    
+    BOTTOMFULL("BottomFull"),
+    
+    BOTTOMTRUNCATED("BottomTruncated");
+
+    private String value;
+
+    NotesPositionEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static NotesPositionEnum fromValue(String text) {
+      for (NotesPositionEnum b : NotesPositionEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<NotesPositionEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final NotesPositionEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public NotesPositionEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return NotesPositionEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("NotesPosition")
-  private NotesPositions notesPosition;
+  private NotesPositionEnum notesPosition;
+
+  /**
+   * Gets or sets the position of the comments on the page.
+   */
+  @JsonAdapter(CommentsPositionEnum.Adapter.class)
+  public enum CommentsPositionEnum {
+    NONE("None"),
+    
+    BOTTOM("Bottom"),
+    
+    RIGHT("Right");
+
+    private String value;
+
+    CommentsPositionEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static CommentsPositionEnum fromValue(String text) {
+      for (CommentsPositionEnum b : CommentsPositionEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<CommentsPositionEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final CommentsPositionEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public CommentsPositionEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return CommentsPositionEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("CommentsPosition")
-  private CommentsPositions commentsPosition;
+  private CommentsPositionEnum commentsPosition;
 
   @SerializedName("CommentsAreaWidth")
   private Integer commentsAreaWidth;
@@ -83,7 +233,7 @@ public class HtmlExportOptions extends ExportOptions {
 
   public HtmlExportOptions() {
     super();
-    setFormat("html");
+    setFormat("HTML");
   }
 
   public HtmlExportOptions saveAsZip(Boolean saveAsZip) {
@@ -95,7 +245,7 @@ public class HtmlExportOptions extends ExportOptions {
    * Get or sets flag for save presentation as zip file
    * @return saveAsZip
   **/
-  @ApiModelProperty(value = "Get or sets flag for save presentation as zip file")
+  @ApiModelProperty(required = true, value = "Get or sets flag for save presentation as zip file")
   public Boolean isSaveAsZip() {
     return saveAsZip;
   }
@@ -131,7 +281,7 @@ public class HtmlExportOptions extends ExportOptions {
    * Specifies whether the generated document should include hidden slides or not. Default is false. 
    * @return showHiddenSlides
   **/
-  @ApiModelProperty(value = "Specifies whether the generated document should include hidden slides or not. Default is false. ")
+  @ApiModelProperty(required = true, value = "Specifies whether the generated document should include hidden slides or not. Default is false. ")
   public Boolean isShowHiddenSlides() {
     return showHiddenSlides;
   }
@@ -149,7 +299,7 @@ public class HtmlExportOptions extends ExportOptions {
    * Returns or sets a value determining the quality of the JPEG images inside PDF document.
    * @return jpegQuality
   **/
-  @ApiModelProperty(value = "Returns or sets a value determining the quality of the JPEG images inside PDF document.")
+  @ApiModelProperty(required = true, value = "Returns or sets a value determining the quality of the JPEG images inside PDF document.")
   public Integer getJpegQuality() {
     return jpegQuality;
   }
@@ -158,7 +308,7 @@ public class HtmlExportOptions extends ExportOptions {
     this.jpegQuality = jpegQuality;
   }
 
-  public HtmlExportOptions picturesCompression(PicturesCompression picturesCompression) {
+  public HtmlExportOptions picturesCompression(PicturesCompressionEnum picturesCompression) {
     this.picturesCompression = picturesCompression;
     return this;
   }
@@ -168,11 +318,11 @@ public class HtmlExportOptions extends ExportOptions {
    * @return picturesCompression
   **/
   @ApiModelProperty(value = "Represents the pictures compression level")
-  public PicturesCompression getPicturesCompression() {
+  public PicturesCompressionEnum getPicturesCompression() {
     return picturesCompression;
   }
 
-  public void setPicturesCompression(PicturesCompression picturesCompression) {
+  public void setPicturesCompression(PicturesCompressionEnum picturesCompression) {
     this.picturesCompression = picturesCompression;
   }
 
@@ -185,7 +335,7 @@ public class HtmlExportOptions extends ExportOptions {
    * A boolean flag indicates if the cropped parts remain as part of the document. If true the cropped  parts will removed, if false they will be serialized in the document (which can possible lead to a  larger file)
    * @return deletePicturesCroppedAreas
   **/
-  @ApiModelProperty(value = "A boolean flag indicates if the cropped parts remain as part of the document. If true the cropped  parts will removed, if false they will be serialized in the document (which can possible lead to a  larger file)")
+  @ApiModelProperty(required = true, value = "A boolean flag indicates if the cropped parts remain as part of the document. If true the cropped  parts will removed, if false they will be serialized in the document (which can possible lead to a  larger file)")
   public Boolean isDeletePicturesCroppedAreas() {
     return deletePicturesCroppedAreas;
   }
@@ -194,7 +344,7 @@ public class HtmlExportOptions extends ExportOptions {
     this.deletePicturesCroppedAreas = deletePicturesCroppedAreas;
   }
 
-  public HtmlExportOptions notesPosition(NotesPositions notesPosition) {
+  public HtmlExportOptions notesPosition(NotesPositionEnum notesPosition) {
     this.notesPosition = notesPosition;
     return this;
   }
@@ -203,16 +353,16 @@ public class HtmlExportOptions extends ExportOptions {
    * Gets or sets the position of the notes on the page.
    * @return notesPosition
   **/
-  @ApiModelProperty(value = "Gets or sets the position of the notes on the page.")
-  public NotesPositions getNotesPosition() {
+  @ApiModelProperty(required = true, value = "Gets or sets the position of the notes on the page.")
+  public NotesPositionEnum getNotesPosition() {
     return notesPosition;
   }
 
-  public void setNotesPosition(NotesPositions notesPosition) {
+  public void setNotesPosition(NotesPositionEnum notesPosition) {
     this.notesPosition = notesPosition;
   }
 
-  public HtmlExportOptions commentsPosition(CommentsPositions commentsPosition) {
+  public HtmlExportOptions commentsPosition(CommentsPositionEnum commentsPosition) {
     this.commentsPosition = commentsPosition;
     return this;
   }
@@ -221,12 +371,12 @@ public class HtmlExportOptions extends ExportOptions {
    * Gets or sets the position of the comments on the page.
    * @return commentsPosition
   **/
-  @ApiModelProperty(value = "Gets or sets the position of the comments on the page.")
-  public CommentsPositions getCommentsPosition() {
+  @ApiModelProperty(required = true, value = "Gets or sets the position of the comments on the page.")
+  public CommentsPositionEnum getCommentsPosition() {
     return commentsPosition;
   }
 
-  public void setCommentsPosition(CommentsPositions commentsPosition) {
+  public void setCommentsPosition(CommentsPositionEnum commentsPosition) {
     this.commentsPosition = commentsPosition;
   }
 
@@ -239,7 +389,7 @@ public class HtmlExportOptions extends ExportOptions {
    * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
    * @return commentsAreaWidth
   **/
-  @ApiModelProperty(value = "Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).")
+  @ApiModelProperty(required = true, value = "Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).")
   public Integer getCommentsAreaWidth() {
     return commentsAreaWidth;
   }
@@ -275,7 +425,7 @@ public class HtmlExportOptions extends ExportOptions {
    * True if comments that have no author are displayed. (Applies only if comments are displayed).
    * @return showCommentsByNoAuthor
   **/
-  @ApiModelProperty(value = "True if comments that have no author are displayed. (Applies only if comments are displayed).")
+  @ApiModelProperty(required = true, value = "True if comments that have no author are displayed. (Applies only if comments are displayed).")
   public Boolean isShowCommentsByNoAuthor() {
     return showCommentsByNoAuthor;
   }

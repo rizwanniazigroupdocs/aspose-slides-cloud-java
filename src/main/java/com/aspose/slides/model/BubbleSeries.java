@@ -29,8 +29,6 @@ package com.aspose.slides.model;
 
 import java.util.Objects;
 import com.aspose.slides.model.BubbleChartDataPoint;
-import com.aspose.slides.model.ChartDataPointType;
-import com.aspose.slides.model.ChartType;
 import com.aspose.slides.model.EffectFormat;
 import com.aspose.slides.model.FillFormat;
 import com.aspose.slides.model.LineFormat;
@@ -53,6 +51,58 @@ import java.util.ArrayList;
  */
 @ApiModel(description = "A bubble series.")
 public class BubbleSeries extends Series {
+  /**
+   * Data point type.
+   */
+  @JsonAdapter(DataPointTypeEnum.Adapter.class)
+  public enum DataPointTypeEnum {
+    ONEVALUE("OneValue"),
+    
+    SCATTER("Scatter"),
+    
+    BUBBLE("Bubble");
+
+    private String value;
+
+    DataPointTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static DataPointTypeEnum fromValue(String text) {
+      for (DataPointTypeEnum b : DataPointTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<DataPointTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final DataPointTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public DataPointTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return DataPointTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName("DataPointType")
+  private DataPointTypeEnum dataPointType;
+
   @SerializedName("DataPoints")
   private List<BubbleChartDataPoint> dataPoints = null;
 
@@ -60,6 +110,24 @@ public class BubbleSeries extends Series {
   public BubbleSeries() {
     super();
     setDataPoints(new ArrayList<BubbleChartDataPoint>());
+  }
+
+  public BubbleSeries dataPointType(DataPointTypeEnum dataPointType) {
+    this.dataPointType = dataPointType;
+    return this;
+  }
+
+   /**
+   * Data point type.
+   * @return dataPointType
+  **/
+  @ApiModelProperty(required = true, value = "Data point type.")
+  public DataPointTypeEnum getDataPointType() {
+    return dataPointType;
+  }
+
+  public void setDataPointType(DataPointTypeEnum dataPointType) {
+    this.dataPointType = dataPointType;
   }
 
   public BubbleSeries dataPoints(List<BubbleChartDataPoint> dataPoints) {
@@ -98,12 +166,12 @@ public class BubbleSeries extends Series {
       return false;
     }
     BubbleSeries bubbleSeries = (BubbleSeries) o;
-    return true && Objects.equals(this.dataPoints, bubbleSeries.dataPoints) && super.equals(o);
+    return true && Objects.equals(this.dataPointType, bubbleSeries.dataPointType) && Objects.equals(this.dataPoints, bubbleSeries.dataPoints) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(dataPoints, super.hashCode());
+    return Objects.hash(dataPointType, dataPoints, super.hashCode());
   }
 
 
@@ -112,6 +180,7 @@ public class BubbleSeries extends Series {
     StringBuilder sb = new StringBuilder();
     sb.append("class BubbleSeries {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    dataPointType: ").append(toIndentedString(dataPointType)).append("\n");
     sb.append("    dataPoints: ").append(toIndentedString(dataPoints)).append("\n");
     sb.append("}");
     return sb.toString();

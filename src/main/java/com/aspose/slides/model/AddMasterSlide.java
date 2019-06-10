@@ -57,7 +57,7 @@ public class AddMasterSlide extends Task {
 
   public AddMasterSlide() {
     super();
-    setType(com.aspose.slides.model.TaskType.ADDMASTERSLIDE);
+    setType(TypeEnum.ADDMASTERSLIDE);
   }
 
   public AddMasterSlide cloneFromFile(InputFile cloneFromFile) {
@@ -87,7 +87,7 @@ public class AddMasterSlide extends Task {
    * Index of slide to clone.
    * @return cloneFromPosition
   **/
-  @ApiModelProperty(value = "Index of slide to clone.")
+  @ApiModelProperty(required = true, value = "Index of slide to clone.")
   public Integer getCloneFromPosition() {
     return cloneFromPosition;
   }
@@ -105,7 +105,7 @@ public class AddMasterSlide extends Task {
    * True if cloned master slide is applied to all slides.
    * @return applyToAll
   **/
-  @ApiModelProperty(value = "True if cloned master slide is applied to all slides.")
+  @ApiModelProperty(required = true, value = "True if cloned master slide is applied to all slides.")
   public Boolean isApplyToAll() {
     return applyToAll;
   }

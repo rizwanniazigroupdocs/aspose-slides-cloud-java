@@ -59,7 +59,6 @@ public class Image extends ResourceBase {
   public Image() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
-    setLinks(new ArrayList<ResourceUri>());
   }
 
   public Image width(Integer width) {
@@ -71,7 +70,7 @@ public class Image extends ResourceBase {
    * Get or sets the width of an image.
    * @return width
   **/
-  @ApiModelProperty(value = "Get or sets the width of an image.")
+  @ApiModelProperty(required = true, value = "Get or sets the width of an image.")
   public Integer getWidth() {
     return width;
   }
@@ -89,7 +88,7 @@ public class Image extends ResourceBase {
    * Get or sets the height of an image.
    * @return height
   **/
-  @ApiModelProperty(value = "Get or sets the height of an image.")
+  @ApiModelProperty(required = true, value = "Get or sets the height of an image.")
   public Integer getHeight() {
     return height;
   }

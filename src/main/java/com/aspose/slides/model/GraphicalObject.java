@@ -54,9 +54,8 @@ public class GraphicalObject extends ShapeBase {
   public GraphicalObject() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
-    setLinks(new ArrayList<ResourceUri>());
-    setType(com.aspose.slides.model.ShapeType.GRAPHICALOBJECT);
-    setShapeType(com.aspose.slides.model.CombinedShapeType.GRAPHICALOBJECT);
+    setType(TypeEnum.GRAPHICALOBJECT);
+    setShapeType(ShapeTypeEnum.GRAPHICALOBJECT);
   }
 
 

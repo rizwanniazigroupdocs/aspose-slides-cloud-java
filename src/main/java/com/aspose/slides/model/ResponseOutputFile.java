@@ -47,7 +47,7 @@ public class ResponseOutputFile extends OutputFile {
 
   public ResponseOutputFile() {
     super();
-    setType(com.aspose.slides.model.OutputFileType.RESPONSE);
+    setType(TypeEnum.RESPONSE);
   }
 
 

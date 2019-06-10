@@ -43,7 +43,7 @@ public class Configuration {
     }
 
     @SerializedName("Version")
-    private String version = "v1.1";
+    private String version = "v3.0";
 
     public String getVersion() {
         return version;

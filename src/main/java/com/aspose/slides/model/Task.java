@@ -28,7 +28,6 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.TaskType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -44,29 +43,102 @@ import java.util.ArrayList;
  */
 @ApiModel(description = "Represents task for pipeline.")
 public class Task {
+  /**
+   * Gets or Sets type
+   */
+  @JsonAdapter(TypeEnum.Adapter.class)
+  public enum TypeEnum {
+    SAVE("Save"),
+    
+    SAVESLIDE("SaveSlide"),
+    
+    SAVESHAPE("SaveShape"),
+    
+    ADDSLIDE("AddSlide"),
+    
+    ADDMASTERSLIDE("AddMasterSlide"),
+    
+    ADDLAYOUTSLIDE("AddLayoutSlide"),
+    
+    REMOVESLIDE("RemoveSlide"),
+    
+    REODERSLIDE("ReoderSlide"),
+    
+    MERGE("Merge"),
+    
+    UPDATEBACKGROUND("UpdateBackground"),
+    
+    RESETSLIDE("ResetSlide"),
+    
+    ADDSHAPE("AddShape"),
+    
+    REMOVESHAPE("RemoveShape"),
+    
+    UPDATESHAPE("UpdateShape"),
+    
+    REPLACETEXT("ReplaceText");
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TypeEnum fromValue(String text) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return TypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("Type")
-  private TaskType type;
+  private TypeEnum type;
 
 
   public Task() {
     super();
   }
 
-  public Task type(TaskType type) {
+  public Task type(TypeEnum type) {
     this.type = type;
     return this;
   }
 
    /**
-   * Gets type of task.
+   * Get type
    * @return type
   **/
-  @ApiModelProperty(required = true, value = "Gets type of task.")
-  public TaskType getType() {
+  @ApiModelProperty(value = "")
+  public TypeEnum getType() {
     return type;
   }
 
-  public void setType(TaskType type) {
+  public void setType(TypeEnum type) {
     this.type = type;
   }
 

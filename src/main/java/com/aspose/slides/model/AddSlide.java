@@ -60,7 +60,7 @@ public class AddSlide extends Task {
 
   public AddSlide() {
     super();
-    setType(com.aspose.slides.model.TaskType.ADDSLIDE);
+    setType(TypeEnum.ADDSLIDE);
   }
 
   public AddSlide cloneFromFile(InputFile cloneFromFile) {
@@ -90,7 +90,7 @@ public class AddSlide extends Task {
    * Position of the slide to clone.
    * @return cloneFromPosition
   **/
-  @ApiModelProperty(value = "Position of the slide to clone.")
+  @ApiModelProperty(required = true, value = "Position of the slide to clone.")
   public Integer getCloneFromPosition() {
     return cloneFromPosition;
   }
@@ -108,7 +108,7 @@ public class AddSlide extends Task {
    * Position at which to insert the slide.
    * @return position
   **/
-  @ApiModelProperty(value = "Position at which to insert the slide.")
+  @ApiModelProperty(required = true, value = "Position at which to insert the slide.")
   public Integer getPosition() {
     return position;
   }

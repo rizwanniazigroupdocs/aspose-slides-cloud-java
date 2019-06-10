@@ -54,9 +54,8 @@ public class SmartArtShape extends ShapeBase {
   public SmartArtShape() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
-    setLinks(new ArrayList<ResourceUri>());
-    setType(com.aspose.slides.model.ShapeType.SMARTARTSHAPE);
-    setShapeType(com.aspose.slides.model.CombinedShapeType.CUSTOM);
+    setType(TypeEnum.SMARTARTSHAPE);
+    setShapeType(ShapeTypeEnum.CUSTOM);
   }
 
 

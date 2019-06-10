@@ -113,4 +113,14 @@ public class GetNotesSlideWithFormatRequest {
     this.storage = storage;
   }
 
+  private String fontsFolder;
+
+  public String getFontsFolder() {
+    return fontsFolder;
+  }
+
+  public void setFontsFolder(String fontsFolder) {
+    this.fontsFolder = fontsFolder;
+  }
+
 }

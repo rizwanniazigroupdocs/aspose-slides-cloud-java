@@ -43,6 +43,16 @@ public class PutSlidesConvertRequest {
     this.format = format;
   }
 
+  private String outPath;
+
+  public String getOutPath() {
+    return outPath;
+  }
+
+  public void setOutPath(String outPath) {
+    this.outPath = outPath;
+  }
+
   private byte[] document;
 
   public byte[] getDocument() {
@@ -61,16 +71,6 @@ public class PutSlidesConvertRequest {
 
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  private String outPath;
-
-  public String getOutPath() {
-    return outPath;
-  }
-
-  public void setOutPath(String outPath) {
-    this.outPath = outPath;
   }
 
   private String fontsFolder;

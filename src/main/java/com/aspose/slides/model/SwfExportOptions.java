@@ -28,9 +28,7 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.CommentsPositions;
 import com.aspose.slides.model.ExportOptions;
-import com.aspose.slides.model.NotesPositions;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -91,11 +89,109 @@ public class SwfExportOptions extends ExportOptions {
   @SerializedName("JpegQuality")
   private Integer jpegQuality;
 
+  /**
+   * Gets or sets the position of the notes on the page.
+   */
+  @JsonAdapter(NotesPositionEnum.Adapter.class)
+  public enum NotesPositionEnum {
+    NONE("None"),
+    
+    BOTTOMFULL("BottomFull"),
+    
+    BOTTOMTRUNCATED("BottomTruncated");
+
+    private String value;
+
+    NotesPositionEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static NotesPositionEnum fromValue(String text) {
+      for (NotesPositionEnum b : NotesPositionEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<NotesPositionEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final NotesPositionEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public NotesPositionEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return NotesPositionEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("NotesPosition")
-  private NotesPositions notesPosition;
+  private NotesPositionEnum notesPosition;
+
+  /**
+   * Gets or sets the position of the comments on the page.
+   */
+  @JsonAdapter(CommentsPositionEnum.Adapter.class)
+  public enum CommentsPositionEnum {
+    NONE("None"),
+    
+    BOTTOM("Bottom"),
+    
+    RIGHT("Right");
+
+    private String value;
+
+    CommentsPositionEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static CommentsPositionEnum fromValue(String text) {
+      for (CommentsPositionEnum b : CommentsPositionEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<CommentsPositionEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final CommentsPositionEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public CommentsPositionEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return CommentsPositionEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("CommentsPosition")
-  private CommentsPositions commentsPosition;
+  private CommentsPositionEnum commentsPosition;
 
   @SerializedName("CommentsAreaWidth")
   private Integer commentsAreaWidth;
@@ -109,7 +205,7 @@ public class SwfExportOptions extends ExportOptions {
 
   public SwfExportOptions() {
     super();
-    setFormat("swf");
+    setFormat("SWF");
   }
 
   public SwfExportOptions showHiddenSlides(Boolean showHiddenSlides) {
@@ -121,7 +217,7 @@ public class SwfExportOptions extends ExportOptions {
    * Specifies whether the generated document should include hidden slides or not. Default is false. 
    * @return showHiddenSlides
   **/
-  @ApiModelProperty(value = "Specifies whether the generated document should include hidden slides or not. Default is false. ")
+  @ApiModelProperty(required = true, value = "Specifies whether the generated document should include hidden slides or not. Default is false. ")
   public Boolean isShowHiddenSlides() {
     return showHiddenSlides;
   }
@@ -139,7 +235,7 @@ public class SwfExportOptions extends ExportOptions {
    * Specifies whether the generated SWF document should be compressed or not. Default is true. 
    * @return compressed
   **/
-  @ApiModelProperty(value = "Specifies whether the generated SWF document should be compressed or not. Default is true. ")
+  @ApiModelProperty(required = true, value = "Specifies whether the generated SWF document should be compressed or not. Default is true. ")
   public Boolean isCompressed() {
     return compressed;
   }
@@ -157,7 +253,7 @@ public class SwfExportOptions extends ExportOptions {
    * Specifies whether the generated SWF document should include the integrated document viewer or not. Default is true. 
    * @return viewerIncluded
   **/
-  @ApiModelProperty(value = "Specifies whether the generated SWF document should include the integrated document viewer or not. Default is true. ")
+  @ApiModelProperty(required = true, value = "Specifies whether the generated SWF document should include the integrated document viewer or not. Default is true. ")
   public Boolean isViewerIncluded() {
     return viewerIncluded;
   }
@@ -175,7 +271,7 @@ public class SwfExportOptions extends ExportOptions {
    * Specifies whether border around pages should be shown. Default is true. 
    * @return showPageBorder
   **/
-  @ApiModelProperty(value = "Specifies whether border around pages should be shown. Default is true. ")
+  @ApiModelProperty(required = true, value = "Specifies whether border around pages should be shown. Default is true. ")
   public Boolean isShowPageBorder() {
     return showPageBorder;
   }
@@ -193,7 +289,7 @@ public class SwfExportOptions extends ExportOptions {
    * Show/hide fullscreen button. Can be overridden in flashvars. Default is true. 
    * @return showFullScreen
   **/
-  @ApiModelProperty(value = "Show/hide fullscreen button. Can be overridden in flashvars. Default is true. ")
+  @ApiModelProperty(required = true, value = "Show/hide fullscreen button. Can be overridden in flashvars. Default is true. ")
   public Boolean isShowFullScreen() {
     return showFullScreen;
   }
@@ -211,7 +307,7 @@ public class SwfExportOptions extends ExportOptions {
    * Show/hide page stepper. Can be overridden in flashvars. Default is true. 
    * @return showPageStepper
   **/
-  @ApiModelProperty(value = "Show/hide page stepper. Can be overridden in flashvars. Default is true. ")
+  @ApiModelProperty(required = true, value = "Show/hide page stepper. Can be overridden in flashvars. Default is true. ")
   public Boolean isShowPageStepper() {
     return showPageStepper;
   }
@@ -229,7 +325,7 @@ public class SwfExportOptions extends ExportOptions {
    * Show/hide search section. Can be overridden in flashvars. Default is true. 
    * @return showSearch
   **/
-  @ApiModelProperty(value = "Show/hide search section. Can be overridden in flashvars. Default is true. ")
+  @ApiModelProperty(required = true, value = "Show/hide search section. Can be overridden in flashvars. Default is true. ")
   public Boolean isShowSearch() {
     return showSearch;
   }
@@ -247,7 +343,7 @@ public class SwfExportOptions extends ExportOptions {
    * Show/hide whole top pane. Can be overridden in flashvars. Default is true. 
    * @return showTopPane
   **/
-  @ApiModelProperty(value = "Show/hide whole top pane. Can be overridden in flashvars. Default is true. ")
+  @ApiModelProperty(required = true, value = "Show/hide whole top pane. Can be overridden in flashvars. Default is true. ")
   public Boolean isShowTopPane() {
     return showTopPane;
   }
@@ -265,7 +361,7 @@ public class SwfExportOptions extends ExportOptions {
    * Show/hide bottom pane. Can be overridden in flashvars. Default is true. 
    * @return showBottomPane
   **/
-  @ApiModelProperty(value = "Show/hide bottom pane. Can be overridden in flashvars. Default is true. ")
+  @ApiModelProperty(required = true, value = "Show/hide bottom pane. Can be overridden in flashvars. Default is true. ")
   public Boolean isShowBottomPane() {
     return showBottomPane;
   }
@@ -283,7 +379,7 @@ public class SwfExportOptions extends ExportOptions {
    * Show/hide left pane. Can be overridden in flashvars. Default is true. 
    * @return showLeftPane
   **/
-  @ApiModelProperty(value = "Show/hide left pane. Can be overridden in flashvars. Default is true. ")
+  @ApiModelProperty(required = true, value = "Show/hide left pane. Can be overridden in flashvars. Default is true. ")
   public Boolean isShowLeftPane() {
     return showLeftPane;
   }
@@ -301,7 +397,7 @@ public class SwfExportOptions extends ExportOptions {
    * Start with opened left pane. Can be overridden in flashvars. Default is false. 
    * @return startOpenLeftPane
   **/
-  @ApiModelProperty(value = "Start with opened left pane. Can be overridden in flashvars. Default is false. ")
+  @ApiModelProperty(required = true, value = "Start with opened left pane. Can be overridden in flashvars. Default is false. ")
   public Boolean isStartOpenLeftPane() {
     return startOpenLeftPane;
   }
@@ -319,7 +415,7 @@ public class SwfExportOptions extends ExportOptions {
    * Enable/disable context menu. Default is true. 
    * @return enableContextMenu
   **/
-  @ApiModelProperty(value = "Enable/disable context menu. Default is true. ")
+  @ApiModelProperty(required = true, value = "Enable/disable context menu. Default is true. ")
   public Boolean isEnableContextMenu() {
     return enableContextMenu;
   }
@@ -352,10 +448,10 @@ public class SwfExportOptions extends ExportOptions {
   }
 
    /**
-   * Gets or sets the full hyperlink address for a logo. Has an effect only if a  is specified. 
+   * Gets or sets the full hyperlink address for a logo. Has an effect only if a LogoImage is specified. 
    * @return logoLink
   **/
-  @ApiModelProperty(value = "Gets or sets the full hyperlink address for a logo. Has an effect only if a  is specified. ")
+  @ApiModelProperty(value = "Gets or sets the full hyperlink address for a logo. Has an effect only if a LogoImage is specified. ")
   public String getLogoLink() {
     return logoLink;
   }
@@ -373,7 +469,7 @@ public class SwfExportOptions extends ExportOptions {
    * Specifies the quality of JPEG images. Default is 95.
    * @return jpegQuality
   **/
-  @ApiModelProperty(value = "Specifies the quality of JPEG images. Default is 95.")
+  @ApiModelProperty(required = true, value = "Specifies the quality of JPEG images. Default is 95.")
   public Integer getJpegQuality() {
     return jpegQuality;
   }
@@ -382,7 +478,7 @@ public class SwfExportOptions extends ExportOptions {
     this.jpegQuality = jpegQuality;
   }
 
-  public SwfExportOptions notesPosition(NotesPositions notesPosition) {
+  public SwfExportOptions notesPosition(NotesPositionEnum notesPosition) {
     this.notesPosition = notesPosition;
     return this;
   }
@@ -391,16 +487,16 @@ public class SwfExportOptions extends ExportOptions {
    * Gets or sets the position of the notes on the page.
    * @return notesPosition
   **/
-  @ApiModelProperty(value = "Gets or sets the position of the notes on the page.")
-  public NotesPositions getNotesPosition() {
+  @ApiModelProperty(required = true, value = "Gets or sets the position of the notes on the page.")
+  public NotesPositionEnum getNotesPosition() {
     return notesPosition;
   }
 
-  public void setNotesPosition(NotesPositions notesPosition) {
+  public void setNotesPosition(NotesPositionEnum notesPosition) {
     this.notesPosition = notesPosition;
   }
 
-  public SwfExportOptions commentsPosition(CommentsPositions commentsPosition) {
+  public SwfExportOptions commentsPosition(CommentsPositionEnum commentsPosition) {
     this.commentsPosition = commentsPosition;
     return this;
   }
@@ -409,12 +505,12 @@ public class SwfExportOptions extends ExportOptions {
    * Gets or sets the position of the comments on the page.
    * @return commentsPosition
   **/
-  @ApiModelProperty(value = "Gets or sets the position of the comments on the page.")
-  public CommentsPositions getCommentsPosition() {
+  @ApiModelProperty(required = true, value = "Gets or sets the position of the comments on the page.")
+  public CommentsPositionEnum getCommentsPosition() {
     return commentsPosition;
   }
 
-  public void setCommentsPosition(CommentsPositions commentsPosition) {
+  public void setCommentsPosition(CommentsPositionEnum commentsPosition) {
     this.commentsPosition = commentsPosition;
   }
 
@@ -427,7 +523,7 @@ public class SwfExportOptions extends ExportOptions {
    * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
    * @return commentsAreaWidth
   **/
-  @ApiModelProperty(value = "Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).")
+  @ApiModelProperty(required = true, value = "Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).")
   public Integer getCommentsAreaWidth() {
     return commentsAreaWidth;
   }
@@ -463,7 +559,7 @@ public class SwfExportOptions extends ExportOptions {
    * True if comments that have no author are displayed. (Applies only if comments are displayed).
    * @return showCommentsByNoAuthor
   **/
-  @ApiModelProperty(value = "True if comments that have no author are displayed. (Applies only if comments are displayed).")
+  @ApiModelProperty(required = true, value = "True if comments that have no author are displayed. (Applies only if comments are displayed).")
   public Boolean isShowCommentsByNoAuthor() {
     return showCommentsByNoAuthor;
   }

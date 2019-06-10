@@ -60,7 +60,6 @@ public class MasterSlide extends ResourceBase {
   public MasterSlide() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
-    setLinks(new ArrayList<ResourceUri>());
     setLayoutSlides(new ArrayList<ResourceUriElement>());
     setDependingSlides(new ArrayList<ResourceUriElement>());
   }

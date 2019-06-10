@@ -53,7 +53,7 @@ public class UpdateShape extends Task {
 
   public UpdateShape() {
     super();
-    setType(com.aspose.slides.model.TaskType.UPDATESHAPE);
+    setType(TypeEnum.UPDATESHAPE);
   }
 
   public UpdateShape shape(ShapeBase shape) {

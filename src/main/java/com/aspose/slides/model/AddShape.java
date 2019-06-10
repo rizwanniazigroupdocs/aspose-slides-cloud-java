@@ -53,7 +53,7 @@ public class AddShape extends Task {
 
   public AddShape() {
     super();
-    setType(com.aspose.slides.model.TaskType.ADDSHAPE);
+    setType(TypeEnum.ADDSHAPE);
   }
 
   public AddShape shape(ShapeBase shape) {

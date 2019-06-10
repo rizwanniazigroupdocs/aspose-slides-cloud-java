@@ -52,7 +52,7 @@ public class ReorderSlide extends Task {
 
   public ReorderSlide() {
     super();
-    setType(com.aspose.slides.model.TaskType.REODERSLIDE);
+    setType(TypeEnum.REODERSLIDE);
   }
 
   public ReorderSlide oldPosition(Integer oldPosition) {
@@ -64,7 +64,7 @@ public class ReorderSlide extends Task {
    * Get oldPosition
    * @return oldPosition
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public Integer getOldPosition() {
     return oldPosition;
   }
@@ -82,7 +82,7 @@ public class ReorderSlide extends Task {
    * Get newPosition
    * @return newPosition
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public Integer getNewPosition() {
     return newPosition;
   }

@@ -28,7 +28,6 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.OutputFileType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -44,29 +43,76 @@ import java.util.ArrayList;
  */
 @ApiModel(description = "Represents output file destination in pipeline.")
 public class OutputFile {
+  /**
+   * Gets or Sets type
+   */
+  @JsonAdapter(TypeEnum.Adapter.class)
+  public enum TypeEnum {
+    PATH("Path"),
+    
+    RESPONSE("Response");
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TypeEnum fromValue(String text) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return TypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("Type")
-  private OutputFileType type;
+  private TypeEnum type;
 
 
   public OutputFile() {
     super();
   }
 
-  public OutputFile type(OutputFileType type) {
+  public OutputFile type(TypeEnum type) {
     this.type = type;
     return this;
   }
 
    /**
-   * Gets type of output destination.
+   * Get type
    * @return type
   **/
-  @ApiModelProperty(required = true, value = "Gets type of output destination.")
-  public OutputFileType getType() {
+  @ApiModelProperty(value = "")
+  public TypeEnum getType() {
     return type;
   }
 
-  public void setType(OutputFileType type) {
+  public void setType(TypeEnum type) {
     this.type = type;
   }
 

@@ -53,7 +53,6 @@ public class SplitDocumentResult extends ResourceBase {
   public SplitDocumentResult() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
-    setLinks(new ArrayList<ResourceUri>());
     setSlides(new ArrayList<ResourceUri>());
   }
 

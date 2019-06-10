@@ -28,12 +28,9 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.AudioPlayModePreset;
-import com.aspose.slides.model.AudioVolumeMode;
 import com.aspose.slides.model.EffectFormat;
 import com.aspose.slides.model.FillFormat;
 import com.aspose.slides.model.GeometryShape;
-import com.aspose.slides.model.GeometryShapeType;
 import com.aspose.slides.model.LineFormat;
 import com.aspose.slides.model.ResourceUri;
 import com.aspose.slides.model.ResourceUriElement;
@@ -74,11 +71,115 @@ public class AudioFrame extends GeometryShape {
   @SerializedName("PlayLoopMode")
   private Boolean playLoopMode;
 
+  /**
+   * Returns or sets the audio play mode.
+   */
+  @JsonAdapter(PlayModeEnum.Adapter.class)
+  public enum PlayModeEnum {
+    AUTO("Auto"),
+    
+    ONCLICK("OnClick"),
+    
+    ALLSLIDES("AllSlides"),
+    
+    MIXED("Mixed");
+
+    private String value;
+
+    PlayModeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PlayModeEnum fromValue(String text) {
+      for (PlayModeEnum b : PlayModeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<PlayModeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PlayModeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PlayModeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return PlayModeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("PlayMode")
-  private AudioPlayModePreset playMode;
+  private PlayModeEnum playMode;
+
+  /**
+   * Returns or sets the audio volume.
+   */
+  @JsonAdapter(VolumeEnum.Adapter.class)
+  public enum VolumeEnum {
+    MUTE("Mute"),
+    
+    LOW("Low"),
+    
+    MEDIUM("Medium"),
+    
+    LOUD("Loud"),
+    
+    MIXED("Mixed");
+
+    private String value;
+
+    VolumeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static VolumeEnum fromValue(String text) {
+      for (VolumeEnum b : VolumeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<VolumeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final VolumeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public VolumeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return VolumeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("Volume")
-  private AudioVolumeMode volume;
+  private VolumeEnum volume;
 
   @SerializedName("Base64Data")
   private String base64Data;
@@ -87,9 +188,8 @@ public class AudioFrame extends GeometryShape {
   public AudioFrame() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
-    setLinks(new ArrayList<ResourceUri>());
-    setType(com.aspose.slides.model.ShapeType.AUDIOFRAME);
-    setShapeType(com.aspose.slides.model.CombinedShapeType.AUDIOFRAME);
+    setType(TypeEnum.AUDIOFRAME);
+    setShapeType(ShapeTypeEnum.AUDIOFRAME);
   }
 
   public AudioFrame audioCdEndTrack(Integer audioCdEndTrack) {
@@ -218,7 +318,7 @@ public class AudioFrame extends GeometryShape {
     this.playLoopMode = playLoopMode;
   }
 
-  public AudioFrame playMode(AudioPlayModePreset playMode) {
+  public AudioFrame playMode(PlayModeEnum playMode) {
     this.playMode = playMode;
     return this;
   }
@@ -228,15 +328,15 @@ public class AudioFrame extends GeometryShape {
    * @return playMode
   **/
   @ApiModelProperty(value = "Returns or sets the audio play mode.")
-  public AudioPlayModePreset getPlayMode() {
+  public PlayModeEnum getPlayMode() {
     return playMode;
   }
 
-  public void setPlayMode(AudioPlayModePreset playMode) {
+  public void setPlayMode(PlayModeEnum playMode) {
     this.playMode = playMode;
   }
 
-  public AudioFrame volume(AudioVolumeMode volume) {
+  public AudioFrame volume(VolumeEnum volume) {
     this.volume = volume;
     return this;
   }
@@ -246,11 +346,11 @@ public class AudioFrame extends GeometryShape {
    * @return volume
   **/
   @ApiModelProperty(value = "Returns or sets the audio volume.")
-  public AudioVolumeMode getVolume() {
+  public VolumeEnum getVolume() {
     return volume;
   }
 
-  public void setVolume(AudioVolumeMode volume) {
+  public void setVolume(VolumeEnum volume) {
     this.volume = volume;
   }
 

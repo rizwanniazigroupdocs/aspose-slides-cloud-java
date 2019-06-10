@@ -53,7 +53,7 @@ public class Merge extends Task {
 
   public Merge() {
     super();
-    setType(com.aspose.slides.model.TaskType.MERGE);
+    setType(TypeEnum.MERGE);
     setPresentations(new ArrayList<MergingSource>());
   }
 

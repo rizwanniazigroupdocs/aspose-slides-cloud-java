@@ -31,7 +31,6 @@ import java.util.Objects;
 import com.aspose.slides.model.EffectFormat;
 import com.aspose.slides.model.FillFormat;
 import com.aspose.slides.model.LineFormat;
-import com.aspose.slides.model.PictureType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -59,8 +58,59 @@ public class ChartWall {
   @SerializedName("Thickness")
   private Integer thickness;
 
+  /**
+   * Get or sets mode of bar picture filling.
+   */
+  @JsonAdapter(PictureTypeEnum.Adapter.class)
+  public enum PictureTypeEnum {
+    STACK("Stack"),
+    
+    STACKSCALE("StackScale"),
+    
+    STRETCH("Stretch"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    PictureTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PictureTypeEnum fromValue(String text) {
+      for (PictureTypeEnum b : PictureTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<PictureTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PictureTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PictureTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return PictureTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("PictureType")
-  private PictureType pictureType;
+  private PictureTypeEnum pictureType;
 
 
   public ChartWall() {
@@ -139,7 +189,7 @@ public class ChartWall {
     this.thickness = thickness;
   }
 
-  public ChartWall pictureType(PictureType pictureType) {
+  public ChartWall pictureType(PictureTypeEnum pictureType) {
     this.pictureType = pictureType;
     return this;
   }
@@ -149,11 +199,11 @@ public class ChartWall {
    * @return pictureType
   **/
   @ApiModelProperty(required = true, value = "Get or sets mode of bar picture filling.")
-  public PictureType getPictureType() {
+  public PictureTypeEnum getPictureType() {
     return pictureType;
   }
 
-  public void setPictureType(PictureType pictureType) {
+  public void setPictureType(PictureTypeEnum pictureType) {
     this.pictureType = pictureType;
   }
 

@@ -60,7 +60,7 @@ public class BubbleChartDataPoint extends ScatterChartDataPoint {
    * Get bubbleSize
    * @return bubbleSize
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public Double getBubbleSize() {
     return bubbleSize;
   }

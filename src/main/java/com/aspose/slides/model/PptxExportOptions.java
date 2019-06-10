@@ -28,7 +28,6 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.Conformance;
 import com.aspose.slides.model.ExportOptions;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -44,30 +43,79 @@ import java.util.ArrayList;
  * PptxExportOptions
  */
 public class PptxExportOptions extends ExportOptions {
+  /**
+   * The conformance class to which the PresentationML document conforms. Read/write Conformance.
+   */
+  @JsonAdapter(ConformanceEnum.Adapter.class)
+  public enum ConformanceEnum {
+    ECMA376_2006("Ecma376_2006"),
+    
+    ISO29500_2008_TRANSITIONAL("Iso29500_2008_Transitional"),
+    
+    ISO29500_2008_STRICT("Iso29500_2008_Strict");
+
+    private String value;
+
+    ConformanceEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ConformanceEnum fromValue(String text) {
+      for (ConformanceEnum b : ConformanceEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<ConformanceEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ConformanceEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ConformanceEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return ConformanceEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("Conformance")
-  private Conformance conformance;
+  private ConformanceEnum conformance;
 
 
   public PptxExportOptions() {
     super();
-    setFormat("pptx");
+    setFormat("PPTX");
   }
 
-  public PptxExportOptions conformance(Conformance conformance) {
+  public PptxExportOptions conformance(ConformanceEnum conformance) {
     this.conformance = conformance;
     return this;
   }
 
    /**
-   * The conformance class to which the PresentationML document conforms. Read/write .
+   * The conformance class to which the PresentationML document conforms. Read/write Conformance.
    * @return conformance
   **/
-  @ApiModelProperty(value = "The conformance class to which the PresentationML document conforms. Read/write .")
-  public Conformance getConformance() {
+  @ApiModelProperty(required = true, value = "The conformance class to which the PresentationML document conforms. Read/write Conformance.")
+  public ConformanceEnum getConformance() {
     return conformance;
   }
 
-  public void setConformance(Conformance conformance) {
+  public void setConformance(ConformanceEnum conformance) {
     this.conformance = conformance;
   }
 

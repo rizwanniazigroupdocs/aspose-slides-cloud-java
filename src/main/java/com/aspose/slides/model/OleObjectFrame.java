@@ -54,9 +54,8 @@ public class OleObjectFrame extends ShapeBase {
   public OleObjectFrame() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
-    setLinks(new ArrayList<ResourceUri>());
-    setType(com.aspose.slides.model.ShapeType.OLEOBJECTFRAME);
-    setShapeType(com.aspose.slides.model.CombinedShapeType.OLEOBJECTFRAME);
+    setType(TypeEnum.OLEOBJECTFRAME);
+    setShapeType(ShapeTypeEnum.OLEOBJECTFRAME);
   }
 
 

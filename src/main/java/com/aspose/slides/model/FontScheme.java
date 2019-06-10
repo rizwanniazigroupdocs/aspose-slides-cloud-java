@@ -60,7 +60,6 @@ public class FontScheme extends ResourceBase {
   public FontScheme() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
-    setLinks(new ArrayList<ResourceUri>());
   }
 
   public FontScheme major(FontSet major) {

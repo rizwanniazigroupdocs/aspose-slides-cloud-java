@@ -31,11 +31,6 @@ import java.util.Objects;
 import com.aspose.slides.model.ArrowHeadProperties;
 import com.aspose.slides.model.CustomDashPattern;
 import com.aspose.slides.model.FillFormat;
-import com.aspose.slides.model.LineAlignment;
-import com.aspose.slides.model.LineCapStyle;
-import com.aspose.slides.model.LineDashStyle;
-import com.aspose.slides.model.LineJoinStyle;
-import com.aspose.slides.model.LineStyle;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,20 +45,295 @@ import java.util.ArrayList;
  * LineFormat
  */
 public class LineFormat {
+  /**
+   * Gets or Sets alignment
+   */
+  @JsonAdapter(AlignmentEnum.Adapter.class)
+  public enum AlignmentEnum {
+    CENTER("Center"),
+    
+    INSET("Inset"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    AlignmentEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static AlignmentEnum fromValue(String text) {
+      for (AlignmentEnum b : AlignmentEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<AlignmentEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final AlignmentEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public AlignmentEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return AlignmentEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("Alignment")
-  private LineAlignment alignment;
+  private AlignmentEnum alignment;
+
+  /**
+   * Gets or Sets capStyle
+   */
+  @JsonAdapter(CapStyleEnum.Adapter.class)
+  public enum CapStyleEnum {
+    ROUND("Round"),
+    
+    SQUARE("Square"),
+    
+    FLAT("Flat"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    CapStyleEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static CapStyleEnum fromValue(String text) {
+      for (CapStyleEnum b : CapStyleEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<CapStyleEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final CapStyleEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public CapStyleEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return CapStyleEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("CapStyle")
-  private LineCapStyle capStyle;
+  private CapStyleEnum capStyle;
+
+  /**
+   * Gets or Sets dashStyle
+   */
+  @JsonAdapter(DashStyleEnum.Adapter.class)
+  public enum DashStyleEnum {
+    SOLID("Solid"),
+    
+    DOT("Dot"),
+    
+    DASH("Dash"),
+    
+    LARGEDASH("LargeDash"),
+    
+    DASHDOT("DashDot"),
+    
+    LARGEDASHDOT("LargeDashDot"),
+    
+    LARGEDASHDOTDOT("LargeDashDotDot"),
+    
+    SYSTEMDASH("SystemDash"),
+    
+    SYSTEMDOT("SystemDot"),
+    
+    SYSTEMDASHDOT("SystemDashDot"),
+    
+    SYSTEMDASHDOTDOT("SystemDashDotDot"),
+    
+    CUSTOM("Custom"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    DashStyleEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static DashStyleEnum fromValue(String text) {
+      for (DashStyleEnum b : DashStyleEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<DashStyleEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final DashStyleEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public DashStyleEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return DashStyleEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("DashStyle")
-  private LineDashStyle dashStyle;
+  private DashStyleEnum dashStyle;
+
+  /**
+   * Gets or Sets joinStyle
+   */
+  @JsonAdapter(JoinStyleEnum.Adapter.class)
+  public enum JoinStyleEnum {
+    ROUND("Round"),
+    
+    BEVEL("Bevel"),
+    
+    MITER("Miter"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    JoinStyleEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static JoinStyleEnum fromValue(String text) {
+      for (JoinStyleEnum b : JoinStyleEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<JoinStyleEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final JoinStyleEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public JoinStyleEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return JoinStyleEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("JoinStyle")
-  private LineJoinStyle joinStyle;
+  private JoinStyleEnum joinStyle;
+
+  /**
+   * Gets or Sets style
+   */
+  @JsonAdapter(StyleEnum.Adapter.class)
+  public enum StyleEnum {
+    SINGLE("Single"),
+    
+    THINTHIN("ThinThin"),
+    
+    THINTHICK("ThinThick"),
+    
+    THICKTHIN("ThickThin"),
+    
+    THICKBETWEENTHIN("ThickBetweenThin"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    StyleEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StyleEnum fromValue(String text) {
+      for (StyleEnum b : StyleEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<StyleEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StyleEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StyleEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return StyleEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("Style")
-  private LineStyle style;
+  private StyleEnum style;
 
   @SerializedName("BeginArrowHead")
   private ArrowHeadProperties beginArrowHead;
@@ -88,7 +358,7 @@ public class LineFormat {
     super();
   }
 
-  public LineFormat alignment(LineAlignment alignment) {
+  public LineFormat alignment(AlignmentEnum alignment) {
     this.alignment = alignment;
     return this;
   }
@@ -98,15 +368,15 @@ public class LineFormat {
    * @return alignment
   **/
   @ApiModelProperty(required = true, value = "")
-  public LineAlignment getAlignment() {
+  public AlignmentEnum getAlignment() {
     return alignment;
   }
 
-  public void setAlignment(LineAlignment alignment) {
+  public void setAlignment(AlignmentEnum alignment) {
     this.alignment = alignment;
   }
 
-  public LineFormat capStyle(LineCapStyle capStyle) {
+  public LineFormat capStyle(CapStyleEnum capStyle) {
     this.capStyle = capStyle;
     return this;
   }
@@ -116,15 +386,15 @@ public class LineFormat {
    * @return capStyle
   **/
   @ApiModelProperty(required = true, value = "")
-  public LineCapStyle getCapStyle() {
+  public CapStyleEnum getCapStyle() {
     return capStyle;
   }
 
-  public void setCapStyle(LineCapStyle capStyle) {
+  public void setCapStyle(CapStyleEnum capStyle) {
     this.capStyle = capStyle;
   }
 
-  public LineFormat dashStyle(LineDashStyle dashStyle) {
+  public LineFormat dashStyle(DashStyleEnum dashStyle) {
     this.dashStyle = dashStyle;
     return this;
   }
@@ -134,15 +404,15 @@ public class LineFormat {
    * @return dashStyle
   **/
   @ApiModelProperty(required = true, value = "")
-  public LineDashStyle getDashStyle() {
+  public DashStyleEnum getDashStyle() {
     return dashStyle;
   }
 
-  public void setDashStyle(LineDashStyle dashStyle) {
+  public void setDashStyle(DashStyleEnum dashStyle) {
     this.dashStyle = dashStyle;
   }
 
-  public LineFormat joinStyle(LineJoinStyle joinStyle) {
+  public LineFormat joinStyle(JoinStyleEnum joinStyle) {
     this.joinStyle = joinStyle;
     return this;
   }
@@ -152,15 +422,15 @@ public class LineFormat {
    * @return joinStyle
   **/
   @ApiModelProperty(required = true, value = "")
-  public LineJoinStyle getJoinStyle() {
+  public JoinStyleEnum getJoinStyle() {
     return joinStyle;
   }
 
-  public void setJoinStyle(LineJoinStyle joinStyle) {
+  public void setJoinStyle(JoinStyleEnum joinStyle) {
     this.joinStyle = joinStyle;
   }
 
-  public LineFormat style(LineStyle style) {
+  public LineFormat style(StyleEnum style) {
     this.style = style;
     return this;
   }
@@ -170,11 +440,11 @@ public class LineFormat {
    * @return style
   **/
   @ApiModelProperty(required = true, value = "")
-  public LineStyle getStyle() {
+  public StyleEnum getStyle() {
     return style;
   }
 
-  public void setStyle(LineStyle style) {
+  public void setStyle(StyleEnum style) {
     this.style = style;
   }
 

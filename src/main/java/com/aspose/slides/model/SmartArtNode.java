@@ -28,7 +28,6 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.OrganizationChartLayoutType;
 import com.aspose.slides.model.ResourceUriElement;
 import com.aspose.slides.model.SmartArtNode;
 import com.google.gson.TypeAdapter;
@@ -60,8 +59,61 @@ public class SmartArtNode {
   @SerializedName("Text")
   private String text;
 
+  /**
+   * Organization chart layout type associated with current node.
+   */
+  @JsonAdapter(OrgChartLayoutEnum.Adapter.class)
+  public enum OrgChartLayoutEnum {
+    INITIAL("Initial"),
+    
+    STANDART("Standart"),
+    
+    BOTHHANGING("BothHanging"),
+    
+    LEFTHANGING("LeftHanging"),
+    
+    RIGHTHANGING("RightHanging");
+
+    private String value;
+
+    OrgChartLayoutEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static OrgChartLayoutEnum fromValue(String text) {
+      for (OrgChartLayoutEnum b : OrgChartLayoutEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<OrgChartLayoutEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final OrgChartLayoutEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public OrgChartLayoutEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return OrgChartLayoutEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("OrgChartLayout")
-  private OrganizationChartLayoutType orgChartLayout;
+  private OrgChartLayoutEnum orgChartLayout;
 
 
   public SmartArtNode() {
@@ -149,7 +201,7 @@ public class SmartArtNode {
     this.text = text;
   }
 
-  public SmartArtNode orgChartLayout(OrganizationChartLayoutType orgChartLayout) {
+  public SmartArtNode orgChartLayout(OrgChartLayoutEnum orgChartLayout) {
     this.orgChartLayout = orgChartLayout;
     return this;
   }
@@ -159,11 +211,11 @@ public class SmartArtNode {
    * @return orgChartLayout
   **/
   @ApiModelProperty(required = true, value = "Organization chart layout type associated with current node.")
-  public OrganizationChartLayoutType getOrgChartLayout() {
+  public OrgChartLayoutEnum getOrgChartLayout() {
     return orgChartLayout;
   }
 
-  public void setOrgChartLayout(OrganizationChartLayoutType orgChartLayout) {
+  public void setOrgChartLayout(OrgChartLayoutEnum orgChartLayout) {
     this.orgChartLayout = orgChartLayout;
   }
 

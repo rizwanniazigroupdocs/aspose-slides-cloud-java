@@ -28,7 +28,6 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.RectangleAlignment;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -80,8 +79,71 @@ public class ReflectionEffect {
   @SerializedName("EndReflectionOpacity")
   private Double endReflectionOpacity;
 
+  /**
+   * rectangle alignment
+   */
+  @JsonAdapter(RectangleAlignEnum.Adapter.class)
+  public enum RectangleAlignEnum {
+    TOPLEFT("TopLeft"),
+    
+    TOP("Top"),
+    
+    TOPRIGHT("TopRight"),
+    
+    LEFT("Left"),
+    
+    CENTER("Center"),
+    
+    RIGHT("Right"),
+    
+    BOTTOMLEFT("BottomLeft"),
+    
+    BOTTOM("Bottom"),
+    
+    BOTTOMRIGHT("BottomRight"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    RectangleAlignEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static RectangleAlignEnum fromValue(String text) {
+      for (RectangleAlignEnum b : RectangleAlignEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<RectangleAlignEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final RectangleAlignEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public RectangleAlignEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return RectangleAlignEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("RectangleAlign")
-  private RectangleAlignment rectangleAlign;
+  private RectangleAlignEnum rectangleAlign;
 
   @SerializedName("RotateShadowWithShape")
   private Boolean rotateShadowWithShape;
@@ -307,7 +369,7 @@ public class ReflectionEffect {
     this.endReflectionOpacity = endReflectionOpacity;
   }
 
-  public ReflectionEffect rectangleAlign(RectangleAlignment rectangleAlign) {
+  public ReflectionEffect rectangleAlign(RectangleAlignEnum rectangleAlign) {
     this.rectangleAlign = rectangleAlign;
     return this;
   }
@@ -317,11 +379,11 @@ public class ReflectionEffect {
    * @return rectangleAlign
   **/
   @ApiModelProperty(required = true, value = "rectangle alignment")
-  public RectangleAlignment getRectangleAlign() {
+  public RectangleAlignEnum getRectangleAlign() {
     return rectangleAlign;
   }
 
-  public void setRectangleAlign(RectangleAlignment rectangleAlign) {
+  public void setRectangleAlign(RectangleAlignEnum rectangleAlign) {
     this.rectangleAlign = rectangleAlign;
   }
 

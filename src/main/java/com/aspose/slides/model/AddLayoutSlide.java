@@ -53,7 +53,7 @@ public class AddLayoutSlide extends Task {
 
   public AddLayoutSlide() {
     super();
-    setType(com.aspose.slides.model.TaskType.ADDLAYOUTSLIDE);
+    setType(TypeEnum.ADDLAYOUTSLIDE);
   }
 
   public AddLayoutSlide cloneFromFile(InputFile cloneFromFile) {
@@ -83,7 +83,7 @@ public class AddLayoutSlide extends Task {
    * Get cloneFromPosition
    * @return cloneFromPosition
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public Integer getCloneFromPosition() {
     return cloneFromPosition;
   }

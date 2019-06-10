@@ -47,7 +47,7 @@ public class NoFill extends FillFormat {
 
   public NoFill() {
     super();
-    setType(com.aspose.slides.model.FillType.NOFILL);
+    setType(TypeEnum.NOFILL);
   }
 
 

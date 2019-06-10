@@ -28,7 +28,6 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.FillBlendMode;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -44,15 +43,68 @@ import java.util.ArrayList;
  */
 @ApiModel(description = "Represents fill overlay effect ")
 public class FillOverlayEffect {
+  /**
+   * blend mode
+   */
+  @JsonAdapter(BlendEnum.Adapter.class)
+  public enum BlendEnum {
+    DARKEN("Darken"),
+    
+    LIGHTEN("Lighten"),
+    
+    MULTIPLY("Multiply"),
+    
+    OVERLAY("Overlay"),
+    
+    SCREEN("Screen");
+
+    private String value;
+
+    BlendEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static BlendEnum fromValue(String text) {
+      for (BlendEnum b : BlendEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<BlendEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final BlendEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public BlendEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return BlendEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("Blend")
-  private FillBlendMode blend;
+  private BlendEnum blend;
 
 
   public FillOverlayEffect() {
     super();
   }
 
-  public FillOverlayEffect blend(FillBlendMode blend) {
+  public FillOverlayEffect blend(BlendEnum blend) {
     this.blend = blend;
     return this;
   }
@@ -62,11 +114,11 @@ public class FillOverlayEffect {
    * @return blend
   **/
   @ApiModelProperty(required = true, value = "blend mode")
-  public FillBlendMode getBlend() {
+  public BlendEnum getBlend() {
     return blend;
   }
 
-  public void setBlend(FillBlendMode blend) {
+  public void setBlend(BlendEnum blend) {
     this.blend = blend;
   }
 

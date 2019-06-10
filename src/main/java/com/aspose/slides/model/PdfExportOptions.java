@@ -28,11 +28,7 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.CommentsPositions;
 import com.aspose.slides.model.ExportOptions;
-import com.aspose.slides.model.NotesPositions;
-import com.aspose.slides.model.PdfCompliance;
-import com.aspose.slides.model.PdfTextCompression;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,14 +46,108 @@ import java.util.ArrayList;
  */
 @ApiModel(description = "Provides options that control how a presentation is saved in Pdf format.")
 public class PdfExportOptions extends ExportOptions {
+  /**
+   * Specifies compression type to be used for all textual content in the document.
+   */
+  @JsonAdapter(TextCompressionEnum.Adapter.class)
+  public enum TextCompressionEnum {
+    NONE("None"),
+    
+    FLATE("Flate");
+
+    private String value;
+
+    TextCompressionEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TextCompressionEnum fromValue(String text) {
+      for (TextCompressionEnum b : TextCompressionEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TextCompressionEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TextCompressionEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TextCompressionEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return TextCompressionEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("TextCompression")
-  private PdfTextCompression textCompression;
+  private TextCompressionEnum textCompression;
 
   @SerializedName("EmbedFullFonts")
   private Boolean embedFullFonts;
 
+  /**
+   * Desired conformance level for generated PDF document.
+   */
+  @JsonAdapter(ComplianceEnum.Adapter.class)
+  public enum ComplianceEnum {
+    PDF15("Pdf15"),
+    
+    PDFA1B("PdfA1b");
+
+    private String value;
+
+    ComplianceEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ComplianceEnum fromValue(String text) {
+      for (ComplianceEnum b : ComplianceEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<ComplianceEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ComplianceEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ComplianceEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return ComplianceEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("Compliance")
-  private PdfCompliance compliance;
+  private ComplianceEnum compliance;
 
   @SerializedName("SufficientResolution")
   private Double sufficientResolution;
@@ -83,11 +173,109 @@ public class PdfExportOptions extends ExportOptions {
   @SerializedName("AdditionalCommonFontFamilies")
   private List<String> additionalCommonFontFamilies = null;
 
+  /**
+   * Gets or sets the position of the notes on the page.
+   */
+  @JsonAdapter(NotesPositionEnum.Adapter.class)
+  public enum NotesPositionEnum {
+    NONE("None"),
+    
+    BOTTOMFULL("BottomFull"),
+    
+    BOTTOMTRUNCATED("BottomTruncated");
+
+    private String value;
+
+    NotesPositionEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static NotesPositionEnum fromValue(String text) {
+      for (NotesPositionEnum b : NotesPositionEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<NotesPositionEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final NotesPositionEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public NotesPositionEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return NotesPositionEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("NotesPosition")
-  private NotesPositions notesPosition;
+  private NotesPositionEnum notesPosition;
+
+  /**
+   * Gets or sets the position of the comments on the page.
+   */
+  @JsonAdapter(CommentsPositionEnum.Adapter.class)
+  public enum CommentsPositionEnum {
+    NONE("None"),
+    
+    BOTTOM("Bottom"),
+    
+    RIGHT("Right");
+
+    private String value;
+
+    CommentsPositionEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static CommentsPositionEnum fromValue(String text) {
+      for (CommentsPositionEnum b : CommentsPositionEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<CommentsPositionEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final CommentsPositionEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public CommentsPositionEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return CommentsPositionEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("CommentsPosition")
-  private CommentsPositions commentsPosition;
+  private CommentsPositionEnum commentsPosition;
 
   @SerializedName("CommentsAreaWidth")
   private Integer commentsAreaWidth;
@@ -107,11 +295,11 @@ public class PdfExportOptions extends ExportOptions {
 
   public PdfExportOptions() {
     super();
-    setFormat("pdf");
+    setFormat("PDF");
     setAdditionalCommonFontFamilies(new ArrayList<String>());
   }
 
-  public PdfExportOptions textCompression(PdfTextCompression textCompression) {
+  public PdfExportOptions textCompression(TextCompressionEnum textCompression) {
     this.textCompression = textCompression;
     return this;
   }
@@ -120,12 +308,12 @@ public class PdfExportOptions extends ExportOptions {
    * Specifies compression type to be used for all textual content in the document.
    * @return textCompression
   **/
-  @ApiModelProperty(value = "Specifies compression type to be used for all textual content in the document.")
-  public PdfTextCompression getTextCompression() {
+  @ApiModelProperty(required = true, value = "Specifies compression type to be used for all textual content in the document.")
+  public TextCompressionEnum getTextCompression() {
     return textCompression;
   }
 
-  public void setTextCompression(PdfTextCompression textCompression) {
+  public void setTextCompression(TextCompressionEnum textCompression) {
     this.textCompression = textCompression;
   }
 
@@ -138,7 +326,7 @@ public class PdfExportOptions extends ExportOptions {
    * Determines if all characters of font should be embedded or only used subset.
    * @return embedFullFonts
   **/
-  @ApiModelProperty(value = "Determines if all characters of font should be embedded or only used subset.")
+  @ApiModelProperty(required = true, value = "Determines if all characters of font should be embedded or only used subset.")
   public Boolean isEmbedFullFonts() {
     return embedFullFonts;
   }
@@ -147,7 +335,7 @@ public class PdfExportOptions extends ExportOptions {
     this.embedFullFonts = embedFullFonts;
   }
 
-  public PdfExportOptions compliance(PdfCompliance compliance) {
+  public PdfExportOptions compliance(ComplianceEnum compliance) {
     this.compliance = compliance;
     return this;
   }
@@ -156,12 +344,12 @@ public class PdfExportOptions extends ExportOptions {
    * Desired conformance level for generated PDF document.
    * @return compliance
   **/
-  @ApiModelProperty(value = "Desired conformance level for generated PDF document.")
-  public PdfCompliance getCompliance() {
+  @ApiModelProperty(required = true, value = "Desired conformance level for generated PDF document.")
+  public ComplianceEnum getCompliance() {
     return compliance;
   }
 
-  public void setCompliance(PdfCompliance compliance) {
+  public void setCompliance(ComplianceEnum compliance) {
     this.compliance = compliance;
   }
 
@@ -171,10 +359,10 @@ public class PdfExportOptions extends ExportOptions {
   }
 
    /**
-   * Returns or sets a value determining resolution of images inside PDF document. Property affects on file size, time of export and image quality.The default value is 96.
+   * Returns or sets a value determining resolution of images inside PDF document.  Property affects on file size, time of export and image quality. The default value is 96.
    * @return sufficientResolution
   **/
-  @ApiModelProperty(value = "Returns or sets a value determining resolution of images inside PDF document. Property affects on file size, time of export and image quality.The default value is 96.")
+  @ApiModelProperty(required = true, value = "Returns or sets a value determining resolution of images inside PDF document.  Property affects on file size, time of export and image quality. The default value is 96.")
   public Double getSufficientResolution() {
     return sufficientResolution;
   }
@@ -192,7 +380,7 @@ public class PdfExportOptions extends ExportOptions {
    * Returns or sets a value determining the quality of the JPEG images inside PDF document.
    * @return jpegQuality
   **/
-  @ApiModelProperty(value = "Returns or sets a value determining the quality of the JPEG images inside PDF document.")
+  @ApiModelProperty(required = true, value = "Returns or sets a value determining the quality of the JPEG images inside PDF document.")
   public Integer getJpegQuality() {
     return jpegQuality;
   }
@@ -210,7 +398,7 @@ public class PdfExportOptions extends ExportOptions {
    * True to draw black frame around each slide.
    * @return drawSlidesFrame
   **/
-  @ApiModelProperty(value = "True to draw black frame around each slide.")
+  @ApiModelProperty(required = true, value = "True to draw black frame around each slide.")
   public Boolean isDrawSlidesFrame() {
     return drawSlidesFrame;
   }
@@ -228,7 +416,7 @@ public class PdfExportOptions extends ExportOptions {
    * Specifies whether the generated document should include hidden slides or not. Default is false. 
    * @return showHiddenSlides
   **/
-  @ApiModelProperty(value = "Specifies whether the generated document should include hidden slides or not. Default is false. ")
+  @ApiModelProperty(required = true, value = "Specifies whether the generated document should include hidden slides or not. Default is false. ")
   public Boolean isShowHiddenSlides() {
     return showHiddenSlides;
   }
@@ -246,7 +434,7 @@ public class PdfExportOptions extends ExportOptions {
    * True to convert all metafiles used in a presentation to the PNG images.
    * @return saveMetafilesAsPng
   **/
-  @ApiModelProperty(value = "True to convert all metafiles used in a presentation to the PNG images.")
+  @ApiModelProperty(required = true, value = "True to convert all metafiles used in a presentation to the PNG images.")
   public Boolean isSaveMetafilesAsPng() {
     return saveMetafilesAsPng;
   }
@@ -282,7 +470,7 @@ public class PdfExportOptions extends ExportOptions {
    * Determines if Aspose.Slides will embed common fonts for ASCII (33..127 code range) text. Fonts for character codes greater than 127 are always embedded. Common fonts list includes PDF&#39;s base 14 fonts and additional user specified fonts.
    * @return embedTrueTypeFontsForASCII
   **/
-  @ApiModelProperty(value = "Determines if Aspose.Slides will embed common fonts for ASCII (33..127 code range) text. Fonts for character codes greater than 127 are always embedded. Common fonts list includes PDF's base 14 fonts and additional user specified fonts.")
+  @ApiModelProperty(required = true, value = "Determines if Aspose.Slides will embed common fonts for ASCII (33..127 code range) text. Fonts for character codes greater than 127 are always embedded. Common fonts list includes PDF's base 14 fonts and additional user specified fonts.")
   public Boolean isEmbedTrueTypeFontsForASCII() {
     return embedTrueTypeFontsForASCII;
   }
@@ -317,7 +505,7 @@ public class PdfExportOptions extends ExportOptions {
     this.additionalCommonFontFamilies = additionalCommonFontFamilies;
   }
 
-  public PdfExportOptions notesPosition(NotesPositions notesPosition) {
+  public PdfExportOptions notesPosition(NotesPositionEnum notesPosition) {
     this.notesPosition = notesPosition;
     return this;
   }
@@ -326,16 +514,16 @@ public class PdfExportOptions extends ExportOptions {
    * Gets or sets the position of the notes on the page.
    * @return notesPosition
   **/
-  @ApiModelProperty(value = "Gets or sets the position of the notes on the page.")
-  public NotesPositions getNotesPosition() {
+  @ApiModelProperty(required = true, value = "Gets or sets the position of the notes on the page.")
+  public NotesPositionEnum getNotesPosition() {
     return notesPosition;
   }
 
-  public void setNotesPosition(NotesPositions notesPosition) {
+  public void setNotesPosition(NotesPositionEnum notesPosition) {
     this.notesPosition = notesPosition;
   }
 
-  public PdfExportOptions commentsPosition(CommentsPositions commentsPosition) {
+  public PdfExportOptions commentsPosition(CommentsPositionEnum commentsPosition) {
     this.commentsPosition = commentsPosition;
     return this;
   }
@@ -344,12 +532,12 @@ public class PdfExportOptions extends ExportOptions {
    * Gets or sets the position of the comments on the page.
    * @return commentsPosition
   **/
-  @ApiModelProperty(value = "Gets or sets the position of the comments on the page.")
-  public CommentsPositions getCommentsPosition() {
+  @ApiModelProperty(required = true, value = "Gets or sets the position of the comments on the page.")
+  public CommentsPositionEnum getCommentsPosition() {
     return commentsPosition;
   }
 
-  public void setCommentsPosition(CommentsPositions commentsPosition) {
+  public void setCommentsPosition(CommentsPositionEnum commentsPosition) {
     this.commentsPosition = commentsPosition;
   }
 
@@ -362,7 +550,7 @@ public class PdfExportOptions extends ExportOptions {
    * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
    * @return commentsAreaWidth
   **/
-  @ApiModelProperty(value = "Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).")
+  @ApiModelProperty(required = true, value = "Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).")
   public Integer getCommentsAreaWidth() {
     return commentsAreaWidth;
   }
@@ -398,7 +586,7 @@ public class PdfExportOptions extends ExportOptions {
    * True if comments that have no author are displayed. (Applies only if comments are displayed).
    * @return showCommentsByNoAuthor
   **/
-  @ApiModelProperty(value = "True if comments that have no author are displayed. (Applies only if comments are displayed).")
+  @ApiModelProperty(required = true, value = "True if comments that have no author are displayed. (Applies only if comments are displayed).")
   public Boolean isShowCommentsByNoAuthor() {
     return showCommentsByNoAuthor;
   }
@@ -431,10 +619,10 @@ public class PdfExportOptions extends ExportOptions {
   }
 
    /**
-   * True to apply specified   to an image.
+   * True to apply specified ImageTransparentColor  to an image.
    * @return applyImageTransparent
   **/
-  @ApiModelProperty(value = "True to apply specified   to an image.")
+  @ApiModelProperty(required = true, value = "True to apply specified ImageTransparentColor  to an image.")
   public Boolean isApplyImageTransparent() {
     return applyImageTransparent;
   }

@@ -93,16 +93,6 @@ public class PostSlidesSaveAsRequest {
     this.folder = folder;
   }
 
-  private String outPath;
-
-  public String getOutPath() {
-    return outPath;
-  }
-
-  public void setOutPath(String outPath) {
-    this.outPath = outPath;
-  }
-
   private String fontsFolder;
 
   public String getFontsFolder() {

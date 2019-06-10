@@ -49,7 +49,7 @@ public class RemoveSlide extends Task {
 
   public RemoveSlide() {
     super();
-    setType(com.aspose.slides.model.TaskType.REMOVESLIDE);
+    setType(TypeEnum.REMOVESLIDE);
   }
 
   public RemoveSlide position(Integer position) {
@@ -61,7 +61,7 @@ public class RemoveSlide extends Task {
    * Get position
    * @return position
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public Integer getPosition() {
     return position;
   }

@@ -29,7 +29,6 @@ package com.aspose.slides.model;
 
 import java.util.Objects;
 import com.aspose.slides.model.FillFormat;
-import com.aspose.slides.model.PatternStyle;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -51,13 +50,168 @@ public class PatternFill extends FillFormat {
   @SerializedName("ForeColor")
   private String foreColor;
 
+  /**
+   * Gets or sets the style of pattern fill.
+   */
+  @JsonAdapter(StyleEnum.Adapter.class)
+  public enum StyleEnum {
+    UNKNOWN("Unknown"),
+    
+    PERCENT05("Percent05"),
+    
+    PERCENT10("Percent10"),
+    
+    PERCENT20("Percent20"),
+    
+    PERCENT25("Percent25"),
+    
+    PERCENT30("Percent30"),
+    
+    PERCENT40("Percent40"),
+    
+    PERCENT50("Percent50"),
+    
+    PERCENT60("Percent60"),
+    
+    PERCENT70("Percent70"),
+    
+    PERCENT75("Percent75"),
+    
+    PERCENT80("Percent80"),
+    
+    PERCENT90("Percent90"),
+    
+    DARKHORIZONTAL("DarkHorizontal"),
+    
+    DARKVERTICAL("DarkVertical"),
+    
+    DARKDOWNWARDDIAGONAL("DarkDownwardDiagonal"),
+    
+    DARKUPWARDDIAGONAL("DarkUpwardDiagonal"),
+    
+    SMALLCHECKERBOARD("SmallCheckerBoard"),
+    
+    TRELLIS("Trellis"),
+    
+    LIGHTHORIZONTAL("LightHorizontal"),
+    
+    LIGHTVERTICAL("LightVertical"),
+    
+    LIGHTDOWNWARDDIAGONAL("LightDownwardDiagonal"),
+    
+    LIGHTUPWARDDIAGONAL("LightUpwardDiagonal"),
+    
+    SMALLGRID("SmallGrid"),
+    
+    DOTTEDDIAMOND("DottedDiamond"),
+    
+    WIDEDOWNWARDDIAGONAL("WideDownwardDiagonal"),
+    
+    WIDEUPWARDDIAGONAL("WideUpwardDiagonal"),
+    
+    DASHEDUPWARDDIAGONAL("DashedUpwardDiagonal"),
+    
+    DASHEDDOWNWARDDIAGONAL("DashedDownwardDiagonal"),
+    
+    NARROWVERTICAL("NarrowVertical"),
+    
+    NARROWHORIZONTAL("NarrowHorizontal"),
+    
+    DASHEDVERTICAL("DashedVertical"),
+    
+    DASHEDHORIZONTAL("DashedHorizontal"),
+    
+    LARGECONFETTI("LargeConfetti"),
+    
+    LARGEGRID("LargeGrid"),
+    
+    HORIZONTALBRICK("HorizontalBrick"),
+    
+    LARGECHECKERBOARD("LargeCheckerBoard"),
+    
+    SMALLCONFETTI("SmallConfetti"),
+    
+    ZIGZAG("Zigzag"),
+    
+    SOLIDDIAMOND("SolidDiamond"),
+    
+    DIAGONALBRICK("DiagonalBrick"),
+    
+    OUTLINEDDIAMOND("OutlinedDiamond"),
+    
+    PLAID("Plaid"),
+    
+    SPHERE("Sphere"),
+    
+    WEAVE("Weave"),
+    
+    DOTTEDGRID("DottedGrid"),
+    
+    DIVOT("Divot"),
+    
+    SHINGLE("Shingle"),
+    
+    WAVE("Wave"),
+    
+    HORIZONTAL("Horizontal"),
+    
+    VERTICAL("Vertical"),
+    
+    CROSS("Cross"),
+    
+    DOWNWARDDIAGONAL("DownwardDiagonal"),
+    
+    UPWARDDIAGONAL("UpwardDiagonal"),
+    
+    DIAGONALCROSS("DiagonalCross"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    StyleEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StyleEnum fromValue(String text) {
+      for (StyleEnum b : StyleEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<StyleEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StyleEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StyleEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return StyleEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("Style")
-  private PatternStyle style;
+  private StyleEnum style;
 
 
   public PatternFill() {
     super();
-    setType(com.aspose.slides.model.FillType.PATTERN);
+    setType(TypeEnum.PATTERN);
   }
 
   public PatternFill backColor(String backColor) {
@@ -96,7 +250,7 @@ public class PatternFill extends FillFormat {
     this.foreColor = foreColor;
   }
 
-  public PatternFill style(PatternStyle style) {
+  public PatternFill style(StyleEnum style) {
     this.style = style;
     return this;
   }
@@ -105,12 +259,12 @@ public class PatternFill extends FillFormat {
    * Gets or sets the style of pattern fill.
    * @return style
   **/
-  @ApiModelProperty(value = "Gets or sets the style of pattern fill.")
-  public PatternStyle getStyle() {
+  @ApiModelProperty(required = true, value = "Gets or sets the style of pattern fill.")
+  public StyleEnum getStyle() {
     return style;
   }
 
-  public void setStyle(PatternStyle style) {
+  public void setStyle(StyleEnum style) {
     this.style = style;
   }
 

@@ -55,7 +55,7 @@ public class XpsExportOptions extends ExportOptions {
 
   public XpsExportOptions() {
     super();
-    setFormat("xps");
+    setFormat("XPS");
   }
 
   public XpsExportOptions showHiddenSlides(Boolean showHiddenSlides) {
@@ -67,7 +67,7 @@ public class XpsExportOptions extends ExportOptions {
    * Specifies whether the generated document should include hidden slides or not. Default is false. 
    * @return showHiddenSlides
   **/
-  @ApiModelProperty(value = "Specifies whether the generated document should include hidden slides or not. Default is false. ")
+  @ApiModelProperty(required = true, value = "Specifies whether the generated document should include hidden slides or not. Default is false. ")
   public Boolean isShowHiddenSlides() {
     return showHiddenSlides;
   }
@@ -85,7 +85,7 @@ public class XpsExportOptions extends ExportOptions {
    * True to convert all metafiles used in a presentation to the PNG images.
    * @return saveMetafilesAsPng
   **/
-  @ApiModelProperty(value = "True to convert all metafiles used in a presentation to the PNG images.")
+  @ApiModelProperty(required = true, value = "True to convert all metafiles used in a presentation to the PNG images.")
   public Boolean isSaveMetafilesAsPng() {
     return saveMetafilesAsPng;
   }
@@ -103,7 +103,7 @@ public class XpsExportOptions extends ExportOptions {
    * True to draw black frame around each slide.
    * @return drawSlidesFrame
   **/
-  @ApiModelProperty(value = "True to draw black frame around each slide.")
+  @ApiModelProperty(required = true, value = "True to draw black frame around each slide.")
   public Boolean isDrawSlidesFrame() {
     return drawSlidesFrame;
   }

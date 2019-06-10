@@ -29,8 +29,6 @@ package com.aspose.slides.model;
 
 import java.util.Objects;
 import com.aspose.slides.model.ExportOptions;
-import com.aspose.slides.model.ExternalFontsHandling;
-import com.aspose.slides.model.PicturesCompression;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -63,19 +61,123 @@ public class SvgExportOptions extends ExportOptions {
   @SerializedName("JpegQuality")
   private Integer jpegQuality;
 
+  /**
+   * Represents the pictures compression level
+   */
+  @JsonAdapter(PicturesCompressionEnum.Adapter.class)
+  public enum PicturesCompressionEnum {
+    DPI330("Dpi330"),
+    
+    DPI220("Dpi220"),
+    
+    DPI150("Dpi150"),
+    
+    DPI96("Dpi96"),
+    
+    DPI72("Dpi72"),
+    
+    DOCUMENTRESOLUTION("DocumentResolution");
+
+    private String value;
+
+    PicturesCompressionEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PicturesCompressionEnum fromValue(String text) {
+      for (PicturesCompressionEnum b : PicturesCompressionEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<PicturesCompressionEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PicturesCompressionEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PicturesCompressionEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return PicturesCompressionEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("PicturesCompression")
-  private PicturesCompression picturesCompression;
+  private PicturesCompressionEnum picturesCompression;
 
   @SerializedName("DeletePicturesCroppedAreas")
   private Boolean deletePicturesCroppedAreas;
 
+  /**
+   * Determines a way of handling externally loaded fonts.
+   */
+  @JsonAdapter(ExternalFontsHandlingEnum.Adapter.class)
+  public enum ExternalFontsHandlingEnum {
+    ADDLINKSTOFONTFILES("AddLinksToFontFiles"),
+    
+    EMBED("Embed"),
+    
+    VECTORIZE("Vectorize");
+
+    private String value;
+
+    ExternalFontsHandlingEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ExternalFontsHandlingEnum fromValue(String text) {
+      for (ExternalFontsHandlingEnum b : ExternalFontsHandlingEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<ExternalFontsHandlingEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ExternalFontsHandlingEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ExternalFontsHandlingEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return ExternalFontsHandlingEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("ExternalFontsHandling")
-  private ExternalFontsHandling externalFontsHandling;
+  private ExternalFontsHandlingEnum externalFontsHandling;
 
 
   public SvgExportOptions() {
     super();
-    setFormat("svg");
+    setFormat("SVG");
   }
 
   public SvgExportOptions vectorizeText(Boolean vectorizeText) {
@@ -87,7 +189,7 @@ public class SvgExportOptions extends ExportOptions {
    * Determines whether the text on a slide will be saved as graphics.
    * @return vectorizeText
   **/
-  @ApiModelProperty(value = "Determines whether the text on a slide will be saved as graphics.")
+  @ApiModelProperty(required = true, value = "Determines whether the text on a slide will be saved as graphics.")
   public Boolean isVectorizeText() {
     return vectorizeText;
   }
@@ -105,7 +207,7 @@ public class SvgExportOptions extends ExportOptions {
    * Returns or sets the lower resolution limit for metafile rasterization.
    * @return metafileRasterizationDpi
   **/
-  @ApiModelProperty(value = "Returns or sets the lower resolution limit for metafile rasterization.")
+  @ApiModelProperty(required = true, value = "Returns or sets the lower resolution limit for metafile rasterization.")
   public Integer getMetafileRasterizationDpi() {
     return metafileRasterizationDpi;
   }
@@ -123,7 +225,7 @@ public class SvgExportOptions extends ExportOptions {
    * Determines whether the 3D text is disabled in SVG.
    * @return disable3DText
   **/
-  @ApiModelProperty(value = "Determines whether the 3D text is disabled in SVG.")
+  @ApiModelProperty(required = true, value = "Determines whether the 3D text is disabled in SVG.")
   public Boolean isDisable3DText() {
     return disable3DText;
   }
@@ -141,7 +243,7 @@ public class SvgExportOptions extends ExportOptions {
    * Disables splitting FromCornerX and FromCenter gradients.
    * @return disableGradientSplit
   **/
-  @ApiModelProperty(value = "Disables splitting FromCornerX and FromCenter gradients.")
+  @ApiModelProperty(required = true, value = "Disables splitting FromCornerX and FromCenter gradients.")
   public Boolean isDisableGradientSplit() {
     return disableGradientSplit;
   }
@@ -159,7 +261,7 @@ public class SvgExportOptions extends ExportOptions {
    * SVG 1.1 lacks ability to define insets for markers. Aspose.Slides SVG writing engine has workaround for that problem: it crops end of line with arrow, so, line doesn&#39;t overlap markers. This option switches off such behavior.
    * @return disableLineEndCropping
   **/
-  @ApiModelProperty(value = "SVG 1.1 lacks ability to define insets for markers. Aspose.Slides SVG writing engine has workaround for that problem: it crops end of line with arrow, so, line doesn't overlap markers. This option switches off such behavior.")
+  @ApiModelProperty(required = true, value = "SVG 1.1 lacks ability to define insets for markers. Aspose.Slides SVG writing engine has workaround for that problem: it crops end of line with arrow, so, line doesn't overlap markers. This option switches off such behavior.")
   public Boolean isDisableLineEndCropping() {
     return disableLineEndCropping;
   }
@@ -177,7 +279,7 @@ public class SvgExportOptions extends ExportOptions {
    * Determines JPEG encoding quality.
    * @return jpegQuality
   **/
-  @ApiModelProperty(value = "Determines JPEG encoding quality.")
+  @ApiModelProperty(required = true, value = "Determines JPEG encoding quality.")
   public Integer getJpegQuality() {
     return jpegQuality;
   }
@@ -186,7 +288,7 @@ public class SvgExportOptions extends ExportOptions {
     this.jpegQuality = jpegQuality;
   }
 
-  public SvgExportOptions picturesCompression(PicturesCompression picturesCompression) {
+  public SvgExportOptions picturesCompression(PicturesCompressionEnum picturesCompression) {
     this.picturesCompression = picturesCompression;
     return this;
   }
@@ -195,12 +297,12 @@ public class SvgExportOptions extends ExportOptions {
    * Represents the pictures compression level
    * @return picturesCompression
   **/
-  @ApiModelProperty(value = "Represents the pictures compression level")
-  public PicturesCompression getPicturesCompression() {
+  @ApiModelProperty(required = true, value = "Represents the pictures compression level")
+  public PicturesCompressionEnum getPicturesCompression() {
     return picturesCompression;
   }
 
-  public void setPicturesCompression(PicturesCompression picturesCompression) {
+  public void setPicturesCompression(PicturesCompressionEnum picturesCompression) {
     this.picturesCompression = picturesCompression;
   }
 
@@ -213,7 +315,7 @@ public class SvgExportOptions extends ExportOptions {
    * A boolean flag indicates if the cropped parts remain as part of the document. If true the cropped  parts will removed, if false they will be serialized in the document (which can possible lead to a  larger file)
    * @return deletePicturesCroppedAreas
   **/
-  @ApiModelProperty(value = "A boolean flag indicates if the cropped parts remain as part of the document. If true the cropped  parts will removed, if false they will be serialized in the document (which can possible lead to a  larger file)")
+  @ApiModelProperty(required = true, value = "A boolean flag indicates if the cropped parts remain as part of the document. If true the cropped  parts will removed, if false they will be serialized in the document (which can possible lead to a  larger file)")
   public Boolean isDeletePicturesCroppedAreas() {
     return deletePicturesCroppedAreas;
   }
@@ -222,7 +324,7 @@ public class SvgExportOptions extends ExportOptions {
     this.deletePicturesCroppedAreas = deletePicturesCroppedAreas;
   }
 
-  public SvgExportOptions externalFontsHandling(ExternalFontsHandling externalFontsHandling) {
+  public SvgExportOptions externalFontsHandling(ExternalFontsHandlingEnum externalFontsHandling) {
     this.externalFontsHandling = externalFontsHandling;
     return this;
   }
@@ -231,12 +333,12 @@ public class SvgExportOptions extends ExportOptions {
    * Determines a way of handling externally loaded fonts.
    * @return externalFontsHandling
   **/
-  @ApiModelProperty(value = "Determines a way of handling externally loaded fonts.")
-  public ExternalFontsHandling getExternalFontsHandling() {
+  @ApiModelProperty(required = true, value = "Determines a way of handling externally loaded fonts.")
+  public ExternalFontsHandlingEnum getExternalFontsHandling() {
     return externalFontsHandling;
   }
 
-  public void setExternalFontsHandling(ExternalFontsHandling externalFontsHandling) {
+  public void setExternalFontsHandling(ExternalFontsHandlingEnum externalFontsHandling) {
     this.externalFontsHandling = externalFontsHandling;
   }
 

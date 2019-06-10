@@ -50,7 +50,7 @@ public class RequestInputFile extends InputFile {
 
   public RequestInputFile() {
     super();
-    setType(com.aspose.slides.model.InputFileType.REQUEST);
+    setType(TypeEnum.REQUEST);
   }
 
   public RequestInputFile index(Integer index) {
@@ -62,7 +62,7 @@ public class RequestInputFile extends InputFile {
    * Get or sets index of file from request.
    * @return index
   **/
-  @ApiModelProperty(value = "Get or sets index of file from request.")
+  @ApiModelProperty(required = true, value = "Get or sets index of file from request.")
   public Integer getIndex() {
     return index;
   }

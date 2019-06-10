@@ -28,9 +28,6 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.PlaceholderOrientation;
-import com.aspose.slides.model.PlaceholderSize;
-import com.aspose.slides.model.PlaceholderType;
 import com.aspose.slides.model.ResourceBase;
 import com.aspose.slides.model.ResourceUri;
 import com.aspose.slides.model.ResourceUriElement;
@@ -53,14 +50,185 @@ public class Placeholder extends ResourceBase {
   @SerializedName("Index")
   private Integer index;
 
+  /**
+   * Gets or Sets orientation
+   */
+  @JsonAdapter(OrientationEnum.Adapter.class)
+  public enum OrientationEnum {
+    HORIZONTAL("Horizontal"),
+    
+    VERTICAL("Vertical");
+
+    private String value;
+
+    OrientationEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static OrientationEnum fromValue(String text) {
+      for (OrientationEnum b : OrientationEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<OrientationEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final OrientationEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public OrientationEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return OrientationEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("Orientation")
-  private PlaceholderOrientation orientation;
+  private OrientationEnum orientation;
+
+  /**
+   * Gets or Sets size
+   */
+  @JsonAdapter(SizeEnum.Adapter.class)
+  public enum SizeEnum {
+    FULL("Full"),
+    
+    HALF("Half"),
+    
+    QUARTER("Quarter");
+
+    private String value;
+
+    SizeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static SizeEnum fromValue(String text) {
+      for (SizeEnum b : SizeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<SizeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final SizeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public SizeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return SizeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("Size")
-  private PlaceholderSize size;
+  private SizeEnum size;
+
+  /**
+   * Gets or Sets type
+   */
+  @JsonAdapter(TypeEnum.Adapter.class)
+  public enum TypeEnum {
+    TITLE("Title"),
+    
+    BODY("Body"),
+    
+    CENTEREDTITLE("CenteredTitle"),
+    
+    SUBTITLE("Subtitle"),
+    
+    DATEANDTIME("DateAndTime"),
+    
+    SLIDENUMBER("SlideNumber"),
+    
+    FOOTER("Footer"),
+    
+    HEADER("Header"),
+    
+    OBJECT("Object"),
+    
+    CHART("Chart"),
+    
+    TABLE("Table"),
+    
+    CLIPART("ClipArt"),
+    
+    DIAGRAM("Diagram"),
+    
+    MEDIA("Media"),
+    
+    SLIDEIMAGE("SlideImage"),
+    
+    PICTURE("Picture");
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TypeEnum fromValue(String text) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return TypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("Type")
-  private PlaceholderType type;
+  private TypeEnum type;
 
   @SerializedName("Shape")
   private ResourceUriElement shape;
@@ -69,7 +237,6 @@ public class Placeholder extends ResourceBase {
   public Placeholder() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
-    setLinks(new ArrayList<ResourceUri>());
   }
 
   public Placeholder index(Integer index) {
@@ -81,7 +248,7 @@ public class Placeholder extends ResourceBase {
    * Get index
    * @return index
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public Integer getIndex() {
     return index;
   }
@@ -90,7 +257,7 @@ public class Placeholder extends ResourceBase {
     this.index = index;
   }
 
-  public Placeholder orientation(PlaceholderOrientation orientation) {
+  public Placeholder orientation(OrientationEnum orientation) {
     this.orientation = orientation;
     return this;
   }
@@ -99,16 +266,16 @@ public class Placeholder extends ResourceBase {
    * Get orientation
    * @return orientation
   **/
-  @ApiModelProperty(value = "")
-  public PlaceholderOrientation getOrientation() {
+  @ApiModelProperty(required = true, value = "")
+  public OrientationEnum getOrientation() {
     return orientation;
   }
 
-  public void setOrientation(PlaceholderOrientation orientation) {
+  public void setOrientation(OrientationEnum orientation) {
     this.orientation = orientation;
   }
 
-  public Placeholder size(PlaceholderSize size) {
+  public Placeholder size(SizeEnum size) {
     this.size = size;
     return this;
   }
@@ -117,16 +284,16 @@ public class Placeholder extends ResourceBase {
    * Get size
    * @return size
   **/
-  @ApiModelProperty(value = "")
-  public PlaceholderSize getSize() {
+  @ApiModelProperty(required = true, value = "")
+  public SizeEnum getSize() {
     return size;
   }
 
-  public void setSize(PlaceholderSize size) {
+  public void setSize(SizeEnum size) {
     this.size = size;
   }
 
-  public Placeholder type(PlaceholderType type) {
+  public Placeholder type(TypeEnum type) {
     this.type = type;
     return this;
   }
@@ -135,12 +302,12 @@ public class Placeholder extends ResourceBase {
    * Get type
    * @return type
   **/
-  @ApiModelProperty(value = "")
-  public PlaceholderType getType() {
+  @ApiModelProperty(required = true, value = "")
+  public TypeEnum getType() {
     return type;
   }
 
-  public void setType(PlaceholderType type) {
+  public void setType(TypeEnum type) {
     this.type = type;
   }
 

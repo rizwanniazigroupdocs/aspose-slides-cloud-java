@@ -28,11 +28,9 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.CombinedShapeType;
 import com.aspose.slides.model.EffectFormat;
 import com.aspose.slides.model.FillFormat;
 import com.aspose.slides.model.GeometryShape;
-import com.aspose.slides.model.GeometryShapeType;
 import com.aspose.slides.model.LineFormat;
 import com.aspose.slides.model.ResourceUri;
 import com.aspose.slides.model.ResourceUriElement;
@@ -68,8 +66,7 @@ public class Connector extends GeometryShape {
   public Connector() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
-    setLinks(new ArrayList<ResourceUri>());
-    setType(com.aspose.slides.model.ShapeType.CONNECTOR);
+    setType(TypeEnum.CONNECTOR);
   }
 
   public Connector startShapeConnectedTo(ResourceUri startShapeConnectedTo) {

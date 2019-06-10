@@ -53,7 +53,7 @@ public class PathInputFile extends InputFile {
 
   public PathInputFile() {
     super();
-    setType(com.aspose.slides.model.InputFileType.PATH);
+    setType(TypeEnum.PATH);
   }
 
   public PathInputFile path(String path) {

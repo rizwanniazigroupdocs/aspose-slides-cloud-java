@@ -31,12 +31,8 @@ import java.util.Objects;
 import com.aspose.slides.model.EffectFormat;
 import com.aspose.slides.model.FillFormat;
 import com.aspose.slides.model.LineFormat;
-import com.aspose.slides.model.NullableBool;
 import com.aspose.slides.model.ResourceBase;
 import com.aspose.slides.model.ResourceUri;
-import com.aspose.slides.model.TextCapType;
-import com.aspose.slides.model.TextStrikethroughType;
-import com.aspose.slides.model.TextUnderlineType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -56,20 +52,301 @@ public class Portion extends ResourceBase {
   @SerializedName("Text")
   private String text;
 
+  /**
+   * Gets or Sets fontBold
+   */
+  @JsonAdapter(FontBoldEnum.Adapter.class)
+  public enum FontBoldEnum {
+    FALSE("False"),
+    
+    TRUE("True"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    FontBoldEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static FontBoldEnum fromValue(String text) {
+      for (FontBoldEnum b : FontBoldEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<FontBoldEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final FontBoldEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public FontBoldEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return FontBoldEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("FontBold")
-  private NullableBool fontBold;
+  private FontBoldEnum fontBold;
+
+  /**
+   * Gets or Sets fontItalic
+   */
+  @JsonAdapter(FontItalicEnum.Adapter.class)
+  public enum FontItalicEnum {
+    FALSE("False"),
+    
+    TRUE("True"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    FontItalicEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static FontItalicEnum fromValue(String text) {
+      for (FontItalicEnum b : FontItalicEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<FontItalicEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final FontItalicEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public FontItalicEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return FontItalicEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("FontItalic")
-  private NullableBool fontItalic;
+  private FontItalicEnum fontItalic;
+
+  /**
+   * Gets or Sets fontUnderline
+   */
+  @JsonAdapter(FontUnderlineEnum.Adapter.class)
+  public enum FontUnderlineEnum {
+    NONE("None"),
+    
+    WORDS("Words"),
+    
+    SINGLE("Single"),
+    
+    DOUBLE("Double"),
+    
+    HEAVY("Heavy"),
+    
+    DOTTED("Dotted"),
+    
+    HEAVYDOTTED("HeavyDotted"),
+    
+    DASHED("Dashed"),
+    
+    HEAVYDASHED("HeavyDashed"),
+    
+    LONGDASHED("LongDashed"),
+    
+    HEAVYLONGDASHED("HeavyLongDashed"),
+    
+    DOTDASH("DotDash"),
+    
+    HEAVYDOTDASH("HeavyDotDash"),
+    
+    DOTDOTDASH("DotDotDash"),
+    
+    HEAVYDOTDOTDASH("HeavyDotDotDash"),
+    
+    WAVY("Wavy"),
+    
+    HEAVYWAVY("HeavyWavy"),
+    
+    DOUBLEWAVY("DoubleWavy"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    FontUnderlineEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static FontUnderlineEnum fromValue(String text) {
+      for (FontUnderlineEnum b : FontUnderlineEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<FontUnderlineEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final FontUnderlineEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public FontUnderlineEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return FontUnderlineEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("FontUnderline")
-  private TextUnderlineType fontUnderline;
+  private FontUnderlineEnum fontUnderline;
+
+  /**
+   * Gets or Sets strikethroughType
+   */
+  @JsonAdapter(StrikethroughTypeEnum.Adapter.class)
+  public enum StrikethroughTypeEnum {
+    NONE("None"),
+    
+    SINGLE("Single"),
+    
+    DOUBLE("Double"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    StrikethroughTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StrikethroughTypeEnum fromValue(String text) {
+      for (StrikethroughTypeEnum b : StrikethroughTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<StrikethroughTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StrikethroughTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StrikethroughTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return StrikethroughTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("StrikethroughType")
-  private TextStrikethroughType strikethroughType;
+  private StrikethroughTypeEnum strikethroughType;
+
+  /**
+   * Gets or Sets textCapType
+   */
+  @JsonAdapter(TextCapTypeEnum.Adapter.class)
+  public enum TextCapTypeEnum {
+    NONE("None"),
+    
+    SMALL("Small"),
+    
+    ALL("All"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    TextCapTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TextCapTypeEnum fromValue(String text) {
+      for (TextCapTypeEnum b : TextCapTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TextCapTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TextCapTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TextCapTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return TextCapTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("TextCapType")
-  private TextCapType textCapType;
+  private TextCapTypeEnum textCapType;
 
   @SerializedName("Escapement")
   private Double escapement;
@@ -86,11 +363,109 @@ public class Portion extends ResourceBase {
   @SerializedName("FontHeight")
   private Double fontHeight;
 
+  /**
+   * Gets or Sets normaliseHeight
+   */
+  @JsonAdapter(NormaliseHeightEnum.Adapter.class)
+  public enum NormaliseHeightEnum {
+    FALSE("False"),
+    
+    TRUE("True"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    NormaliseHeightEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static NormaliseHeightEnum fromValue(String text) {
+      for (NormaliseHeightEnum b : NormaliseHeightEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<NormaliseHeightEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final NormaliseHeightEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public NormaliseHeightEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return NormaliseHeightEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("NormaliseHeight")
-  private NullableBool normaliseHeight;
+  private NormaliseHeightEnum normaliseHeight;
+
+  /**
+   * Gets or Sets proofDisabled
+   */
+  @JsonAdapter(ProofDisabledEnum.Adapter.class)
+  public enum ProofDisabledEnum {
+    FALSE("False"),
+    
+    TRUE("True"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    ProofDisabledEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ProofDisabledEnum fromValue(String text) {
+      for (ProofDisabledEnum b : ProofDisabledEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<ProofDisabledEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ProofDisabledEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ProofDisabledEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return ProofDisabledEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("ProofDisabled")
-  private NullableBool proofDisabled;
+  private ProofDisabledEnum proofDisabled;
 
   @SerializedName("SmartTagClean")
   private Boolean smartTagClean;
@@ -98,8 +473,57 @@ public class Portion extends ResourceBase {
   @SerializedName("KerningMinimalSize")
   private Double kerningMinimalSize;
 
+  /**
+   * Gets or Sets kumimoji
+   */
+  @JsonAdapter(KumimojiEnum.Adapter.class)
+  public enum KumimojiEnum {
+    FALSE("False"),
+    
+    TRUE("True"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    KumimojiEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static KumimojiEnum fromValue(String text) {
+      for (KumimojiEnum b : KumimojiEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<KumimojiEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final KumimojiEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public KumimojiEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return KumimojiEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("Kumimoji")
-  private NullableBool kumimoji;
+  private KumimojiEnum kumimoji;
 
   @SerializedName("LanguageId")
   private String languageId;
@@ -107,11 +531,109 @@ public class Portion extends ResourceBase {
   @SerializedName("AlternativeLanguageId")
   private String alternativeLanguageId;
 
+  /**
+   * Gets or Sets isHardUnderlineFill
+   */
+  @JsonAdapter(IsHardUnderlineFillEnum.Adapter.class)
+  public enum IsHardUnderlineFillEnum {
+    FALSE("False"),
+    
+    TRUE("True"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    IsHardUnderlineFillEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static IsHardUnderlineFillEnum fromValue(String text) {
+      for (IsHardUnderlineFillEnum b : IsHardUnderlineFillEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<IsHardUnderlineFillEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final IsHardUnderlineFillEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public IsHardUnderlineFillEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return IsHardUnderlineFillEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("IsHardUnderlineFill")
-  private NullableBool isHardUnderlineFill;
+  private IsHardUnderlineFillEnum isHardUnderlineFill;
+
+  /**
+   * Gets or Sets isHardUnderlineLine
+   */
+  @JsonAdapter(IsHardUnderlineLineEnum.Adapter.class)
+  public enum IsHardUnderlineLineEnum {
+    FALSE("False"),
+    
+    TRUE("True"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    IsHardUnderlineLineEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static IsHardUnderlineLineEnum fromValue(String text) {
+      for (IsHardUnderlineLineEnum b : IsHardUnderlineLineEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<IsHardUnderlineLineEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final IsHardUnderlineLineEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public IsHardUnderlineLineEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return IsHardUnderlineLineEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("IsHardUnderlineLine")
-  private NullableBool isHardUnderlineLine;
+  private IsHardUnderlineLineEnum isHardUnderlineLine;
 
   @SerializedName("FillFormat")
   private FillFormat fillFormat;
@@ -132,7 +654,6 @@ public class Portion extends ResourceBase {
   public Portion() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
-    setLinks(new ArrayList<ResourceUri>());
   }
 
   public Portion text(String text) {
@@ -153,7 +674,7 @@ public class Portion extends ResourceBase {
     this.text = text;
   }
 
-  public Portion fontBold(NullableBool fontBold) {
+  public Portion fontBold(FontBoldEnum fontBold) {
     this.fontBold = fontBold;
     return this;
   }
@@ -163,15 +684,15 @@ public class Portion extends ResourceBase {
    * @return fontBold
   **/
   @ApiModelProperty(value = "")
-  public NullableBool getFontBold() {
+  public FontBoldEnum getFontBold() {
     return fontBold;
   }
 
-  public void setFontBold(NullableBool fontBold) {
+  public void setFontBold(FontBoldEnum fontBold) {
     this.fontBold = fontBold;
   }
 
-  public Portion fontItalic(NullableBool fontItalic) {
+  public Portion fontItalic(FontItalicEnum fontItalic) {
     this.fontItalic = fontItalic;
     return this;
   }
@@ -181,15 +702,15 @@ public class Portion extends ResourceBase {
    * @return fontItalic
   **/
   @ApiModelProperty(value = "")
-  public NullableBool getFontItalic() {
+  public FontItalicEnum getFontItalic() {
     return fontItalic;
   }
 
-  public void setFontItalic(NullableBool fontItalic) {
+  public void setFontItalic(FontItalicEnum fontItalic) {
     this.fontItalic = fontItalic;
   }
 
-  public Portion fontUnderline(TextUnderlineType fontUnderline) {
+  public Portion fontUnderline(FontUnderlineEnum fontUnderline) {
     this.fontUnderline = fontUnderline;
     return this;
   }
@@ -199,15 +720,15 @@ public class Portion extends ResourceBase {
    * @return fontUnderline
   **/
   @ApiModelProperty(value = "")
-  public TextUnderlineType getFontUnderline() {
+  public FontUnderlineEnum getFontUnderline() {
     return fontUnderline;
   }
 
-  public void setFontUnderline(TextUnderlineType fontUnderline) {
+  public void setFontUnderline(FontUnderlineEnum fontUnderline) {
     this.fontUnderline = fontUnderline;
   }
 
-  public Portion strikethroughType(TextStrikethroughType strikethroughType) {
+  public Portion strikethroughType(StrikethroughTypeEnum strikethroughType) {
     this.strikethroughType = strikethroughType;
     return this;
   }
@@ -217,15 +738,15 @@ public class Portion extends ResourceBase {
    * @return strikethroughType
   **/
   @ApiModelProperty(value = "")
-  public TextStrikethroughType getStrikethroughType() {
+  public StrikethroughTypeEnum getStrikethroughType() {
     return strikethroughType;
   }
 
-  public void setStrikethroughType(TextStrikethroughType strikethroughType) {
+  public void setStrikethroughType(StrikethroughTypeEnum strikethroughType) {
     this.strikethroughType = strikethroughType;
   }
 
-  public Portion textCapType(TextCapType textCapType) {
+  public Portion textCapType(TextCapTypeEnum textCapType) {
     this.textCapType = textCapType;
     return this;
   }
@@ -235,11 +756,11 @@ public class Portion extends ResourceBase {
    * @return textCapType
   **/
   @ApiModelProperty(value = "")
-  public TextCapType getTextCapType() {
+  public TextCapTypeEnum getTextCapType() {
     return textCapType;
   }
 
-  public void setTextCapType(TextCapType textCapType) {
+  public void setTextCapType(TextCapTypeEnum textCapType) {
     this.textCapType = textCapType;
   }
 
@@ -333,7 +854,7 @@ public class Portion extends ResourceBase {
     this.fontHeight = fontHeight;
   }
 
-  public Portion normaliseHeight(NullableBool normaliseHeight) {
+  public Portion normaliseHeight(NormaliseHeightEnum normaliseHeight) {
     this.normaliseHeight = normaliseHeight;
     return this;
   }
@@ -343,15 +864,15 @@ public class Portion extends ResourceBase {
    * @return normaliseHeight
   **/
   @ApiModelProperty(value = "")
-  public NullableBool getNormaliseHeight() {
+  public NormaliseHeightEnum getNormaliseHeight() {
     return normaliseHeight;
   }
 
-  public void setNormaliseHeight(NullableBool normaliseHeight) {
+  public void setNormaliseHeight(NormaliseHeightEnum normaliseHeight) {
     this.normaliseHeight = normaliseHeight;
   }
 
-  public Portion proofDisabled(NullableBool proofDisabled) {
+  public Portion proofDisabled(ProofDisabledEnum proofDisabled) {
     this.proofDisabled = proofDisabled;
     return this;
   }
@@ -361,11 +882,11 @@ public class Portion extends ResourceBase {
    * @return proofDisabled
   **/
   @ApiModelProperty(value = "")
-  public NullableBool getProofDisabled() {
+  public ProofDisabledEnum getProofDisabled() {
     return proofDisabled;
   }
 
-  public void setProofDisabled(NullableBool proofDisabled) {
+  public void setProofDisabled(ProofDisabledEnum proofDisabled) {
     this.proofDisabled = proofDisabled;
   }
 
@@ -405,7 +926,7 @@ public class Portion extends ResourceBase {
     this.kerningMinimalSize = kerningMinimalSize;
   }
 
-  public Portion kumimoji(NullableBool kumimoji) {
+  public Portion kumimoji(KumimojiEnum kumimoji) {
     this.kumimoji = kumimoji;
     return this;
   }
@@ -415,11 +936,11 @@ public class Portion extends ResourceBase {
    * @return kumimoji
   **/
   @ApiModelProperty(value = "")
-  public NullableBool getKumimoji() {
+  public KumimojiEnum getKumimoji() {
     return kumimoji;
   }
 
-  public void setKumimoji(NullableBool kumimoji) {
+  public void setKumimoji(KumimojiEnum kumimoji) {
     this.kumimoji = kumimoji;
   }
 
@@ -459,7 +980,7 @@ public class Portion extends ResourceBase {
     this.alternativeLanguageId = alternativeLanguageId;
   }
 
-  public Portion isHardUnderlineFill(NullableBool isHardUnderlineFill) {
+  public Portion isHardUnderlineFill(IsHardUnderlineFillEnum isHardUnderlineFill) {
     this.isHardUnderlineFill = isHardUnderlineFill;
     return this;
   }
@@ -469,15 +990,15 @@ public class Portion extends ResourceBase {
    * @return isHardUnderlineFill
   **/
   @ApiModelProperty(value = "")
-  public NullableBool getIsHardUnderlineFill() {
+  public IsHardUnderlineFillEnum getIsHardUnderlineFill() {
     return isHardUnderlineFill;
   }
 
-  public void setIsHardUnderlineFill(NullableBool isHardUnderlineFill) {
+  public void setIsHardUnderlineFill(IsHardUnderlineFillEnum isHardUnderlineFill) {
     this.isHardUnderlineFill = isHardUnderlineFill;
   }
 
-  public Portion isHardUnderlineLine(NullableBool isHardUnderlineLine) {
+  public Portion isHardUnderlineLine(IsHardUnderlineLineEnum isHardUnderlineLine) {
     this.isHardUnderlineLine = isHardUnderlineLine;
     return this;
   }
@@ -487,11 +1008,11 @@ public class Portion extends ResourceBase {
    * @return isHardUnderlineLine
   **/
   @ApiModelProperty(value = "")
-  public NullableBool getIsHardUnderlineLine() {
+  public IsHardUnderlineLineEnum getIsHardUnderlineLine() {
     return isHardUnderlineLine;
   }
 
-  public void setIsHardUnderlineLine(NullableBool isHardUnderlineLine) {
+  public void setIsHardUnderlineLine(IsHardUnderlineLineEnum isHardUnderlineLine) {
     this.isHardUnderlineLine = isHardUnderlineLine;
   }
 

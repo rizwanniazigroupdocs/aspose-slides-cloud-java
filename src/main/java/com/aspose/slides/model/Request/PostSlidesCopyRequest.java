@@ -83,6 +83,16 @@ public class PostSlidesCopyRequest {
     this.sourcePassword = sourcePassword;
   }
 
+  private String sourceStorage;
+
+  public String getSourceStorage() {
+    return sourceStorage;
+  }
+
+  public void setSourceStorage(String sourceStorage) {
+    this.sourceStorage = sourceStorage;
+  }
+
   private String password;
 
   public String getPassword() {

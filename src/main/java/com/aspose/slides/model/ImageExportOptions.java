@@ -28,9 +28,7 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.CommentsPositions;
 import com.aspose.slides.model.ExportOptions;
-import com.aspose.slides.model.NotesPositions;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -46,11 +44,109 @@ import java.util.ArrayList;
  */
 @ApiModel(description = "Provides options that control how a presentation is saved in an image format.")
 public class ImageExportOptions extends ExportOptions {
+  /**
+   * Gets or sets the position of the notes on the page.
+   */
+  @JsonAdapter(NotesPositionEnum.Adapter.class)
+  public enum NotesPositionEnum {
+    NONE("None"),
+    
+    BOTTOMFULL("BottomFull"),
+    
+    BOTTOMTRUNCATED("BottomTruncated");
+
+    private String value;
+
+    NotesPositionEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static NotesPositionEnum fromValue(String text) {
+      for (NotesPositionEnum b : NotesPositionEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<NotesPositionEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final NotesPositionEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public NotesPositionEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return NotesPositionEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("NotesPosition")
-  private NotesPositions notesPosition;
+  private NotesPositionEnum notesPosition;
+
+  /**
+   * Gets or sets the position of the comments on the page.
+   */
+  @JsonAdapter(CommentsPositionEnum.Adapter.class)
+  public enum CommentsPositionEnum {
+    NONE("None"),
+    
+    BOTTOM("Bottom"),
+    
+    RIGHT("Right");
+
+    private String value;
+
+    CommentsPositionEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static CommentsPositionEnum fromValue(String text) {
+      for (CommentsPositionEnum b : CommentsPositionEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<CommentsPositionEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final CommentsPositionEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public CommentsPositionEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return CommentsPositionEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("CommentsPosition")
-  private CommentsPositions commentsPosition;
+  private CommentsPositionEnum commentsPosition;
 
   @SerializedName("CommentsAreaWidth")
   private Integer commentsAreaWidth;
@@ -61,10 +157,10 @@ public class ImageExportOptions extends ExportOptions {
 
   public ImageExportOptions() {
     super();
-    setFormat("image");
+    setFormat("IMAGE");
   }
 
-  public ImageExportOptions notesPosition(NotesPositions notesPosition) {
+  public ImageExportOptions notesPosition(NotesPositionEnum notesPosition) {
     this.notesPosition = notesPosition;
     return this;
   }
@@ -73,16 +169,16 @@ public class ImageExportOptions extends ExportOptions {
    * Gets or sets the position of the notes on the page.
    * @return notesPosition
   **/
-  @ApiModelProperty(value = "Gets or sets the position of the notes on the page.")
-  public NotesPositions getNotesPosition() {
+  @ApiModelProperty(required = true, value = "Gets or sets the position of the notes on the page.")
+  public NotesPositionEnum getNotesPosition() {
     return notesPosition;
   }
 
-  public void setNotesPosition(NotesPositions notesPosition) {
+  public void setNotesPosition(NotesPositionEnum notesPosition) {
     this.notesPosition = notesPosition;
   }
 
-  public ImageExportOptions commentsPosition(CommentsPositions commentsPosition) {
+  public ImageExportOptions commentsPosition(CommentsPositionEnum commentsPosition) {
     this.commentsPosition = commentsPosition;
     return this;
   }
@@ -91,12 +187,12 @@ public class ImageExportOptions extends ExportOptions {
    * Gets or sets the position of the comments on the page.
    * @return commentsPosition
   **/
-  @ApiModelProperty(value = "Gets or sets the position of the comments on the page.")
-  public CommentsPositions getCommentsPosition() {
+  @ApiModelProperty(required = true, value = "Gets or sets the position of the comments on the page.")
+  public CommentsPositionEnum getCommentsPosition() {
     return commentsPosition;
   }
 
-  public void setCommentsPosition(CommentsPositions commentsPosition) {
+  public void setCommentsPosition(CommentsPositionEnum commentsPosition) {
     this.commentsPosition = commentsPosition;
   }
 
@@ -109,7 +205,7 @@ public class ImageExportOptions extends ExportOptions {
    * Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).
    * @return commentsAreaWidth
   **/
-  @ApiModelProperty(value = "Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).")
+  @ApiModelProperty(required = true, value = "Gets or sets the width of the comment output area in pixels (Applies only if comments are displayed on the right).")
   public Integer getCommentsAreaWidth() {
     return commentsAreaWidth;
   }

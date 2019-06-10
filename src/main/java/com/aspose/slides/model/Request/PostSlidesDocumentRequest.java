@@ -43,44 +43,24 @@ public class PostSlidesDocumentRequest {
     this.name = name;
   }
 
-  private String data;
+  private byte[] data;
 
-  public String getData() {
+  public byte[] getData() {
     return data;
   }
 
-  public void setData(String data) {
+  public void setData(byte[] data) {
     this.data = data;
   }
 
-  private String templatePath;
+  private String inputPassword;
 
-  public String getTemplatePath() {
-    return templatePath;
+  public String getInputPassword() {
+    return inputPassword;
   }
 
-  public void setTemplatePath(String templatePath) {
-    this.templatePath = templatePath;
-  }
-
-  private String templateStorage;
-
-  public String getTemplateStorage() {
-    return templateStorage;
-  }
-
-  public void setTemplateStorage(String templateStorage) {
-    this.templateStorage = templateStorage;
-  }
-
-  private Boolean isImageDataEmbedded;
-
-  public Boolean getIsImageDataEmbedded() {
-    return isImageDataEmbedded;
-  }
-
-  public void setIsImageDataEmbedded(Boolean isImageDataEmbedded) {
-    this.isImageDataEmbedded = isImageDataEmbedded;
+  public void setInputPassword(String inputPassword) {
+    this.inputPassword = inputPassword;
   }
 
   private String password;

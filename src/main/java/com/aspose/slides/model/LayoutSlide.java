@@ -28,7 +28,6 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.LayoutSlideType;
 import com.aspose.slides.model.ResourceBase;
 import com.aspose.slides.model.ResourceUri;
 import com.aspose.slides.model.ResourceUriElement;
@@ -51,8 +50,123 @@ public class LayoutSlide extends ResourceBase {
   @SerializedName("Name")
   private String name;
 
+  /**
+   * Gets or Sets type
+   */
+  @JsonAdapter(TypeEnum.Adapter.class)
+  public enum TypeEnum {
+    TITLE("Title"),
+    
+    TEXT("Text"),
+    
+    TWOCOLUMNTEXT("TwoColumnText"),
+    
+    TABLE("Table"),
+    
+    TEXTANDCHART("TextAndChart"),
+    
+    CHARTANDTEXT("ChartAndText"),
+    
+    DIAGRAM("Diagram"),
+    
+    CHART("Chart"),
+    
+    TEXTANDCLIPART("TextAndClipArt"),
+    
+    CLIPARTANDTEXT("ClipArtAndText"),
+    
+    TITLEONLY("TitleOnly"),
+    
+    BLANK("Blank"),
+    
+    TEXTANDOBJECT("TextAndObject"),
+    
+    OBJECTANDTEXT("ObjectAndText"),
+    
+    OBJECT("Object"),
+    
+    TITLEANDOBJECT("TitleAndObject"),
+    
+    TEXTANDMEDIA("TextAndMedia"),
+    
+    MEDIAANDTEXT("MediaAndText"),
+    
+    OBJECTOVERTEXT("ObjectOverText"),
+    
+    TEXTOVEROBJECT("TextOverObject"),
+    
+    TEXTANDTWOOBJECTS("TextAndTwoObjects"),
+    
+    TWOOBJECTSANDTEXT("TwoObjectsAndText"),
+    
+    TWOOBJECTSOVERTEXT("TwoObjectsOverText"),
+    
+    FOUROBJECTS("FourObjects"),
+    
+    VERTICALTEXT("VerticalText"),
+    
+    CLIPARTANDVERTICALTEXT("ClipArtAndVerticalText"),
+    
+    VERTICALTITLEANDTEXT("VerticalTitleAndText"),
+    
+    VERTICALTITLEANDTEXTOVERCHART("VerticalTitleAndTextOverChart"),
+    
+    TWOOBJECTS("TwoObjects"),
+    
+    OBJECTANDTWOOBJECT("ObjectAndTwoObject"),
+    
+    TWOOBJECTSANDOBJECT("TwoObjectsAndObject"),
+    
+    SECTIONHEADER("SectionHeader"),
+    
+    TWOTEXTANDTWOOBJECTS("TwoTextAndTwoObjects"),
+    
+    TITLEOBJECTANDCAPTION("TitleObjectAndCaption"),
+    
+    PICTUREANDCAPTION("PictureAndCaption"),
+    
+    CUSTOM("Custom");
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TypeEnum fromValue(String text) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return TypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("Type")
-  private LayoutSlideType type;
+  private TypeEnum type;
 
   @SerializedName("MasterSlide")
   private ResourceUriElement masterSlide;
@@ -64,7 +178,6 @@ public class LayoutSlide extends ResourceBase {
   public LayoutSlide() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
-    setLinks(new ArrayList<ResourceUri>());
     setDependingSlides(new ArrayList<ResourceUriElement>());
   }
 
@@ -86,7 +199,7 @@ public class LayoutSlide extends ResourceBase {
     this.name = name;
   }
 
-  public LayoutSlide type(LayoutSlideType type) {
+  public LayoutSlide type(TypeEnum type) {
     this.type = type;
     return this;
   }
@@ -95,12 +208,12 @@ public class LayoutSlide extends ResourceBase {
    * Get type
    * @return type
   **/
-  @ApiModelProperty(value = "")
-  public LayoutSlideType getType() {
+  @ApiModelProperty(required = true, value = "")
+  public TypeEnum getType() {
     return type;
   }
 
-  public void setType(LayoutSlideType type) {
+  public void setType(TypeEnum type) {
     this.type = type;
   }
 

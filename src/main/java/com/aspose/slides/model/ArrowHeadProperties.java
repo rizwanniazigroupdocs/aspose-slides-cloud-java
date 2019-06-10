@@ -28,9 +28,6 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.LineArrowheadLength;
-import com.aspose.slides.model.LineArrowheadStyle;
-import com.aspose.slides.model.LineArrowheadWidth;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -45,21 +42,180 @@ import java.util.ArrayList;
  * ArrowHeadProperties
  */
 public class ArrowHeadProperties {
+  /**
+   * Gets or Sets length
+   */
+  @JsonAdapter(LengthEnum.Adapter.class)
+  public enum LengthEnum {
+    SHORT("Short"),
+    
+    MEDIUM("Medium"),
+    
+    LONG("Long"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    LengthEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static LengthEnum fromValue(String text) {
+      for (LengthEnum b : LengthEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<LengthEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final LengthEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public LengthEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return LengthEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("Length")
-  private LineArrowheadLength length;
+  private LengthEnum length;
+
+  /**
+   * Gets or Sets style
+   */
+  @JsonAdapter(StyleEnum.Adapter.class)
+  public enum StyleEnum {
+    NONE("None"),
+    
+    TRIANGLE("Triangle"),
+    
+    STEALTH("Stealth"),
+    
+    DIAMOND("Diamond"),
+    
+    OVAL("Oval"),
+    
+    OPEN("Open"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    StyleEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StyleEnum fromValue(String text) {
+      for (StyleEnum b : StyleEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<StyleEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StyleEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StyleEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return StyleEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("Style")
-  private LineArrowheadStyle style;
+  private StyleEnum style;
+
+  /**
+   * Gets or Sets width
+   */
+  @JsonAdapter(WidthEnum.Adapter.class)
+  public enum WidthEnum {
+    NARROW("Narrow"),
+    
+    MEDIUM("Medium"),
+    
+    WIDE("Wide"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    WidthEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static WidthEnum fromValue(String text) {
+      for (WidthEnum b : WidthEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<WidthEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final WidthEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public WidthEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return WidthEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("Width")
-  private LineArrowheadWidth width;
+  private WidthEnum width;
 
 
   public ArrowHeadProperties() {
     super();
   }
 
-  public ArrowHeadProperties length(LineArrowheadLength length) {
+  public ArrowHeadProperties length(LengthEnum length) {
     this.length = length;
     return this;
   }
@@ -69,15 +225,15 @@ public class ArrowHeadProperties {
    * @return length
   **/
   @ApiModelProperty(required = true, value = "")
-  public LineArrowheadLength getLength() {
+  public LengthEnum getLength() {
     return length;
   }
 
-  public void setLength(LineArrowheadLength length) {
+  public void setLength(LengthEnum length) {
     this.length = length;
   }
 
-  public ArrowHeadProperties style(LineArrowheadStyle style) {
+  public ArrowHeadProperties style(StyleEnum style) {
     this.style = style;
     return this;
   }
@@ -87,15 +243,15 @@ public class ArrowHeadProperties {
    * @return style
   **/
   @ApiModelProperty(required = true, value = "")
-  public LineArrowheadStyle getStyle() {
+  public StyleEnum getStyle() {
     return style;
   }
 
-  public void setStyle(LineArrowheadStyle style) {
+  public void setStyle(StyleEnum style) {
     this.style = style;
   }
 
-  public ArrowHeadProperties width(LineArrowheadWidth width) {
+  public ArrowHeadProperties width(WidthEnum width) {
     this.width = width;
     return this;
   }
@@ -105,11 +261,11 @@ public class ArrowHeadProperties {
    * @return width
   **/
   @ApiModelProperty(required = true, value = "")
-  public LineArrowheadWidth getWidth() {
+  public WidthEnum getWidth() {
     return width;
   }
 
-  public void setWidth(LineArrowheadWidth width) {
+  public void setWidth(WidthEnum width) {
     this.width = width;
   }
 

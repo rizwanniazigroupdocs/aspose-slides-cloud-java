@@ -49,7 +49,7 @@ public class ResetSlide extends Task {
 
   public ResetSlide() {
     super();
-    setType(com.aspose.slides.model.TaskType.RESETSLIDE);
+    setType(TypeEnum.RESETSLIDE);
   }
 
   public ResetSlide position(Integer position) {
@@ -61,7 +61,7 @@ public class ResetSlide extends Task {
    * Get position
    * @return position
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public Integer getPosition() {
     return position;
   }

@@ -54,9 +54,8 @@ public class GroupShape extends ShapeBase {
   public GroupShape() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
-    setLinks(new ArrayList<ResourceUri>());
-    setType(com.aspose.slides.model.ShapeType.GROUPSHAPE);
-    setShapeType(com.aspose.slides.model.CombinedShapeType.GROUPSHAPE);
+    setType(TypeEnum.GROUPSHAPE);
+    setShapeType(ShapeTypeEnum.GROUPSHAPE);
   }
 
 

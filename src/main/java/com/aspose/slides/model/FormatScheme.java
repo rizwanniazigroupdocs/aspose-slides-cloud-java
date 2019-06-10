@@ -63,7 +63,6 @@ public class FormatScheme extends ResourceBase {
   public FormatScheme() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
-    setLinks(new ArrayList<ResourceUri>());
     setBackgroundStyles(new ArrayList<ResourceUri>());
     setEffectStyles(new ArrayList<ResourceUri>());
     setFillStyles(new ArrayList<ResourceUri>());

@@ -49,7 +49,7 @@ public class RemoveShape extends Task {
 
   public RemoveShape() {
     super();
-    setType(com.aspose.slides.model.TaskType.REMOVESHAPE);
+    setType(TypeEnum.REMOVESHAPE);
   }
 
   public RemoveShape shapePath(String shapePath) {

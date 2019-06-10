@@ -28,16 +28,9 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.AxisPositionType;
-import com.aspose.slides.model.CategoryAxisType;
-import com.aspose.slides.model.CrossesType;
-import com.aspose.slides.model.DisplayUnitType;
 import com.aspose.slides.model.EffectFormat;
 import com.aspose.slides.model.FillFormat;
 import com.aspose.slides.model.LineFormat;
-import com.aspose.slides.model.TickLabelPositionType;
-import com.aspose.slides.model.TickMarkType;
-import com.aspose.slides.model.TimeUnitType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -59,14 +52,179 @@ public class Axis {
   @SerializedName("HasTitle")
   private Boolean hasTitle;
 
+  /**
+   * Axis position
+   */
+  @JsonAdapter(PositionEnum.Adapter.class)
+  public enum PositionEnum {
+    BOTTOM("Bottom"),
+    
+    LEFT("Left"),
+    
+    RIGHT("Right"),
+    
+    TOP("Top");
+
+    private String value;
+
+    PositionEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PositionEnum fromValue(String text) {
+      for (PositionEnum b : PositionEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<PositionEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PositionEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PositionEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return PositionEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("Position")
-  private AxisPositionType position;
+  private PositionEnum position;
+
+  /**
+   * The scaling value of the display units for the value axis
+   */
+  @JsonAdapter(DisplayUnitEnum.Adapter.class)
+  public enum DisplayUnitEnum {
+    NONE("None"),
+    
+    HUNDREDS("Hundreds"),
+    
+    THOUSANDS("Thousands"),
+    
+    TENTHOUSANDS("TenThousands"),
+    
+    HUNDREDTHOUSANDS("HundredThousands"),
+    
+    MILLIONS("Millions"),
+    
+    TENMILLIONS("TenMillions"),
+    
+    HUNDREDMILLIONS("HundredMillions"),
+    
+    BILLIONS("Billions"),
+    
+    TRILLIONS("Trillions"),
+    
+    CUSTOMVALUE("CustomValue");
+
+    private String value;
+
+    DisplayUnitEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static DisplayUnitEnum fromValue(String text) {
+      for (DisplayUnitEnum b : DisplayUnitEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<DisplayUnitEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final DisplayUnitEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public DisplayUnitEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return DisplayUnitEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("DisplayUnit")
-  private DisplayUnitType displayUnit;
+  private DisplayUnitEnum displayUnit;
+
+  /**
+   * The smallest time unit that is represented on the date axis
+   */
+  @JsonAdapter(BaseUnitScaleEnum.Adapter.class)
+  public enum BaseUnitScaleEnum {
+    DAYS("Days"),
+    
+    MONTHS("Months"),
+    
+    YEARS("Years");
+
+    private String value;
+
+    BaseUnitScaleEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static BaseUnitScaleEnum fromValue(String text) {
+      for (BaseUnitScaleEnum b : BaseUnitScaleEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<BaseUnitScaleEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final BaseUnitScaleEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public BaseUnitScaleEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return BaseUnitScaleEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("BaseUnitScale")
-  private TimeUnitType baseUnitScale;
+  private BaseUnitScaleEnum baseUnitScale;
 
   @SerializedName("IsAutomaticMajorUnit")
   private Boolean isAutomaticMajorUnit;
@@ -74,11 +232,111 @@ public class Axis {
   @SerializedName("MajorUnit")
   private Double majorUnit;
 
+  /**
+   * The major unit scale for the date axis
+   */
+  @JsonAdapter(MajorUnitScaleEnum.Adapter.class)
+  public enum MajorUnitScaleEnum {
+    DAYS("Days"),
+    
+    MONTHS("Months"),
+    
+    YEARS("Years");
+
+    private String value;
+
+    MajorUnitScaleEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static MajorUnitScaleEnum fromValue(String text) {
+      for (MajorUnitScaleEnum b : MajorUnitScaleEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<MajorUnitScaleEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final MajorUnitScaleEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public MajorUnitScaleEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return MajorUnitScaleEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("MajorUnitScale")
-  private TimeUnitType majorUnitScale;
+  private MajorUnitScaleEnum majorUnitScale;
+
+  /**
+   * The type of major tick mark for the specified axis
+   */
+  @JsonAdapter(MajorTickMarkEnum.Adapter.class)
+  public enum MajorTickMarkEnum {
+    CROSS("Cross"),
+    
+    INSIDE("Inside"),
+    
+    NONE("None"),
+    
+    OUTSIDE("Outside");
+
+    private String value;
+
+    MajorTickMarkEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static MajorTickMarkEnum fromValue(String text) {
+      for (MajorTickMarkEnum b : MajorTickMarkEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<MajorTickMarkEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final MajorTickMarkEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public MajorTickMarkEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return MajorTickMarkEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("MajorTickMark")
-  private TickMarkType majorTickMark;
+  private MajorTickMarkEnum majorTickMark;
 
   @SerializedName("IsAutomaticMinorUnit")
   private Boolean isAutomaticMinorUnit;
@@ -86,11 +344,111 @@ public class Axis {
   @SerializedName("MinorUnit")
   private Double minorUnit;
 
+  /**
+   * The minor unit scale for the date axis
+   */
+  @JsonAdapter(MinorUnitScaleEnum.Adapter.class)
+  public enum MinorUnitScaleEnum {
+    DAYS("Days"),
+    
+    MONTHS("Months"),
+    
+    YEARS("Years");
+
+    private String value;
+
+    MinorUnitScaleEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static MinorUnitScaleEnum fromValue(String text) {
+      for (MinorUnitScaleEnum b : MinorUnitScaleEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<MinorUnitScaleEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final MinorUnitScaleEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public MinorUnitScaleEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return MinorUnitScaleEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("MinorUnitScale")
-  private TimeUnitType minorUnitScale;
+  private MinorUnitScaleEnum minorUnitScale;
+
+  /**
+   * The type of minor tick mark for the specified axis
+   */
+  @JsonAdapter(MinorTickMarkEnum.Adapter.class)
+  public enum MinorTickMarkEnum {
+    CROSS("Cross"),
+    
+    INSIDE("Inside"),
+    
+    NONE("None"),
+    
+    OUTSIDE("Outside");
+
+    private String value;
+
+    MinorTickMarkEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static MinorTickMarkEnum fromValue(String text) {
+      for (MinorTickMarkEnum b : MinorTickMarkEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<MinorTickMarkEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final MinorTickMarkEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public MinorTickMarkEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return MinorTickMarkEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("MinorTickMark")
-  private TickMarkType minorTickMark;
+  private MinorTickMarkEnum minorTickMark;
 
   @SerializedName("IsAutomaticMaxValue")
   private Boolean isAutomaticMaxValue;
@@ -110,8 +468,55 @@ public class Axis {
   @SerializedName("LogBase")
   private Double logBase;
 
+  /**
+   * The type of the category axis
+   */
+  @JsonAdapter(CategoryAxisTypeEnum.Adapter.class)
+  public enum CategoryAxisTypeEnum {
+    TEXT("Text"),
+    
+    DATE("Date");
+
+    private String value;
+
+    CategoryAxisTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static CategoryAxisTypeEnum fromValue(String text) {
+      for (CategoryAxisTypeEnum b : CategoryAxisTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<CategoryAxisTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final CategoryAxisTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public CategoryAxisTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return CategoryAxisTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("CategoryAxisType")
-  private CategoryAxisType categoryAxisType;
+  private CategoryAxisTypeEnum categoryAxisType;
 
   @SerializedName("AxisBetweenCategories")
   private Boolean axisBetweenCategories;
@@ -128,8 +533,57 @@ public class Axis {
   @SerializedName("NumberFormat")
   private String numberFormat;
 
+  /**
+   * The CrossType on the specified axis where the other axis crosses
+   */
+  @JsonAdapter(CrossTypeEnum.Adapter.class)
+  public enum CrossTypeEnum {
+    AXISCROSSESATZERO("AxisCrossesAtZero"),
+    
+    MAXIMUM("Maximum"),
+    
+    CUSTOM("Custom");
+
+    private String value;
+
+    CrossTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static CrossTypeEnum fromValue(String text) {
+      for (CrossTypeEnum b : CrossTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<CrossTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final CrossTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public CrossTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return CrossTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("CrossType")
-  private CrossesType crossType;
+  private CrossTypeEnum crossType;
 
   @SerializedName("CrossAt")
   private Double crossAt;
@@ -146,8 +600,59 @@ public class Axis {
   @SerializedName("TickLabelSpacing")
   private Integer tickLabelSpacing;
 
+  /**
+   * The position of tick-mark labels on the specified axis.
+   */
+  @JsonAdapter(TickLabelPositionEnum.Adapter.class)
+  public enum TickLabelPositionEnum {
+    HIGH("High"),
+    
+    LOW("Low"),
+    
+    NEXTTO("NextTo"),
+    
+    NONE("None");
+
+    private String value;
+
+    TickLabelPositionEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TickLabelPositionEnum fromValue(String text) {
+      for (TickLabelPositionEnum b : TickLabelPositionEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TickLabelPositionEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TickLabelPositionEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TickLabelPositionEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return TickLabelPositionEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("TickLabelPosition")
-  private TickLabelPositionType tickLabelPosition;
+  private TickLabelPositionEnum tickLabelPosition;
 
   @SerializedName("TickLabelRotationAngle")
   private Double tickLabelRotationAngle;
@@ -202,7 +707,7 @@ public class Axis {
     this.hasTitle = hasTitle;
   }
 
-  public Axis position(AxisPositionType position) {
+  public Axis position(PositionEnum position) {
     this.position = position;
     return this;
   }
@@ -212,15 +717,15 @@ public class Axis {
    * @return position
   **/
   @ApiModelProperty(required = true, value = "Axis position")
-  public AxisPositionType getPosition() {
+  public PositionEnum getPosition() {
     return position;
   }
 
-  public void setPosition(AxisPositionType position) {
+  public void setPosition(PositionEnum position) {
     this.position = position;
   }
 
-  public Axis displayUnit(DisplayUnitType displayUnit) {
+  public Axis displayUnit(DisplayUnitEnum displayUnit) {
     this.displayUnit = displayUnit;
     return this;
   }
@@ -230,15 +735,15 @@ public class Axis {
    * @return displayUnit
   **/
   @ApiModelProperty(required = true, value = "The scaling value of the display units for the value axis")
-  public DisplayUnitType getDisplayUnit() {
+  public DisplayUnitEnum getDisplayUnit() {
     return displayUnit;
   }
 
-  public void setDisplayUnit(DisplayUnitType displayUnit) {
+  public void setDisplayUnit(DisplayUnitEnum displayUnit) {
     this.displayUnit = displayUnit;
   }
 
-  public Axis baseUnitScale(TimeUnitType baseUnitScale) {
+  public Axis baseUnitScale(BaseUnitScaleEnum baseUnitScale) {
     this.baseUnitScale = baseUnitScale;
     return this;
   }
@@ -248,11 +753,11 @@ public class Axis {
    * @return baseUnitScale
   **/
   @ApiModelProperty(required = true, value = "The smallest time unit that is represented on the date axis")
-  public TimeUnitType getBaseUnitScale() {
+  public BaseUnitScaleEnum getBaseUnitScale() {
     return baseUnitScale;
   }
 
-  public void setBaseUnitScale(TimeUnitType baseUnitScale) {
+  public void setBaseUnitScale(BaseUnitScaleEnum baseUnitScale) {
     this.baseUnitScale = baseUnitScale;
   }
 
@@ -292,7 +797,7 @@ public class Axis {
     this.majorUnit = majorUnit;
   }
 
-  public Axis majorUnitScale(TimeUnitType majorUnitScale) {
+  public Axis majorUnitScale(MajorUnitScaleEnum majorUnitScale) {
     this.majorUnitScale = majorUnitScale;
     return this;
   }
@@ -302,15 +807,15 @@ public class Axis {
    * @return majorUnitScale
   **/
   @ApiModelProperty(required = true, value = "The major unit scale for the date axis")
-  public TimeUnitType getMajorUnitScale() {
+  public MajorUnitScaleEnum getMajorUnitScale() {
     return majorUnitScale;
   }
 
-  public void setMajorUnitScale(TimeUnitType majorUnitScale) {
+  public void setMajorUnitScale(MajorUnitScaleEnum majorUnitScale) {
     this.majorUnitScale = majorUnitScale;
   }
 
-  public Axis majorTickMark(TickMarkType majorTickMark) {
+  public Axis majorTickMark(MajorTickMarkEnum majorTickMark) {
     this.majorTickMark = majorTickMark;
     return this;
   }
@@ -320,11 +825,11 @@ public class Axis {
    * @return majorTickMark
   **/
   @ApiModelProperty(required = true, value = "The type of major tick mark for the specified axis")
-  public TickMarkType getMajorTickMark() {
+  public MajorTickMarkEnum getMajorTickMark() {
     return majorTickMark;
   }
 
-  public void setMajorTickMark(TickMarkType majorTickMark) {
+  public void setMajorTickMark(MajorTickMarkEnum majorTickMark) {
     this.majorTickMark = majorTickMark;
   }
 
@@ -364,7 +869,7 @@ public class Axis {
     this.minorUnit = minorUnit;
   }
 
-  public Axis minorUnitScale(TimeUnitType minorUnitScale) {
+  public Axis minorUnitScale(MinorUnitScaleEnum minorUnitScale) {
     this.minorUnitScale = minorUnitScale;
     return this;
   }
@@ -374,15 +879,15 @@ public class Axis {
    * @return minorUnitScale
   **/
   @ApiModelProperty(required = true, value = "The minor unit scale for the date axis")
-  public TimeUnitType getMinorUnitScale() {
+  public MinorUnitScaleEnum getMinorUnitScale() {
     return minorUnitScale;
   }
 
-  public void setMinorUnitScale(TimeUnitType minorUnitScale) {
+  public void setMinorUnitScale(MinorUnitScaleEnum minorUnitScale) {
     this.minorUnitScale = minorUnitScale;
   }
 
-  public Axis minorTickMark(TickMarkType minorTickMark) {
+  public Axis minorTickMark(MinorTickMarkEnum minorTickMark) {
     this.minorTickMark = minorTickMark;
     return this;
   }
@@ -392,11 +897,11 @@ public class Axis {
    * @return minorTickMark
   **/
   @ApiModelProperty(required = true, value = "The type of minor tick mark for the specified axis")
-  public TickMarkType getMinorTickMark() {
+  public MinorTickMarkEnum getMinorTickMark() {
     return minorTickMark;
   }
 
-  public void setMinorTickMark(TickMarkType minorTickMark) {
+  public void setMinorTickMark(MinorTickMarkEnum minorTickMark) {
     this.minorTickMark = minorTickMark;
   }
 
@@ -508,7 +1013,7 @@ public class Axis {
     this.logBase = logBase;
   }
 
-  public Axis categoryAxisType(CategoryAxisType categoryAxisType) {
+  public Axis categoryAxisType(CategoryAxisTypeEnum categoryAxisType) {
     this.categoryAxisType = categoryAxisType;
     return this;
   }
@@ -518,11 +1023,11 @@ public class Axis {
    * @return categoryAxisType
   **/
   @ApiModelProperty(required = true, value = "The type of the category axis")
-  public CategoryAxisType getCategoryAxisType() {
+  public CategoryAxisTypeEnum getCategoryAxisType() {
     return categoryAxisType;
   }
 
-  public void setCategoryAxisType(CategoryAxisType categoryAxisType) {
+  public void setCategoryAxisType(CategoryAxisTypeEnum categoryAxisType) {
     this.categoryAxisType = categoryAxisType;
   }
 
@@ -616,7 +1121,7 @@ public class Axis {
     this.numberFormat = numberFormat;
   }
 
-  public Axis crossType(CrossesType crossType) {
+  public Axis crossType(CrossTypeEnum crossType) {
     this.crossType = crossType;
     return this;
   }
@@ -626,11 +1131,11 @@ public class Axis {
    * @return crossType
   **/
   @ApiModelProperty(required = true, value = "The CrossType on the specified axis where the other axis crosses")
-  public CrossesType getCrossType() {
+  public CrossTypeEnum getCrossType() {
     return crossType;
   }
 
-  public void setCrossType(CrossesType crossType) {
+  public void setCrossType(CrossTypeEnum crossType) {
     this.crossType = crossType;
   }
 
@@ -724,7 +1229,7 @@ public class Axis {
     this.tickLabelSpacing = tickLabelSpacing;
   }
 
-  public Axis tickLabelPosition(TickLabelPositionType tickLabelPosition) {
+  public Axis tickLabelPosition(TickLabelPositionEnum tickLabelPosition) {
     this.tickLabelPosition = tickLabelPosition;
     return this;
   }
@@ -734,11 +1239,11 @@ public class Axis {
    * @return tickLabelPosition
   **/
   @ApiModelProperty(required = true, value = "The position of tick-mark labels on the specified axis.")
-  public TickLabelPositionType getTickLabelPosition() {
+  public TickLabelPositionEnum getTickLabelPosition() {
     return tickLabelPosition;
   }
 
-  public void setTickLabelPosition(TickLabelPositionType tickLabelPosition) {
+  public void setTickLabelPosition(TickLabelPositionEnum tickLabelPosition) {
     this.tickLabelPosition = tickLabelPosition;
   }
 

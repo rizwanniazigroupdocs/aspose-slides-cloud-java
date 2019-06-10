@@ -59,7 +59,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import com.aspose.slides.auth.*;
-import com.aspose.slides.model.DocumentResponse;
 import com.google.gson.reflect.TypeToken;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -659,16 +658,12 @@ public class ApiClient {
         } else if (obj instanceof String) {
             // Binary (byte array) body parameter support.
             return RequestBody.create(MediaType.parse(contentType), (String) obj);
-        } else if (isJsonMime(contentType)) {
-            String content;
+        } else {
+            String content = "";
             if (obj != null) {
                 content = json.serialize(obj);
-            } else {
-                content = null;
             }
-            return RequestBody.create(MediaType.parse(contentType), content);
-        } else {
-            throw new ApiException("Content type \"" + contentType + "\" is not supported");
+            return RequestBody.create(MediaType.parse("application/json"), content);
         }
     }
 
@@ -936,7 +931,13 @@ public class ApiClient {
         } else if ("application/x-www-form-urlencoded".equals(contentType)) {
             reqBody = buildRequestBodyFormEncoding(formParams);
         } else if ("multipart/form-data".equals(contentType)) {
-            reqBody = buildRequestBodyMultipart(formParams);
+            if (formParams.size() == 1) {
+                reqBody = serialize(formParams.values().toArray()[0], contentType, files);
+            } else if (formParams.size() > 1) {
+                reqBody = buildRequestBodyMultipart(formParams);
+            } else {
+                reqBody = serialize(body, contentType, files);
+            }
         } else if (body == null) {
             if (formParams != null) {
                 contentType = "application/x-www-form-urlencoded";
@@ -952,7 +953,6 @@ public class ApiClient {
             reqBody = serialize(body, contentType, files);
         }
         Request request = null;
-
         if(progressRequestListener != null && reqBody != null) {
             ProgressRequestBody progressRequestBody = new ProgressRequestBody(reqBody, progressRequestListener);
             request = reqBuilder.method(method, progressRequestBody).build();

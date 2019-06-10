@@ -28,14 +28,9 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.BulletType;
-import com.aspose.slides.model.FontAlignment;
-import com.aspose.slides.model.NullableBool;
-import com.aspose.slides.model.NumberedBulletStyle;
 import com.aspose.slides.model.ResourceBase;
 import com.aspose.slides.model.ResourceUri;
 import com.aspose.slides.model.ResourceUriElement;
-import com.aspose.slides.model.TextAlignment;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -71,11 +66,123 @@ public class Paragraph extends ResourceBase {
   @SerializedName("Indent")
   private Double indent;
 
+  /**
+   * Gets or Sets alignment
+   */
+  @JsonAdapter(AlignmentEnum.Adapter.class)
+  public enum AlignmentEnum {
+    LEFT("Left"),
+    
+    CENTER("Center"),
+    
+    RIGHT("Right"),
+    
+    JUSTIFY("Justify"),
+    
+    JUSTIFYLOW("JustifyLow"),
+    
+    DISTRIBUTED("Distributed"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    AlignmentEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static AlignmentEnum fromValue(String text) {
+      for (AlignmentEnum b : AlignmentEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<AlignmentEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final AlignmentEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public AlignmentEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return AlignmentEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("Alignment")
-  private TextAlignment alignment;
+  private AlignmentEnum alignment;
+
+  /**
+   * Gets or Sets fontAlignment
+   */
+  @JsonAdapter(FontAlignmentEnum.Adapter.class)
+  public enum FontAlignmentEnum {
+    AUTOMATIC("Automatic"),
+    
+    TOP("Top"),
+    
+    CENTER("Center"),
+    
+    BOTTOM("Bottom"),
+    
+    BASELINE("Baseline"),
+    
+    DEFAULT("Default");
+
+    private String value;
+
+    FontAlignmentEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static FontAlignmentEnum fromValue(String text) {
+      for (FontAlignmentEnum b : FontAlignmentEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<FontAlignmentEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final FontAlignmentEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public FontAlignmentEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return FontAlignmentEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("FontAlignment")
-  private FontAlignment fontAlignment;
+  private FontAlignmentEnum fontAlignment;
 
   @SerializedName("DefaultTabSize")
   private Double defaultTabSize;
@@ -89,26 +196,402 @@ public class Paragraph extends ResourceBase {
   @SerializedName("BulletHeight")
   private Double bulletHeight;
 
+  /**
+   * Gets or Sets bulletType
+   */
+  @JsonAdapter(BulletTypeEnum.Adapter.class)
+  public enum BulletTypeEnum {
+    NONE("None"),
+    
+    SYMBOL("Symbol"),
+    
+    NUMBERED("Numbered"),
+    
+    PICTURE("Picture"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    BulletTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static BulletTypeEnum fromValue(String text) {
+      for (BulletTypeEnum b : BulletTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<BulletTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final BulletTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public BulletTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return BulletTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("BulletType")
-  private BulletType bulletType;
+  private BulletTypeEnum bulletType;
 
   @SerializedName("NumberedBulletStartWith")
   private Integer numberedBulletStartWith;
 
+  /**
+   * Gets or Sets numberedBulletStyle
+   */
+  @JsonAdapter(NumberedBulletStyleEnum.Adapter.class)
+  public enum NumberedBulletStyleEnum {
+    BULLETALPHALCPERIOD("BulletAlphaLCPeriod"),
+    
+    BULLETALPHAUCPERIOD("BulletAlphaUCPeriod"),
+    
+    BULLETARABICPARENRIGHT("BulletArabicParenRight"),
+    
+    BULLETARABICPERIOD("BulletArabicPeriod"),
+    
+    BULLETROMANLCPARENBOTH("BulletRomanLCParenBoth"),
+    
+    BULLETROMANLCPARENRIGHT("BulletRomanLCParenRight"),
+    
+    BULLETROMANLCPERIOD("BulletRomanLCPeriod"),
+    
+    BULLETROMANUCPERIOD("BulletRomanUCPeriod"),
+    
+    BULLETALPHALCPARENBOTH("BulletAlphaLCParenBoth"),
+    
+    BULLETALPHALCPARENRIGHT("BulletAlphaLCParenRight"),
+    
+    BULLETALPHAUCPARENBOTH("BulletAlphaUCParenBoth"),
+    
+    BULLETALPHAUCPARENRIGHT("BulletAlphaUCParenRight"),
+    
+    BULLETARABICPARENBOTH("BulletArabicParenBoth"),
+    
+    BULLETARABICPLAIN("BulletArabicPlain"),
+    
+    BULLETROMANUCPARENBOTH("BulletRomanUCParenBoth"),
+    
+    BULLETROMANUCPARENRIGHT("BulletRomanUCParenRight"),
+    
+    BULLETSIMPCHINPLAIN("BulletSimpChinPlain"),
+    
+    BULLETSIMPCHINPERIOD("BulletSimpChinPeriod"),
+    
+    BULLETCIRCLENUMDBPLAIN("BulletCircleNumDBPlain"),
+    
+    BULLETCIRCLENUMWDWHITEPLAIN("BulletCircleNumWDWhitePlain"),
+    
+    BULLETCIRCLENUMWDBLACKPLAIN("BulletCircleNumWDBlackPlain"),
+    
+    BULLETTRADCHINPLAIN("BulletTradChinPlain"),
+    
+    BULLETTRADCHINPERIOD("BulletTradChinPeriod"),
+    
+    BULLETARABICALPHADASH("BulletArabicAlphaDash"),
+    
+    BULLETARABICABJADDASH("BulletArabicAbjadDash"),
+    
+    BULLETHEBREWALPHADASH("BulletHebrewAlphaDash"),
+    
+    BULLETKANJIKOREANPLAIN("BulletKanjiKoreanPlain"),
+    
+    BULLETKANJIKOREANPERIOD("BulletKanjiKoreanPeriod"),
+    
+    BULLETARABICDBPLAIN("BulletArabicDBPlain"),
+    
+    BULLETARABICDBPERIOD("BulletArabicDBPeriod"),
+    
+    BULLETTHAIALPHAPERIOD("BulletThaiAlphaPeriod"),
+    
+    BULLETTHAIALPHAPARENRIGHT("BulletThaiAlphaParenRight"),
+    
+    BULLETTHAIALPHAPARENBOTH("BulletThaiAlphaParenBoth"),
+    
+    BULLETTHAINUMPERIOD("BulletThaiNumPeriod"),
+    
+    BULLETTHAINUMPARENRIGHT("BulletThaiNumParenRight"),
+    
+    BULLETTHAINUMPARENBOTH("BulletThaiNumParenBoth"),
+    
+    BULLETHINDIALPHAPERIOD("BulletHindiAlphaPeriod"),
+    
+    BULLETHINDINUMPERIOD("BulletHindiNumPeriod"),
+    
+    BULLETKANJISIMPCHINDBPERIOD("BulletKanjiSimpChinDBPeriod"),
+    
+    BULLETHINDINUMPARENRIGHT("BulletHindiNumParenRight"),
+    
+    BULLETHINDIALPHA1PERIOD("BulletHindiAlpha1Period"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    NumberedBulletStyleEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static NumberedBulletStyleEnum fromValue(String text) {
+      for (NumberedBulletStyleEnum b : NumberedBulletStyleEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<NumberedBulletStyleEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final NumberedBulletStyleEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public NumberedBulletStyleEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return NumberedBulletStyleEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("NumberedBulletStyle")
-  private NumberedBulletStyle numberedBulletStyle;
+  private NumberedBulletStyleEnum numberedBulletStyle;
+
+  /**
+   * Gets or Sets hangingPunctuation
+   */
+  @JsonAdapter(HangingPunctuationEnum.Adapter.class)
+  public enum HangingPunctuationEnum {
+    FALSE("False"),
+    
+    TRUE("True"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    HangingPunctuationEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static HangingPunctuationEnum fromValue(String text) {
+      for (HangingPunctuationEnum b : HangingPunctuationEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<HangingPunctuationEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final HangingPunctuationEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public HangingPunctuationEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return HangingPunctuationEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("HangingPunctuation")
-  private NullableBool hangingPunctuation;
+  private HangingPunctuationEnum hangingPunctuation;
+
+  /**
+   * Gets or Sets eastAsianLineBreak
+   */
+  @JsonAdapter(EastAsianLineBreakEnum.Adapter.class)
+  public enum EastAsianLineBreakEnum {
+    FALSE("False"),
+    
+    TRUE("True"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    EastAsianLineBreakEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static EastAsianLineBreakEnum fromValue(String text) {
+      for (EastAsianLineBreakEnum b : EastAsianLineBreakEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<EastAsianLineBreakEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final EastAsianLineBreakEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public EastAsianLineBreakEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return EastAsianLineBreakEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("EastAsianLineBreak")
-  private NullableBool eastAsianLineBreak;
+  private EastAsianLineBreakEnum eastAsianLineBreak;
+
+  /**
+   * Gets or Sets latinLineBreak
+   */
+  @JsonAdapter(LatinLineBreakEnum.Adapter.class)
+  public enum LatinLineBreakEnum {
+    FALSE("False"),
+    
+    TRUE("True"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    LatinLineBreakEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static LatinLineBreakEnum fromValue(String text) {
+      for (LatinLineBreakEnum b : LatinLineBreakEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<LatinLineBreakEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final LatinLineBreakEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public LatinLineBreakEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return LatinLineBreakEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("LatinLineBreak")
-  private NullableBool latinLineBreak;
+  private LatinLineBreakEnum latinLineBreak;
+
+  /**
+   * Gets or Sets rightToLeft
+   */
+  @JsonAdapter(RightToLeftEnum.Adapter.class)
+  public enum RightToLeftEnum {
+    FALSE("False"),
+    
+    TRUE("True"),
+    
+    NOTDEFINED("NotDefined");
+
+    private String value;
+
+    RightToLeftEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static RightToLeftEnum fromValue(String text) {
+      for (RightToLeftEnum b : RightToLeftEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<RightToLeftEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final RightToLeftEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public RightToLeftEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return RightToLeftEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("RightToLeft")
-  private NullableBool rightToLeft;
+  private RightToLeftEnum rightToLeft;
 
   @SerializedName("PortionList")
   private List<ResourceUriElement> portionList = null;
@@ -117,7 +600,6 @@ public class Paragraph extends ResourceBase {
   public Paragraph() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
-    setLinks(new ArrayList<ResourceUri>());
     setPortionList(new ArrayList<ResourceUriElement>());
   }
 
@@ -229,7 +711,7 @@ public class Paragraph extends ResourceBase {
     this.indent = indent;
   }
 
-  public Paragraph alignment(TextAlignment alignment) {
+  public Paragraph alignment(AlignmentEnum alignment) {
     this.alignment = alignment;
     return this;
   }
@@ -239,15 +721,15 @@ public class Paragraph extends ResourceBase {
    * @return alignment
   **/
   @ApiModelProperty(value = "")
-  public TextAlignment getAlignment() {
+  public AlignmentEnum getAlignment() {
     return alignment;
   }
 
-  public void setAlignment(TextAlignment alignment) {
+  public void setAlignment(AlignmentEnum alignment) {
     this.alignment = alignment;
   }
 
-  public Paragraph fontAlignment(FontAlignment fontAlignment) {
+  public Paragraph fontAlignment(FontAlignmentEnum fontAlignment) {
     this.fontAlignment = fontAlignment;
     return this;
   }
@@ -257,11 +739,11 @@ public class Paragraph extends ResourceBase {
    * @return fontAlignment
   **/
   @ApiModelProperty(value = "")
-  public FontAlignment getFontAlignment() {
+  public FontAlignmentEnum getFontAlignment() {
     return fontAlignment;
   }
 
-  public void setFontAlignment(FontAlignment fontAlignment) {
+  public void setFontAlignment(FontAlignmentEnum fontAlignment) {
     this.fontAlignment = fontAlignment;
   }
 
@@ -337,7 +819,7 @@ public class Paragraph extends ResourceBase {
     this.bulletHeight = bulletHeight;
   }
 
-  public Paragraph bulletType(BulletType bulletType) {
+  public Paragraph bulletType(BulletTypeEnum bulletType) {
     this.bulletType = bulletType;
     return this;
   }
@@ -347,11 +829,11 @@ public class Paragraph extends ResourceBase {
    * @return bulletType
   **/
   @ApiModelProperty(value = "")
-  public BulletType getBulletType() {
+  public BulletTypeEnum getBulletType() {
     return bulletType;
   }
 
-  public void setBulletType(BulletType bulletType) {
+  public void setBulletType(BulletTypeEnum bulletType) {
     this.bulletType = bulletType;
   }
 
@@ -373,7 +855,7 @@ public class Paragraph extends ResourceBase {
     this.numberedBulletStartWith = numberedBulletStartWith;
   }
 
-  public Paragraph numberedBulletStyle(NumberedBulletStyle numberedBulletStyle) {
+  public Paragraph numberedBulletStyle(NumberedBulletStyleEnum numberedBulletStyle) {
     this.numberedBulletStyle = numberedBulletStyle;
     return this;
   }
@@ -383,15 +865,15 @@ public class Paragraph extends ResourceBase {
    * @return numberedBulletStyle
   **/
   @ApiModelProperty(value = "")
-  public NumberedBulletStyle getNumberedBulletStyle() {
+  public NumberedBulletStyleEnum getNumberedBulletStyle() {
     return numberedBulletStyle;
   }
 
-  public void setNumberedBulletStyle(NumberedBulletStyle numberedBulletStyle) {
+  public void setNumberedBulletStyle(NumberedBulletStyleEnum numberedBulletStyle) {
     this.numberedBulletStyle = numberedBulletStyle;
   }
 
-  public Paragraph hangingPunctuation(NullableBool hangingPunctuation) {
+  public Paragraph hangingPunctuation(HangingPunctuationEnum hangingPunctuation) {
     this.hangingPunctuation = hangingPunctuation;
     return this;
   }
@@ -401,15 +883,15 @@ public class Paragraph extends ResourceBase {
    * @return hangingPunctuation
   **/
   @ApiModelProperty(value = "")
-  public NullableBool getHangingPunctuation() {
+  public HangingPunctuationEnum getHangingPunctuation() {
     return hangingPunctuation;
   }
 
-  public void setHangingPunctuation(NullableBool hangingPunctuation) {
+  public void setHangingPunctuation(HangingPunctuationEnum hangingPunctuation) {
     this.hangingPunctuation = hangingPunctuation;
   }
 
-  public Paragraph eastAsianLineBreak(NullableBool eastAsianLineBreak) {
+  public Paragraph eastAsianLineBreak(EastAsianLineBreakEnum eastAsianLineBreak) {
     this.eastAsianLineBreak = eastAsianLineBreak;
     return this;
   }
@@ -419,15 +901,15 @@ public class Paragraph extends ResourceBase {
    * @return eastAsianLineBreak
   **/
   @ApiModelProperty(value = "")
-  public NullableBool getEastAsianLineBreak() {
+  public EastAsianLineBreakEnum getEastAsianLineBreak() {
     return eastAsianLineBreak;
   }
 
-  public void setEastAsianLineBreak(NullableBool eastAsianLineBreak) {
+  public void setEastAsianLineBreak(EastAsianLineBreakEnum eastAsianLineBreak) {
     this.eastAsianLineBreak = eastAsianLineBreak;
   }
 
-  public Paragraph latinLineBreak(NullableBool latinLineBreak) {
+  public Paragraph latinLineBreak(LatinLineBreakEnum latinLineBreak) {
     this.latinLineBreak = latinLineBreak;
     return this;
   }
@@ -437,15 +919,15 @@ public class Paragraph extends ResourceBase {
    * @return latinLineBreak
   **/
   @ApiModelProperty(value = "")
-  public NullableBool getLatinLineBreak() {
+  public LatinLineBreakEnum getLatinLineBreak() {
     return latinLineBreak;
   }
 
-  public void setLatinLineBreak(NullableBool latinLineBreak) {
+  public void setLatinLineBreak(LatinLineBreakEnum latinLineBreak) {
     this.latinLineBreak = latinLineBreak;
   }
 
-  public Paragraph rightToLeft(NullableBool rightToLeft) {
+  public Paragraph rightToLeft(RightToLeftEnum rightToLeft) {
     this.rightToLeft = rightToLeft;
     return this;
   }
@@ -455,11 +937,11 @@ public class Paragraph extends ResourceBase {
    * @return rightToLeft
   **/
   @ApiModelProperty(value = "")
-  public NullableBool getRightToLeft() {
+  public RightToLeftEnum getRightToLeft() {
     return rightToLeft;
   }
 
-  public void setRightToLeft(NullableBool rightToLeft) {
+  public void setRightToLeft(RightToLeftEnum rightToLeft) {
     this.rightToLeft = rightToLeft;
   }
 

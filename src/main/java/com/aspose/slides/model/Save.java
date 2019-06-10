@@ -28,7 +28,6 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.ExportFormat;
 import com.aspose.slides.model.ExportOptions;
 import com.aspose.slides.model.OutputFile;
 import com.aspose.slides.model.Task;
@@ -47,8 +46,91 @@ import java.util.ArrayList;
  */
 @ApiModel(description = "Save slide task.")
 public class Save extends Task {
+  /**
+   * Format.
+   */
+  @JsonAdapter(FormatEnum.Adapter.class)
+  public enum FormatEnum {
+    PDF("Pdf"),
+    
+    XPS("Xps"),
+    
+    TIFF("Tiff"),
+    
+    PPTX("Pptx"),
+    
+    ODP("Odp"),
+    
+    OTP("Otp"),
+    
+    PPT("Ppt"),
+    
+    PPS("Pps"),
+    
+    PPSX("Ppsx"),
+    
+    PPTM("Pptm"),
+    
+    PPSM("Ppsm"),
+    
+    POTX("Potx"),
+    
+    POTM("Potm"),
+    
+    HTML("Html"),
+    
+    SWF("Swf"),
+    
+    SVG("Svg"),
+    
+    JPEG("Jpeg"),
+    
+    PNG("Png"),
+    
+    GIF("Gif"),
+    
+    BMP("Bmp");
+
+    private String value;
+
+    FormatEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static FormatEnum fromValue(String text) {
+      for (FormatEnum b : FormatEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<FormatEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final FormatEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public FormatEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return FormatEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("Format")
-  private ExportFormat format;
+  private FormatEnum format;
 
   @SerializedName("Output")
   private OutputFile output;
@@ -59,10 +141,10 @@ public class Save extends Task {
 
   public Save() {
     super();
-    setType(com.aspose.slides.model.TaskType.SAVE);
+    setType(TypeEnum.SAVE);
   }
 
-  public Save format(ExportFormat format) {
+  public Save format(FormatEnum format) {
     this.format = format;
     return this;
   }
@@ -71,12 +153,12 @@ public class Save extends Task {
    * Format.
    * @return format
   **/
-  @ApiModelProperty(value = "Format.")
-  public ExportFormat getFormat() {
+  @ApiModelProperty(required = true, value = "Format.")
+  public FormatEnum getFormat() {
     return format;
   }
 
-  public void setFormat(ExportFormat format) {
+  public void setFormat(FormatEnum format) {
     this.format = format;
   }
 

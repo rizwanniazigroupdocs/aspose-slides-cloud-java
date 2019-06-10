@@ -28,7 +28,6 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.InputFileType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -44,33 +43,64 @@ import java.util.ArrayList;
  */
 @ApiModel(description = "Represents abstract input file source for pipeline.")
 public class InputFile {
-  @SerializedName("Type")
-  private InputFileType type;
-
   @SerializedName("Password")
   private String password;
+
+  /**
+   * Gets or Sets type
+   */
+  @JsonAdapter(TypeEnum.Adapter.class)
+  public enum TypeEnum {
+    PATH("Path"),
+    
+    REQUEST("Request"),
+    
+    BASE64("Base64");
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TypeEnum fromValue(String text) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return TypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName("Type")
+  private TypeEnum type;
 
 
   public InputFile() {
     super();
-  }
-
-  public InputFile type(InputFileType type) {
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * Gets type of input source.
-   * @return type
-  **/
-  @ApiModelProperty(required = true, value = "Gets type of input source.")
-  public InputFileType getType() {
-    return type;
-  }
-
-  public void setType(InputFileType type) {
-    this.type = type;
   }
 
   public InputFile password(String password) {
@@ -91,6 +121,24 @@ public class InputFile {
     this.password = password;
   }
 
+  public InputFile type(TypeEnum type) {
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * Get type
+   * @return type
+  **/
+  @ApiModelProperty(value = "")
+  public TypeEnum getType() {
+    return type;
+  }
+
+  public void setType(TypeEnum type) {
+    this.type = type;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -101,12 +149,12 @@ public class InputFile {
       return false;
     }
     InputFile inputFile = (InputFile) o;
-    return true && Objects.equals(this.type, inputFile.type) && Objects.equals(this.password, inputFile.password);
+    return true && Objects.equals(this.password, inputFile.password) && Objects.equals(this.type, inputFile.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, password);
+    return Objects.hash(password, type);
   }
 
 
@@ -115,8 +163,8 @@ public class InputFile {
     StringBuilder sb = new StringBuilder();
     sb.append("class InputFile {\n");
     
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

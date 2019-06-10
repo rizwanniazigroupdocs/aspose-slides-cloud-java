@@ -28,8 +28,6 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
-import com.aspose.slides.model.ChartDataPointType;
-import com.aspose.slides.model.ChartType;
 import com.aspose.slides.model.EffectFormat;
 import com.aspose.slides.model.FillFormat;
 import com.aspose.slides.model.LineFormat;
@@ -49,11 +47,199 @@ import java.util.ArrayList;
  */
 @ApiModel(description = "A chart series.")
 public class Series {
-  @SerializedName("DataPointType")
-  private ChartDataPointType dataPointType;
+  /**
+   * Series type.
+   */
+  @JsonAdapter(TypeEnum.Adapter.class)
+  public enum TypeEnum {
+    CLUSTEREDCOLUMN("ClusteredColumn"),
+    
+    STACKEDCOLUMN("StackedColumn"),
+    
+    PERCENTSSTACKEDCOLUMN("PercentsStackedColumn"),
+    
+    CLUSTEREDCOLUMN3D("ClusteredColumn3D"),
+    
+    STACKEDCOLUMN3D("StackedColumn3D"),
+    
+    PERCENTSSTACKEDCOLUMN3D("PercentsStackedColumn3D"),
+    
+    COLUMN3D("Column3D"),
+    
+    CLUSTEREDCYLINDER("ClusteredCylinder"),
+    
+    STACKEDCYLINDER("StackedCylinder"),
+    
+    PERCENTSSTACKEDCYLINDER("PercentsStackedCylinder"),
+    
+    CYLINDER3D("Cylinder3D"),
+    
+    CLUSTEREDCONE("ClusteredCone"),
+    
+    STACKEDCONE("StackedCone"),
+    
+    PERCENTSSTACKEDCONE("PercentsStackedCone"),
+    
+    CONE3D("Cone3D"),
+    
+    CLUSTEREDPYRAMID("ClusteredPyramid"),
+    
+    STACKEDPYRAMID("StackedPyramid"),
+    
+    PERCENTSSTACKEDPYRAMID("PercentsStackedPyramid"),
+    
+    PYRAMID3D("Pyramid3D"),
+    
+    LINE("Line"),
+    
+    STACKEDLINE("StackedLine"),
+    
+    PERCENTSSTACKEDLINE("PercentsStackedLine"),
+    
+    LINEWITHMARKERS("LineWithMarkers"),
+    
+    STACKEDLINEWITHMARKERS("StackedLineWithMarkers"),
+    
+    PERCENTSSTACKEDLINEWITHMARKERS("PercentsStackedLineWithMarkers"),
+    
+    LINE3D("Line3D"),
+    
+    PIE("Pie"),
+    
+    PIE3D("Pie3D"),
+    
+    PIEOFPIE("PieOfPie"),
+    
+    EXPLODEDPIE("ExplodedPie"),
+    
+    EXPLODEDPIE3D("ExplodedPie3D"),
+    
+    BAROFPIE("BarOfPie"),
+    
+    PERCENTSSTACKEDBAR("PercentsStackedBar"),
+    
+    CLUSTEREDBAR3D("ClusteredBar3D"),
+    
+    CLUSTEREDBAR("ClusteredBar"),
+    
+    STACKEDBAR("StackedBar"),
+    
+    STACKEDBAR3D("StackedBar3D"),
+    
+    PERCENTSSTACKEDBAR3D("PercentsStackedBar3D"),
+    
+    CLUSTEREDHORIZONTALCYLINDER("ClusteredHorizontalCylinder"),
+    
+    STACKEDHORIZONTALCYLINDER("StackedHorizontalCylinder"),
+    
+    PERCENTSSTACKEDHORIZONTALCYLINDER("PercentsStackedHorizontalCylinder"),
+    
+    CLUSTEREDHORIZONTALCONE("ClusteredHorizontalCone"),
+    
+    STACKEDHORIZONTALCONE("StackedHorizontalCone"),
+    
+    PERCENTSSTACKEDHORIZONTALCONE("PercentsStackedHorizontalCone"),
+    
+    CLUSTEREDHORIZONTALPYRAMID("ClusteredHorizontalPyramid"),
+    
+    STACKEDHORIZONTALPYRAMID("StackedHorizontalPyramid"),
+    
+    PERCENTSSTACKEDHORIZONTALPYRAMID("PercentsStackedHorizontalPyramid"),
+    
+    AREA("Area"),
+    
+    STACKEDAREA("StackedArea"),
+    
+    PERCENTSSTACKEDAREA("PercentsStackedArea"),
+    
+    AREA3D("Area3D"),
+    
+    STACKEDAREA3D("StackedArea3D"),
+    
+    PERCENTSSTACKEDAREA3D("PercentsStackedArea3D"),
+    
+    SCATTERWITHMARKERS("ScatterWithMarkers"),
+    
+    SCATTERWITHSMOOTHLINESANDMARKERS("ScatterWithSmoothLinesAndMarkers"),
+    
+    SCATTERWITHSMOOTHLINES("ScatterWithSmoothLines"),
+    
+    SCATTERWITHSTRAIGHTLINESANDMARKERS("ScatterWithStraightLinesAndMarkers"),
+    
+    SCATTERWITHSTRAIGHTLINES("ScatterWithStraightLines"),
+    
+    HIGHLOWCLOSE("HighLowClose"),
+    
+    OPENHIGHLOWCLOSE("OpenHighLowClose"),
+    
+    VOLUMEHIGHLOWCLOSE("VolumeHighLowClose"),
+    
+    VOLUMEOPENHIGHLOWCLOSE("VolumeOpenHighLowClose"),
+    
+    SURFACE3D("Surface3D"),
+    
+    WIREFRAMESURFACE3D("WireframeSurface3D"),
+    
+    CONTOUR("Contour"),
+    
+    WIREFRAMECONTOUR("WireframeContour"),
+    
+    DOUGHNUT("Doughnut"),
+    
+    EXPLODEDDOUGHNUT("ExplodedDoughnut"),
+    
+    BUBBLE("Bubble"),
+    
+    BUBBLEWITH3D("BubbleWith3D"),
+    
+    RADAR("Radar"),
+    
+    RADARWITHMARKERS("RadarWithMarkers"),
+    
+    FILLEDRADAR("FilledRadar"),
+    
+    SERIESOFMIXEDTYPES("SeriesOfMixedTypes");
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TypeEnum fromValue(String text) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return TypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @SerializedName("Type")
-  private ChartType type;
+  private TypeEnum type;
 
   @SerializedName("Name")
   private String name;
@@ -108,25 +294,7 @@ public class Series {
     super();
   }
 
-  public Series dataPointType(ChartDataPointType dataPointType) {
-    this.dataPointType = dataPointType;
-    return this;
-  }
-
-   /**
-   * Data point type.
-   * @return dataPointType
-  **/
-  @ApiModelProperty(required = true, value = "Data point type.")
-  public ChartDataPointType getDataPointType() {
-    return dataPointType;
-  }
-
-  public void setDataPointType(ChartDataPointType dataPointType) {
-    this.dataPointType = dataPointType;
-  }
-
-  public Series type(ChartType type) {
+  public Series type(TypeEnum type) {
     this.type = type;
     return this;
   }
@@ -136,11 +304,11 @@ public class Series {
    * @return type
   **/
   @ApiModelProperty(required = true, value = "Series type.")
-  public ChartType getType() {
+  public TypeEnum getType() {
     return type;
   }
 
-  public void setType(ChartType type) {
+  public void setType(TypeEnum type) {
     this.type = type;
   }
 
@@ -442,12 +610,12 @@ public class Series {
       return false;
     }
     Series series = (Series) o;
-    return true && Objects.equals(this.dataPointType, series.dataPointType) && Objects.equals(this.type, series.type) && Objects.equals(this.name, series.name) && Objects.equals(this.isColorVaried, series.isColorVaried) && Objects.equals(this.invertedSolidFillColor, series.invertedSolidFillColor) && Objects.equals(this.smooth, series.smooth) && Objects.equals(this.plotOnSecondAxis, series.plotOnSecondAxis) && Objects.equals(this.order, series.order) && Objects.equals(this.numberFormatOfYValues, series.numberFormatOfYValues) && Objects.equals(this.numberFormatOfXValues, series.numberFormatOfXValues) && Objects.equals(this.numberFormatOfValues, series.numberFormatOfValues) && Objects.equals(this.numberFormatOfBubbleSizes, series.numberFormatOfBubbleSizes) && Objects.equals(this.invertIfNegative, series.invertIfNegative) && Objects.equals(this.explosion, series.explosion) && Objects.equals(this.marker, series.marker) && Objects.equals(this.fillFormat, series.fillFormat) && Objects.equals(this.effectFormat, series.effectFormat) && Objects.equals(this.lineFormat, series.lineFormat);
+    return true && Objects.equals(this.type, series.type) && Objects.equals(this.name, series.name) && Objects.equals(this.isColorVaried, series.isColorVaried) && Objects.equals(this.invertedSolidFillColor, series.invertedSolidFillColor) && Objects.equals(this.smooth, series.smooth) && Objects.equals(this.plotOnSecondAxis, series.plotOnSecondAxis) && Objects.equals(this.order, series.order) && Objects.equals(this.numberFormatOfYValues, series.numberFormatOfYValues) && Objects.equals(this.numberFormatOfXValues, series.numberFormatOfXValues) && Objects.equals(this.numberFormatOfValues, series.numberFormatOfValues) && Objects.equals(this.numberFormatOfBubbleSizes, series.numberFormatOfBubbleSizes) && Objects.equals(this.invertIfNegative, series.invertIfNegative) && Objects.equals(this.explosion, series.explosion) && Objects.equals(this.marker, series.marker) && Objects.equals(this.fillFormat, series.fillFormat) && Objects.equals(this.effectFormat, series.effectFormat) && Objects.equals(this.lineFormat, series.lineFormat);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(dataPointType, type, name, isColorVaried, invertedSolidFillColor, smooth, plotOnSecondAxis, order, numberFormatOfYValues, numberFormatOfXValues, numberFormatOfValues, numberFormatOfBubbleSizes, invertIfNegative, explosion, marker, fillFormat, effectFormat, lineFormat);
+    return Objects.hash(type, name, isColorVaried, invertedSolidFillColor, smooth, plotOnSecondAxis, order, numberFormatOfYValues, numberFormatOfXValues, numberFormatOfValues, numberFormatOfBubbleSizes, invertIfNegative, explosion, marker, fillFormat, effectFormat, lineFormat);
   }
 
 
@@ -456,7 +624,6 @@ public class Series {
     StringBuilder sb = new StringBuilder();
     sb.append("class Series {\n");
     
-    sb.append("    dataPointType: ").append(toIndentedString(dataPointType)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    isColorVaried: ").append(toIndentedString(isColorVaried)).append("\n");
