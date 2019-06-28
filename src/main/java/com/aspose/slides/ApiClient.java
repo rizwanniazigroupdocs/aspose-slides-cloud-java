@@ -92,7 +92,7 @@ public class ApiClient {
     /*
      * Constructor for ApiClient
      */
-    public ApiClient(String baseUrl, Authentication authentication, Boolean debugging) {
+    public ApiClient(String baseUrl, Authentication authentication, Boolean debugging, Integer timeout) {
         this.baseUrl = baseUrl;
         this.authentication = authentication;
         httpClient = new OkHttpClient();
@@ -105,6 +105,9 @@ public class ApiClient {
 
         addDefaultHeader("x-aspose-client", "java sdk");
         addDefaultHeader("x-aspose-client-version", getVersion());
+        if (timeout > 0) {
+            addDefaultHeader("x-aspose-timeout", timeout.toString());
+        }
     }
 
     /**
@@ -916,8 +919,7 @@ public class ApiClient {
             headerParams = new HashMap<String, String>();
         }
         authentication.updateHeaderParams(headerParams);
-        authentication.updateQueryParams(queryParams);
-        final Request.Builder reqBuilder = new Request.Builder().url(authentication.updateUrl(buildUrl(path, queryParams)));
+        final Request.Builder reqBuilder = new Request.Builder().url(buildUrl(path, queryParams));
         processHeaderParams(headerParams, reqBuilder);
 
         String contentType = (String) headerParams.get("Content-Type");

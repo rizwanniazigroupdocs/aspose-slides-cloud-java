@@ -27,12 +27,11 @@
 
 package com.aspose.slides;
 
-import com.aspose.slides.auth.AuthType;
 import com.google.gson.annotations.SerializedName;
 
 public class Configuration {
     @SerializedName("BaseUrl")
-    private String baseUrl = "http://api.aspose.cloud";
+    private String baseUrl = "https://api.aspose.cloud";
 
     public String getBaseUrl() {
         return baseUrl;
@@ -55,17 +54,6 @@ public class Configuration {
 
     public String getUrl() {
         return getBaseUrl() + "/" + getVersion();
-    }
-
-    @SerializedName("AuthType")
-    private AuthType authType = AuthType.OAUTH;
-
-    public AuthType getAuthType() {
-        return authType;
-    }
-
-    public void setAuthType(AuthType value) {
-        authType = value;
     }
 
     @SerializedName("AppSid")
@@ -99,6 +87,16 @@ public class Configuration {
 
     public void setDebug(Boolean value) {
         debug = value;
+    }
+    
+    private int timeout = 0;
+
+    public int getTimeout() {
+        return timeout;
+    }
+
+    public void setTimeout(int value) {
+        timeout = value;
     }
 
     public Configuration() {

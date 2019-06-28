@@ -39,11 +39,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * ArrowHeadProperties
+ * Arrow head properties.
  */
+@ApiModel(description = "Arrow head properties.")
 public class ArrowHeadProperties {
   /**
-   * Gets or Sets length
+   * Length.
    */
   @JsonAdapter(LengthEnum.Adapter.class)
   public enum LengthEnum {
@@ -97,7 +98,7 @@ public class ArrowHeadProperties {
   private LengthEnum length;
 
   /**
-   * Gets or Sets style
+   * Style.
    */
   @JsonAdapter(StyleEnum.Adapter.class)
   public enum StyleEnum {
@@ -157,7 +158,7 @@ public class ArrowHeadProperties {
   private StyleEnum style;
 
   /**
-   * Gets or Sets width
+   * Width.
    */
   @JsonAdapter(WidthEnum.Adapter.class)
   public enum WidthEnum {
@@ -221,10 +222,10 @@ public class ArrowHeadProperties {
   }
 
    /**
-   * Get length
+   * Length.
    * @return length
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Length.")
   public LengthEnum getLength() {
     return length;
   }
@@ -239,10 +240,10 @@ public class ArrowHeadProperties {
   }
 
    /**
-   * Get style
+   * Style.
    * @return style
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Style.")
   public StyleEnum getStyle() {
     return style;
   }
@@ -257,10 +258,10 @@ public class ArrowHeadProperties {
   }
 
    /**
-   * Get width
+   * Width.
    * @return width
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Width.")
   public WidthEnum getWidth() {
     return width;
   }

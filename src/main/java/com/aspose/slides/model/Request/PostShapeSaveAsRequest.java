@@ -73,13 +73,13 @@ public class PostShapeSaveAsRequest {
     this.shapeIndex = shapeIndex;
   }
 
-  private ShapeExportFormat2 format;
+  private ShapeExportFormat format;
 
-  public ShapeExportFormat2 getFormat() {
+  public ShapeExportFormat getFormat() {
     return format;
   }
 
-  public void setFormat(ShapeExportFormat2 format) {
+  public void setFormat(ShapeExportFormat format) {
     this.format = format;
   }
 
@@ -143,13 +143,13 @@ public class PostShapeSaveAsRequest {
     this.scaleY = scaleY;
   }
 
-  private ShapeThumbnailBounds2 bounds;
+  private ShapeThumbnailBounds bounds;
 
-  public ShapeThumbnailBounds2 getBounds() {
+  public ShapeThumbnailBounds getBounds() {
     return bounds;
   }
 
-  public void setBounds(ShapeThumbnailBounds2 bounds) {
+  public void setBounds(ShapeThumbnailBounds bounds) {
     this.bounds = bounds;
   }
 

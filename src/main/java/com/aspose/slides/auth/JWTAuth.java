@@ -37,41 +37,23 @@ import com.google.gson.reflect.TypeToken;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Response;
 
-public class OAuth extends Authentication {
+public class JWTAuth extends Authentication {
     private final String appSid;
     private final String appKey;
     private final ApiClient apiClient;
     private String accessToken;
-    private String refreshToken;
     private Map<String, Object> grantCredentialsParams;
-    
-    private Map<String, Object> getGrantCredentialsParams() {
-        if (grantCredentialsParams == null) {
-            grantCredentialsParams = new HashMap<String, Object>();
-            grantCredentialsParams.put("grant_type", "client_credentials");
-            grantCredentialsParams.put("client_id", appSid);
-            grantCredentialsParams.put("client_secret", appKey);
-        }
-        return grantCredentialsParams;
-    }
-    
-    private Map<String, Object> getRefreshTokenParams() {
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("grant_type", "refresh_token");
-        params.put("refresh_token", refreshToken);
-        return params;
-    }
 
-    public OAuth(String baseUrl, String appSid, String appKey) {
+    public JWTAuth(String baseUrl, String appSid, String appKey) {
         this.appSid = appSid;
         this.appKey = appKey;
-        apiClient = new ApiClient(baseUrl, new Authentication(), false);
+        apiClient = new ApiClient(baseUrl, new Authentication(), false, 0);
     }
 
     @Override
     public void updateHeaderParams(Map<String, String> headerParams) throws ApiException {
         if (accessToken == null) {
-            doTokenRequest(getGrantCredentialsParams());
+            requestToken();
         }
         headerParams.put("Authorization", "Bearer " + accessToken);
     }
@@ -79,15 +61,20 @@ public class OAuth extends Authentication {
     @Override
     public void handleBadResponse(Response response) throws ApiException {
         if (response.code() == 401) {
-            doTokenRequest(getRefreshTokenParams());
+            requestToken();
             throw new NeedRepeatRequestException();
         }
     }
     
-    private synchronized void doTokenRequest(Map<String, Object> formParams) throws ApiException {
-        Call call = apiClient.buildCall("/connect/token", "POST", null, null, null, formParams, null, null);
-        ApiResponse<OAuthResponse> response = apiClient.execute(call, new TypeToken<OAuthResponse>(){}.getType());
+    private synchronized void requestToken() throws ApiException {
+        if (grantCredentialsParams == null) {
+            grantCredentialsParams = new HashMap<String, Object>();
+            grantCredentialsParams.put("grant_type", "client_credentials");
+            grantCredentialsParams.put("client_id", appSid);
+            grantCredentialsParams.put("client_secret", appKey);
+        }
+        Call call = apiClient.buildCall("/connect/token", "POST", null, null, null, grantCredentialsParams, null, null);
+        ApiResponse<AuthResponse> response = apiClient.execute(call, new TypeToken<AuthResponse>(){}.getType());
         accessToken = response.getData().getAccessToken();
-        refreshToken = response.getData().getRefreshToken();
     }
 }

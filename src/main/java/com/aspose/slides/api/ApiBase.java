@@ -28,9 +28,8 @@
 package com.aspose.slides.api;
 
 import com.aspose.slides.ApiClient;
-import com.aspose.slides.auth.AppKeyAuth;
 import com.aspose.slides.auth.Authentication;
-import com.aspose.slides.auth.OAuth;
+import com.aspose.slides.auth.JWTAuth;
 import com.aspose.slides.Configuration;
 
 public abstract class ApiBase {
@@ -42,7 +41,7 @@ public abstract class ApiBase {
 
     public ApiBase(Configuration configuration) {
         Authentication authentication = createAuthentication(configuration);
-        apiClient = new ApiClient(configuration.getUrl(), authentication, configuration.getDebug());
+        apiClient = new ApiClient(configuration.getUrl(), authentication, configuration.getDebug(), configuration.getTimeout());
     }
 
     public ApiBase(String appSid, String appKey) {
@@ -50,11 +49,6 @@ public abstract class ApiBase {
     }
 
     private Authentication createAuthentication(Configuration configuration) {
-        switch (configuration.getAuthType())
-        {
-            case OAUTH: return new OAuth(configuration.getBaseUrl(), configuration.getAppSid(), configuration.getAppKey());
-            case REQUESTSIGNATURE: return new AppKeyAuth(configuration.getAppSid(), configuration.getAppKey());
-            default: return new Authentication();
-        }
+        return new JWTAuth(configuration.getBaseUrl(), configuration.getAppSid(), configuration.getAppKey());            
     }
 }

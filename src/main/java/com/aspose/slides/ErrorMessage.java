@@ -30,7 +30,7 @@ package com.aspose.slides;
 import com.google.gson.annotations.SerializedName;
 
 public class ErrorMessage {
-    @SerializedName("Message")
+    @SerializedName("message")
     private String message;
     
     public String getMessage() {
@@ -41,7 +41,7 @@ public class ErrorMessage {
         message = value;
     }
 
-    @SerializedName("Error")
+    @SerializedName("error")
     private ErrorMessage error;
     
     public ErrorMessage getError() {

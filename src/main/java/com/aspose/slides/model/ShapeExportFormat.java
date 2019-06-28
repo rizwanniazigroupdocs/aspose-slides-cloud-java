@@ -25,52 +25,67 @@
  * --------------------------------------------------------------------------------------------------------------------
  */
 
-package com.aspose.slides.auth;
+package com.aspose.slides.model;
 
-import com.aspose.slides.Pair;
+import java.util.Objects;
+import io.swagger.annotations.ApiModel;
+import com.google.gson.annotations.SerializedName;
+import java.util.ArrayList;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.util.List;
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-import org.apache.commons.codec.binary.Base64;
+import java.io.IOException;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 
-public class AppKeyAuth extends Authentication {
-    private final String appSid;
-    private final String appKey;
+/**
+ * Represents a format for export individual shape.
+ */
+@JsonAdapter(ShapeExportFormat.Adapter.class)
+public enum ShapeExportFormat {
+  
+  JPEG("Jpeg"),
+  
+  PNG("Png"),
+  
+  GIF("Gif"),
+  
+  BMP("Bmp"),
+  
+  TIFF("Tiff"),
+  
+  SVG("Svg");
 
-    public AppKeyAuth(String appSid, String appKey) {
-        this.appSid = appSid;
-        this.appKey = appKey;
+  private String value;
+
+  ShapeExportFormat(String value) {
+    this.value = value;
+  }
+
+  public String getValue() {
+    return value;
+  }
+
+  public static ShapeExportFormat fromValue(String text) {
+    for (ShapeExportFormat b : ShapeExportFormat.values()) {
+      if (String.valueOf(b.value).equals(text)) {
+        return b;
+      }
+    }
+    return null;
+  }
+
+  public static class Adapter extends TypeAdapter<ShapeExportFormat> {
+    @Override
+    public void write(final JsonWriter jsonWriter, final ShapeExportFormat enumeration) throws IOException {
+      jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public void updateQueryParams(List<Pair> queryParams) {
-        queryParams.add(new Pair("appSid", appSid));
+    public ShapeExportFormat read(final JsonReader jsonReader) throws IOException {
+      String value = jsonReader.nextString();
+      return ShapeExportFormat.fromValue(String.valueOf(value));
     }
-
-    @Override
-    public String updateUrl(String url) {
-        return url + "&signature=" + sign(url);
-    }
-
-    private String sign(String url) {
-        try {
-            String algorithm = "HmacSHA1";
-            Mac mac = Mac.getInstance(algorithm);
-            mac.init(new SecretKeySpec(appKey.getBytes(), algorithm));
-            String signature = new String(Base64.encodeBase64(mac.doFinal(url.getBytes())));
-            if(signature.endsWith("=")){
-                signature = signature.substring(0, signature.length() - 1);
-            }
-            return URLEncoder.encode(signature, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-        } catch (NoSuchAlgorithmException e) {
-        } catch (InvalidKeyException e) {
-        }
-        return null;
-    }
+  }
 }
+

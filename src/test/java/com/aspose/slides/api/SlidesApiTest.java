@@ -14708,7 +14708,7 @@ public class SlidesApiTest extends ApiTest {
         Boolean needAssertResponse = false;
         PostNotesSlideShapeSaveAsRequest request = createPostNotesSlideShapeSaveAsRequest();
         try {
-            request.setFormat((ShapeExportFormat2)invalidizeTestValue("ShapeExportFormat2", request.getFormat(), "postNotesSlideShapeSaveAs", "format"));
+            request.setFormat((ShapeExportFormat)invalidizeTestValue("ShapeExportFormat", request.getFormat(), "postNotesSlideShapeSaveAs", "format"));
             initialize("postNotesSlideShapeSaveAs", "format", request.getFormat());
             File response = api.postNotesSlideShapeSaveAs(request);
             needAssertResponse = true;
@@ -14876,7 +14876,7 @@ public class SlidesApiTest extends ApiTest {
         Boolean needAssertResponse = false;
         PostNotesSlideShapeSaveAsRequest request = createPostNotesSlideShapeSaveAsRequest();
         try {
-            request.setBounds((ShapeThumbnailBounds2)invalidizeTestValue("ShapeThumbnailBounds2", request.getBounds(), "postNotesSlideShapeSaveAs", "bounds"));
+            request.setBounds((ShapeThumbnailBounds)invalidizeTestValue("ShapeThumbnailBounds", request.getBounds(), "postNotesSlideShapeSaveAs", "bounds"));
             initialize("postNotesSlideShapeSaveAs", "bounds", request.getBounds());
             File response = api.postNotesSlideShapeSaveAs(request);
             needAssertResponse = true;
@@ -14918,14 +14918,14 @@ public class SlidesApiTest extends ApiTest {
         request.setSlideIndex((Integer)getTestValue("Integer", "postNotesSlideShapeSaveAs", "slideIndex"));
         request.setPath((String)getTestValue("String", "postNotesSlideShapeSaveAs", "path"));
         request.setShapeIndex((Integer)getTestValue("Integer", "postNotesSlideShapeSaveAs", "shapeIndex"));
-        request.setFormat((ShapeExportFormat2)getTestValue("ShapeExportFormat2", "postNotesSlideShapeSaveAs", "format"));
+        request.setFormat((ShapeExportFormat)getTestValue("ShapeExportFormat", "postNotesSlideShapeSaveAs", "format"));
         request.setOptions((IShapeExportOptions)getTestValue("IShapeExportOptions", "postNotesSlideShapeSaveAs", "options"));
         request.setPassword((String)getTestValue("String", "postNotesSlideShapeSaveAs", "password"));
         request.setFolder((String)getTestValue("String", "postNotesSlideShapeSaveAs", "folder"));
         request.setStorage((String)getTestValue("String", "postNotesSlideShapeSaveAs", "storage"));
         request.setScaleX((Double)getTestValue("Double", "postNotesSlideShapeSaveAs", "scaleX"));
         request.setScaleY((Double)getTestValue("Double", "postNotesSlideShapeSaveAs", "scaleY"));
-        request.setBounds((ShapeThumbnailBounds2)getTestValue("ShapeThumbnailBounds2", "postNotesSlideShapeSaveAs", "bounds"));
+        request.setBounds((ShapeThumbnailBounds)getTestValue("ShapeThumbnailBounds", "postNotesSlideShapeSaveAs", "bounds"));
         request.setFontsFolder((String)getTestValue("String", "postNotesSlideShapeSaveAs", "fontsFolder"));
         return request;
     }
@@ -15204,7 +15204,7 @@ public class SlidesApiTest extends ApiTest {
         Boolean needAssertResponse = false;
         PostShapeSaveAsRequest request = createPostShapeSaveAsRequest();
         try {
-            request.setFormat((ShapeExportFormat2)invalidizeTestValue("ShapeExportFormat2", request.getFormat(), "postShapeSaveAs", "format"));
+            request.setFormat((ShapeExportFormat)invalidizeTestValue("ShapeExportFormat", request.getFormat(), "postShapeSaveAs", "format"));
             initialize("postShapeSaveAs", "format", request.getFormat());
             File response = api.postShapeSaveAs(request);
             needAssertResponse = true;
@@ -15372,7 +15372,7 @@ public class SlidesApiTest extends ApiTest {
         Boolean needAssertResponse = false;
         PostShapeSaveAsRequest request = createPostShapeSaveAsRequest();
         try {
-            request.setBounds((ShapeThumbnailBounds2)invalidizeTestValue("ShapeThumbnailBounds2", request.getBounds(), "postShapeSaveAs", "bounds"));
+            request.setBounds((ShapeThumbnailBounds)invalidizeTestValue("ShapeThumbnailBounds", request.getBounds(), "postShapeSaveAs", "bounds"));
             initialize("postShapeSaveAs", "bounds", request.getBounds());
             File response = api.postShapeSaveAs(request);
             needAssertResponse = true;
@@ -15414,14 +15414,14 @@ public class SlidesApiTest extends ApiTest {
         request.setSlideIndex((Integer)getTestValue("Integer", "postShapeSaveAs", "slideIndex"));
         request.setPath((String)getTestValue("String", "postShapeSaveAs", "path"));
         request.setShapeIndex((Integer)getTestValue("Integer", "postShapeSaveAs", "shapeIndex"));
-        request.setFormat((ShapeExportFormat2)getTestValue("ShapeExportFormat2", "postShapeSaveAs", "format"));
+        request.setFormat((ShapeExportFormat)getTestValue("ShapeExportFormat", "postShapeSaveAs", "format"));
         request.setOptions((IShapeExportOptions)getTestValue("IShapeExportOptions", "postShapeSaveAs", "options"));
         request.setPassword((String)getTestValue("String", "postShapeSaveAs", "password"));
         request.setFolder((String)getTestValue("String", "postShapeSaveAs", "folder"));
         request.setStorage((String)getTestValue("String", "postShapeSaveAs", "storage"));
         request.setScaleX((Double)getTestValue("Double", "postShapeSaveAs", "scaleX"));
         request.setScaleY((Double)getTestValue("Double", "postShapeSaveAs", "scaleY"));
-        request.setBounds((ShapeThumbnailBounds2)getTestValue("ShapeThumbnailBounds2", "postShapeSaveAs", "bounds"));
+        request.setBounds((ShapeThumbnailBounds)getTestValue("ShapeThumbnailBounds", "postShapeSaveAs", "bounds"));
         request.setFontsFolder((String)getTestValue("String", "postShapeSaveAs", "fontsFolder"));
         return request;
     }
@@ -19361,7 +19361,7 @@ public class SlidesApiTest extends ApiTest {
         Boolean needAssertResponse = false;
         PutNotesSlideShapeSaveAsRequest request = createPutNotesSlideShapeSaveAsRequest();
         try {
-            request.setFormat((ShapeExportFormat2)invalidizeTestValue("ShapeExportFormat2", request.getFormat(), "putNotesSlideShapeSaveAs", "format"));
+            request.setFormat((ShapeExportFormat)invalidizeTestValue("ShapeExportFormat", request.getFormat(), "putNotesSlideShapeSaveAs", "format"));
             initialize("putNotesSlideShapeSaveAs", "format", request.getFormat());
             api.putNotesSlideShapeSaveAs(request);
             needAssertResponse = true;
@@ -19553,7 +19553,7 @@ public class SlidesApiTest extends ApiTest {
         Boolean needAssertResponse = false;
         PutNotesSlideShapeSaveAsRequest request = createPutNotesSlideShapeSaveAsRequest();
         try {
-            request.setBounds((ShapeThumbnailBounds2)invalidizeTestValue("ShapeThumbnailBounds2", request.getBounds(), "putNotesSlideShapeSaveAs", "bounds"));
+            request.setBounds((ShapeThumbnailBounds)invalidizeTestValue("ShapeThumbnailBounds", request.getBounds(), "putNotesSlideShapeSaveAs", "bounds"));
             initialize("putNotesSlideShapeSaveAs", "bounds", request.getBounds());
             api.putNotesSlideShapeSaveAs(request);
             needAssertResponse = true;
@@ -19595,7 +19595,7 @@ public class SlidesApiTest extends ApiTest {
         request.setSlideIndex((Integer)getTestValue("Integer", "putNotesSlideShapeSaveAs", "slideIndex"));
         request.setPath((String)getTestValue("String", "putNotesSlideShapeSaveAs", "path"));
         request.setShapeIndex((Integer)getTestValue("Integer", "putNotesSlideShapeSaveAs", "shapeIndex"));
-        request.setFormat((ShapeExportFormat2)getTestValue("ShapeExportFormat2", "putNotesSlideShapeSaveAs", "format"));
+        request.setFormat((ShapeExportFormat)getTestValue("ShapeExportFormat", "putNotesSlideShapeSaveAs", "format"));
         request.setOutPath((String)getTestValue("String", "putNotesSlideShapeSaveAs", "outPath"));
         request.setOptions((IShapeExportOptions)getTestValue("IShapeExportOptions", "putNotesSlideShapeSaveAs", "options"));
         request.setPassword((String)getTestValue("String", "putNotesSlideShapeSaveAs", "password"));
@@ -19603,7 +19603,7 @@ public class SlidesApiTest extends ApiTest {
         request.setStorage((String)getTestValue("String", "putNotesSlideShapeSaveAs", "storage"));
         request.setScaleX((Double)getTestValue("Double", "putNotesSlideShapeSaveAs", "scaleX"));
         request.setScaleY((Double)getTestValue("Double", "putNotesSlideShapeSaveAs", "scaleY"));
-        request.setBounds((ShapeThumbnailBounds2)getTestValue("ShapeThumbnailBounds2", "putNotesSlideShapeSaveAs", "bounds"));
+        request.setBounds((ShapeThumbnailBounds)getTestValue("ShapeThumbnailBounds", "putNotesSlideShapeSaveAs", "bounds"));
         request.setFontsFolder((String)getTestValue("String", "putNotesSlideShapeSaveAs", "fontsFolder"));
         return request;
     }
@@ -20402,7 +20402,7 @@ public class SlidesApiTest extends ApiTest {
         Boolean needAssertResponse = false;
         PutShapeSaveAsRequest request = createPutShapeSaveAsRequest();
         try {
-            request.setFormat((ShapeExportFormat2)invalidizeTestValue("ShapeExportFormat2", request.getFormat(), "putShapeSaveAs", "format"));
+            request.setFormat((ShapeExportFormat)invalidizeTestValue("ShapeExportFormat", request.getFormat(), "putShapeSaveAs", "format"));
             initialize("putShapeSaveAs", "format", request.getFormat());
             api.putShapeSaveAs(request);
             needAssertResponse = true;
@@ -20594,7 +20594,7 @@ public class SlidesApiTest extends ApiTest {
         Boolean needAssertResponse = false;
         PutShapeSaveAsRequest request = createPutShapeSaveAsRequest();
         try {
-            request.setBounds((ShapeThumbnailBounds2)invalidizeTestValue("ShapeThumbnailBounds2", request.getBounds(), "putShapeSaveAs", "bounds"));
+            request.setBounds((ShapeThumbnailBounds)invalidizeTestValue("ShapeThumbnailBounds", request.getBounds(), "putShapeSaveAs", "bounds"));
             initialize("putShapeSaveAs", "bounds", request.getBounds());
             api.putShapeSaveAs(request);
             needAssertResponse = true;
@@ -20636,7 +20636,7 @@ public class SlidesApiTest extends ApiTest {
         request.setSlideIndex((Integer)getTestValue("Integer", "putShapeSaveAs", "slideIndex"));
         request.setPath((String)getTestValue("String", "putShapeSaveAs", "path"));
         request.setShapeIndex((Integer)getTestValue("Integer", "putShapeSaveAs", "shapeIndex"));
-        request.setFormat((ShapeExportFormat2)getTestValue("ShapeExportFormat2", "putShapeSaveAs", "format"));
+        request.setFormat((ShapeExportFormat)getTestValue("ShapeExportFormat", "putShapeSaveAs", "format"));
         request.setOutPath((String)getTestValue("String", "putShapeSaveAs", "outPath"));
         request.setOptions((IShapeExportOptions)getTestValue("IShapeExportOptions", "putShapeSaveAs", "options"));
         request.setPassword((String)getTestValue("String", "putShapeSaveAs", "password"));
@@ -20644,7 +20644,7 @@ public class SlidesApiTest extends ApiTest {
         request.setStorage((String)getTestValue("String", "putShapeSaveAs", "storage"));
         request.setScaleX((Double)getTestValue("Double", "putShapeSaveAs", "scaleX"));
         request.setScaleY((Double)getTestValue("Double", "putShapeSaveAs", "scaleY"));
-        request.setBounds((ShapeThumbnailBounds2)getTestValue("ShapeThumbnailBounds2", "putShapeSaveAs", "bounds"));
+        request.setBounds((ShapeThumbnailBounds)getTestValue("ShapeThumbnailBounds", "putShapeSaveAs", "bounds"));
         request.setFontsFolder((String)getTestValue("String", "putShapeSaveAs", "fontsFolder"));
         return request;
     }

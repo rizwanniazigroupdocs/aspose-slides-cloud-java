@@ -42,8 +42,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * DocumentProperty
+ * Document property.
  */
+@ApiModel(description = "Document property.")
 public class DocumentProperty extends ResourceBase {
   @SerializedName("Name")
   private String name;
@@ -66,10 +67,10 @@ public class DocumentProperty extends ResourceBase {
   }
 
    /**
-   * Get name
+   * Name.
    * @return name
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Name.")
   public String getName() {
     return name;
   }
@@ -84,10 +85,10 @@ public class DocumentProperty extends ResourceBase {
   }
 
    /**
-   * Get value
+   * Value.
    * @return value
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Value.")
   public String getValue() {
     return value;
   }
@@ -102,10 +103,10 @@ public class DocumentProperty extends ResourceBase {
   }
 
    /**
-   * Get builtIn
+   * True for builtin property.
    * @return builtIn
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "True for builtin property.")
   public Boolean isBuiltIn() {
     return builtIn;
   }

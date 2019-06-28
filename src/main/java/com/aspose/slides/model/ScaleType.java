@@ -39,7 +39,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * 
+ * Scale type of slide content.
  */
 @JsonAdapter(ScaleType.Adapter.class)
 public enum ScaleType {

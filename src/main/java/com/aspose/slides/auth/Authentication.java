@@ -28,25 +28,14 @@
 package com.aspose.slides.auth;
 
 import com.aspose.slides.ApiException;
-import com.aspose.slides.Pair;
 import com.squareup.okhttp.Response;
 
 import java.util.Map;
-import java.util.List;
 
 /**
  * Base class for authentication. Can be used as void authentication.
  */
 public class Authentication {
-    /**
-     * Apply authentication settings to query params.
-     *
-     * @param queryParams List of query parameters
-     */
-    public void updateQueryParams(List<Pair> queryParams)
-    {
-    }
-
     /**
      * Apply authentication settings to header params.
      *
@@ -54,17 +43,6 @@ public class Authentication {
      */
     public void updateHeaderParams(Map<String, String> headerParams) throws ApiException
     {
-    }
-
-    /**
-     * Apply authentication settings to url.
-     *
-     * @param url URL
-     * @return Updated URL
-     */
-    public String updateUrl(String url)
-    {
-        return url;
     }
 
     /**

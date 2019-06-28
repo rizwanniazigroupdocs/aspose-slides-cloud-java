@@ -25,9 +25,61 @@
  * --------------------------------------------------------------------------------------------------------------------
  */
 
-package com.aspose.slides.auth;
+package com.aspose.slides.model;
 
-public enum AuthType {
-  OAUTH,
-  REQUESTSIGNATURE
+import java.util.Objects;
+import io.swagger.annotations.ApiModel;
+import com.google.gson.annotations.SerializedName;
+import java.util.ArrayList;
+
+import java.io.IOException;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+/**
+ * Represents thumnail bounds settings.
+ */
+@JsonAdapter(ShapeThumbnailBounds.Adapter.class)
+public enum ShapeThumbnailBounds {
+  
+  SLIDE("Slide"),
+  
+  SHAPE("Shape"),
+  
+  APPEARANCE("Appearance");
+
+  private String value;
+
+  ShapeThumbnailBounds(String value) {
+    this.value = value;
+  }
+
+  public String getValue() {
+    return value;
+  }
+
+  public static ShapeThumbnailBounds fromValue(String text) {
+    for (ShapeThumbnailBounds b : ShapeThumbnailBounds.values()) {
+      if (String.valueOf(b.value).equals(text)) {
+        return b;
+      }
+    }
+    return null;
+  }
+
+  public static class Adapter extends TypeAdapter<ShapeThumbnailBounds> {
+    @Override
+    public void write(final JsonWriter jsonWriter, final ShapeThumbnailBounds enumeration) throws IOException {
+      jsonWriter.value(enumeration.getValue());
+    }
+
+    @Override
+    public ShapeThumbnailBounds read(final JsonReader jsonReader) throws IOException {
+      String value = jsonReader.nextString();
+      return ShapeThumbnailBounds.fromValue(String.valueOf(value));
+    }
+  }
 }
+

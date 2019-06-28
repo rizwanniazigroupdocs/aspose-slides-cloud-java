@@ -77,10 +77,10 @@ public class SlideAnimation extends ResourceBase {
   }
 
    /**
-   * Get mainSequence
+   * Main sequence.
    * @return mainSequence
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Main sequence.")
   public List<Effect> getMainSequence() {
     return mainSequence;
   }
@@ -103,10 +103,10 @@ public class SlideAnimation extends ResourceBase {
   }
 
    /**
-   * Get interactiveSequences
+   * Interactive sequence list.
    * @return interactiveSequences
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Interactive sequence list.")
   public List<InteractiveSequence> getInteractiveSequences() {
     return interactiveSequences;
   }

@@ -529,7 +529,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -17233,7 +17233,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**

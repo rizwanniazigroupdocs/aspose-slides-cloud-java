@@ -32,12 +32,9 @@ import com.google.gson.annotations.SerializedName;
 /**
  * FontSet
  */
-public class OAuthResponse {
+public class AuthResponse {
   @SerializedName("access_token")
   private String accessToken = null;
-
-  @SerializedName("refresh_token")
-  private String refreshToken = null;
 
    /**
    * Get access token
@@ -49,17 +46,5 @@ public class OAuthResponse {
 
   public void setAccessToken(String accessToken) {
     this.accessToken = accessToken;
-  }
-
-   /**
-   * Get access token
-   * @return access token
-  **/
-  public String getRefreshToken() {
-    return refreshToken;
-  }
-
-  public void setRefreshToken(String refreshToken) {
-    this.refreshToken = refreshToken;
   }
 }

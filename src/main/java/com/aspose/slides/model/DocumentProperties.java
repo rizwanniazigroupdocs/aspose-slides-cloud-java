@@ -72,10 +72,10 @@ public class DocumentProperties extends ResourceBase {
   }
 
    /**
-   * Get list
+   * Document property list.
    * @return list
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Document property list.")
   public List<DocumentProperty> getList() {
     return list;
   }

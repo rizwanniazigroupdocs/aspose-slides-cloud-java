@@ -72,10 +72,10 @@ public class InteractiveSequence {
   }
 
    /**
-   * Get effects
+   * Effect list.
    * @return effects
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Effect list.")
   public List<Effect> getEffects() {
     return effects;
   }
@@ -90,10 +90,10 @@ public class InteractiveSequence {
   }
 
    /**
-   * Get triggerShapeIndex
+   * Index of the shape that triggers the sequence.
    * @return triggerShapeIndex
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Index of the shape that triggers the sequence.")
   public Integer getTriggerShapeIndex() {
     return triggerShapeIndex;
   }
