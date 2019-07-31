@@ -40,8 +40,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * ResetSlide
+ * Reset slide task.
  */
+@ApiModel(description = "Reset slide task.")
 public class ResetSlide extends Task {
   @SerializedName("Position")
   private Integer position;
@@ -58,10 +59,10 @@ public class ResetSlide extends Task {
   }
 
    /**
-   * Get position
+   * Slide position.
    * @return position
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Slide position.")
   public Integer getPosition() {
     return position;
   }

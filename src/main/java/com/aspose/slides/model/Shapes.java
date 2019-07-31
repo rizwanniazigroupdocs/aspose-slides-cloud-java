@@ -72,10 +72,10 @@ public class Shapes extends ResourceBase {
   }
 
    /**
-   * Get shapesLinks
+   * List of shape links.
    * @return shapesLinks
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of shape links.")
   public List<ResourceUriElement> getShapesLinks() {
     return shapesLinks;
   }

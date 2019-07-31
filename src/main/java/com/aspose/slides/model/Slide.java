@@ -43,8 +43,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Slide
+ * Presentation slide.
  */
+@ApiModel(description = "Presentation slide.")
 public class Slide extends ResourceBase {
   @SerializedName("Width")
   private Double width;

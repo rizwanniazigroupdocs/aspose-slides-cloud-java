@@ -72,10 +72,10 @@ public class Paragraphs extends ResourceBase {
   }
 
    /**
-   * Get paragraphLinks
+   * List of paragraph links.
    * @return paragraphLinks
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of paragraph links.")
   public List<ResourceUriElement> getParagraphLinks() {
     return paragraphLinks;
   }

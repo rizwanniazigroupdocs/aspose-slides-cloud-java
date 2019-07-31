@@ -53,6 +53,9 @@ public class HtmlExportOptions extends ExportOptions {
   @SerializedName("ShowHiddenSlides")
   private Boolean showHiddenSlides;
 
+  @SerializedName("SvgResponsiveLayout")
+  private Boolean svgResponsiveLayout;
+
   @SerializedName("JpegQuality")
   private Integer jpegQuality;
 
@@ -290,6 +293,24 @@ public class HtmlExportOptions extends ExportOptions {
     this.showHiddenSlides = showHiddenSlides;
   }
 
+  public HtmlExportOptions svgResponsiveLayout(Boolean svgResponsiveLayout) {
+    this.svgResponsiveLayout = svgResponsiveLayout;
+    return this;
+  }
+
+   /**
+   * True to make layout responsive by excluding width and height attributes from svg container.
+   * @return svgResponsiveLayout
+  **/
+  @ApiModelProperty(required = true, value = "True to make layout responsive by excluding width and height attributes from svg container.")
+  public Boolean isSvgResponsiveLayout() {
+    return svgResponsiveLayout;
+  }
+
+  public void setSvgResponsiveLayout(Boolean svgResponsiveLayout) {
+    this.svgResponsiveLayout = svgResponsiveLayout;
+  }
+
   public HtmlExportOptions jpegQuality(Integer jpegQuality) {
     this.jpegQuality = jpegQuality;
     return this;
@@ -444,12 +465,12 @@ public class HtmlExportOptions extends ExportOptions {
       return false;
     }
     HtmlExportOptions htmlExportOptions = (HtmlExportOptions) o;
-    return true && Objects.equals(this.saveAsZip, htmlExportOptions.saveAsZip) && Objects.equals(this.subDirectoryName, htmlExportOptions.subDirectoryName) && Objects.equals(this.showHiddenSlides, htmlExportOptions.showHiddenSlides) && Objects.equals(this.jpegQuality, htmlExportOptions.jpegQuality) && Objects.equals(this.picturesCompression, htmlExportOptions.picturesCompression) && Objects.equals(this.deletePicturesCroppedAreas, htmlExportOptions.deletePicturesCroppedAreas) && Objects.equals(this.notesPosition, htmlExportOptions.notesPosition) && Objects.equals(this.commentsPosition, htmlExportOptions.commentsPosition) && Objects.equals(this.commentsAreaWidth, htmlExportOptions.commentsAreaWidth) && Objects.equals(this.commentsAreaColor, htmlExportOptions.commentsAreaColor) && Objects.equals(this.showCommentsByNoAuthor, htmlExportOptions.showCommentsByNoAuthor) && super.equals(o);
+    return true && Objects.equals(this.saveAsZip, htmlExportOptions.saveAsZip) && Objects.equals(this.subDirectoryName, htmlExportOptions.subDirectoryName) && Objects.equals(this.showHiddenSlides, htmlExportOptions.showHiddenSlides) && Objects.equals(this.svgResponsiveLayout, htmlExportOptions.svgResponsiveLayout) && Objects.equals(this.jpegQuality, htmlExportOptions.jpegQuality) && Objects.equals(this.picturesCompression, htmlExportOptions.picturesCompression) && Objects.equals(this.deletePicturesCroppedAreas, htmlExportOptions.deletePicturesCroppedAreas) && Objects.equals(this.notesPosition, htmlExportOptions.notesPosition) && Objects.equals(this.commentsPosition, htmlExportOptions.commentsPosition) && Objects.equals(this.commentsAreaWidth, htmlExportOptions.commentsAreaWidth) && Objects.equals(this.commentsAreaColor, htmlExportOptions.commentsAreaColor) && Objects.equals(this.showCommentsByNoAuthor, htmlExportOptions.showCommentsByNoAuthor) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(saveAsZip, subDirectoryName, showHiddenSlides, jpegQuality, picturesCompression, deletePicturesCroppedAreas, notesPosition, commentsPosition, commentsAreaWidth, commentsAreaColor, showCommentsByNoAuthor, super.hashCode());
+    return Objects.hash(saveAsZip, subDirectoryName, showHiddenSlides, svgResponsiveLayout, jpegQuality, picturesCompression, deletePicturesCroppedAreas, notesPosition, commentsPosition, commentsAreaWidth, commentsAreaColor, showCommentsByNoAuthor, super.hashCode());
   }
 
 
@@ -461,6 +482,7 @@ public class HtmlExportOptions extends ExportOptions {
     sb.append("    saveAsZip: ").append(toIndentedString(saveAsZip)).append("\n");
     sb.append("    subDirectoryName: ").append(toIndentedString(subDirectoryName)).append("\n");
     sb.append("    showHiddenSlides: ").append(toIndentedString(showHiddenSlides)).append("\n");
+    sb.append("    svgResponsiveLayout: ").append(toIndentedString(svgResponsiveLayout)).append("\n");
     sb.append("    jpegQuality: ").append(toIndentedString(jpegQuality)).append("\n");
     sb.append("    picturesCompression: ").append(toIndentedString(picturesCompression)).append("\n");
     sb.append("    deletePicturesCroppedAreas: ").append(toIndentedString(deletePicturesCroppedAreas)).append("\n");

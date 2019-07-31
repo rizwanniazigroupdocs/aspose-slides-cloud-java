@@ -41,8 +41,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * CustomDashPattern
+ * Custom dash pattern.
  */
+@ApiModel(description = "Custom dash pattern.")
 public class CustomDashPattern {
   @SerializedName("Items")
   private List<Double> items = null;
@@ -67,10 +68,10 @@ public class CustomDashPattern {
   }
 
    /**
-   * Get items
+   * Pattern items.
    * @return items
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Pattern items.")
   public List<Double> getItems() {
     return items;
   }

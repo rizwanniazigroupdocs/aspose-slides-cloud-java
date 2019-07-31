@@ -90,10 +90,10 @@ public class ResourceBase {
   }
 
    /**
-   * Get alternateLinks
+   * List of alternate links.
    * @return alternateLinks
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of alternate links.")
   public List<ResourceUri> getAlternateLinks() {
     return alternateLinks;
   }

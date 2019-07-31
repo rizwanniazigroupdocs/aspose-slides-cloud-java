@@ -43,8 +43,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Placeholders
+ * Placeholder list.
  */
+@ApiModel(description = "Placeholder list.")
 public class Placeholders extends ResourceBase {
   @SerializedName("PlaceholderLinks")
   private List<ResourceUri> placeholderLinks = null;
@@ -70,10 +71,10 @@ public class Placeholders extends ResourceBase {
   }
 
    /**
-   * Get placeholderLinks
+   * List for placeholder links.
    * @return placeholderLinks
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List for placeholder links.")
   public List<ResourceUri> getPlaceholderLinks() {
     return placeholderLinks;
   }

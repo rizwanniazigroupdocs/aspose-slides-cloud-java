@@ -40,8 +40,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * RemoveSlide
+ * Remove slide task.
  */
+@ApiModel(description = "Remove slide task.")
 public class RemoveSlide extends Task {
   @SerializedName("Position")
   private Integer position;
@@ -58,10 +59,10 @@ public class RemoveSlide extends Task {
   }
 
    /**
-   * Get position
+   * Position of slide to be removed.
    * @return position
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Position of slide to be removed.")
   public Integer getPosition() {
     return position;
   }

@@ -39,7 +39,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * 
+ * Represents a format for notes slide export.
  */
 @JsonAdapter(NotesSlideExportFormat.Adapter.class)
 public enum NotesSlideExportFormat {

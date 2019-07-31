@@ -88,6 +88,8 @@ public class SaveSlide extends Task {
     
     POTX("Potx"),
     
+    POT("Pot"),
+    
     POTM("Potm"),
     
     SVG("Svg");

@@ -83,10 +83,10 @@ public class FormatScheme extends ResourceBase {
   }
 
    /**
-   * Get backgroundStyles
+   * Background style links.
    * @return backgroundStyles
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Background style links.")
   public List<ResourceUri> getBackgroundStyles() {
     return backgroundStyles;
   }
@@ -109,10 +109,10 @@ public class FormatScheme extends ResourceBase {
   }
 
    /**
-   * Get effectStyles
+   * Effect style links.
    * @return effectStyles
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Effect style links.")
   public List<ResourceUri> getEffectStyles() {
     return effectStyles;
   }
@@ -135,10 +135,10 @@ public class FormatScheme extends ResourceBase {
   }
 
    /**
-   * Get fillStyles
+   * Fill style links.
    * @return fillStyles
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Fill style links.")
   public List<ResourceUri> getFillStyles() {
     return fillStyles;
   }
@@ -161,10 +161,10 @@ public class FormatScheme extends ResourceBase {
   }
 
    /**
-   * Get lineStyles
+   * Line style links.
    * @return lineStyles
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Line style links.")
   public List<ResourceUri> getLineStyles() {
     return lineStyles;
   }

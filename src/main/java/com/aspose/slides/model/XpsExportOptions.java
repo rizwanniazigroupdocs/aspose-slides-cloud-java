@@ -40,8 +40,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * XpsExportOptions
+ * Provides options that control how a presentation is saved in XPS format.
  */
+@ApiModel(description = "Provides options that control how a presentation is saved in XPS format.")
 public class XpsExportOptions extends ExportOptions {
   @SerializedName("ShowHiddenSlides")
   private Boolean showHiddenSlides;

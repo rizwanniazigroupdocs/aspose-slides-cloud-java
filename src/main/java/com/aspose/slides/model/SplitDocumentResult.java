@@ -43,8 +43,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * SplitDocumentResult
+ * Split document result.
  */
+@ApiModel(description = "Split document result.")
 public class SplitDocumentResult extends ResourceBase {
   @SerializedName("Slides")
   private List<ResourceUri> slides = null;
@@ -70,10 +71,10 @@ public class SplitDocumentResult extends ResourceBase {
   }
 
    /**
-   * Get slides
+   * List of slide links.
    * @return slides
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of slide links.")
   public List<ResourceUri> getSlides() {
     return slides;
   }

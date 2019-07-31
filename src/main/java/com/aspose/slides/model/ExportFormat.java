@@ -66,6 +66,8 @@ public enum ExportFormat {
   
   PPSM("Ppsm"),
   
+  POT("Pot"),
+  
   POTX("Potx"),
   
   POTM("Potm"),

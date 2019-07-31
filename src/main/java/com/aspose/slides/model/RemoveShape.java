@@ -40,8 +40,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * RemoveShape
+ * Remove shape task.
  */
+@ApiModel(description = "Remove shape task.")
 public class RemoveShape extends Task {
   @SerializedName("ShapePath")
   private String shapePath;
@@ -58,10 +59,10 @@ public class RemoveShape extends Task {
   }
 
    /**
-   * Get shapePath
+   * Shape path for a grouped or smart art shape.
    * @return shapePath
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Shape path for a grouped or smart art shape.")
   public String getShapePath() {
     return shapePath;
   }

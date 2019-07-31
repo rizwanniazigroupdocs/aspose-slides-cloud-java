@@ -40,11 +40,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * TiffExportOptions
+ * Provides options that control how a presentation is saved in TIFF format.
  */
+@ApiModel(description = "Provides options that control how a presentation is saved in TIFF format.")
 public class TiffExportOptions extends ExportOptions {
   /**
-   * Gets or Sets compression
+   * Compression type.
    */
   @JsonAdapter(CompressionEnum.Adapter.class)
   public enum CompressionEnum {
@@ -297,10 +298,10 @@ public class TiffExportOptions extends ExportOptions {
   }
 
    /**
-   * Get compression
+   * Compression type.
    * @return compression
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Compression type.")
   public CompressionEnum getCompression() {
     return compression;
   }
@@ -315,10 +316,10 @@ public class TiffExportOptions extends ExportOptions {
   }
 
    /**
-   * Get width
+   * Width.
    * @return width
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Width.")
   public Integer getWidth() {
     return width;
   }
@@ -333,10 +334,10 @@ public class TiffExportOptions extends ExportOptions {
   }
 
    /**
-   * Get height
+   * Height.
    * @return height
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Height.")
   public Integer getHeight() {
     return height;
   }
@@ -351,10 +352,10 @@ public class TiffExportOptions extends ExportOptions {
   }
 
    /**
-   * Get dpiX
+   * Horizontal resolution, in dots per inch.
    * @return dpiX
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Horizontal resolution, in dots per inch.")
   public Integer getDpiX() {
     return dpiX;
   }
@@ -369,10 +370,10 @@ public class TiffExportOptions extends ExportOptions {
   }
 
    /**
-   * Get dpiY
+   * Vertical resolution, in dots per inch.
    * @return dpiY
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Vertical resolution, in dots per inch.")
   public Integer getDpiY() {
     return dpiY;
   }

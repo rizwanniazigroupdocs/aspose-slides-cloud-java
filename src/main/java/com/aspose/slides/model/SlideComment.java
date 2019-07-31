@@ -28,6 +28,7 @@
 package com.aspose.slides.model;
 
 import java.util.Objects;
+import com.aspose.slides.model.SlideComment;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -36,6 +37,8 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ArrayList;
 
 /**
@@ -52,9 +55,13 @@ public class SlideComment {
   @SerializedName("CreatedTime")
   private String createdTime;
 
+  @SerializedName("ChildComments")
+  private List<SlideComment> childComments = null;
+
 
   public SlideComment() {
     super();
+    setChildComments(new ArrayList<SlideComment>());
   }
 
   public SlideComment author(String author) {
@@ -63,10 +70,10 @@ public class SlideComment {
   }
 
    /**
-   * Get author
+   * Author.
    * @return author
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Author.")
   public String getAuthor() {
     return author;
   }
@@ -81,10 +88,10 @@ public class SlideComment {
   }
 
    /**
-   * Get text
+   * Text.
    * @return text
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Text.")
   public String getText() {
     return text;
   }
@@ -99,16 +106,42 @@ public class SlideComment {
   }
 
    /**
-   * Get createdTime
+   * Creation time.
    * @return createdTime
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Creation time.")
   public String getCreatedTime() {
     return createdTime;
   }
 
   public void setCreatedTime(String createdTime) {
     this.createdTime = createdTime;
+  }
+
+  public SlideComment childComments(List<SlideComment> childComments) {
+    this.childComments = childComments;
+    return this;
+  }
+
+  public SlideComment addChildCommentsItem(SlideComment childCommentsItem) {
+    if (this.childComments == null) {
+      this.childComments = new ArrayList<SlideComment>();
+    }
+    this.childComments.add(childCommentsItem);
+    return this;
+  }
+
+   /**
+   * Child comments.
+   * @return childComments
+  **/
+  @ApiModelProperty(value = "Child comments.")
+  public List<SlideComment> getChildComments() {
+    return childComments;
+  }
+
+  public void setChildComments(List<SlideComment> childComments) {
+    this.childComments = childComments;
   }
 
 
@@ -121,12 +154,12 @@ public class SlideComment {
       return false;
     }
     SlideComment slideComment = (SlideComment) o;
-    return true && Objects.equals(this.author, slideComment.author) && Objects.equals(this.text, slideComment.text) && Objects.equals(this.createdTime, slideComment.createdTime);
+    return true && Objects.equals(this.author, slideComment.author) && Objects.equals(this.text, slideComment.text) && Objects.equals(this.createdTime, slideComment.createdTime) && Objects.equals(this.childComments, slideComment.childComments);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(author, text, createdTime);
+    return Objects.hash(author, text, createdTime, childComments);
   }
 
 
@@ -138,6 +171,7 @@ public class SlideComment {
     sb.append("    author: ").append(toIndentedString(author)).append("\n");
     sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("    createdTime: ").append(toIndentedString(createdTime)).append("\n");
+    sb.append("    childComments: ").append(toIndentedString(childComments)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -59,10 +59,10 @@ public class SolidFill extends FillFormat {
   }
 
    /**
-   * Get color
+   * Color.
    * @return color
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Color.")
   public String getColor() {
     return color;
   }

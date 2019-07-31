@@ -42,8 +42,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * MergingSource
+ * Merging source.
  */
+@ApiModel(description = "Merging source.")
 public class MergingSource {
   @SerializedName("Input")
   private InputFile input;
@@ -63,10 +64,10 @@ public class MergingSource {
   }
 
    /**
-   * Get input
+   * Source file.
    * @return input
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Source file.")
   public InputFile getInput() {
     return input;
   }
@@ -89,10 +90,10 @@ public class MergingSource {
   }
 
    /**
-   * Get slides
+   * Indices of slides to be merged.
    * @return slides
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Indices of slides to be merged.")
   public List<Integer> getSlides() {
     return slides;
   }

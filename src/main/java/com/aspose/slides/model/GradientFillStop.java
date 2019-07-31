@@ -39,8 +39,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * GradientFillStop
+ * Gradient stop.
  */
+@ApiModel(description = "Gradient stop.")
 public class GradientFillStop {
   @SerializedName("Color")
   private String color;
@@ -59,10 +60,10 @@ public class GradientFillStop {
   }
 
    /**
-   * Get color
+   * Color.
    * @return color
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Color.")
   public String getColor() {
     return color;
   }
@@ -77,10 +78,10 @@ public class GradientFillStop {
   }
 
    /**
-   * Get position
+   * Stop position (0..1).
    * @return position
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Stop position (0..1).")
   public Double getPosition() {
     return position;
   }

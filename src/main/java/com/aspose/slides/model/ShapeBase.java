@@ -46,8 +46,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * ShapeBase
+ * Slide shape.
  */
+@ApiModel(description = "Slide shape.")
 public class ShapeBase extends ResourceBase {
   @SerializedName("Name")
   private String name;
@@ -60,6 +61,9 @@ public class ShapeBase extends ResourceBase {
 
   @SerializedName("AlternativeText")
   private String alternativeText;
+
+  @SerializedName("AlternativeTextTitle")
+  private String alternativeTextTitle;
 
   @SerializedName("Hidden")
   private Boolean hidden;
@@ -675,6 +679,24 @@ public class ShapeBase extends ResourceBase {
     this.alternativeText = alternativeText;
   }
 
+  public ShapeBase alternativeTextTitle(String alternativeTextTitle) {
+    this.alternativeTextTitle = alternativeTextTitle;
+    return this;
+  }
+
+   /**
+   * The title of alternative text associated with the shape.
+   * @return alternativeTextTitle
+  **/
+  @ApiModelProperty(value = "The title of alternative text associated with the shape.")
+  public String getAlternativeTextTitle() {
+    return alternativeTextTitle;
+  }
+
+  public void setAlternativeTextTitle(String alternativeTextTitle) {
+    this.alternativeTextTitle = alternativeTextTitle;
+  }
+
   public ShapeBase hidden(Boolean hidden) {
     this.hidden = hidden;
     return this;
@@ -865,12 +887,12 @@ public class ShapeBase extends ResourceBase {
       return false;
     }
     ShapeBase shapeBase = (ShapeBase) o;
-    return true && Objects.equals(this.name, shapeBase.name) && Objects.equals(this.width, shapeBase.width) && Objects.equals(this.height, shapeBase.height) && Objects.equals(this.alternativeText, shapeBase.alternativeText) && Objects.equals(this.hidden, shapeBase.hidden) && Objects.equals(this.X, shapeBase.X) && Objects.equals(this.Y, shapeBase.Y) && Objects.equals(this.zorderPosition, shapeBase.zorderPosition) && Objects.equals(this.shapes, shapeBase.shapes) && Objects.equals(this.fillFormat, shapeBase.fillFormat) && Objects.equals(this.effectFormat, shapeBase.effectFormat) && Objects.equals(this.lineFormat, shapeBase.lineFormat) && Objects.equals(this.type, shapeBase.type) && Objects.equals(this.shapeType, shapeBase.shapeType) && super.equals(o);
+    return true && Objects.equals(this.name, shapeBase.name) && Objects.equals(this.width, shapeBase.width) && Objects.equals(this.height, shapeBase.height) && Objects.equals(this.alternativeText, shapeBase.alternativeText) && Objects.equals(this.alternativeTextTitle, shapeBase.alternativeTextTitle) && Objects.equals(this.hidden, shapeBase.hidden) && Objects.equals(this.X, shapeBase.X) && Objects.equals(this.Y, shapeBase.Y) && Objects.equals(this.zorderPosition, shapeBase.zorderPosition) && Objects.equals(this.shapes, shapeBase.shapes) && Objects.equals(this.fillFormat, shapeBase.fillFormat) && Objects.equals(this.effectFormat, shapeBase.effectFormat) && Objects.equals(this.lineFormat, shapeBase.lineFormat) && Objects.equals(this.type, shapeBase.type) && Objects.equals(this.shapeType, shapeBase.shapeType) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, width, height, alternativeText, hidden, X, Y, zorderPosition, shapes, fillFormat, effectFormat, lineFormat, type, shapeType, super.hashCode());
+    return Objects.hash(name, width, height, alternativeText, alternativeTextTitle, hidden, X, Y, zorderPosition, shapes, fillFormat, effectFormat, lineFormat, type, shapeType, super.hashCode());
   }
 
 
@@ -883,6 +905,7 @@ public class ShapeBase extends ResourceBase {
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
     sb.append("    alternativeText: ").append(toIndentedString(alternativeText)).append("\n");
+    sb.append("    alternativeTextTitle: ").append(toIndentedString(alternativeTextTitle)).append("\n");
     sb.append("    hidden: ").append(toIndentedString(hidden)).append("\n");
     sb.append("    X: ").append(toIndentedString(X)).append("\n");
     sb.append("    Y: ").append(toIndentedString(Y)).append("\n");

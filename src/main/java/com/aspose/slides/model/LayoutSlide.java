@@ -44,14 +44,15 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * LayoutSlide
+ * Layout slide.
  */
+@ApiModel(description = "Layout slide.")
 public class LayoutSlide extends ResourceBase {
   @SerializedName("Name")
   private String name;
 
   /**
-   * Gets or Sets type
+   * Layout slide type.
    */
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
@@ -187,10 +188,10 @@ public class LayoutSlide extends ResourceBase {
   }
 
    /**
-   * Get name
+   * Name.
    * @return name
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Name.")
   public String getName() {
     return name;
   }
@@ -205,10 +206,10 @@ public class LayoutSlide extends ResourceBase {
   }
 
    /**
-   * Get type
+   * Layout slide type.
    * @return type
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Layout slide type.")
   public TypeEnum getType() {
     return type;
   }
@@ -223,10 +224,10 @@ public class LayoutSlide extends ResourceBase {
   }
 
    /**
-   * Get masterSlide
+   * Master slide link.
    * @return masterSlide
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Master slide link.")
   public ResourceUriElement getMasterSlide() {
     return masterSlide;
   }
@@ -249,10 +250,10 @@ public class LayoutSlide extends ResourceBase {
   }
 
    /**
-   * Get dependingSlides
+   * List of depending slides.
    * @return dependingSlides
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of depending slides.")
   public List<ResourceUriElement> getDependingSlides() {
     return dependingSlides;
   }

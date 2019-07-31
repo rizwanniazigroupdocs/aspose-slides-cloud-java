@@ -71,10 +71,10 @@ public class Theme extends ResourceBase {
   }
 
    /**
-   * Get name
+   * Name.
    * @return name
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Name.")
   public String getName() {
     return name;
   }
@@ -89,10 +89,10 @@ public class Theme extends ResourceBase {
   }
 
    /**
-   * Get colorScheme
+   * Color scheme.
    * @return colorScheme
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Color scheme.")
   public ResourceUriElement getColorScheme() {
     return colorScheme;
   }
@@ -107,10 +107,10 @@ public class Theme extends ResourceBase {
   }
 
    /**
-   * Get fontScheme
+   * Font scheme.
    * @return fontScheme
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Font scheme.")
   public ResourceUriElement getFontScheme() {
     return fontScheme;
   }
@@ -125,10 +125,10 @@ public class Theme extends ResourceBase {
   }
 
    /**
-   * Get formatScheme
+   * Format scheme.
    * @return formatScheme
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Format scheme.")
   public ResourceUriElement getFormatScheme() {
     return formatScheme;
   }

@@ -39,8 +39,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * OneValueChartDataPoint
+ * One value chart data point.
  */
+@ApiModel(description = "One value chart data point.")
 public class OneValueChartDataPoint {
   @SerializedName("Value")
   private Double value;
@@ -56,10 +57,10 @@ public class OneValueChartDataPoint {
   }
 
    /**
-   * Get value
+   * Value.
    * @return value
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Value.")
   public Double getValue() {
     return value;
   }

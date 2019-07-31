@@ -40,8 +40,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * PptxExportOptions
+ * Provides options that control how a presentation is saved in PPTX format.
  */
+@ApiModel(description = "Provides options that control how a presentation is saved in PPTX format.")
 public class PptxExportOptions extends ExportOptions {
   /**
    * The conformance class to which the PresentationML document conforms. Read/write Conformance.

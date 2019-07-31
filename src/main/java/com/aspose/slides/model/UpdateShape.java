@@ -41,8 +41,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * UpdateShape
+ * Update shape task.
  */
+@ApiModel(description = "Update shape task.")
 public class UpdateShape extends Task {
   @SerializedName("Shape")
   private ShapeBase shape;
@@ -62,10 +63,10 @@ public class UpdateShape extends Task {
   }
 
    /**
-   * Get shape
+   * Shape DTO.
    * @return shape
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Shape DTO.")
   public ShapeBase getShape() {
     return shape;
   }
@@ -80,10 +81,10 @@ public class UpdateShape extends Task {
   }
 
    /**
-   * Get shapePath
+   * Shape path for a grouped or SmartArt shape.
    * @return shapePath
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Shape path for a grouped or SmartArt shape.")
   public String getShapePath() {
     return shapePath;
   }

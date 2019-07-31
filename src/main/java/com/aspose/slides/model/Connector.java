@@ -75,10 +75,10 @@ public class Connector extends GeometryShape {
   }
 
    /**
-   * Get startShapeConnectedTo
+   * Start shape link.
    * @return startShapeConnectedTo
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Start shape link.")
   public ResourceUri getStartShapeConnectedTo() {
     return startShapeConnectedTo;
   }
@@ -93,10 +93,10 @@ public class Connector extends GeometryShape {
   }
 
    /**
-   * Get startShapeConnectedToIndex
+   * Start shape index.
    * @return startShapeConnectedToIndex
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Start shape index.")
   public Integer getStartShapeConnectedToIndex() {
     return startShapeConnectedToIndex;
   }
@@ -111,10 +111,10 @@ public class Connector extends GeometryShape {
   }
 
    /**
-   * Get endShapeConnectedTo
+   * End shape link.
    * @return endShapeConnectedTo
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "End shape link.")
   public ResourceUri getEndShapeConnectedTo() {
     return endShapeConnectedTo;
   }
@@ -129,10 +129,10 @@ public class Connector extends GeometryShape {
   }
 
    /**
-   * Get endShapeConnectedToIndex
+   * End shape index.
    * @return endShapeConnectedToIndex
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "End shape index.")
   public Integer getEndShapeConnectedToIndex() {
     return endShapeConnectedToIndex;
   }

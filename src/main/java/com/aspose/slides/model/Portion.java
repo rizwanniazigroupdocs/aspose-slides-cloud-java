@@ -53,7 +53,7 @@ public class Portion extends ResourceBase {
   private String text;
 
   /**
-   * Gets or Sets fontBold
+   * True for bold font.
    */
   @JsonAdapter(FontBoldEnum.Adapter.class)
   public enum FontBoldEnum {
@@ -105,7 +105,7 @@ public class Portion extends ResourceBase {
   private FontBoldEnum fontBold;
 
   /**
-   * Gets or Sets fontItalic
+   * True for italic font.
    */
   @JsonAdapter(FontItalicEnum.Adapter.class)
   public enum FontItalicEnum {
@@ -157,7 +157,7 @@ public class Portion extends ResourceBase {
   private FontItalicEnum fontItalic;
 
   /**
-   * Gets or Sets fontUnderline
+   * Text underline type.
    */
   @JsonAdapter(FontUnderlineEnum.Adapter.class)
   public enum FontUnderlineEnum {
@@ -241,7 +241,7 @@ public class Portion extends ResourceBase {
   private FontUnderlineEnum fontUnderline;
 
   /**
-   * Gets or Sets strikethroughType
+   * Text strikethrough type.
    */
   @JsonAdapter(StrikethroughTypeEnum.Adapter.class)
   public enum StrikethroughTypeEnum {
@@ -295,7 +295,7 @@ public class Portion extends ResourceBase {
   private StrikethroughTypeEnum strikethroughType;
 
   /**
-   * Gets or Sets textCapType
+   * Text capitalization type.
    */
   @JsonAdapter(TextCapTypeEnum.Adapter.class)
   public enum TextCapTypeEnum {
@@ -364,7 +364,7 @@ public class Portion extends ResourceBase {
   private Double fontHeight;
 
   /**
-   * Gets or Sets normaliseHeight
+   * True to normalize the text.
    */
   @JsonAdapter(NormaliseHeightEnum.Adapter.class)
   public enum NormaliseHeightEnum {
@@ -416,7 +416,7 @@ public class Portion extends ResourceBase {
   private NormaliseHeightEnum normaliseHeight;
 
   /**
-   * Gets or Sets proofDisabled
+   * True if the text proof should be disabled.
    */
   @JsonAdapter(ProofDisabledEnum.Adapter.class)
   public enum ProofDisabledEnum {
@@ -474,7 +474,7 @@ public class Portion extends ResourceBase {
   private Double kerningMinimalSize;
 
   /**
-   * Gets or Sets kumimoji
+   * True if numbers should ignore East-Asian specific vertical text layout.
    */
   @JsonAdapter(KumimojiEnum.Adapter.class)
   public enum KumimojiEnum {
@@ -532,7 +532,7 @@ public class Portion extends ResourceBase {
   private String alternativeLanguageId;
 
   /**
-   * Gets or Sets isHardUnderlineFill
+   * True if underline style has own FillFormat properties.
    */
   @JsonAdapter(IsHardUnderlineFillEnum.Adapter.class)
   public enum IsHardUnderlineFillEnum {
@@ -584,7 +584,7 @@ public class Portion extends ResourceBase {
   private IsHardUnderlineFillEnum isHardUnderlineFill;
 
   /**
-   * Gets or Sets isHardUnderlineLine
+   * True if underline style has own LineFormat properties.
    */
   @JsonAdapter(IsHardUnderlineLineEnum.Adapter.class)
   public enum IsHardUnderlineLineEnum {
@@ -662,10 +662,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get text
+   * Text.
    * @return text
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Text.")
   public String getText() {
     return text;
   }
@@ -680,10 +680,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get fontBold
+   * True for bold font.
    * @return fontBold
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "True for bold font.")
   public FontBoldEnum getFontBold() {
     return fontBold;
   }
@@ -698,10 +698,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get fontItalic
+   * True for italic font.
    * @return fontItalic
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "True for italic font.")
   public FontItalicEnum getFontItalic() {
     return fontItalic;
   }
@@ -716,10 +716,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get fontUnderline
+   * Text underline type.
    * @return fontUnderline
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Text underline type.")
   public FontUnderlineEnum getFontUnderline() {
     return fontUnderline;
   }
@@ -734,10 +734,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get strikethroughType
+   * Text strikethrough type.
    * @return strikethroughType
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Text strikethrough type.")
   public StrikethroughTypeEnum getStrikethroughType() {
     return strikethroughType;
   }
@@ -752,10 +752,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get textCapType
+   * Text capitalization type.
    * @return textCapType
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Text capitalization type.")
   public TextCapTypeEnum getTextCapType() {
     return textCapType;
   }
@@ -770,10 +770,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get escapement
+   * Superscript or subscript of the text.
    * @return escapement
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Superscript or subscript of the text.")
   public Double getEscapement() {
     return escapement;
   }
@@ -788,10 +788,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get spacing
+   * Intercharacter spacing increment.
    * @return spacing
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Intercharacter spacing increment.")
   public Double getSpacing() {
     return spacing;
   }
@@ -806,10 +806,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get fontColor
+   * Font color.
    * @return fontColor
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Font color.")
   public String getFontColor() {
     return fontColor;
   }
@@ -824,10 +824,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get highlightColor
+   * Highlight color.
    * @return highlightColor
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Highlight color.")
   public String getHighlightColor() {
     return highlightColor;
   }
@@ -842,10 +842,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get fontHeight
+   * Font height.
    * @return fontHeight
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Font height.")
   public Double getFontHeight() {
     return fontHeight;
   }
@@ -860,10 +860,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get normaliseHeight
+   * True to normalize the text.
    * @return normaliseHeight
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "True to normalize the text.")
   public NormaliseHeightEnum getNormaliseHeight() {
     return normaliseHeight;
   }
@@ -878,10 +878,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get proofDisabled
+   * True if the text proof should be disabled.
    * @return proofDisabled
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "True if the text proof should be disabled.")
   public ProofDisabledEnum getProofDisabled() {
     return proofDisabled;
   }
@@ -896,10 +896,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get smartTagClean
+   * True if smart tag should be cleaned.
    * @return smartTagClean
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "True if smart tag should be cleaned.")
   public Boolean isSmartTagClean() {
     return smartTagClean;
   }
@@ -914,10 +914,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get kerningMinimalSize
+   * Minimal font size for kerning.
    * @return kerningMinimalSize
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Minimal font size for kerning.")
   public Double getKerningMinimalSize() {
     return kerningMinimalSize;
   }
@@ -932,10 +932,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get kumimoji
+   * True if numbers should ignore East-Asian specific vertical text layout.
    * @return kumimoji
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "True if numbers should ignore East-Asian specific vertical text layout.")
   public KumimojiEnum getKumimoji() {
     return kumimoji;
   }
@@ -950,10 +950,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get languageId
+   * Proving language ID.
    * @return languageId
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Proving language ID.")
   public String getLanguageId() {
     return languageId;
   }
@@ -968,10 +968,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get alternativeLanguageId
+   * Alternative proving language ID.
    * @return alternativeLanguageId
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Alternative proving language ID.")
   public String getAlternativeLanguageId() {
     return alternativeLanguageId;
   }
@@ -986,10 +986,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get isHardUnderlineFill
+   * True if underline style has own FillFormat properties.
    * @return isHardUnderlineFill
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "True if underline style has own FillFormat properties.")
   public IsHardUnderlineFillEnum getIsHardUnderlineFill() {
     return isHardUnderlineFill;
   }
@@ -1004,10 +1004,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get isHardUnderlineLine
+   * True if underline style has own LineFormat properties.
    * @return isHardUnderlineLine
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "True if underline style has own LineFormat properties.")
   public IsHardUnderlineLineEnum getIsHardUnderlineLine() {
     return isHardUnderlineLine;
   }
@@ -1022,10 +1022,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get fillFormat
+   * Fill format.
    * @return fillFormat
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Fill format.")
   public FillFormat getFillFormat() {
     return fillFormat;
   }
@@ -1040,10 +1040,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get effectFormat
+   * Effect format.
    * @return effectFormat
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Effect format.")
   public EffectFormat getEffectFormat() {
     return effectFormat;
   }
@@ -1058,10 +1058,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get lineFormat
+   * Line format.
    * @return lineFormat
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Line format.")
   public LineFormat getLineFormat() {
     return lineFormat;
   }
@@ -1076,10 +1076,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get underlineFillFormat
+   * Underline fill format.
    * @return underlineFillFormat
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Underline fill format.")
   public FillFormat getUnderlineFillFormat() {
     return underlineFillFormat;
   }
@@ -1094,10 +1094,10 @@ public class Portion extends ResourceBase {
   }
 
    /**
-   * Get underlineLineFormat
+   * Underline line format.
    * @return underlineLineFormat
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Underline line format.")
   public LineFormat getUnderlineLineFormat() {
     return underlineLineFormat;
   }

@@ -40,8 +40,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * ReorderSlide
+ * Reorder slide task.
  */
+@ApiModel(description = "Reorder slide task.")
 public class ReorderSlide extends Task {
   @SerializedName("OldPosition")
   private Integer oldPosition;
@@ -61,10 +62,10 @@ public class ReorderSlide extends Task {
   }
 
    /**
-   * Get oldPosition
+   * Old position.
    * @return oldPosition
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Old position.")
   public Integer getOldPosition() {
     return oldPosition;
   }
@@ -79,10 +80,10 @@ public class ReorderSlide extends Task {
   }
 
    /**
-   * Get newPosition
+   * New position.
    * @return newPosition
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "New position.")
   public Integer getNewPosition() {
     return newPosition;
   }

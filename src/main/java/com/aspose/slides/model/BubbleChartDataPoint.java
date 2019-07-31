@@ -40,8 +40,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * BubbleChartDataPoint
+ * Bubble chart data point.
  */
+@ApiModel(description = "Bubble chart data point.")
 public class BubbleChartDataPoint extends ScatterChartDataPoint {
   @SerializedName("BubbleSize")
   private Double bubbleSize;
@@ -57,10 +58,10 @@ public class BubbleChartDataPoint extends ScatterChartDataPoint {
   }
 
    /**
-   * Get bubbleSize
+   * Bubble size.
    * @return bubbleSize
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Bubble size.")
   public Double getBubbleSize() {
     return bubbleSize;
   }

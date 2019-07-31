@@ -41,8 +41,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * PictureFill
+ * Picture fill.
  */
+@ApiModel(description = "Picture fill.")
 public class PictureFill extends FillFormat {
   @SerializedName("CropBottom")
   private Double cropBottom;
@@ -69,7 +70,7 @@ public class PictureFill extends FillFormat {
   private String svgData;
 
   /**
-   * Gets or Sets pictureFillMode
+   * Fill mode.
    */
   @JsonAdapter(PictureFillModeEnum.Adapter.class)
   public enum PictureFillModeEnum {
@@ -130,10 +131,10 @@ public class PictureFill extends FillFormat {
   }
 
    /**
-   * Get cropBottom
+   * Percentage of image height that is cropped from the bottom.
    * @return cropBottom
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Percentage of image height that is cropped from the bottom.")
   public Double getCropBottom() {
     return cropBottom;
   }
@@ -148,10 +149,10 @@ public class PictureFill extends FillFormat {
   }
 
    /**
-   * Get cropLeft
+   * Percentage of image height that is cropped from the left.
    * @return cropLeft
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Percentage of image height that is cropped from the left.")
   public Double getCropLeft() {
     return cropLeft;
   }
@@ -166,10 +167,10 @@ public class PictureFill extends FillFormat {
   }
 
    /**
-   * Get cropRight
+   * Percentage of image height that is cropped from the right.
    * @return cropRight
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Percentage of image height that is cropped from the right.")
   public Double getCropRight() {
     return cropRight;
   }
@@ -184,10 +185,10 @@ public class PictureFill extends FillFormat {
   }
 
    /**
-   * Get cropTop
+   * Percentage of image height that is cropped from the top.
    * @return cropTop
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Percentage of image height that is cropped from the top.")
   public Double getCropTop() {
     return cropTop;
   }
@@ -202,10 +203,10 @@ public class PictureFill extends FillFormat {
   }
 
    /**
-   * Get dpi
+   * Picture resolution.
    * @return dpi
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Picture resolution.")
   public Integer getDpi() {
     return dpi;
   }
@@ -220,10 +221,10 @@ public class PictureFill extends FillFormat {
   }
 
    /**
-   * Get image
+   * Internal image link.
    * @return image
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Internal image link.")
   public ResourceUriElement getImage() {
     return image;
   }
@@ -238,10 +239,10 @@ public class PictureFill extends FillFormat {
   }
 
    /**
-   * Get base64Data
+   * Base 64 image data.
    * @return base64Data
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Base 64 image data.")
   public String getBase64Data() {
     return base64Data;
   }
@@ -256,10 +257,10 @@ public class PictureFill extends FillFormat {
   }
 
    /**
-   * Get svgData
+   * SVG image data.
    * @return svgData
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "SVG image data.")
   public String getSvgData() {
     return svgData;
   }
@@ -274,10 +275,10 @@ public class PictureFill extends FillFormat {
   }
 
    /**
-   * Get pictureFillMode
+   * Fill mode.
    * @return pictureFillMode
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Fill mode.")
   public PictureFillModeEnum getPictureFillMode() {
     return pictureFillMode;
   }

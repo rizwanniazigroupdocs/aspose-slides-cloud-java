@@ -73,6 +73,8 @@ public class Save extends Task {
     
     PPSM("Ppsm"),
     
+    POT("Pot"),
+    
     POTX("Potx"),
     
     POTM("Potm"),

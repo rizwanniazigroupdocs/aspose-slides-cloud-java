@@ -51,7 +51,7 @@ import java.util.ArrayList;
 @ApiModel(description = "Represents GeometryShape resource.")
 public class GeometryShape extends ShapeBase {
   /**
-   * Gets or Sets geometryShapeType
+   * Geometry shape type.
    */
   @JsonAdapter(GeometryShapeTypeEnum.Adapter.class)
   public enum GeometryShapeTypeEnum {
@@ -486,10 +486,10 @@ public class GeometryShape extends ShapeBase {
   }
 
    /**
-   * Get geometryShapeType
+   * Geometry shape type.
    * @return geometryShapeType
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Geometry shape type.")
   public GeometryShapeTypeEnum getGeometryShapeType() {
     return geometryShapeType;
   }

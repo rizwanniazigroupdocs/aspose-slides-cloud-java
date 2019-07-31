@@ -49,7 +49,7 @@ import java.util.ArrayList;
 @ApiModel(description = "Represents background of slide")
 public class SlideBackground extends ResourceBase {
   /**
-   * Gets or Sets type
+   * Fill type.
    */
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
@@ -124,10 +124,10 @@ public class SlideBackground extends ResourceBase {
   }
 
    /**
-   * Get type
+   * Fill type.
    * @return type
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Fill type.")
   public TypeEnum getType() {
     return type;
   }
@@ -142,10 +142,10 @@ public class SlideBackground extends ResourceBase {
   }
 
    /**
-   * Get fillFormat
+   * Fill format.
    * @return fillFormat
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Fill format.")
   public FillFormat getFillFormat() {
     return fillFormat;
   }
@@ -160,10 +160,10 @@ public class SlideBackground extends ResourceBase {
   }
 
    /**
-   * Get effectFormat
+   * Effect format.
    * @return effectFormat
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Effect format.")
   public EffectFormat getEffectFormat() {
     return effectFormat;
   }

@@ -67,7 +67,7 @@ public class Paragraph extends ResourceBase {
   private Double indent;
 
   /**
-   * Gets or Sets alignment
+   * Text alignment.
    */
   @JsonAdapter(AlignmentEnum.Adapter.class)
   public enum AlignmentEnum {
@@ -127,7 +127,7 @@ public class Paragraph extends ResourceBase {
   private AlignmentEnum alignment;
 
   /**
-   * Gets or Sets fontAlignment
+   * Font alignment.
    */
   @JsonAdapter(FontAlignmentEnum.Adapter.class)
   public enum FontAlignmentEnum {
@@ -197,7 +197,7 @@ public class Paragraph extends ResourceBase {
   private Double bulletHeight;
 
   /**
-   * Gets or Sets bulletType
+   * Bullet type.
    */
   @JsonAdapter(BulletTypeEnum.Adapter.class)
   public enum BulletTypeEnum {
@@ -256,7 +256,7 @@ public class Paragraph extends ResourceBase {
   private Integer numberedBulletStartWith;
 
   /**
-   * Gets or Sets numberedBulletStyle
+   * Numbered bullet style.
    */
   @JsonAdapter(NumberedBulletStyleEnum.Adapter.class)
   public enum NumberedBulletStyleEnum {
@@ -386,7 +386,7 @@ public class Paragraph extends ResourceBase {
   private NumberedBulletStyleEnum numberedBulletStyle;
 
   /**
-   * Gets or Sets hangingPunctuation
+   * True if hanging punctuation is used with the paragraph.
    */
   @JsonAdapter(HangingPunctuationEnum.Adapter.class)
   public enum HangingPunctuationEnum {
@@ -438,7 +438,7 @@ public class Paragraph extends ResourceBase {
   private HangingPunctuationEnum hangingPunctuation;
 
   /**
-   * Gets or Sets eastAsianLineBreak
+   * True if East Asian line break is used with the paragraph.
    */
   @JsonAdapter(EastAsianLineBreakEnum.Adapter.class)
   public enum EastAsianLineBreakEnum {
@@ -490,7 +490,7 @@ public class Paragraph extends ResourceBase {
   private EastAsianLineBreakEnum eastAsianLineBreak;
 
   /**
-   * Gets or Sets latinLineBreak
+   * True if Latin line break is used with the paragraph.
    */
   @JsonAdapter(LatinLineBreakEnum.Adapter.class)
   public enum LatinLineBreakEnum {
@@ -542,7 +542,7 @@ public class Paragraph extends ResourceBase {
   private LatinLineBreakEnum latinLineBreak;
 
   /**
-   * Gets or Sets rightToLeft
+   * True if right to left direction is used with the paragraph.
    */
   @JsonAdapter(RightToLeftEnum.Adapter.class)
   public enum RightToLeftEnum {
@@ -609,10 +609,10 @@ public class Paragraph extends ResourceBase {
   }
 
    /**
-   * Get marginLeft
+   * Left margin.
    * @return marginLeft
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Left margin.")
   public Double getMarginLeft() {
     return marginLeft;
   }
@@ -627,10 +627,10 @@ public class Paragraph extends ResourceBase {
   }
 
    /**
-   * Get marginRight
+   * Right margin.
    * @return marginRight
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Right margin.")
   public Double getMarginRight() {
     return marginRight;
   }
@@ -645,10 +645,10 @@ public class Paragraph extends ResourceBase {
   }
 
    /**
-   * Get spaceBefore
+   * Left spacing.
    * @return spaceBefore
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Left spacing.")
   public Double getSpaceBefore() {
     return spaceBefore;
   }
@@ -663,10 +663,10 @@ public class Paragraph extends ResourceBase {
   }
 
    /**
-   * Get spaceAfter
+   * Right spacing.
    * @return spaceAfter
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Right spacing.")
   public Double getSpaceAfter() {
     return spaceAfter;
   }
@@ -681,10 +681,10 @@ public class Paragraph extends ResourceBase {
   }
 
    /**
-   * Get spaceWithin
+   * Spacing between lines.
    * @return spaceWithin
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Spacing between lines.")
   public Double getSpaceWithin() {
     return spaceWithin;
   }
@@ -699,10 +699,10 @@ public class Paragraph extends ResourceBase {
   }
 
    /**
-   * Get indent
+   * First line indent.
    * @return indent
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "First line indent.")
   public Double getIndent() {
     return indent;
   }
@@ -717,10 +717,10 @@ public class Paragraph extends ResourceBase {
   }
 
    /**
-   * Get alignment
+   * Text alignment.
    * @return alignment
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Text alignment.")
   public AlignmentEnum getAlignment() {
     return alignment;
   }
@@ -735,10 +735,10 @@ public class Paragraph extends ResourceBase {
   }
 
    /**
-   * Get fontAlignment
+   * Font alignment.
    * @return fontAlignment
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Font alignment.")
   public FontAlignmentEnum getFontAlignment() {
     return fontAlignment;
   }
@@ -753,10 +753,10 @@ public class Paragraph extends ResourceBase {
   }
 
    /**
-   * Get defaultTabSize
+   * Default tabulation size.
    * @return defaultTabSize
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Default tabulation size.")
   public Double getDefaultTabSize() {
     return defaultTabSize;
   }
@@ -771,10 +771,10 @@ public class Paragraph extends ResourceBase {
   }
 
    /**
-   * Get depth
+   * Depth.
    * @return depth
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Depth.")
   public Integer getDepth() {
     return depth;
   }
@@ -789,10 +789,10 @@ public class Paragraph extends ResourceBase {
   }
 
    /**
-   * Get bulletChar
+   * Bullet char.
    * @return bulletChar
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Bullet char.")
   public String getBulletChar() {
     return bulletChar;
   }
@@ -807,10 +807,10 @@ public class Paragraph extends ResourceBase {
   }
 
    /**
-   * Get bulletHeight
+   * Bullet height.
    * @return bulletHeight
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Bullet height.")
   public Double getBulletHeight() {
     return bulletHeight;
   }
@@ -825,10 +825,10 @@ public class Paragraph extends ResourceBase {
   }
 
    /**
-   * Get bulletType
+   * Bullet type.
    * @return bulletType
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Bullet type.")
   public BulletTypeEnum getBulletType() {
     return bulletType;
   }
@@ -843,10 +843,10 @@ public class Paragraph extends ResourceBase {
   }
 
    /**
-   * Get numberedBulletStartWith
+   * Starting number for a numbered bullet.
    * @return numberedBulletStartWith
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Starting number for a numbered bullet.")
   public Integer getNumberedBulletStartWith() {
     return numberedBulletStartWith;
   }
@@ -861,10 +861,10 @@ public class Paragraph extends ResourceBase {
   }
 
    /**
-   * Get numberedBulletStyle
+   * Numbered bullet style.
    * @return numberedBulletStyle
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Numbered bullet style.")
   public NumberedBulletStyleEnum getNumberedBulletStyle() {
     return numberedBulletStyle;
   }
@@ -879,10 +879,10 @@ public class Paragraph extends ResourceBase {
   }
 
    /**
-   * Get hangingPunctuation
+   * True if hanging punctuation is used with the paragraph.
    * @return hangingPunctuation
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "True if hanging punctuation is used with the paragraph.")
   public HangingPunctuationEnum getHangingPunctuation() {
     return hangingPunctuation;
   }
@@ -897,10 +897,10 @@ public class Paragraph extends ResourceBase {
   }
 
    /**
-   * Get eastAsianLineBreak
+   * True if East Asian line break is used with the paragraph.
    * @return eastAsianLineBreak
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "True if East Asian line break is used with the paragraph.")
   public EastAsianLineBreakEnum getEastAsianLineBreak() {
     return eastAsianLineBreak;
   }
@@ -915,10 +915,10 @@ public class Paragraph extends ResourceBase {
   }
 
    /**
-   * Get latinLineBreak
+   * True if Latin line break is used with the paragraph.
    * @return latinLineBreak
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "True if Latin line break is used with the paragraph.")
   public LatinLineBreakEnum getLatinLineBreak() {
     return latinLineBreak;
   }
@@ -933,10 +933,10 @@ public class Paragraph extends ResourceBase {
   }
 
    /**
-   * Get rightToLeft
+   * True if right to left direction is used with the paragraph.
    * @return rightToLeft
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "True if right to left direction is used with the paragraph.")
   public RightToLeftEnum getRightToLeft() {
     return rightToLeft;
   }
@@ -959,10 +959,10 @@ public class Paragraph extends ResourceBase {
   }
 
    /**
-   * Get portionList
+   * List of portion links.
    * @return portionList
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of portion links.")
   public List<ResourceUriElement> getPortionList() {
     return portionList;
   }

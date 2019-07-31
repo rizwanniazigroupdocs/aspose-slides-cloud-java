@@ -51,7 +51,7 @@ public class Placeholder extends ResourceBase {
   private Integer index;
 
   /**
-   * Gets or Sets orientation
+   * Orientation.
    */
   @JsonAdapter(OrientationEnum.Adapter.class)
   public enum OrientationEnum {
@@ -101,7 +101,7 @@ public class Placeholder extends ResourceBase {
   private OrientationEnum orientation;
 
   /**
-   * Gets or Sets size
+   * Size.
    */
   @JsonAdapter(SizeEnum.Adapter.class)
   public enum SizeEnum {
@@ -153,7 +153,7 @@ public class Placeholder extends ResourceBase {
   private SizeEnum size;
 
   /**
-   * Gets or Sets type
+   * Placeholder type.
    */
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
@@ -245,10 +245,10 @@ public class Placeholder extends ResourceBase {
   }
 
    /**
-   * Get index
+   * Index.
    * @return index
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Index.")
   public Integer getIndex() {
     return index;
   }
@@ -263,10 +263,10 @@ public class Placeholder extends ResourceBase {
   }
 
    /**
-   * Get orientation
+   * Orientation.
    * @return orientation
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Orientation.")
   public OrientationEnum getOrientation() {
     return orientation;
   }
@@ -281,10 +281,10 @@ public class Placeholder extends ResourceBase {
   }
 
    /**
-   * Get size
+   * Size.
    * @return size
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Size.")
   public SizeEnum getSize() {
     return size;
   }
@@ -299,10 +299,10 @@ public class Placeholder extends ResourceBase {
   }
 
    /**
-   * Get type
+   * Placeholder type.
    * @return type
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Placeholder type.")
   public TypeEnum getType() {
     return type;
   }
@@ -317,10 +317,10 @@ public class Placeholder extends ResourceBase {
   }
 
    /**
-   * Get shape
+   * Shape link.
    * @return shape
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Shape link.")
   public ResourceUriElement getShape() {
     return shape;
   }

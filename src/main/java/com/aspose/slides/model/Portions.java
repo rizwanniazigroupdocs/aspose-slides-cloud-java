@@ -72,10 +72,10 @@ public class Portions extends ResourceBase {
   }
 
    /**
-   * Get portionLinks
+   * List of portion links.
    * @return portionLinks
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of portion links.")
   public List<ResourceUriElement> getPortionLinks() {
     return portionLinks;
   }

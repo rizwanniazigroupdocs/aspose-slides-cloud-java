@@ -72,10 +72,10 @@ public class SlideComments extends ResourceBase {
   }
 
    /**
-   * Get list
+   * Slide comment list.
    * @return list
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Slide comment list.")
   public List<SlideComment> getList() {
     return list;
   }

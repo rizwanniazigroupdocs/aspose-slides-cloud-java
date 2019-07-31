@@ -40,8 +40,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * SvgExportOptions
+ * Provides options that control how a presentation is saved in SVG format.
  */
+@ApiModel(description = "Provides options that control how a presentation is saved in SVG format.")
 public class SvgExportOptions extends ExportOptions {
   @SerializedName("VectorizeText")
   private Boolean vectorizeText;

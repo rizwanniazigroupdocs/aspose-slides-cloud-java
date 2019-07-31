@@ -42,11 +42,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * LineFormat
+ * Line format.
  */
+@ApiModel(description = "Line format.")
 public class LineFormat {
   /**
-   * Gets or Sets alignment
+   * Alignment.
    */
   @JsonAdapter(AlignmentEnum.Adapter.class)
   public enum AlignmentEnum {
@@ -98,7 +99,7 @@ public class LineFormat {
   private AlignmentEnum alignment;
 
   /**
-   * Gets or Sets capStyle
+   * Cap style.
    */
   @JsonAdapter(CapStyleEnum.Adapter.class)
   public enum CapStyleEnum {
@@ -152,7 +153,7 @@ public class LineFormat {
   private CapStyleEnum capStyle;
 
   /**
-   * Gets or Sets dashStyle
+   * Dash style.
    */
   @JsonAdapter(DashStyleEnum.Adapter.class)
   public enum DashStyleEnum {
@@ -224,7 +225,7 @@ public class LineFormat {
   private DashStyleEnum dashStyle;
 
   /**
-   * Gets or Sets joinStyle
+   * Join style.
    */
   @JsonAdapter(JoinStyleEnum.Adapter.class)
   public enum JoinStyleEnum {
@@ -278,7 +279,7 @@ public class LineFormat {
   private JoinStyleEnum joinStyle;
 
   /**
-   * Gets or Sets style
+   * Style.
    */
   @JsonAdapter(StyleEnum.Adapter.class)
   public enum StyleEnum {
@@ -364,10 +365,10 @@ public class LineFormat {
   }
 
    /**
-   * Get alignment
+   * Alignment.
    * @return alignment
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Alignment.")
   public AlignmentEnum getAlignment() {
     return alignment;
   }
@@ -382,10 +383,10 @@ public class LineFormat {
   }
 
    /**
-   * Get capStyle
+   * Cap style.
    * @return capStyle
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Cap style.")
   public CapStyleEnum getCapStyle() {
     return capStyle;
   }
@@ -400,10 +401,10 @@ public class LineFormat {
   }
 
    /**
-   * Get dashStyle
+   * Dash style.
    * @return dashStyle
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Dash style.")
   public DashStyleEnum getDashStyle() {
     return dashStyle;
   }
@@ -418,10 +419,10 @@ public class LineFormat {
   }
 
    /**
-   * Get joinStyle
+   * Join style.
    * @return joinStyle
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Join style.")
   public JoinStyleEnum getJoinStyle() {
     return joinStyle;
   }
@@ -436,10 +437,10 @@ public class LineFormat {
   }
 
    /**
-   * Get style
+   * Style.
    * @return style
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Style.")
   public StyleEnum getStyle() {
     return style;
   }
@@ -454,10 +455,10 @@ public class LineFormat {
   }
 
    /**
-   * Get beginArrowHead
+   * Begin arrowhead.
    * @return beginArrowHead
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Begin arrowhead.")
   public ArrowHeadProperties getBeginArrowHead() {
     return beginArrowHead;
   }
@@ -472,10 +473,10 @@ public class LineFormat {
   }
 
    /**
-   * Get endArrowHead
+   * End arrowhead.
    * @return endArrowHead
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "End arrowhead.")
   public ArrowHeadProperties getEndArrowHead() {
     return endArrowHead;
   }
@@ -490,10 +491,10 @@ public class LineFormat {
   }
 
    /**
-   * Get customDashPattern
+   * Custom dash pattern.
    * @return customDashPattern
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Custom dash pattern.")
   public CustomDashPattern getCustomDashPattern() {
     return customDashPattern;
   }
@@ -508,10 +509,10 @@ public class LineFormat {
   }
 
    /**
-   * Get fillFormat
+   * Fill format.
    * @return fillFormat
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Fill format.")
   public FillFormat getFillFormat() {
     return fillFormat;
   }
@@ -526,10 +527,10 @@ public class LineFormat {
   }
 
    /**
-   * Get miterLimit
+   * Miter limit.
    * @return miterLimit
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Miter limit.")
   public Double getMiterLimit() {
     return miterLimit;
   }
@@ -544,10 +545,10 @@ public class LineFormat {
   }
 
    /**
-   * Get width
+   * Width.
    * @return width
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Width.")
   public Double getWidth() {
     return width;
   }

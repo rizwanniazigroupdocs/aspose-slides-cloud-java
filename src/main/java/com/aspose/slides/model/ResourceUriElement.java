@@ -40,8 +40,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * ResourceUriElement
+ * Resource URI element.
  */
+@ApiModel(description = "Resource URI element.")
 public class ResourceUriElement {
   @SerializedName("Uri")
   private ResourceUri uri;
@@ -57,10 +58,10 @@ public class ResourceUriElement {
   }
 
    /**
-   * Get uri
+   * Resource URI.
    * @return uri
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Resource URI.")
   public ResourceUri getUri() {
     return uri;
   }

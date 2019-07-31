@@ -39,8 +39,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * FillFormat
+ * Base class for fill formats 
  */
+@ApiModel(description = "Base class for fill formats ")
 public class FillFormat {
   /**
    * Gets or Sets type

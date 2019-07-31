@@ -94,10 +94,10 @@ public class ColorScheme extends ResourceBase {
   }
 
    /**
-   * Get accent1
+   * First accent color.
    * @return accent1
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "First accent color.")
   public String getAccent1() {
     return accent1;
   }
@@ -112,10 +112,10 @@ public class ColorScheme extends ResourceBase {
   }
 
    /**
-   * Get accent2
+   * Second accent color.
    * @return accent2
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Second accent color.")
   public String getAccent2() {
     return accent2;
   }
@@ -130,10 +130,10 @@ public class ColorScheme extends ResourceBase {
   }
 
    /**
-   * Get accent3
+   * Third accent color.
    * @return accent3
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Third accent color.")
   public String getAccent3() {
     return accent3;
   }
@@ -148,10 +148,10 @@ public class ColorScheme extends ResourceBase {
   }
 
    /**
-   * Get accent4
+   * Fourth accent color.
    * @return accent4
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Fourth accent color.")
   public String getAccent4() {
     return accent4;
   }
@@ -166,10 +166,10 @@ public class ColorScheme extends ResourceBase {
   }
 
    /**
-   * Get accent5
+   * Fifth accent color.
    * @return accent5
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Fifth accent color.")
   public String getAccent5() {
     return accent5;
   }
@@ -184,10 +184,10 @@ public class ColorScheme extends ResourceBase {
   }
 
    /**
-   * Get accent6
+   * Sixth accent color.
    * @return accent6
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Sixth accent color.")
   public String getAccent6() {
     return accent6;
   }
@@ -202,10 +202,10 @@ public class ColorScheme extends ResourceBase {
   }
 
    /**
-   * Get dark1
+   * First dark color.
    * @return dark1
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "First dark color.")
   public String getDark1() {
     return dark1;
   }
@@ -220,10 +220,10 @@ public class ColorScheme extends ResourceBase {
   }
 
    /**
-   * Get dark2
+   * Second dark color.
    * @return dark2
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Second dark color.")
   public String getDark2() {
     return dark2;
   }
@@ -238,10 +238,10 @@ public class ColorScheme extends ResourceBase {
   }
 
    /**
-   * Get followedHyperlink
+   * Visited hyperlink color.
    * @return followedHyperlink
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Visited hyperlink color.")
   public String getFollowedHyperlink() {
     return followedHyperlink;
   }
@@ -256,10 +256,10 @@ public class ColorScheme extends ResourceBase {
   }
 
    /**
-   * Get hyperlink
+   * Hyperlink color/
    * @return hyperlink
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Hyperlink color/")
   public String getHyperlink() {
     return hyperlink;
   }
@@ -274,10 +274,10 @@ public class ColorScheme extends ResourceBase {
   }
 
    /**
-   * Get light1
+   * First light color.
    * @return light1
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "First light color.")
   public String getLight1() {
     return light1;
   }
@@ -292,10 +292,10 @@ public class ColorScheme extends ResourceBase {
   }
 
    /**
-   * Get light2
+   * Second light color.
    * @return light2
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Second light color.")
   public String getLight2() {
     return light2;
   }

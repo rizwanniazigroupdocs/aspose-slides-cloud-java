@@ -43,8 +43,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * UpdateBackground
+ * Update background task.
  */
+@ApiModel(description = "Update background task.")
 public class UpdateBackground extends Task {
   @SerializedName("Slides")
   private List<Integer> slides = null;
@@ -73,10 +74,10 @@ public class UpdateBackground extends Task {
   }
 
    /**
-   * Get slides
+   * List of slide indices.
    * @return slides
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of slide indices.")
   public List<Integer> getSlides() {
     return slides;
   }
@@ -91,10 +92,10 @@ public class UpdateBackground extends Task {
   }
 
    /**
-   * Get background
+   * Background DTO.
    * @return background
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Background DTO.")
   public SlideBackground getBackground() {
     return background;
   }

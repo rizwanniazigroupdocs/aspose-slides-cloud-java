@@ -41,8 +41,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * AddLayoutSlide
+ * Add layout slide task.
  */
+@ApiModel(description = "Add layout slide task.")
 public class AddLayoutSlide extends Task {
   @SerializedName("CloneFromFile")
   private InputFile cloneFromFile;
@@ -62,10 +63,10 @@ public class AddLayoutSlide extends Task {
   }
 
    /**
-   * Get cloneFromFile
+   * Source file.
    * @return cloneFromFile
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Source file.")
   public InputFile getCloneFromFile() {
     return cloneFromFile;
   }
@@ -80,10 +81,10 @@ public class AddLayoutSlide extends Task {
   }
 
    /**
-   * Get cloneFromPosition
+   * Source layout slide position.
    * @return cloneFromPosition
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Source layout slide position.")
   public Integer getCloneFromPosition() {
     return cloneFromPosition;
   }

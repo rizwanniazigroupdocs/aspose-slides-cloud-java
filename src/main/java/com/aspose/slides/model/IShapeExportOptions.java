@@ -57,10 +57,10 @@ public class IShapeExportOptions {
   }
 
    /**
-   * Get format
+   * Export format.
    * @return format
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Export format.")
   public String getFormat() {
     return format;
   }

@@ -72,10 +72,10 @@ public class Images extends ResourceBase {
   }
 
    /**
-   * Get list
+   * Image list.
    * @return list
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Image list.")
   public List<Image> getList() {
     return list;
   }

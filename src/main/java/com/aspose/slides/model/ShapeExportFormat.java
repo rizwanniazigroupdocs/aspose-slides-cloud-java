@@ -39,7 +39,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Represents a format for export individual shape.
+ * Represents a format for individual shape export.
  */
 @JsonAdapter(ShapeExportFormat.Adapter.class)
 public enum ShapeExportFormat {

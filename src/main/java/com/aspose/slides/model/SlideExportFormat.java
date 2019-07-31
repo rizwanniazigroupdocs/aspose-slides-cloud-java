@@ -78,6 +78,8 @@ public enum SlideExportFormat {
   
   POTX("Potx"),
   
+  POT("Pot"),
+  
   POTM("Potm"),
   
   SVG("Svg");

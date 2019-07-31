@@ -44,8 +44,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * LayoutSlides
+ * Layout slide list.
  */
+@ApiModel(description = "Layout slide list.")
 public class LayoutSlides extends ResourceBase {
   @SerializedName("SlideList")
   private List<ResourceUriElement> slideList = null;
@@ -71,10 +72,10 @@ public class LayoutSlides extends ResourceBase {
   }
 
    /**
-   * Get slideList
+   * List of layout slide links.
    * @return slideList
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of layout slide links.")
   public List<ResourceUriElement> getSlideList() {
     return slideList;
   }

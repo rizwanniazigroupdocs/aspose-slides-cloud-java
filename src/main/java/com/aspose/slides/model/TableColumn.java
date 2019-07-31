@@ -39,8 +39,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * TableColumn
+ * Table column.
  */
+@ApiModel(description = "Table column.")
 public class TableColumn {
   @SerializedName("Width")
   private Double width;
@@ -56,10 +57,10 @@ public class TableColumn {
   }
 
    /**
-   * Get width
+   * Width.
    * @return width
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Width.")
   public Double getWidth() {
     return width;
   }

@@ -39,8 +39,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * FontSet
+ * Font set.
  */
+@ApiModel(description = "Font set.")
 public class FontSet {
   @SerializedName("ComplexScript")
   private String complexScript;
@@ -62,10 +63,10 @@ public class FontSet {
   }
 
    /**
-   * Get complexScript
+   * Complex script font.
    * @return complexScript
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Complex script font.")
   public String getComplexScript() {
     return complexScript;
   }
@@ -80,10 +81,10 @@ public class FontSet {
   }
 
    /**
-   * Get eastAsian
+   * East Asian font.
    * @return eastAsian
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "East Asian font.")
   public String getEastAsian() {
     return eastAsian;
   }
@@ -98,10 +99,10 @@ public class FontSet {
   }
 
    /**
-   * Get latin
+   * Latin font.
    * @return latin
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Latin font.")
   public String getLatin() {
     return latin;
   }

@@ -68,10 +68,10 @@ public class PictureFrame extends GeometryShape {
   }
 
    /**
-   * Get pictureFillFormat
+   * Fill format.
    * @return pictureFillFormat
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Fill format.")
   public PictureFill getPictureFillFormat() {
     return pictureFillFormat;
   }

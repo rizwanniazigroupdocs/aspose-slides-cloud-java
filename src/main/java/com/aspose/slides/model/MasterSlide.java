@@ -44,8 +44,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * MasterSlide
+ * Master slide.
  */
+@ApiModel(description = "Master slide.")
 public class MasterSlide extends ResourceBase {
   @SerializedName("Name")
   private String name;
@@ -70,10 +71,10 @@ public class MasterSlide extends ResourceBase {
   }
 
    /**
-   * Get name
+   * Name.
    * @return name
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Name.")
   public String getName() {
     return name;
   }
@@ -96,10 +97,10 @@ public class MasterSlide extends ResourceBase {
   }
 
    /**
-   * Get layoutSlides
+   * List of layout slide links.
    * @return layoutSlides
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of layout slide links.")
   public List<ResourceUriElement> getLayoutSlides() {
     return layoutSlides;
   }
@@ -122,10 +123,10 @@ public class MasterSlide extends ResourceBase {
   }
 
    /**
-   * Get dependingSlides
+   * List of depending slide links.
    * @return dependingSlides
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of depending slide links.")
   public List<ResourceUriElement> getDependingSlides() {
     return dependingSlides;
   }

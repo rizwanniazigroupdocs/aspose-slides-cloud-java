@@ -50,12 +50,54 @@ import java.util.ArrayList;
  */
 @ApiModel(description = "Represents OleObjectFrame resource.")
 public class OleObjectFrame extends ShapeBase {
+  @SerializedName("IsObjectIcon")
+  private Boolean isObjectIcon;
+
+  @SerializedName("SubstitutePictureTitle")
+  private String substitutePictureTitle;
+
 
   public OleObjectFrame() {
     super();
     setAlternateLinks(new ArrayList<ResourceUri>());
     setType(TypeEnum.OLEOBJECTFRAME);
     setShapeType(ShapeTypeEnum.OLEOBJECTFRAME);
+  }
+
+  public OleObjectFrame isObjectIcon(Boolean isObjectIcon) {
+    this.isObjectIcon = isObjectIcon;
+    return this;
+  }
+
+   /**
+   * True if an object is visible as icon.
+   * @return isObjectIcon
+  **/
+  @ApiModelProperty(required = true, value = "True if an object is visible as icon.")
+  public Boolean isIsObjectIcon() {
+    return isObjectIcon;
+  }
+
+  public void setIsObjectIcon(Boolean isObjectIcon) {
+    this.isObjectIcon = isObjectIcon;
+  }
+
+  public OleObjectFrame substitutePictureTitle(String substitutePictureTitle) {
+    this.substitutePictureTitle = substitutePictureTitle;
+    return this;
+  }
+
+   /**
+   * The title for OleObject icon.             
+   * @return substitutePictureTitle
+  **/
+  @ApiModelProperty(value = "The title for OleObject icon.             ")
+  public String getSubstitutePictureTitle() {
+    return substitutePictureTitle;
+  }
+
+  public void setSubstitutePictureTitle(String substitutePictureTitle) {
+    this.substitutePictureTitle = substitutePictureTitle;
   }
 
 
@@ -68,12 +110,12 @@ public class OleObjectFrame extends ShapeBase {
       return false;
     }
     OleObjectFrame oleObjectFrame = (OleObjectFrame) o;
-    return true && super.equals(o);
+    return true && Objects.equals(this.isObjectIcon, oleObjectFrame.isObjectIcon) && Objects.equals(this.substitutePictureTitle, oleObjectFrame.substitutePictureTitle) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(super.hashCode());
+    return Objects.hash(isObjectIcon, substitutePictureTitle, super.hashCode());
   }
 
 
@@ -82,6 +124,8 @@ public class OleObjectFrame extends ShapeBase {
     StringBuilder sb = new StringBuilder();
     sb.append("class OleObjectFrame {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    isObjectIcon: ").append(toIndentedString(isObjectIcon)).append("\n");
+    sb.append("    substitutePictureTitle: ").append(toIndentedString(substitutePictureTitle)).append("\n");
     sb.append("}");
     return sb.toString();
   }
