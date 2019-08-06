@@ -17,8 +17,9 @@ public class ImagesExample {
 		api = new ImagesApi(AppSID, SecretKey);
 	}
 
-	final static String AppSID = "78946fb4-3bd4-4d3e-b309-f9e2ff9ac6f9";
-	final static String SecretKey = "b125f13bf6b76ed81ee990142d841195";
+	
+	final static String AppSID = "";
+	final static String SecretKey = "";
 
 	private GetSlidesImageWithFormatRequest createGetSlidesImageWithFormatRequest() {
 		GetSlidesImageWithFormatRequest request = new GetSlidesImageWithFormatRequest();
