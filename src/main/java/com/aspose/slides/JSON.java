@@ -30,7 +30,10 @@ package com.aspose.slides;
 import com.google.gson.FieldNamingStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.google.gson.JsonParser;
 import com.google.gson.TypeAdapter;
 import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.google.gson.stream.JsonReader;
@@ -46,7 +49,12 @@ import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.ParsePosition;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.Map;
+import java.util.Set;
+import org.reflections.Reflections;
+import org.threeten.bp.OffsetTime;
 
 public class JSON {
     private Gson gson;
@@ -111,13 +119,14 @@ public class JSON {
     @SuppressWarnings("unchecked")
     public <T> T deserialize(String body, Type returnType) {
         try {
+            Type type = getObjectSubtype(returnType, body);
             if (isLenientOnJson) {
                 JsonReader jsonReader = new JsonReader(new StringReader(body));
                 // see https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/stream/JsonReader.html#setLenient(boolean)
                 jsonReader.setLenient(true);
-                return gson.fromJson(jsonReader, returnType);
+                return gson.fromJson(jsonReader, type);
             } else {
-                return gson.fromJson(body, returnType);
+                return gson.fromJson(body, type);
             }
         } catch (JsonParseException e) {
             // Fallback processing when failed to parse JSON form response body:
@@ -128,6 +137,58 @@ public class JSON {
         }
     }
 
+    @SuppressWarnings("unchecked")
+    public Type getObjectSubtype(Type type, String data) {
+        JsonParser parser = new JsonParser();
+        JsonObject object = parser.parse(data).getAsJsonObject();
+        Reflections reflections = new Reflections("com.aspose.slides.model");
+        Set<Class<?>> classes = reflections.getSubTypesOf((Class)type);
+        for (Class<?> aClass : classes) {
+            if (isObjectSubtypeOf(aClass, object)) {
+                return aClass;
+            }
+        }
+        return type;
+    }
+
+    private boolean isObjectSubtypeOf(Class aClass, JsonObject object) {
+        try {
+            Field field = aClass.getDeclaredField("typeDeterminers");
+            if (field == null) {
+                return false;
+            }
+            field.setAccessible(true);
+            Object determinersObject = field.get(null);
+            if (determinersObject == null || !(determinersObject instanceof Map<?, ?>)) {
+                return false;
+            }
+            Map<String, Object> determiners = (Map<String, Object>)determinersObject;
+            if (determiners.isEmpty()) {
+                return false;
+            }
+            for (String key : determiners.keySet()) {
+                JsonElement objectKeyValue = object.get(key);
+                if (objectKeyValue == null) {
+                    objectKeyValue = object.get(key.substring(0, 1).toLowerCase() + key.substring(1));
+                }
+                if (objectKeyValue == null) {
+                    objectKeyValue = object.get(key.substring(0, 1).toUpperCase() + key.substring(1));
+                }
+                if (objectKeyValue == null) {
+                    return false;
+                }
+                if (!objectKeyValue.getAsString().equalsIgnoreCase(determiners.get(key).toString())) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        catch (Exception ex) {
+            //Reject the class in any unexpected case
+            return false;
+        }
+    }
+    
     /**
      * Gson TypeAdapter for JSR310 OffsetDateTime type
      */
@@ -167,7 +228,12 @@ public class JSON {
                     if (date.endsWith("+0000")) {
                         date = date.substring(0, date.length()-5) + "Z";
                     }
-                    return OffsetDateTime.parse(date, formatter);
+                    try {
+                        return OffsetDateTime.parse(date, formatter);
+                    } catch (Exception ex) {
+                        LocalDate localDate = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+                        return localDate.atTime(OffsetTime.MIN);
+                    }
             }
         }
     }

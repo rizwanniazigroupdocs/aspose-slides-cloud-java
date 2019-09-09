@@ -43,16 +43,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents comments collection of slide
  */
 @ApiModel(description = "Represents comments collection of slide")
 public class SlideAnimation extends ResourceBase {
-  @SerializedName("MainSequence")
+  @SerializedName(value = "mainSequence", alternate = { "MainSequence" })
   private List<Effect> mainSequence = null;
 
-  @SerializedName("InteractiveSequences")
+  @SerializedName(value = "interactiveSequences", alternate = { "InteractiveSequences" })
   private List<InteractiveSequence> interactiveSequences = null;
 
 
@@ -156,5 +158,8 @@ public class SlideAnimation extends ResourceBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

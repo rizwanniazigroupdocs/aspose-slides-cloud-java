@@ -37,13 +37,15 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Table column.
  */
 @ApiModel(description = "Table column.")
 public class TableColumn {
-  @SerializedName("Width")
+  @SerializedName(value = "width", alternate = { "Width" })
   private Double width;
 
 
@@ -109,5 +111,8 @@ public class TableColumn {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

@@ -37,13 +37,15 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents soft edge effect 
  */
 @ApiModel(description = "Represents soft edge effect ")
 public class SoftEdgeEffect {
-  @SerializedName("Radius")
+  @SerializedName(value = "radius", alternate = { "Radius" })
   private Double radius;
 
 
@@ -109,5 +111,8 @@ public class SoftEdgeEffect {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

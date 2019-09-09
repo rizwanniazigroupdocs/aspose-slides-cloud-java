@@ -42,13 +42,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents list of Links to Paragraphs resources
  */
 @ApiModel(description = "Represents list of Links to Paragraphs resources")
 public class Portions extends ResourceBase {
-  @SerializedName("PortionLinks")
+  @SerializedName(value = "portionLinks", alternate = { "PortionLinks" })
   private List<ResourceUriElement> portionLinks = null;
 
 
@@ -124,5 +126,8 @@ public class Portions extends ResourceBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

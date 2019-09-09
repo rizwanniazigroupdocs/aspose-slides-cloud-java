@@ -40,19 +40,21 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents image DTO.
  */
 @ApiModel(description = "Represents image DTO.")
 public class Image extends ResourceBase {
-  @SerializedName("Width")
+  @SerializedName(value = "width", alternate = { "Width" })
   private Integer width;
 
-  @SerializedName("Height")
+  @SerializedName(value = "height", alternate = { "Height" })
   private Integer height;
 
-  @SerializedName("ContentType")
+  @SerializedName(value = "contentType", alternate = { "ContentType" })
   private String contentType;
 
 
@@ -157,5 +159,8 @@ public class Image extends ResourceBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

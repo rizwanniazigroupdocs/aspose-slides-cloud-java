@@ -38,16 +38,18 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Reorder slide task.
  */
 @ApiModel(description = "Reorder slide task.")
 public class ReorderSlide extends Task {
-  @SerializedName("OldPosition")
+  @SerializedName(value = "oldPosition", alternate = { "OldPosition" })
   private Integer oldPosition;
 
-  @SerializedName("NewPosition")
+  @SerializedName(value = "newPosition", alternate = { "NewPosition" })
   private Integer newPosition;
 
 
@@ -133,5 +135,11 @@ public class ReorderSlide extends Task {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+  static {
+      typeDeterminers.put("Type", TypeEnum.REODERSLIDE);
+  }
+}

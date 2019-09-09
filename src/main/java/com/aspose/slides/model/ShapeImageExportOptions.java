@@ -37,16 +37,18 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Provides options that control how a shape is saved in thumbnail.
  */
 @ApiModel(description = "Provides options that control how a shape is saved in thumbnail.")
 public class ShapeImageExportOptions {
-  @SerializedName("ScaleX")
+  @SerializedName(value = "scaleX", alternate = { "ScaleX" })
   private Double scaleX;
 
-  @SerializedName("ScaleY")
+  @SerializedName(value = "scaleY", alternate = { "ScaleY" })
   private Double scaleY;
 
   /**
@@ -98,10 +100,10 @@ public class ShapeImageExportOptions {
     }
   }
 
-  @SerializedName("ThumbnailBounds")
+  @SerializedName(value = "thumbnailBounds", alternate = { "ThumbnailBounds" })
   private ThumbnailBoundsEnum thumbnailBounds;
 
-  @SerializedName("Format")
+  @SerializedName(value = "format", alternate = { "Format" })
   private String format;
 
 
@@ -224,5 +226,8 @@ public class ShapeImageExportOptions {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

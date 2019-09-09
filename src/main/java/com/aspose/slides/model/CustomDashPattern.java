@@ -39,13 +39,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Custom dash pattern.
  */
 @ApiModel(description = "Custom dash pattern.")
 public class CustomDashPattern {
-  @SerializedName("Items")
+  @SerializedName(value = "items", alternate = { "Items" })
   private List<Double> items = null;
 
 
@@ -120,5 +122,8 @@ public class CustomDashPattern {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

@@ -37,6 +37,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Arrow head properties.
@@ -94,7 +96,7 @@ public class ArrowHeadProperties {
     }
   }
 
-  @SerializedName("Length")
+  @SerializedName(value = "length", alternate = { "Length" })
   private LengthEnum length;
 
   /**
@@ -154,7 +156,7 @@ public class ArrowHeadProperties {
     }
   }
 
-  @SerializedName("Style")
+  @SerializedName(value = "style", alternate = { "Style" })
   private StyleEnum style;
 
   /**
@@ -208,7 +210,7 @@ public class ArrowHeadProperties {
     }
   }
 
-  @SerializedName("Width")
+  @SerializedName(value = "width", alternate = { "Width" })
   private WidthEnum width;
 
 
@@ -312,5 +314,8 @@ public class ArrowHeadProperties {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

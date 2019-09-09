@@ -37,6 +37,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents fill overlay effect 
@@ -96,7 +98,7 @@ public class FillOverlayEffect {
     }
   }
 
-  @SerializedName("Blend")
+  @SerializedName(value = "blend", alternate = { "Blend" })
   private BlendEnum blend;
 
 
@@ -162,5 +164,8 @@ public class FillOverlayEffect {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

@@ -41,13 +41,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Placeholder list.
  */
 @ApiModel(description = "Placeholder list.")
 public class Placeholders extends ResourceBase {
-  @SerializedName("PlaceholderLinks")
+  @SerializedName(value = "placeholderLinks", alternate = { "PlaceholderLinks" })
   private List<ResourceUri> placeholderLinks = null;
 
 
@@ -123,5 +125,8 @@ public class Placeholders extends ResourceBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

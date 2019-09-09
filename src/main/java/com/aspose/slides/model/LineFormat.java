@@ -40,6 +40,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Line format.
@@ -95,7 +97,7 @@ public class LineFormat {
     }
   }
 
-  @SerializedName("Alignment")
+  @SerializedName(value = "alignment", alternate = { "Alignment" })
   private AlignmentEnum alignment;
 
   /**
@@ -149,7 +151,7 @@ public class LineFormat {
     }
   }
 
-  @SerializedName("CapStyle")
+  @SerializedName(value = "capStyle", alternate = { "CapStyle" })
   private CapStyleEnum capStyle;
 
   /**
@@ -221,7 +223,7 @@ public class LineFormat {
     }
   }
 
-  @SerializedName("DashStyle")
+  @SerializedName(value = "dashStyle", alternate = { "DashStyle" })
   private DashStyleEnum dashStyle;
 
   /**
@@ -275,7 +277,7 @@ public class LineFormat {
     }
   }
 
-  @SerializedName("JoinStyle")
+  @SerializedName(value = "joinStyle", alternate = { "JoinStyle" })
   private JoinStyleEnum joinStyle;
 
   /**
@@ -333,25 +335,25 @@ public class LineFormat {
     }
   }
 
-  @SerializedName("Style")
+  @SerializedName(value = "style", alternate = { "Style" })
   private StyleEnum style;
 
-  @SerializedName("BeginArrowHead")
+  @SerializedName(value = "beginArrowHead", alternate = { "BeginArrowHead" })
   private ArrowHeadProperties beginArrowHead;
 
-  @SerializedName("EndArrowHead")
+  @SerializedName(value = "endArrowHead", alternate = { "EndArrowHead" })
   private ArrowHeadProperties endArrowHead;
 
-  @SerializedName("CustomDashPattern")
+  @SerializedName(value = "customDashPattern", alternate = { "CustomDashPattern" })
   private CustomDashPattern customDashPattern;
 
-  @SerializedName("FillFormat")
+  @SerializedName(value = "fillFormat", alternate = { "FillFormat" })
   private FillFormat fillFormat;
 
-  @SerializedName("MiterLimit")
+  @SerializedName(value = "miterLimit", alternate = { "MiterLimit" })
   private Double miterLimit;
 
-  @SerializedName("Width")
+  @SerializedName(value = "width", alternate = { "Width" })
   private Double width;
 
 
@@ -607,5 +609,8 @@ public class LineFormat {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

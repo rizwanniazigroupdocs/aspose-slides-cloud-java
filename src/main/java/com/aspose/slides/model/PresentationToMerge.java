@@ -39,19 +39,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents presentation to merge
  */
 @ApiModel(description = "Represents presentation to merge")
 public class PresentationToMerge {
-  @SerializedName("Path")
+  @SerializedName(value = "path", alternate = { "Path" })
   private String path;
 
-  @SerializedName("Password")
+  @SerializedName(value = "password", alternate = { "Password" })
   private String password;
 
-  @SerializedName("Slides")
+  @SerializedName(value = "slides", alternate = { "Slides" })
   private List<Integer> slides = null;
 
 
@@ -164,5 +166,8 @@ public class PresentationToMerge {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

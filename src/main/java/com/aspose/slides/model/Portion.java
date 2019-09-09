@@ -43,13 +43,15 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents portion resource
  */
 @ApiModel(description = "Represents portion resource")
 public class Portion extends ResourceBase {
-  @SerializedName("Text")
+  @SerializedName(value = "text", alternate = { "Text" })
   private String text;
 
   /**
@@ -101,7 +103,7 @@ public class Portion extends ResourceBase {
     }
   }
 
-  @SerializedName("FontBold")
+  @SerializedName(value = "fontBold", alternate = { "FontBold" })
   private FontBoldEnum fontBold;
 
   /**
@@ -153,7 +155,7 @@ public class Portion extends ResourceBase {
     }
   }
 
-  @SerializedName("FontItalic")
+  @SerializedName(value = "fontItalic", alternate = { "FontItalic" })
   private FontItalicEnum fontItalic;
 
   /**
@@ -237,7 +239,7 @@ public class Portion extends ResourceBase {
     }
   }
 
-  @SerializedName("FontUnderline")
+  @SerializedName(value = "fontUnderline", alternate = { "FontUnderline" })
   private FontUnderlineEnum fontUnderline;
 
   /**
@@ -291,7 +293,7 @@ public class Portion extends ResourceBase {
     }
   }
 
-  @SerializedName("StrikethroughType")
+  @SerializedName(value = "strikethroughType", alternate = { "StrikethroughType" })
   private StrikethroughTypeEnum strikethroughType;
 
   /**
@@ -345,22 +347,22 @@ public class Portion extends ResourceBase {
     }
   }
 
-  @SerializedName("TextCapType")
+  @SerializedName(value = "textCapType", alternate = { "TextCapType" })
   private TextCapTypeEnum textCapType;
 
-  @SerializedName("Escapement")
+  @SerializedName(value = "escapement", alternate = { "Escapement" })
   private Double escapement;
 
-  @SerializedName("Spacing")
+  @SerializedName(value = "spacing", alternate = { "Spacing" })
   private Double spacing;
 
-  @SerializedName("FontColor")
+  @SerializedName(value = "fontColor", alternate = { "FontColor" })
   private String fontColor;
 
-  @SerializedName("HighlightColor")
+  @SerializedName(value = "highlightColor", alternate = { "HighlightColor" })
   private String highlightColor;
 
-  @SerializedName("FontHeight")
+  @SerializedName(value = "fontHeight", alternate = { "FontHeight" })
   private Double fontHeight;
 
   /**
@@ -412,7 +414,7 @@ public class Portion extends ResourceBase {
     }
   }
 
-  @SerializedName("NormaliseHeight")
+  @SerializedName(value = "normaliseHeight", alternate = { "NormaliseHeight" })
   private NormaliseHeightEnum normaliseHeight;
 
   /**
@@ -464,13 +466,13 @@ public class Portion extends ResourceBase {
     }
   }
 
-  @SerializedName("ProofDisabled")
+  @SerializedName(value = "proofDisabled", alternate = { "ProofDisabled" })
   private ProofDisabledEnum proofDisabled;
 
-  @SerializedName("SmartTagClean")
+  @SerializedName(value = "smartTagClean", alternate = { "SmartTagClean" })
   private Boolean smartTagClean;
 
-  @SerializedName("KerningMinimalSize")
+  @SerializedName(value = "kerningMinimalSize", alternate = { "KerningMinimalSize" })
   private Double kerningMinimalSize;
 
   /**
@@ -522,13 +524,13 @@ public class Portion extends ResourceBase {
     }
   }
 
-  @SerializedName("Kumimoji")
+  @SerializedName(value = "kumimoji", alternate = { "Kumimoji" })
   private KumimojiEnum kumimoji;
 
-  @SerializedName("LanguageId")
+  @SerializedName(value = "languageId", alternate = { "LanguageId" })
   private String languageId;
 
-  @SerializedName("AlternativeLanguageId")
+  @SerializedName(value = "alternativeLanguageId", alternate = { "AlternativeLanguageId" })
   private String alternativeLanguageId;
 
   /**
@@ -580,7 +582,7 @@ public class Portion extends ResourceBase {
     }
   }
 
-  @SerializedName("IsHardUnderlineFill")
+  @SerializedName(value = "isHardUnderlineFill", alternate = { "IsHardUnderlineFill" })
   private IsHardUnderlineFillEnum isHardUnderlineFill;
 
   /**
@@ -632,22 +634,22 @@ public class Portion extends ResourceBase {
     }
   }
 
-  @SerializedName("IsHardUnderlineLine")
+  @SerializedName(value = "isHardUnderlineLine", alternate = { "IsHardUnderlineLine" })
   private IsHardUnderlineLineEnum isHardUnderlineLine;
 
-  @SerializedName("FillFormat")
+  @SerializedName(value = "fillFormat", alternate = { "FillFormat" })
   private FillFormat fillFormat;
 
-  @SerializedName("EffectFormat")
+  @SerializedName(value = "effectFormat", alternate = { "EffectFormat" })
   private EffectFormat effectFormat;
 
-  @SerializedName("LineFormat")
+  @SerializedName(value = "lineFormat", alternate = { "LineFormat" })
   private LineFormat lineFormat;
 
-  @SerializedName("UnderlineFillFormat")
+  @SerializedName(value = "underlineFillFormat", alternate = { "UnderlineFillFormat" })
   private FillFormat underlineFillFormat;
 
-  @SerializedName("UnderlineLineFormat")
+  @SerializedName(value = "underlineLineFormat", alternate = { "UnderlineLineFormat" })
   private LineFormat underlineLineFormat;
 
 
@@ -1170,5 +1172,8 @@ public class Portion extends ResourceBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

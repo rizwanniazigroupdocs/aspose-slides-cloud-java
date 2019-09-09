@@ -41,25 +41,27 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents document DTO.
  */
 @ApiModel(description = "Represents document DTO.")
 public class Document extends ResourceBase {
-  @SerializedName("DocumentProperties")
+  @SerializedName(value = "documentProperties", alternate = { "DocumentProperties" })
   private ResourceUriElement documentProperties;
 
-  @SerializedName("Slides")
+  @SerializedName(value = "slides", alternate = { "Slides" })
   private ResourceUriElement slides;
 
-  @SerializedName("Images")
+  @SerializedName(value = "images", alternate = { "Images" })
   private ResourceUriElement images;
 
-  @SerializedName("LayoutSlides")
+  @SerializedName(value = "layoutSlides", alternate = { "LayoutSlides" })
   private ResourceUriElement layoutSlides;
 
-  @SerializedName("MasterSlides")
+  @SerializedName(value = "masterSlides", alternate = { "MasterSlides" })
   private ResourceUriElement masterSlides;
 
 
@@ -202,5 +204,8 @@ public class Document extends ResourceBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

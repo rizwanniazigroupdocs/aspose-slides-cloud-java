@@ -40,22 +40,24 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents a chart wall
  */
 @ApiModel(description = "Represents a chart wall")
 public class ChartWall {
-  @SerializedName("FillFormat")
+  @SerializedName(value = "fillFormat", alternate = { "FillFormat" })
   private FillFormat fillFormat;
 
-  @SerializedName("EffectFormat")
+  @SerializedName(value = "effectFormat", alternate = { "EffectFormat" })
   private EffectFormat effectFormat;
 
-  @SerializedName("LineFormat")
+  @SerializedName(value = "lineFormat", alternate = { "LineFormat" })
   private LineFormat lineFormat;
 
-  @SerializedName("Thickness")
+  @SerializedName(value = "thickness", alternate = { "Thickness" })
   private Integer thickness;
 
   /**
@@ -109,7 +111,7 @@ public class ChartWall {
     }
   }
 
-  @SerializedName("PictureType")
+  @SerializedName(value = "pictureType", alternate = { "PictureType" })
   private PictureTypeEnum pictureType;
 
 
@@ -251,5 +253,8 @@ public class ChartWall {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

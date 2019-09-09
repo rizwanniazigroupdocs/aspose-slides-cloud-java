@@ -47,6 +47,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents Table shape resource.
@@ -248,34 +250,34 @@ public class Table extends ShapeBase {
     }
   }
 
-  @SerializedName("Style")
+  @SerializedName(value = "style", alternate = { "Style" })
   private StyleEnum style;
 
-  @SerializedName("Rows")
+  @SerializedName(value = "rows", alternate = { "Rows" })
   private List<TableRow> rows = null;
 
-  @SerializedName("Columns")
+  @SerializedName(value = "columns", alternate = { "Columns" })
   private List<TableColumn> columns = null;
 
-  @SerializedName("FirstCol")
+  @SerializedName(value = "firstCol", alternate = { "FirstCol" })
   private Boolean firstCol;
 
-  @SerializedName("FirstRow")
+  @SerializedName(value = "firstRow", alternate = { "FirstRow" })
   private Boolean firstRow;
 
-  @SerializedName("HorizontalBanding")
+  @SerializedName(value = "horizontalBanding", alternate = { "HorizontalBanding" })
   private Boolean horizontalBanding;
 
-  @SerializedName("LastCol")
+  @SerializedName(value = "lastCol", alternate = { "LastCol" })
   private Boolean lastCol;
 
-  @SerializedName("LastRow")
+  @SerializedName(value = "lastRow", alternate = { "LastRow" })
   private Boolean lastRow;
 
-  @SerializedName("RightToLeft")
+  @SerializedName(value = "rightToLeft", alternate = { "RightToLeft" })
   private Boolean rightToLeft;
 
-  @SerializedName("VerticalBanding")
+  @SerializedName(value = "verticalBanding", alternate = { "VerticalBanding" })
   private Boolean verticalBanding;
 
 
@@ -533,5 +535,14 @@ public class Table extends ShapeBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+  static {
+      typeDeterminers.put("Type", TypeEnum.TABLE);
+  }
+  static {
+      typeDeterminers.put("ShapeType", ShapeTypeEnum.TABLE);
+  }
+}

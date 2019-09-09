@@ -37,16 +37,18 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Class for disc space information.
  */
 @ApiModel(description = "Class for disc space information.")
 public class DiscUsage {
-  @SerializedName("UsedSize")
+  @SerializedName(value = "usedSize", alternate = { "UsedSize" })
   private Long usedSize;
 
-  @SerializedName("TotalSize")
+  @SerializedName(value = "totalSize", alternate = { "TotalSize" })
   private Long totalSize;
 
 
@@ -131,5 +133,8 @@ public class DiscUsage {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

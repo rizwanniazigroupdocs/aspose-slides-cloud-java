@@ -41,16 +41,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents pipeline for one input document.
  */
 @ApiModel(description = "Represents pipeline for one input document.")
 public class Pipeline {
-  @SerializedName("Input")
+  @SerializedName(value = "input", alternate = { "Input" })
   private Input input;
 
-  @SerializedName("Tasks")
+  @SerializedName(value = "tasks", alternate = { "Tasks" })
   private List<Task> tasks = null;
 
 
@@ -144,5 +146,8 @@ public class Pipeline {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

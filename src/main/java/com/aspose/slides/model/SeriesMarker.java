@@ -40,13 +40,15 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents a series marker
  */
 @ApiModel(description = "Represents a series marker")
 public class SeriesMarker {
-  @SerializedName("Size")
+  @SerializedName(value = "size", alternate = { "Size" })
   private Integer size;
 
   /**
@@ -116,16 +118,16 @@ public class SeriesMarker {
     }
   }
 
-  @SerializedName("Symbol")
+  @SerializedName(value = "symbol", alternate = { "Symbol" })
   private SymbolEnum symbol;
 
-  @SerializedName("FillFormat")
+  @SerializedName(value = "fillFormat", alternate = { "FillFormat" })
   private FillFormat fillFormat;
 
-  @SerializedName("EffectFormat")
+  @SerializedName(value = "effectFormat", alternate = { "EffectFormat" })
   private EffectFormat effectFormat;
 
-  @SerializedName("LineFormat")
+  @SerializedName(value = "lineFormat", alternate = { "LineFormat" })
   private LineFormat lineFormat;
 
 
@@ -267,5 +269,8 @@ public class SeriesMarker {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

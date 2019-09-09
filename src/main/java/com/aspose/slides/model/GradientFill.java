@@ -41,6 +41,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents gradient fill format
@@ -102,7 +104,7 @@ public class GradientFill extends FillFormat {
     }
   }
 
-  @SerializedName("Direction")
+  @SerializedName(value = "direction", alternate = { "Direction" })
   private DirectionEnum direction;
 
   /**
@@ -158,16 +160,16 @@ public class GradientFill extends FillFormat {
     }
   }
 
-  @SerializedName("Shape")
+  @SerializedName(value = "shape", alternate = { "Shape" })
   private ShapeEnum shape;
 
-  @SerializedName("Stops")
+  @SerializedName(value = "stops", alternate = { "Stops" })
   private List<GradientFillStop> stops = null;
 
-  @SerializedName("LinearAngle")
+  @SerializedName(value = "linearAngle", alternate = { "LinearAngle" })
   private Double linearAngle;
 
-  @SerializedName("IsScaled")
+  @SerializedName(value = "isScaled", alternate = { "IsScaled" })
   private Boolean isScaled;
 
   /**
@@ -223,7 +225,7 @@ public class GradientFill extends FillFormat {
     }
   }
 
-  @SerializedName("TileFlip")
+  @SerializedName(value = "tileFlip", alternate = { "TileFlip" })
   private TileFlipEnum tileFlip;
 
 
@@ -394,5 +396,11 @@ public class GradientFill extends FillFormat {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+  static {
+      typeDeterminers.put("Type", TypeEnum.GRADIENT);
+  }
+}

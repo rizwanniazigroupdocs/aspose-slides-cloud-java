@@ -42,13 +42,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Master slide list.
  */
 @ApiModel(description = "Master slide list.")
 public class MasterSlides extends ResourceBase {
-  @SerializedName("SlideList")
+  @SerializedName(value = "slideList", alternate = { "SlideList" })
   private List<ResourceUriElement> slideList = null;
 
 
@@ -124,5 +126,8 @@ public class MasterSlides extends ResourceBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

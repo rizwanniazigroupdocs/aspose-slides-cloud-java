@@ -39,16 +39,18 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import org.threeten.bp.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * File Version
  */
 @ApiModel(description = "File Version")
 public class FileVersion extends StorageFile {
-  @SerializedName("VersionId")
+  @SerializedName(value = "versionId", alternate = { "VersionId" })
   private String versionId;
 
-  @SerializedName("IsLatest")
+  @SerializedName(value = "isLatest", alternate = { "IsLatest" })
   private Boolean isLatest;
 
 
@@ -133,5 +135,8 @@ public class FileVersion extends StorageFile {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

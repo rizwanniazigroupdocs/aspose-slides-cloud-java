@@ -44,19 +44,21 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents VideoFrame resource.
  */
 @ApiModel(description = "Represents VideoFrame resource.")
 public class VideoFrame extends GeometryShape {
-  @SerializedName("FullScreenMode")
+  @SerializedName(value = "fullScreenMode", alternate = { "FullScreenMode" })
   private Boolean fullScreenMode;
 
-  @SerializedName("HideAtShowing")
+  @SerializedName(value = "hideAtShowing", alternate = { "HideAtShowing" })
   private Boolean hideAtShowing;
 
-  @SerializedName("PlayLoopMode")
+  @SerializedName(value = "playLoopMode", alternate = { "PlayLoopMode" })
   private Boolean playLoopMode;
 
   /**
@@ -110,10 +112,10 @@ public class VideoFrame extends GeometryShape {
     }
   }
 
-  @SerializedName("PlayMode")
+  @SerializedName(value = "playMode", alternate = { "PlayMode" })
   private PlayModeEnum playMode;
 
-  @SerializedName("RewindVideo")
+  @SerializedName(value = "rewindVideo", alternate = { "RewindVideo" })
   private Boolean rewindVideo;
 
   /**
@@ -169,10 +171,10 @@ public class VideoFrame extends GeometryShape {
     }
   }
 
-  @SerializedName("Volume")
+  @SerializedName(value = "volume", alternate = { "Volume" })
   private VolumeEnum volume;
 
-  @SerializedName("Base64Data")
+  @SerializedName(value = "base64Data", alternate = { "Base64Data" })
   private String base64Data;
 
 
@@ -355,5 +357,14 @@ public class VideoFrame extends GeometryShape {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+  static {
+      typeDeterminers.put("Type", TypeEnum.VIDEOFRAME);
+  }
+  static {
+      typeDeterminers.put("ShapeType", ShapeTypeEnum.VIDEOFRAME);
+  }
+}

@@ -41,6 +41,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * A chart series.
@@ -238,55 +240,55 @@ public class Series {
     }
   }
 
-  @SerializedName("Type")
+  @SerializedName(value = "type", alternate = { "Type" })
   private TypeEnum type;
 
-  @SerializedName("Name")
+  @SerializedName(value = "name", alternate = { "Name" })
   private String name;
 
-  @SerializedName("IsColorVaried")
+  @SerializedName(value = "isColorVaried", alternate = { "IsColorVaried" })
   private Boolean isColorVaried;
 
-  @SerializedName("InvertedSolidFillColor")
+  @SerializedName(value = "invertedSolidFillColor", alternate = { "InvertedSolidFillColor" })
   private String invertedSolidFillColor;
 
-  @SerializedName("Smooth")
+  @SerializedName(value = "smooth", alternate = { "Smooth" })
   private Boolean smooth;
 
-  @SerializedName("PlotOnSecondAxis")
+  @SerializedName(value = "plotOnSecondAxis", alternate = { "PlotOnSecondAxis" })
   private Boolean plotOnSecondAxis;
 
-  @SerializedName("Order")
+  @SerializedName(value = "order", alternate = { "Order" })
   private Integer order;
 
-  @SerializedName("NumberFormatOfYValues")
+  @SerializedName(value = "numberFormatOfYValues", alternate = { "NumberFormatOfYValues" })
   private String numberFormatOfYValues;
 
-  @SerializedName("NumberFormatOfXValues")
+  @SerializedName(value = "numberFormatOfXValues", alternate = { "NumberFormatOfXValues" })
   private String numberFormatOfXValues;
 
-  @SerializedName("NumberFormatOfValues")
+  @SerializedName(value = "numberFormatOfValues", alternate = { "NumberFormatOfValues" })
   private String numberFormatOfValues;
 
-  @SerializedName("NumberFormatOfBubbleSizes")
+  @SerializedName(value = "numberFormatOfBubbleSizes", alternate = { "NumberFormatOfBubbleSizes" })
   private String numberFormatOfBubbleSizes;
 
-  @SerializedName("InvertIfNegative")
+  @SerializedName(value = "invertIfNegative", alternate = { "InvertIfNegative" })
   private Boolean invertIfNegative;
 
-  @SerializedName("Explosion")
+  @SerializedName(value = "explosion", alternate = { "Explosion" })
   private Integer explosion;
 
-  @SerializedName("Marker")
+  @SerializedName(value = "marker", alternate = { "Marker" })
   private SeriesMarker marker;
 
-  @SerializedName("FillFormat")
+  @SerializedName(value = "fillFormat", alternate = { "FillFormat" })
   private FillFormat fillFormat;
 
-  @SerializedName("EffectFormat")
+  @SerializedName(value = "effectFormat", alternate = { "EffectFormat" })
   private EffectFormat effectFormat;
 
-  @SerializedName("LineFormat")
+  @SerializedName(value = "lineFormat", alternate = { "LineFormat" })
   private LineFormat lineFormat;
 
 
@@ -656,5 +658,8 @@ public class Series {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

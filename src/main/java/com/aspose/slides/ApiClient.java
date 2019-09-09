@@ -60,10 +60,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import com.aspose.slides.auth.*;
 import com.google.gson.reflect.TypeToken;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.logging.Logger;
-import okio.Buffer;
 
 public class ApiClient {
 

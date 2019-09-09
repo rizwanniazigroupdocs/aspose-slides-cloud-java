@@ -44,16 +44,18 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents OleObjectFrame resource.
  */
 @ApiModel(description = "Represents OleObjectFrame resource.")
 public class OleObjectFrame extends ShapeBase {
-  @SerializedName("IsObjectIcon")
+  @SerializedName(value = "isObjectIcon", alternate = { "IsObjectIcon" })
   private Boolean isObjectIcon;
 
-  @SerializedName("SubstitutePictureTitle")
+  @SerializedName(value = "substitutePictureTitle", alternate = { "SubstitutePictureTitle" })
   private String substitutePictureTitle;
 
 
@@ -141,5 +143,14 @@ public class OleObjectFrame extends ShapeBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+  static {
+      typeDeterminers.put("Type", TypeEnum.OLEOBJECTFRAME);
+  }
+  static {
+      typeDeterminers.put("ShapeType", ShapeTypeEnum.OLEOBJECTFRAME);
+  }
+}

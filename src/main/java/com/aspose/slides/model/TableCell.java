@@ -39,31 +39,33 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents one cell of table.
  */
 @ApiModel(description = "Represents one cell of table.")
 public class TableCell {
-  @SerializedName("Text")
+  @SerializedName(value = "text", alternate = { "Text" })
   private String text;
 
-  @SerializedName("RowSpan")
+  @SerializedName(value = "rowSpan", alternate = { "RowSpan" })
   private Integer rowSpan;
 
-  @SerializedName("ColSpan")
+  @SerializedName(value = "colSpan", alternate = { "ColSpan" })
   private Integer colSpan;
 
-  @SerializedName("MarginTop")
+  @SerializedName(value = "marginTop", alternate = { "MarginTop" })
   private Double marginTop;
 
-  @SerializedName("MarginRight")
+  @SerializedName(value = "marginRight", alternate = { "MarginRight" })
   private Double marginRight;
 
-  @SerializedName("MarginLeft")
+  @SerializedName(value = "marginLeft", alternate = { "MarginLeft" })
   private Double marginLeft;
 
-  @SerializedName("MarginBottom")
+  @SerializedName(value = "marginBottom", alternate = { "MarginBottom" })
   private Double marginBottom;
 
   /**
@@ -121,7 +123,7 @@ public class TableCell {
     }
   }
 
-  @SerializedName("TextAnchorType")
+  @SerializedName(value = "textAnchorType", alternate = { "TextAnchorType" })
   private TextAnchorTypeEnum textAnchorType;
 
   /**
@@ -183,28 +185,28 @@ public class TableCell {
     }
   }
 
-  @SerializedName("TextVerticalType")
+  @SerializedName(value = "textVerticalType", alternate = { "TextVerticalType" })
   private TextVerticalTypeEnum textVerticalType;
 
-  @SerializedName("FillFormat")
+  @SerializedName(value = "fillFormat", alternate = { "FillFormat" })
   private FillFormat fillFormat;
 
-  @SerializedName("BorderTop")
+  @SerializedName(value = "borderTop", alternate = { "BorderTop" })
   private LineFormat borderTop;
 
-  @SerializedName("BorderRight")
+  @SerializedName(value = "borderRight", alternate = { "BorderRight" })
   private LineFormat borderRight;
 
-  @SerializedName("BorderLeft")
+  @SerializedName(value = "borderLeft", alternate = { "BorderLeft" })
   private LineFormat borderLeft;
 
-  @SerializedName("BorderBottom")
+  @SerializedName(value = "borderBottom", alternate = { "BorderBottom" })
   private LineFormat borderBottom;
 
-  @SerializedName("BorderDiagonalUp")
+  @SerializedName(value = "borderDiagonalUp", alternate = { "BorderDiagonalUp" })
   private LineFormat borderDiagonalUp;
 
-  @SerializedName("BorderDiagonalDown")
+  @SerializedName(value = "borderDiagonalDown", alternate = { "BorderDiagonalDown" })
   private LineFormat borderDiagonalDown;
 
 
@@ -555,5 +557,8 @@ public class TableCell {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

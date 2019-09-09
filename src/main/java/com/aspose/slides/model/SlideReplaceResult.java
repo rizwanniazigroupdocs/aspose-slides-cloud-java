@@ -41,13 +41,15 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents slide replace result DTO.
  */
 @ApiModel(description = "Represents slide replace result DTO.")
 public class SlideReplaceResult extends Slide {
-  @SerializedName("Matches")
+  @SerializedName(value = "matches", alternate = { "Matches" })
   private Integer matches;
 
 
@@ -114,5 +116,8 @@ public class SlideReplaceResult extends Slide {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

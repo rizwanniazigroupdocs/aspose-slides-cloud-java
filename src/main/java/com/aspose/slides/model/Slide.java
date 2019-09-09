@@ -41,43 +41,45 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Presentation slide.
  */
 @ApiModel(description = "Presentation slide.")
 public class Slide extends ResourceBase {
-  @SerializedName("Width")
+  @SerializedName(value = "width", alternate = { "Width" })
   private Double width;
 
-  @SerializedName("Height")
+  @SerializedName(value = "height", alternate = { "Height" })
   private Double height;
 
-  @SerializedName("ShowMasterShapes")
+  @SerializedName(value = "showMasterShapes", alternate = { "ShowMasterShapes" })
   private Boolean showMasterShapes;
 
-  @SerializedName("LayoutSlide")
+  @SerializedName(value = "layoutSlide", alternate = { "LayoutSlide" })
   private ResourceUriElement layoutSlide;
 
-  @SerializedName("Shapes")
+  @SerializedName(value = "shapes", alternate = { "Shapes" })
   private ResourceUriElement shapes;
 
-  @SerializedName("Theme")
+  @SerializedName(value = "theme", alternate = { "Theme" })
   private ResourceUriElement theme;
 
-  @SerializedName("Placeholders")
+  @SerializedName(value = "placeholders", alternate = { "Placeholders" })
   private ResourceUriElement placeholders;
 
-  @SerializedName("Images")
+  @SerializedName(value = "images", alternate = { "Images" })
   private ResourceUriElement images;
 
-  @SerializedName("Comments")
+  @SerializedName(value = "comments", alternate = { "Comments" })
   private ResourceUriElement comments;
 
-  @SerializedName("Background")
+  @SerializedName(value = "background", alternate = { "Background" })
   private ResourceUriElement background;
 
-  @SerializedName("NotesSlide")
+  @SerializedName(value = "notesSlide", alternate = { "NotesSlide" })
   private ResourceUriElement notesSlide;
 
 
@@ -334,5 +336,8 @@ public class Slide extends ResourceBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

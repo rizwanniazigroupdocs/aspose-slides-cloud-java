@@ -40,6 +40,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Provides options that control how a presentation is saved in Pdf format.
@@ -93,10 +95,10 @@ public class PdfExportOptions extends ExportOptions {
     }
   }
 
-  @SerializedName("TextCompression")
+  @SerializedName(value = "textCompression", alternate = { "TextCompression" })
   private TextCompressionEnum textCompression;
 
-  @SerializedName("EmbedFullFonts")
+  @SerializedName(value = "embedFullFonts", alternate = { "EmbedFullFonts" })
   private Boolean embedFullFonts;
 
   /**
@@ -146,31 +148,31 @@ public class PdfExportOptions extends ExportOptions {
     }
   }
 
-  @SerializedName("Compliance")
+  @SerializedName(value = "compliance", alternate = { "Compliance" })
   private ComplianceEnum compliance;
 
-  @SerializedName("SufficientResolution")
+  @SerializedName(value = "sufficientResolution", alternate = { "SufficientResolution" })
   private Double sufficientResolution;
 
-  @SerializedName("JpegQuality")
+  @SerializedName(value = "jpegQuality", alternate = { "JpegQuality" })
   private Integer jpegQuality;
 
-  @SerializedName("DrawSlidesFrame")
+  @SerializedName(value = "drawSlidesFrame", alternate = { "DrawSlidesFrame" })
   private Boolean drawSlidesFrame;
 
-  @SerializedName("ShowHiddenSlides")
+  @SerializedName(value = "showHiddenSlides", alternate = { "ShowHiddenSlides" })
   private Boolean showHiddenSlides;
 
-  @SerializedName("SaveMetafilesAsPng")
+  @SerializedName(value = "saveMetafilesAsPng", alternate = { "SaveMetafilesAsPng" })
   private Boolean saveMetafilesAsPng;
 
-  @SerializedName("Password")
+  @SerializedName(value = "password", alternate = { "Password" })
   private String password;
 
-  @SerializedName("EmbedTrueTypeFontsForASCII")
+  @SerializedName(value = "embedTrueTypeFontsForASCII", alternate = { "EmbedTrueTypeFontsForASCII" })
   private Boolean embedTrueTypeFontsForASCII;
 
-  @SerializedName("AdditionalCommonFontFamilies")
+  @SerializedName(value = "additionalCommonFontFamilies", alternate = { "AdditionalCommonFontFamilies" })
   private List<String> additionalCommonFontFamilies = null;
 
   /**
@@ -222,7 +224,7 @@ public class PdfExportOptions extends ExportOptions {
     }
   }
 
-  @SerializedName("NotesPosition")
+  @SerializedName(value = "notesPosition", alternate = { "NotesPosition" })
   private NotesPositionEnum notesPosition;
 
   /**
@@ -274,22 +276,22 @@ public class PdfExportOptions extends ExportOptions {
     }
   }
 
-  @SerializedName("CommentsPosition")
+  @SerializedName(value = "commentsPosition", alternate = { "CommentsPosition" })
   private CommentsPositionEnum commentsPosition;
 
-  @SerializedName("CommentsAreaWidth")
+  @SerializedName(value = "commentsAreaWidth", alternate = { "CommentsAreaWidth" })
   private Integer commentsAreaWidth;
 
-  @SerializedName("CommentsAreaColor")
+  @SerializedName(value = "commentsAreaColor", alternate = { "CommentsAreaColor" })
   private String commentsAreaColor;
 
-  @SerializedName("ShowCommentsByNoAuthor")
+  @SerializedName(value = "showCommentsByNoAuthor", alternate = { "ShowCommentsByNoAuthor" })
   private Boolean showCommentsByNoAuthor;
 
-  @SerializedName("ImageTransparentColor")
+  @SerializedName(value = "imageTransparentColor", alternate = { "ImageTransparentColor" })
   private String imageTransparentColor;
 
-  @SerializedName("ApplyImageTransparent")
+  @SerializedName(value = "applyImageTransparent", alternate = { "ApplyImageTransparent" })
   private Boolean applyImageTransparent;
 
 
@@ -688,5 +690,8 @@ public class PdfExportOptions extends ExportOptions {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

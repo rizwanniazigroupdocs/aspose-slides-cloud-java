@@ -37,16 +37,18 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Object exists
  */
 @ApiModel(description = "Object exists")
 public class ObjectExist {
-  @SerializedName("Exists")
+  @SerializedName(value = "exists", alternate = { "Exists" })
   private Boolean exists;
 
-  @SerializedName("IsFolder")
+  @SerializedName(value = "isFolder", alternate = { "IsFolder" })
   private Boolean isFolder;
 
 
@@ -131,5 +133,8 @@ public class ObjectExist {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

@@ -40,31 +40,33 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents the plot area
  */
 @ApiModel(description = "Represents the plot area")
 public class PlotArea {
-  @SerializedName("X")
-  private Double X;
+  @SerializedName(value = "x", alternate = { "X" })
+  private Double x;
 
-  @SerializedName("Y")
-  private Double Y;
+  @SerializedName(value = "y", alternate = { "Y" })
+  private Double y;
 
-  @SerializedName("Width")
+  @SerializedName(value = "width", alternate = { "Width" })
   private Double width;
 
-  @SerializedName("Height")
+  @SerializedName(value = "height", alternate = { "Height" })
   private Double height;
 
-  @SerializedName("FillFormat")
+  @SerializedName(value = "fillFormat", alternate = { "FillFormat" })
   private FillFormat fillFormat;
 
-  @SerializedName("EffectFormat")
+  @SerializedName(value = "effectFormat", alternate = { "EffectFormat" })
   private EffectFormat effectFormat;
 
-  @SerializedName("LineFormat")
+  @SerializedName(value = "lineFormat", alternate = { "LineFormat" })
   private LineFormat lineFormat;
 
 
@@ -72,40 +74,40 @@ public class PlotArea {
     super();
   }
 
-  public PlotArea X(Double X) {
-    this.X = X;
+  public PlotArea x(Double x) {
+    this.x = x;
     return this;
   }
 
    /**
    * the X location
-   * @return X
+   * @return x
   **/
   @ApiModelProperty(required = true, value = "the X location")
   public Double getX() {
-    return X;
+    return x;
   }
 
-  public void setX(Double X) {
-    this.X = X;
+  public void setX(Double x) {
+    this.x = x;
   }
 
-  public PlotArea Y(Double Y) {
-    this.Y = Y;
+  public PlotArea y(Double y) {
+    this.y = y;
     return this;
   }
 
    /**
    * the Y location
-   * @return Y
+   * @return y
   **/
   @ApiModelProperty(required = true, value = "the Y location")
   public Double getY() {
-    return Y;
+    return y;
   }
 
-  public void setY(Double Y) {
-    this.Y = Y;
+  public void setY(Double y) {
+    this.y = y;
   }
 
   public PlotArea width(Double width) {
@@ -208,12 +210,12 @@ public class PlotArea {
       return false;
     }
     PlotArea plotArea = (PlotArea) o;
-    return true && Objects.equals(this.X, plotArea.X) && Objects.equals(this.Y, plotArea.Y) && Objects.equals(this.width, plotArea.width) && Objects.equals(this.height, plotArea.height) && Objects.equals(this.fillFormat, plotArea.fillFormat) && Objects.equals(this.effectFormat, plotArea.effectFormat) && Objects.equals(this.lineFormat, plotArea.lineFormat);
+    return true && Objects.equals(this.x, plotArea.x) && Objects.equals(this.y, plotArea.y) && Objects.equals(this.width, plotArea.width) && Objects.equals(this.height, plotArea.height) && Objects.equals(this.fillFormat, plotArea.fillFormat) && Objects.equals(this.effectFormat, plotArea.effectFormat) && Objects.equals(this.lineFormat, plotArea.lineFormat);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(X, Y, width, height, fillFormat, effectFormat, lineFormat);
+    return Objects.hash(x, y, width, height, fillFormat, effectFormat, lineFormat);
   }
 
 
@@ -222,8 +224,8 @@ public class PlotArea {
     StringBuilder sb = new StringBuilder();
     sb.append("class PlotArea {\n");
     
-    sb.append("    X: ").append(toIndentedString(X)).append("\n");
-    sb.append("    Y: ").append(toIndentedString(Y)).append("\n");
+    sb.append("    x: ").append(toIndentedString(x)).append("\n");
+    sb.append("    y: ").append(toIndentedString(y)).append("\n");
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
     sb.append("    fillFormat: ").append(toIndentedString(fillFormat)).append("\n");
@@ -244,5 +246,8 @@ public class PlotArea {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

@@ -38,25 +38,27 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import org.threeten.bp.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * File or folder information
  */
 @ApiModel(description = "File or folder information")
 public class StorageFile {
-  @SerializedName("Name")
+  @SerializedName(value = "name", alternate = { "Name" })
   private String name;
 
-  @SerializedName("IsFolder")
+  @SerializedName(value = "isFolder", alternate = { "IsFolder" })
   private Boolean isFolder;
 
-  @SerializedName("ModifiedDate")
+  @SerializedName(value = "modifiedDate", alternate = { "ModifiedDate" })
   private OffsetDateTime modifiedDate;
 
-  @SerializedName("Size")
+  @SerializedName(value = "size", alternate = { "Size" })
   private Long size;
 
-  @SerializedName("Path")
+  @SerializedName(value = "path", alternate = { "Path" })
   private String path;
 
 
@@ -198,5 +200,8 @@ public class StorageFile {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

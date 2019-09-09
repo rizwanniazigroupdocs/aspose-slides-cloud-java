@@ -37,16 +37,18 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents preset shadow effect 
  */
 @ApiModel(description = "Represents preset shadow effect ")
 public class PresetShadowEffect {
-  @SerializedName("Direction")
+  @SerializedName(value = "direction", alternate = { "Direction" })
   private Double direction;
 
-  @SerializedName("Distance")
+  @SerializedName(value = "distance", alternate = { "Distance" })
   private Double distance;
 
   /**
@@ -132,10 +134,10 @@ public class PresetShadowEffect {
     }
   }
 
-  @SerializedName("Preset")
+  @SerializedName(value = "preset", alternate = { "Preset" })
   private PresetEnum preset;
 
-  @SerializedName("ShadowColor")
+  @SerializedName(value = "shadowColor", alternate = { "ShadowColor" })
   private String shadowColor;
 
 
@@ -258,5 +260,8 @@ public class PresetShadowEffect {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

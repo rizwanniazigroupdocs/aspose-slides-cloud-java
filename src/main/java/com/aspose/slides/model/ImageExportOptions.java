@@ -38,6 +38,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Provides options that control how a presentation is saved in an image format.
@@ -93,7 +95,7 @@ public class ImageExportOptions extends ExportOptions {
     }
   }
 
-  @SerializedName("NotesPosition")
+  @SerializedName(value = "notesPosition", alternate = { "NotesPosition" })
   private NotesPositionEnum notesPosition;
 
   /**
@@ -145,13 +147,13 @@ public class ImageExportOptions extends ExportOptions {
     }
   }
 
-  @SerializedName("CommentsPosition")
+  @SerializedName(value = "commentsPosition", alternate = { "CommentsPosition" })
   private CommentsPositionEnum commentsPosition;
 
-  @SerializedName("CommentsAreaWidth")
+  @SerializedName(value = "commentsAreaWidth", alternate = { "CommentsAreaWidth" })
   private Integer commentsAreaWidth;
 
-  @SerializedName("CommentsAreaColor")
+  @SerializedName(value = "commentsAreaColor", alternate = { "CommentsAreaColor" })
   private String commentsAreaColor;
 
 
@@ -275,5 +277,8 @@ public class ImageExportOptions extends ExportOptions {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

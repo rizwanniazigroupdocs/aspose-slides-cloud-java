@@ -39,19 +39,21 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Add master slide task.
  */
 @ApiModel(description = "Add master slide task.")
 public class AddMasterSlide extends Task {
-  @SerializedName("CloneFromFile")
+  @SerializedName(value = "cloneFromFile", alternate = { "CloneFromFile" })
   private InputFile cloneFromFile;
 
-  @SerializedName("CloneFromPosition")
+  @SerializedName(value = "cloneFromPosition", alternate = { "CloneFromPosition" })
   private Integer cloneFromPosition;
 
-  @SerializedName("ApplyToAll")
+  @SerializedName(value = "applyToAll", alternate = { "ApplyToAll" })
   private Boolean applyToAll;
 
 
@@ -156,5 +158,11 @@ public class AddMasterSlide extends Task {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+  static {
+      typeDeterminers.put("Type", TypeEnum.ADDMASTERSLIDE);
+  }
+}

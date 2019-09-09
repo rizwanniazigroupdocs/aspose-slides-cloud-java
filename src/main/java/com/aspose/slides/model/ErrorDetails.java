@@ -38,16 +38,18 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import org.threeten.bp.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * The error details
  */
 @ApiModel(description = "The error details")
 public class ErrorDetails {
-  @SerializedName("RequestId")
+  @SerializedName(value = "requestId", alternate = { "RequestId" })
   private String requestId;
 
-  @SerializedName("Date")
+  @SerializedName(value = "date", alternate = { "Date" })
   private OffsetDateTime date;
 
 
@@ -132,5 +134,8 @@ public class ErrorDetails {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

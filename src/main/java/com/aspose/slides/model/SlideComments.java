@@ -42,13 +42,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents comments collection of slide
  */
 @ApiModel(description = "Represents comments collection of slide")
 public class SlideComments extends ResourceBase {
-  @SerializedName("List")
+  @SerializedName(value = "list", alternate = { "List" })
   private List<SlideComment> list = null;
 
 
@@ -124,5 +126,8 @@ public class SlideComments extends ResourceBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

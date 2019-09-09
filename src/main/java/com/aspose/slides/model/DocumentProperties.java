@@ -42,13 +42,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Slides document properties.
  */
 @ApiModel(description = "Slides document properties.")
 public class DocumentProperties extends ResourceBase {
-  @SerializedName("List")
+  @SerializedName(value = "list", alternate = { "List" })
   private List<DocumentProperty> list = null;
 
 
@@ -124,5 +126,8 @@ public class DocumentProperties extends ResourceBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

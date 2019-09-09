@@ -42,13 +42,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents text of resource
  */
 @ApiModel(description = "Represents text of resource")
 public class TextItems extends ResourceBase {
-  @SerializedName("Items")
+  @SerializedName(value = "items", alternate = { "Items" })
   private List<TextItem> items = null;
 
 
@@ -124,5 +126,8 @@ public class TextItems extends ResourceBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

@@ -37,22 +37,24 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents Resource URI
  */
 @ApiModel(description = "Represents Resource URI")
 public class ResourceUri {
-  @SerializedName("Href")
+  @SerializedName(value = "href", alternate = { "Href" })
   private String href;
 
-  @SerializedName("Relation")
+  @SerializedName(value = "relation", alternate = { "Relation" })
   private String relation;
 
-  @SerializedName("LinkType")
+  @SerializedName(value = "linkType", alternate = { "LinkType" })
   private String linkType;
 
-  @SerializedName("Title")
+  @SerializedName(value = "title", alternate = { "Title" })
   private String title;
 
 
@@ -175,5 +177,8 @@ public class ResourceUri {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

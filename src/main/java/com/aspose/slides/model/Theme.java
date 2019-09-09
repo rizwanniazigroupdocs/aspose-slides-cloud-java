@@ -41,22 +41,24 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents Slide&#39;s theme 
  */
 @ApiModel(description = "Represents Slide's theme ")
 public class Theme extends ResourceBase {
-  @SerializedName("Name")
+  @SerializedName(value = "name", alternate = { "Name" })
   private String name;
 
-  @SerializedName("ColorScheme")
+  @SerializedName(value = "colorScheme", alternate = { "ColorScheme" })
   private ResourceUriElement colorScheme;
 
-  @SerializedName("FontScheme")
+  @SerializedName(value = "fontScheme", alternate = { "FontScheme" })
   private ResourceUriElement fontScheme;
 
-  @SerializedName("FormatScheme")
+  @SerializedName(value = "formatScheme", alternate = { "FormatScheme" })
   private ResourceUriElement formatScheme;
 
 
@@ -180,5 +182,8 @@ public class Theme extends ResourceBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

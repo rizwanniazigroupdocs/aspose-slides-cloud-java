@@ -38,25 +38,27 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Provides options that control how a presentation is saved in Html format.
  */
 @ApiModel(description = "Provides options that control how a presentation is saved in Html format.")
 public class HtmlExportOptions extends ExportOptions {
-  @SerializedName("SaveAsZip")
+  @SerializedName(value = "saveAsZip", alternate = { "SaveAsZip" })
   private Boolean saveAsZip;
 
-  @SerializedName("SubDirectoryName")
+  @SerializedName(value = "subDirectoryName", alternate = { "SubDirectoryName" })
   private String subDirectoryName;
 
-  @SerializedName("ShowHiddenSlides")
+  @SerializedName(value = "showHiddenSlides", alternate = { "ShowHiddenSlides" })
   private Boolean showHiddenSlides;
 
-  @SerializedName("SvgResponsiveLayout")
+  @SerializedName(value = "svgResponsiveLayout", alternate = { "SvgResponsiveLayout" })
   private Boolean svgResponsiveLayout;
 
-  @SerializedName("JpegQuality")
+  @SerializedName(value = "jpegQuality", alternate = { "JpegQuality" })
   private Integer jpegQuality;
 
   /**
@@ -114,10 +116,10 @@ public class HtmlExportOptions extends ExportOptions {
     }
   }
 
-  @SerializedName("PicturesCompression")
+  @SerializedName(value = "picturesCompression", alternate = { "PicturesCompression" })
   private PicturesCompressionEnum picturesCompression;
 
-  @SerializedName("DeletePicturesCroppedAreas")
+  @SerializedName(value = "deletePicturesCroppedAreas", alternate = { "DeletePicturesCroppedAreas" })
   private Boolean deletePicturesCroppedAreas;
 
   /**
@@ -169,7 +171,7 @@ public class HtmlExportOptions extends ExportOptions {
     }
   }
 
-  @SerializedName("NotesPosition")
+  @SerializedName(value = "notesPosition", alternate = { "NotesPosition" })
   private NotesPositionEnum notesPosition;
 
   /**
@@ -221,16 +223,16 @@ public class HtmlExportOptions extends ExportOptions {
     }
   }
 
-  @SerializedName("CommentsPosition")
+  @SerializedName(value = "commentsPosition", alternate = { "CommentsPosition" })
   private CommentsPositionEnum commentsPosition;
 
-  @SerializedName("CommentsAreaWidth")
+  @SerializedName(value = "commentsAreaWidth", alternate = { "CommentsAreaWidth" })
   private Integer commentsAreaWidth;
 
-  @SerializedName("CommentsAreaColor")
+  @SerializedName(value = "commentsAreaColor", alternate = { "CommentsAreaColor" })
   private String commentsAreaColor;
 
-  @SerializedName("ShowCommentsByNoAuthor")
+  @SerializedName(value = "showCommentsByNoAuthor", alternate = { "ShowCommentsByNoAuthor" })
   private Boolean showCommentsByNoAuthor;
 
 
@@ -506,5 +508,8 @@ public class HtmlExportOptions extends ExportOptions {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

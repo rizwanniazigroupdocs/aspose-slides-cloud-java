@@ -40,22 +40,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents comment of slide
  */
 @ApiModel(description = "Represents comment of slide")
 public class SlideComment {
-  @SerializedName("Author")
+  @SerializedName(value = "author", alternate = { "Author" })
   private String author;
 
-  @SerializedName("Text")
+  @SerializedName(value = "text", alternate = { "Text" })
   private String text;
 
-  @SerializedName("CreatedTime")
+  @SerializedName(value = "createdTime", alternate = { "CreatedTime" })
   private String createdTime;
 
-  @SerializedName("ChildComments")
+  @SerializedName(value = "childComments", alternate = { "ChildComments" })
   private List<SlideComment> childComments = null;
 
 
@@ -187,5 +189,8 @@ public class SlideComment {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

@@ -40,16 +40,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Merging source.
  */
 @ApiModel(description = "Merging source.")
 public class MergingSource {
-  @SerializedName("Input")
+  @SerializedName(value = "input", alternate = { "Input" })
   private InputFile input;
 
-  @SerializedName("Slides")
+  @SerializedName(value = "slides", alternate = { "Slides" })
   private List<Integer> slides = null;
 
 
@@ -143,5 +145,8 @@ public class MergingSource {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

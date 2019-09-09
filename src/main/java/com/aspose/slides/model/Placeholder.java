@@ -41,13 +41,15 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents placeholder
  */
 @ApiModel(description = "Represents placeholder")
 public class Placeholder extends ResourceBase {
-  @SerializedName("Index")
+  @SerializedName(value = "index", alternate = { "Index" })
   private Integer index;
 
   /**
@@ -97,7 +99,7 @@ public class Placeholder extends ResourceBase {
     }
   }
 
-  @SerializedName("Orientation")
+  @SerializedName(value = "orientation", alternate = { "Orientation" })
   private OrientationEnum orientation;
 
   /**
@@ -149,7 +151,7 @@ public class Placeholder extends ResourceBase {
     }
   }
 
-  @SerializedName("Size")
+  @SerializedName(value = "size", alternate = { "Size" })
   private SizeEnum size;
 
   /**
@@ -227,10 +229,10 @@ public class Placeholder extends ResourceBase {
     }
   }
 
-  @SerializedName("Type")
+  @SerializedName(value = "type", alternate = { "Type" })
   private TypeEnum type;
 
-  @SerializedName("Shape")
+  @SerializedName(value = "shape", alternate = { "Shape" })
   private ResourceUriElement shape;
 
 
@@ -373,5 +375,8 @@ public class Placeholder extends ResourceBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

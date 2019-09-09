@@ -31,6 +31,8 @@ import java.util.Objects;
 import io.swagger.annotations.ApiModel;
 import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 import java.io.IOException;
 import com.google.gson.TypeAdapter;

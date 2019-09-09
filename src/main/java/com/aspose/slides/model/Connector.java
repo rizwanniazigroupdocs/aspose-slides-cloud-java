@@ -44,22 +44,24 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents Connector resource.
  */
 @ApiModel(description = "Represents Connector resource.")
 public class Connector extends GeometryShape {
-  @SerializedName("StartShapeConnectedTo")
+  @SerializedName(value = "startShapeConnectedTo", alternate = { "StartShapeConnectedTo" })
   private ResourceUri startShapeConnectedTo;
 
-  @SerializedName("StartShapeConnectedToIndex")
+  @SerializedName(value = "startShapeConnectedToIndex", alternate = { "StartShapeConnectedToIndex" })
   private Integer startShapeConnectedToIndex;
 
-  @SerializedName("EndShapeConnectedTo")
+  @SerializedName(value = "endShapeConnectedTo", alternate = { "EndShapeConnectedTo" })
   private ResourceUri endShapeConnectedTo;
 
-  @SerializedName("EndShapeConnectedToIndex")
+  @SerializedName(value = "endShapeConnectedToIndex", alternate = { "EndShapeConnectedToIndex" })
   private Integer endShapeConnectedToIndex;
 
 
@@ -184,5 +186,11 @@ public class Connector extends GeometryShape {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+  static {
+      typeDeterminers.put("Type", TypeEnum.CONNECTOR);
+  }
+}

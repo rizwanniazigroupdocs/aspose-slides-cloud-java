@@ -40,46 +40,48 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Slide&#39;s color scheme DTO
  */
 @ApiModel(description = "Slide's color scheme DTO")
 public class ColorScheme extends ResourceBase {
-  @SerializedName("Accent1")
+  @SerializedName(value = "accent1", alternate = { "Accent1" })
   private String accent1;
 
-  @SerializedName("Accent2")
+  @SerializedName(value = "accent2", alternate = { "Accent2" })
   private String accent2;
 
-  @SerializedName("Accent3")
+  @SerializedName(value = "accent3", alternate = { "Accent3" })
   private String accent3;
 
-  @SerializedName("Accent4")
+  @SerializedName(value = "accent4", alternate = { "Accent4" })
   private String accent4;
 
-  @SerializedName("Accent5")
+  @SerializedName(value = "accent5", alternate = { "Accent5" })
   private String accent5;
 
-  @SerializedName("Accent6")
+  @SerializedName(value = "accent6", alternate = { "Accent6" })
   private String accent6;
 
-  @SerializedName("Dark1")
+  @SerializedName(value = "dark1", alternate = { "Dark1" })
   private String dark1;
 
-  @SerializedName("Dark2")
+  @SerializedName(value = "dark2", alternate = { "Dark2" })
   private String dark2;
 
-  @SerializedName("FollowedHyperlink")
+  @SerializedName(value = "followedHyperlink", alternate = { "FollowedHyperlink" })
   private String followedHyperlink;
 
-  @SerializedName("Hyperlink")
+  @SerializedName(value = "hyperlink", alternate = { "Hyperlink" })
   private String hyperlink;
 
-  @SerializedName("Light1")
+  @SerializedName(value = "light1", alternate = { "Light1" })
   private String light1;
 
-  @SerializedName("Light2")
+  @SerializedName(value = "light2", alternate = { "Light2" })
   private String light2;
 
 
@@ -355,5 +357,8 @@ public class ColorScheme extends ResourceBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

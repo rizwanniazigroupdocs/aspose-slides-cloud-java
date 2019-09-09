@@ -41,13 +41,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Merge presentations task.
  */
 @ApiModel(description = "Merge presentations task.")
 public class Merge extends Task {
-  @SerializedName("Presentations")
+  @SerializedName(value = "presentations", alternate = { "Presentations" })
   private List<MergingSource> presentations = null;
 
 
@@ -123,5 +125,11 @@ public class Merge extends Task {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+  static {
+      typeDeterminers.put("Type", TypeEnum.MERGE);
+  }
+}

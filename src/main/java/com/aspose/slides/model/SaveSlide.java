@@ -40,13 +40,15 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Save slide task.
  */
 @ApiModel(description = "Save slide task.")
 public class SaveSlide extends Task {
-  @SerializedName("Output")
+  @SerializedName(value = "output", alternate = { "Output" })
   private OutputFile output;
 
   /**
@@ -132,19 +134,19 @@ public class SaveSlide extends Task {
     }
   }
 
-  @SerializedName("Format")
+  @SerializedName(value = "format", alternate = { "Format" })
   private FormatEnum format;
 
-  @SerializedName("Options")
+  @SerializedName(value = "options", alternate = { "Options" })
   private ExportOptions options;
 
-  @SerializedName("Width")
+  @SerializedName(value = "width", alternate = { "Width" })
   private Integer width;
 
-  @SerializedName("Height")
+  @SerializedName(value = "height", alternate = { "Height" })
   private Integer height;
 
-  @SerializedName("Position")
+  @SerializedName(value = "position", alternate = { "Position" })
   private Integer position;
 
 
@@ -306,5 +308,11 @@ public class SaveSlide extends Task {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+  static {
+      typeDeterminers.put("Type", TypeEnum.SAVESLIDE);
+  }
+}

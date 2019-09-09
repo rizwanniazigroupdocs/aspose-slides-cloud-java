@@ -37,46 +37,48 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents reflection effect 
  */
 @ApiModel(description = "Represents reflection effect ")
 public class ReflectionEffect {
-  @SerializedName("Direction")
+  @SerializedName(value = "direction", alternate = { "Direction" })
   private Double direction;
 
-  @SerializedName("FadeDirection")
+  @SerializedName(value = "fadeDirection", alternate = { "FadeDirection" })
   private Double fadeDirection;
 
-  @SerializedName("Distance")
+  @SerializedName(value = "distance", alternate = { "Distance" })
   private Double distance;
 
-  @SerializedName("BlurRadius")
+  @SerializedName(value = "blurRadius", alternate = { "BlurRadius" })
   private Double blurRadius;
 
-  @SerializedName("ScaleHorizontal")
+  @SerializedName(value = "scaleHorizontal", alternate = { "ScaleHorizontal" })
   private Double scaleHorizontal;
 
-  @SerializedName("ScaleVertical")
+  @SerializedName(value = "scaleVertical", alternate = { "ScaleVertical" })
   private Double scaleVertical;
 
-  @SerializedName("SkewHorizontal")
+  @SerializedName(value = "skewHorizontal", alternate = { "SkewHorizontal" })
   private Double skewHorizontal;
 
-  @SerializedName("SkewVertical")
+  @SerializedName(value = "skewVertical", alternate = { "SkewVertical" })
   private Double skewVertical;
 
-  @SerializedName("StartPosAlpha")
+  @SerializedName(value = "startPosAlpha", alternate = { "StartPosAlpha" })
   private Double startPosAlpha;
 
-  @SerializedName("EndPosAlpha")
+  @SerializedName(value = "endPosAlpha", alternate = { "EndPosAlpha" })
   private Double endPosAlpha;
 
-  @SerializedName("StartReflectionOpacity")
+  @SerializedName(value = "startReflectionOpacity", alternate = { "StartReflectionOpacity" })
   private Double startReflectionOpacity;
 
-  @SerializedName("EndReflectionOpacity")
+  @SerializedName(value = "endReflectionOpacity", alternate = { "EndReflectionOpacity" })
   private Double endReflectionOpacity;
 
   /**
@@ -142,10 +144,10 @@ public class ReflectionEffect {
     }
   }
 
-  @SerializedName("RectangleAlign")
+  @SerializedName(value = "rectangleAlign", alternate = { "RectangleAlign" })
   private RectangleAlignEnum rectangleAlign;
 
-  @SerializedName("RotateShadowWithShape")
+  @SerializedName(value = "rotateShadowWithShape", alternate = { "RotateShadowWithShape" })
   private Boolean rotateShadowWithShape;
 
 
@@ -458,5 +460,8 @@ public class ReflectionEffect {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

@@ -37,16 +37,18 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents chart title
  */
 @ApiModel(description = "Represents chart title")
 public class ChartTitle {
-  @SerializedName("Text")
+  @SerializedName(value = "text", alternate = { "Text" })
   private String text;
 
-  @SerializedName("HasTitle")
+  @SerializedName(value = "hasTitle", alternate = { "HasTitle" })
   private Boolean hasTitle;
 
 
@@ -131,5 +133,8 @@ public class ChartTitle {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

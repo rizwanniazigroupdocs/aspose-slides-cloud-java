@@ -40,6 +40,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Save slide task.
@@ -131,13 +133,13 @@ public class Save extends Task {
     }
   }
 
-  @SerializedName("Format")
+  @SerializedName(value = "format", alternate = { "Format" })
   private FormatEnum format;
 
-  @SerializedName("Output")
+  @SerializedName(value = "output", alternate = { "Output" })
   private OutputFile output;
 
-  @SerializedName("Options")
+  @SerializedName(value = "options", alternate = { "Options" })
   private ExportOptions options;
 
 
@@ -242,5 +244,11 @@ public class Save extends Task {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+  static {
+      typeDeterminers.put("Type", TypeEnum.SAVE);
+  }
+}

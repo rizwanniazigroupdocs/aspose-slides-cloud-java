@@ -44,6 +44,8 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents GroupShape resource.
@@ -97,5 +99,14 @@ public class GroupShape extends ShapeBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+  static {
+      typeDeterminers.put("Type", TypeEnum.GROUPSHAPE);
+  }
+  static {
+      typeDeterminers.put("ShapeType", ShapeTypeEnum.GROUPSHAPE);
+  }
+}

@@ -38,55 +38,57 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Provides options that control how a presentation is saved in SWF format.
  */
 @ApiModel(description = "Provides options that control how a presentation is saved in SWF format.")
 public class SwfExportOptions extends ExportOptions {
-  @SerializedName("ShowHiddenSlides")
+  @SerializedName(value = "showHiddenSlides", alternate = { "ShowHiddenSlides" })
   private Boolean showHiddenSlides;
 
-  @SerializedName("Compressed")
+  @SerializedName(value = "compressed", alternate = { "Compressed" })
   private Boolean compressed;
 
-  @SerializedName("ViewerIncluded")
+  @SerializedName(value = "viewerIncluded", alternate = { "ViewerIncluded" })
   private Boolean viewerIncluded;
 
-  @SerializedName("ShowPageBorder")
+  @SerializedName(value = "showPageBorder", alternate = { "ShowPageBorder" })
   private Boolean showPageBorder;
 
-  @SerializedName("ShowFullScreen")
+  @SerializedName(value = "showFullScreen", alternate = { "ShowFullScreen" })
   private Boolean showFullScreen;
 
-  @SerializedName("ShowPageStepper")
+  @SerializedName(value = "showPageStepper", alternate = { "ShowPageStepper" })
   private Boolean showPageStepper;
 
-  @SerializedName("ShowSearch")
+  @SerializedName(value = "showSearch", alternate = { "ShowSearch" })
   private Boolean showSearch;
 
-  @SerializedName("ShowTopPane")
+  @SerializedName(value = "showTopPane", alternate = { "ShowTopPane" })
   private Boolean showTopPane;
 
-  @SerializedName("ShowBottomPane")
+  @SerializedName(value = "showBottomPane", alternate = { "ShowBottomPane" })
   private Boolean showBottomPane;
 
-  @SerializedName("ShowLeftPane")
+  @SerializedName(value = "showLeftPane", alternate = { "ShowLeftPane" })
   private Boolean showLeftPane;
 
-  @SerializedName("StartOpenLeftPane")
+  @SerializedName(value = "startOpenLeftPane", alternate = { "StartOpenLeftPane" })
   private Boolean startOpenLeftPane;
 
-  @SerializedName("EnableContextMenu")
+  @SerializedName(value = "enableContextMenu", alternate = { "EnableContextMenu" })
   private Boolean enableContextMenu;
 
-  @SerializedName("LogoImage")
+  @SerializedName(value = "logoImage", alternate = { "LogoImage" })
   private String logoImage;
 
-  @SerializedName("LogoLink")
+  @SerializedName(value = "logoLink", alternate = { "LogoLink" })
   private String logoLink;
 
-  @SerializedName("JpegQuality")
+  @SerializedName(value = "jpegQuality", alternate = { "JpegQuality" })
   private Integer jpegQuality;
 
   /**
@@ -138,7 +140,7 @@ public class SwfExportOptions extends ExportOptions {
     }
   }
 
-  @SerializedName("NotesPosition")
+  @SerializedName(value = "notesPosition", alternate = { "NotesPosition" })
   private NotesPositionEnum notesPosition;
 
   /**
@@ -190,16 +192,16 @@ public class SwfExportOptions extends ExportOptions {
     }
   }
 
-  @SerializedName("CommentsPosition")
+  @SerializedName(value = "commentsPosition", alternate = { "CommentsPosition" })
   private CommentsPositionEnum commentsPosition;
 
-  @SerializedName("CommentsAreaWidth")
+  @SerializedName(value = "commentsAreaWidth", alternate = { "CommentsAreaWidth" })
   private Integer commentsAreaWidth;
 
-  @SerializedName("CommentsAreaColor")
+  @SerializedName(value = "commentsAreaColor", alternate = { "CommentsAreaColor" })
   private String commentsAreaColor;
 
-  @SerializedName("ShowCommentsByNoAuthor")
+  @SerializedName(value = "showCommentsByNoAuthor", alternate = { "ShowCommentsByNoAuthor" })
   private Boolean showCommentsByNoAuthor;
 
 
@@ -627,5 +629,8 @@ public class SwfExportOptions extends ExportOptions {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

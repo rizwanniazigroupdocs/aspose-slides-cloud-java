@@ -42,28 +42,30 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents paragraph resource
  */
 @ApiModel(description = "Represents paragraph resource")
 public class Paragraph extends ResourceBase {
-  @SerializedName("MarginLeft")
+  @SerializedName(value = "marginLeft", alternate = { "MarginLeft" })
   private Double marginLeft;
 
-  @SerializedName("MarginRight")
+  @SerializedName(value = "marginRight", alternate = { "MarginRight" })
   private Double marginRight;
 
-  @SerializedName("SpaceBefore")
+  @SerializedName(value = "spaceBefore", alternate = { "SpaceBefore" })
   private Double spaceBefore;
 
-  @SerializedName("SpaceAfter")
+  @SerializedName(value = "spaceAfter", alternate = { "SpaceAfter" })
   private Double spaceAfter;
 
-  @SerializedName("SpaceWithin")
+  @SerializedName(value = "spaceWithin", alternate = { "SpaceWithin" })
   private Double spaceWithin;
 
-  @SerializedName("Indent")
+  @SerializedName(value = "indent", alternate = { "Indent" })
   private Double indent;
 
   /**
@@ -123,7 +125,7 @@ public class Paragraph extends ResourceBase {
     }
   }
 
-  @SerializedName("Alignment")
+  @SerializedName(value = "alignment", alternate = { "Alignment" })
   private AlignmentEnum alignment;
 
   /**
@@ -181,19 +183,19 @@ public class Paragraph extends ResourceBase {
     }
   }
 
-  @SerializedName("FontAlignment")
+  @SerializedName(value = "fontAlignment", alternate = { "FontAlignment" })
   private FontAlignmentEnum fontAlignment;
 
-  @SerializedName("DefaultTabSize")
+  @SerializedName(value = "defaultTabSize", alternate = { "DefaultTabSize" })
   private Double defaultTabSize;
 
-  @SerializedName("Depth")
+  @SerializedName(value = "depth", alternate = { "Depth" })
   private Integer depth;
 
-  @SerializedName("BulletChar")
+  @SerializedName(value = "bulletChar", alternate = { "BulletChar" })
   private String bulletChar;
 
-  @SerializedName("BulletHeight")
+  @SerializedName(value = "bulletHeight", alternate = { "BulletHeight" })
   private Double bulletHeight;
 
   /**
@@ -249,10 +251,10 @@ public class Paragraph extends ResourceBase {
     }
   }
 
-  @SerializedName("BulletType")
+  @SerializedName(value = "bulletType", alternate = { "BulletType" })
   private BulletTypeEnum bulletType;
 
-  @SerializedName("NumberedBulletStartWith")
+  @SerializedName(value = "numberedBulletStartWith", alternate = { "NumberedBulletStartWith" })
   private Integer numberedBulletStartWith;
 
   /**
@@ -382,7 +384,7 @@ public class Paragraph extends ResourceBase {
     }
   }
 
-  @SerializedName("NumberedBulletStyle")
+  @SerializedName(value = "numberedBulletStyle", alternate = { "NumberedBulletStyle" })
   private NumberedBulletStyleEnum numberedBulletStyle;
 
   /**
@@ -434,7 +436,7 @@ public class Paragraph extends ResourceBase {
     }
   }
 
-  @SerializedName("HangingPunctuation")
+  @SerializedName(value = "hangingPunctuation", alternate = { "HangingPunctuation" })
   private HangingPunctuationEnum hangingPunctuation;
 
   /**
@@ -486,7 +488,7 @@ public class Paragraph extends ResourceBase {
     }
   }
 
-  @SerializedName("EastAsianLineBreak")
+  @SerializedName(value = "eastAsianLineBreak", alternate = { "EastAsianLineBreak" })
   private EastAsianLineBreakEnum eastAsianLineBreak;
 
   /**
@@ -538,7 +540,7 @@ public class Paragraph extends ResourceBase {
     }
   }
 
-  @SerializedName("LatinLineBreak")
+  @SerializedName(value = "latinLineBreak", alternate = { "LatinLineBreak" })
   private LatinLineBreakEnum latinLineBreak;
 
   /**
@@ -590,10 +592,10 @@ public class Paragraph extends ResourceBase {
     }
   }
 
-  @SerializedName("RightToLeft")
+  @SerializedName(value = "rightToLeft", alternate = { "RightToLeft" })
   private RightToLeftEnum rightToLeft;
 
-  @SerializedName("PortionList")
+  @SerializedName(value = "portionList", alternate = { "PortionList" })
   private List<ResourceUriElement> portionList = null;
 
 
@@ -1030,5 +1032,8 @@ public class Paragraph extends ResourceBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

@@ -37,19 +37,21 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Font set.
  */
 @ApiModel(description = "Font set.")
 public class FontSet {
-  @SerializedName("ComplexScript")
+  @SerializedName(value = "complexScript", alternate = { "ComplexScript" })
   private String complexScript;
 
-  @SerializedName("EastAsian")
+  @SerializedName(value = "eastAsian", alternate = { "EastAsian" })
   private String eastAsian;
 
-  @SerializedName("Latin")
+  @SerializedName(value = "latin", alternate = { "Latin" })
   private String latin;
 
 
@@ -153,5 +155,8 @@ public class FontSet {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

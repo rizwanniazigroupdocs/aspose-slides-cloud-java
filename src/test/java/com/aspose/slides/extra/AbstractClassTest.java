@@ -25,63 +25,42 @@
  * --------------------------------------------------------------------------------------------------------------------
  */
 
-package com.aspose.slides.model;
+package com.aspose.slides.extra;
 
-import java.util.Objects;
-import io.swagger.annotations.ApiModel;
-import com.google.gson.annotations.SerializedName;
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.Map;
+import com.aspose.slides.api.SlidesApi;
+import com.aspose.slides.ApiException;
+import org.junit.Test;
 
+import com.aspose.slides.ApiTest;
+import com.aspose.slides.model.*;
+import com.aspose.slides.model.request.GetSlideShapeRequest;
 import java.io.IOException;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import static org.junit.Assert.assertTrue;
 
 /**
- * Scale type of slide content.
+ * API tests for abstract class deserialization
  */
-@JsonAdapter(ScaleType.Adapter.class)
-public enum ScaleType {
-  
-  DONOTSCALE("DoNotScale"),
-  
-  ENSUREFIT("EnsureFit"),
-  
-  MAXIMIZE("Maximize");
-
-  private String value;
-
-  ScaleType(String value) {
-    this.value = value;
-  }
-
-  public String getValue() {
-    return value;
-  }
-
-  public static ScaleType fromValue(String text) {
-    for (ScaleType b : ScaleType.values()) {
-      if (String.valueOf(b.value).equals(text)) {
-        return b;
-      }
+public class AbstractClassTest extends ApiTest {
+    /**
+     * Read slide placeholder info.
+     *
+     * 
+     *
+     * @throws ApiException
+     * 
+     */
+    @Test
+    public void shapeTest() throws ApiException, IOException {
+        initialize("getSlideShape", null, null);
+        GetSlideShapeRequest request = new GetSlideShapeRequest();
+        request.setName("test.ppt");
+        request.setFolder("TempSlidesSDK");
+        request.setPassword("password");
+        request.setPath("");
+        request.setSlideIndex(1);
+        request.setShapeIndex(1);
+        ShapeBase shape = new SlidesApi(getConfiguration()).getSlideShape(request);
+        assertTrue(shape instanceof Shape);
+        assertTrue(((Shape)shape).getText().equals("1"));
     }
-    return null;
-  }
-
-  public static class Adapter extends TypeAdapter<ScaleType> {
-    @Override
-    public void write(final JsonWriter jsonWriter, final ScaleType enumeration) throws IOException {
-      jsonWriter.value(enumeration.getValue());
-    }
-
-    @Override
-    public ScaleType read(final JsonReader jsonReader) throws IOException {
-      String value = jsonReader.nextString();
-      return ScaleType.fromValue(String.valueOf(value));
-    }
-  }
 }
-

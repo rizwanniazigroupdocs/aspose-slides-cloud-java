@@ -41,19 +41,21 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents font scheme
  */
 @ApiModel(description = "Represents font scheme")
 public class FontScheme extends ResourceBase {
-  @SerializedName("Major")
+  @SerializedName(value = "major", alternate = { "Major" })
   private FontSet major;
 
-  @SerializedName("Minor")
+  @SerializedName(value = "minor", alternate = { "Minor" })
   private FontSet minor;
 
-  @SerializedName("Name")
+  @SerializedName(value = "name", alternate = { "Name" })
   private String name;
 
 
@@ -158,5 +160,8 @@ public class FontScheme extends ResourceBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

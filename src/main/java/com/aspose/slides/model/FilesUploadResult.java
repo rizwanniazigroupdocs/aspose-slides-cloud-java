@@ -40,16 +40,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * File upload result
  */
 @ApiModel(description = "File upload result")
 public class FilesUploadResult {
-  @SerializedName("Uploaded")
+  @SerializedName(value = "uploaded", alternate = { "Uploaded" })
   private List<String> uploaded = null;
 
-  @SerializedName("Errors")
+  @SerializedName(value = "errors", alternate = { "Errors" })
   private List<Error> errors = null;
 
 
@@ -152,5 +154,8 @@ public class FilesUploadResult {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

@@ -38,13 +38,15 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Resource URI element.
  */
 @ApiModel(description = "Resource URI element.")
 public class ResourceUriElement {
-  @SerializedName("Uri")
+  @SerializedName(value = "uri", alternate = { "Uri" })
   private ResourceUri uri;
 
 
@@ -110,5 +112,8 @@ public class ResourceUriElement {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

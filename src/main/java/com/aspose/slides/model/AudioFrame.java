@@ -44,31 +44,33 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents AudioFrame resource.
  */
 @ApiModel(description = "Represents AudioFrame resource.")
 public class AudioFrame extends GeometryShape {
-  @SerializedName("AudioCdEndTrack")
+  @SerializedName(value = "audioCdEndTrack", alternate = { "AudioCdEndTrack" })
   private Integer audioCdEndTrack;
 
-  @SerializedName("AudioCdEndTrackTime")
+  @SerializedName(value = "audioCdEndTrackTime", alternate = { "AudioCdEndTrackTime" })
   private Integer audioCdEndTrackTime;
 
-  @SerializedName("AudioCdStartTrack")
+  @SerializedName(value = "audioCdStartTrack", alternate = { "AudioCdStartTrack" })
   private Integer audioCdStartTrack;
 
-  @SerializedName("AudioCdStartTrackTime")
+  @SerializedName(value = "audioCdStartTrackTime", alternate = { "AudioCdStartTrackTime" })
   private Integer audioCdStartTrackTime;
 
-  @SerializedName("Embedded")
+  @SerializedName(value = "embedded", alternate = { "Embedded" })
   private Boolean embedded;
 
-  @SerializedName("HideAtShowing")
+  @SerializedName(value = "hideAtShowing", alternate = { "HideAtShowing" })
   private Boolean hideAtShowing;
 
-  @SerializedName("PlayLoopMode")
+  @SerializedName(value = "playLoopMode", alternate = { "PlayLoopMode" })
   private Boolean playLoopMode;
 
   /**
@@ -122,7 +124,7 @@ public class AudioFrame extends GeometryShape {
     }
   }
 
-  @SerializedName("PlayMode")
+  @SerializedName(value = "playMode", alternate = { "PlayMode" })
   private PlayModeEnum playMode;
 
   /**
@@ -178,10 +180,10 @@ public class AudioFrame extends GeometryShape {
     }
   }
 
-  @SerializedName("Volume")
+  @SerializedName(value = "volume", alternate = { "Volume" })
   private VolumeEnum volume;
 
-  @SerializedName("Base64Data")
+  @SerializedName(value = "base64Data", alternate = { "Base64Data" })
   private String base64Data;
 
 
@@ -421,5 +423,14 @@ public class AudioFrame extends GeometryShape {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+  static {
+      typeDeterminers.put("Type", TypeEnum.AUDIOFRAME);
+  }
+  static {
+      typeDeterminers.put("ShapeType", ShapeTypeEnum.AUDIOFRAME);
+  }
+}

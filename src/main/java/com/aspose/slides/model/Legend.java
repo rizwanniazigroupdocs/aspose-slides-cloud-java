@@ -40,6 +40,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents a chart legend
@@ -99,31 +101,31 @@ public class Legend {
     }
   }
 
-  @SerializedName("Position")
+  @SerializedName(value = "position", alternate = { "Position" })
   private PositionEnum position;
 
-  @SerializedName("X")
-  private Double X;
+  @SerializedName(value = "x", alternate = { "X" })
+  private Double x;
 
-  @SerializedName("Y")
-  private Double Y;
+  @SerializedName(value = "y", alternate = { "Y" })
+  private Double y;
 
-  @SerializedName("Width")
+  @SerializedName(value = "width", alternate = { "Width" })
   private Double width;
 
-  @SerializedName("Height")
+  @SerializedName(value = "height", alternate = { "Height" })
   private Double height;
 
-  @SerializedName("Overlay")
+  @SerializedName(value = "overlay", alternate = { "Overlay" })
   private Boolean overlay;
 
-  @SerializedName("FillFormat")
+  @SerializedName(value = "fillFormat", alternate = { "FillFormat" })
   private FillFormat fillFormat;
 
-  @SerializedName("EffectFormat")
+  @SerializedName(value = "effectFormat", alternate = { "EffectFormat" })
   private EffectFormat effectFormat;
 
-  @SerializedName("LineFormat")
+  @SerializedName(value = "lineFormat", alternate = { "LineFormat" })
   private LineFormat lineFormat;
 
 
@@ -149,40 +151,40 @@ public class Legend {
     this.position = position;
   }
 
-  public Legend X(Double X) {
-    this.X = X;
+  public Legend x(Double x) {
+    this.x = x;
     return this;
   }
 
    /**
    * the X location
-   * @return X
+   * @return x
   **/
   @ApiModelProperty(required = true, value = "the X location")
   public Double getX() {
-    return X;
+    return x;
   }
 
-  public void setX(Double X) {
-    this.X = X;
+  public void setX(Double x) {
+    this.x = x;
   }
 
-  public Legend Y(Double Y) {
-    this.Y = Y;
+  public Legend y(Double y) {
+    this.y = y;
     return this;
   }
 
    /**
    * the Y location
-   * @return Y
+   * @return y
   **/
   @ApiModelProperty(required = true, value = "the Y location")
   public Double getY() {
-    return Y;
+    return y;
   }
 
-  public void setY(Double Y) {
-    this.Y = Y;
+  public void setY(Double y) {
+    this.y = y;
   }
 
   public Legend width(Double width) {
@@ -303,12 +305,12 @@ public class Legend {
       return false;
     }
     Legend legend = (Legend) o;
-    return true && Objects.equals(this.position, legend.position) && Objects.equals(this.X, legend.X) && Objects.equals(this.Y, legend.Y) && Objects.equals(this.width, legend.width) && Objects.equals(this.height, legend.height) && Objects.equals(this.overlay, legend.overlay) && Objects.equals(this.fillFormat, legend.fillFormat) && Objects.equals(this.effectFormat, legend.effectFormat) && Objects.equals(this.lineFormat, legend.lineFormat);
+    return true && Objects.equals(this.position, legend.position) && Objects.equals(this.x, legend.x) && Objects.equals(this.y, legend.y) && Objects.equals(this.width, legend.width) && Objects.equals(this.height, legend.height) && Objects.equals(this.overlay, legend.overlay) && Objects.equals(this.fillFormat, legend.fillFormat) && Objects.equals(this.effectFormat, legend.effectFormat) && Objects.equals(this.lineFormat, legend.lineFormat);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(position, X, Y, width, height, overlay, fillFormat, effectFormat, lineFormat);
+    return Objects.hash(position, x, y, width, height, overlay, fillFormat, effectFormat, lineFormat);
   }
 
 
@@ -318,8 +320,8 @@ public class Legend {
     sb.append("class Legend {\n");
     
     sb.append("    position: ").append(toIndentedString(position)).append("\n");
-    sb.append("    X: ").append(toIndentedString(X)).append("\n");
-    sb.append("    Y: ").append(toIndentedString(Y)).append("\n");
+    sb.append("    x: ").append(toIndentedString(x)).append("\n");
+    sb.append("    y: ").append(toIndentedString(y)).append("\n");
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
     sb.append("    overlay: ").append(toIndentedString(overlay)).append("\n");
@@ -341,5 +343,8 @@ public class Legend {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

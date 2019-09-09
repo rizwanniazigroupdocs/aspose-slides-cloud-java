@@ -40,13 +40,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Request for presentations merge with optional order of slides
  */
 @ApiModel(description = "Request for presentations merge with optional order of slides")
 public class OrderedMergeRequest {
-  @SerializedName("Presentations")
+  @SerializedName(value = "presentations", alternate = { "Presentations" })
   private List<PresentationToMerge> presentations = null;
 
 
@@ -121,5 +123,8 @@ public class OrderedMergeRequest {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

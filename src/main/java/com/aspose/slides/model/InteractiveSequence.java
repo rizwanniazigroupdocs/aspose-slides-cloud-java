@@ -40,16 +40,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents comments collection of slide
  */
 @ApiModel(description = "Represents comments collection of slide")
 public class InteractiveSequence {
-  @SerializedName("Effects")
+  @SerializedName(value = "effects", alternate = { "Effects" })
   private List<Effect> effects = null;
 
-  @SerializedName("TriggerShapeIndex")
+  @SerializedName(value = "triggerShapeIndex", alternate = { "TriggerShapeIndex" })
   private Integer triggerShapeIndex;
 
 
@@ -143,5 +145,8 @@ public class InteractiveSequence {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

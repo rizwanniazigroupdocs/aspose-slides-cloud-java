@@ -46,6 +46,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents SmartArt shape resource.
@@ -367,7 +369,7 @@ public class SmartArt extends ShapeBase {
     }
   }
 
-  @SerializedName("Layout")
+  @SerializedName(value = "layout", alternate = { "Layout" })
   private LayoutEnum layout;
 
   /**
@@ -441,7 +443,7 @@ public class SmartArt extends ShapeBase {
     }
   }
 
-  @SerializedName("QuickStyle")
+  @SerializedName(value = "quickStyle", alternate = { "QuickStyle" })
   private QuickStyleEnum quickStyle;
 
   /**
@@ -563,13 +565,13 @@ public class SmartArt extends ShapeBase {
     }
   }
 
-  @SerializedName("ColorStyle")
+  @SerializedName(value = "colorStyle", alternate = { "ColorStyle" })
   private ColorStyleEnum colorStyle;
 
-  @SerializedName("Nodes")
+  @SerializedName(value = "nodes", alternate = { "Nodes" })
   private List<SmartArtNode> nodes = null;
 
-  @SerializedName("IsReversed")
+  @SerializedName(value = "isReversed", alternate = { "IsReversed" })
   private Boolean isReversed;
 
 
@@ -723,5 +725,14 @@ public class SmartArt extends ShapeBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+  static {
+      typeDeterminers.put("Type", TypeEnum.SMARTART);
+  }
+  static {
+      typeDeterminers.put("ShapeType", ShapeTypeEnum.DIAGRAM);
+  }
+}

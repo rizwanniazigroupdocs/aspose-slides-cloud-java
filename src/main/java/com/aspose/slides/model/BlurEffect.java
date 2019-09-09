@@ -37,16 +37,18 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents blur effect 
  */
 @ApiModel(description = "Represents blur effect ")
 public class BlurEffect {
-  @SerializedName("Radius")
+  @SerializedName(value = "radius", alternate = { "Radius" })
   private Double radius;
 
-  @SerializedName("Grow")
+  @SerializedName(value = "grow", alternate = { "Grow" })
   private Boolean grow;
 
 
@@ -131,5 +133,8 @@ public class BlurEffect {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

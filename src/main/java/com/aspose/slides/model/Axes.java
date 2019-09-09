@@ -38,22 +38,24 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents chart axes
  */
 @ApiModel(description = "Represents chart axes")
 public class Axes {
-  @SerializedName("HorizontalAxis")
+  @SerializedName(value = "horizontalAxis", alternate = { "HorizontalAxis" })
   private Axis horizontalAxis;
 
-  @SerializedName("VerticalAxis")
+  @SerializedName(value = "verticalAxis", alternate = { "VerticalAxis" })
   private Axis verticalAxis;
 
-  @SerializedName("SecondaryHorizontalAxis")
+  @SerializedName(value = "secondaryHorizontalAxis", alternate = { "SecondaryHorizontalAxis" })
   private Axis secondaryHorizontalAxis;
 
-  @SerializedName("SecondaryVerticalAxis")
+  @SerializedName(value = "secondaryVerticalAxis", alternate = { "SecondaryVerticalAxis" })
   private Axis secondaryVerticalAxis;
 
 
@@ -176,5 +178,8 @@ public class Axes {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

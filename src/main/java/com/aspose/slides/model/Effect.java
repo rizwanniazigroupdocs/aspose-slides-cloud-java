@@ -37,6 +37,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents comment of slide
@@ -396,7 +398,7 @@ public class Effect {
     }
   }
 
-  @SerializedName("Type")
+  @SerializedName(value = "type", alternate = { "Type" })
   private TypeEnum type;
 
   /**
@@ -542,7 +544,7 @@ public class Effect {
     }
   }
 
-  @SerializedName("Subtype")
+  @SerializedName(value = "subtype", alternate = { "Subtype" })
   private SubtypeEnum subtype;
 
   /**
@@ -600,10 +602,10 @@ public class Effect {
     }
   }
 
-  @SerializedName("PresetClassType")
+  @SerializedName(value = "presetClassType", alternate = { "PresetClassType" })
   private PresetClassTypeEnum presetClassType;
 
-  @SerializedName("ShapeIndex")
+  @SerializedName(value = "shapeIndex", alternate = { "ShapeIndex" })
   private Integer shapeIndex;
 
   /**
@@ -655,25 +657,25 @@ public class Effect {
     }
   }
 
-  @SerializedName("TriggerType")
+  @SerializedName(value = "triggerType", alternate = { "TriggerType" })
   private TriggerTypeEnum triggerType;
 
-  @SerializedName("Accelerate")
+  @SerializedName(value = "accelerate", alternate = { "Accelerate" })
   private Double accelerate;
 
-  @SerializedName("AutoReverse")
+  @SerializedName(value = "autoReverse", alternate = { "AutoReverse" })
   private Boolean autoReverse;
 
-  @SerializedName("Decelerate")
+  @SerializedName(value = "decelerate", alternate = { "Decelerate" })
   private Double decelerate;
 
-  @SerializedName("Duration")
+  @SerializedName(value = "duration", alternate = { "Duration" })
   private Double duration;
 
-  @SerializedName("RepeatCount")
+  @SerializedName(value = "repeatCount", alternate = { "RepeatCount" })
   private Double repeatCount;
 
-  @SerializedName("RepeatDuration")
+  @SerializedName(value = "repeatDuration", alternate = { "RepeatDuration" })
   private Double repeatDuration;
 
   /**
@@ -727,13 +729,13 @@ public class Effect {
     }
   }
 
-  @SerializedName("Restart")
+  @SerializedName(value = "restart", alternate = { "Restart" })
   private RestartEnum restart;
 
-  @SerializedName("Speed")
+  @SerializedName(value = "speed", alternate = { "Speed" })
   private Double speed;
 
-  @SerializedName("TriggerDelayTime")
+  @SerializedName(value = "triggerDelayTime", alternate = { "TriggerDelayTime" })
   private Double triggerDelayTime;
 
 
@@ -1046,5 +1048,8 @@ public class Effect {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

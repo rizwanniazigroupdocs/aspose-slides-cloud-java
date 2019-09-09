@@ -40,16 +40,18 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents a chart axis
  */
 @ApiModel(description = "Represents a chart axis")
 public class Axis {
-  @SerializedName("IsVisible")
+  @SerializedName(value = "isVisible", alternate = { "IsVisible" })
   private Boolean isVisible;
 
-  @SerializedName("HasTitle")
+  @SerializedName(value = "hasTitle", alternate = { "HasTitle" })
   private Boolean hasTitle;
 
   /**
@@ -103,7 +105,7 @@ public class Axis {
     }
   }
 
-  @SerializedName("Position")
+  @SerializedName(value = "position", alternate = { "Position" })
   private PositionEnum position;
 
   /**
@@ -171,7 +173,7 @@ public class Axis {
     }
   }
 
-  @SerializedName("DisplayUnit")
+  @SerializedName(value = "displayUnit", alternate = { "DisplayUnit" })
   private DisplayUnitEnum displayUnit;
 
   /**
@@ -223,13 +225,13 @@ public class Axis {
     }
   }
 
-  @SerializedName("BaseUnitScale")
+  @SerializedName(value = "baseUnitScale", alternate = { "BaseUnitScale" })
   private BaseUnitScaleEnum baseUnitScale;
 
-  @SerializedName("IsAutomaticMajorUnit")
+  @SerializedName(value = "isAutomaticMajorUnit", alternate = { "IsAutomaticMajorUnit" })
   private Boolean isAutomaticMajorUnit;
 
-  @SerializedName("MajorUnit")
+  @SerializedName(value = "majorUnit", alternate = { "MajorUnit" })
   private Double majorUnit;
 
   /**
@@ -281,7 +283,7 @@ public class Axis {
     }
   }
 
-  @SerializedName("MajorUnitScale")
+  @SerializedName(value = "majorUnitScale", alternate = { "MajorUnitScale" })
   private MajorUnitScaleEnum majorUnitScale;
 
   /**
@@ -335,13 +337,13 @@ public class Axis {
     }
   }
 
-  @SerializedName("MajorTickMark")
+  @SerializedName(value = "majorTickMark", alternate = { "MajorTickMark" })
   private MajorTickMarkEnum majorTickMark;
 
-  @SerializedName("IsAutomaticMinorUnit")
+  @SerializedName(value = "isAutomaticMinorUnit", alternate = { "IsAutomaticMinorUnit" })
   private Boolean isAutomaticMinorUnit;
 
-  @SerializedName("MinorUnit")
+  @SerializedName(value = "minorUnit", alternate = { "MinorUnit" })
   private Double minorUnit;
 
   /**
@@ -393,7 +395,7 @@ public class Axis {
     }
   }
 
-  @SerializedName("MinorUnitScale")
+  @SerializedName(value = "minorUnitScale", alternate = { "MinorUnitScale" })
   private MinorUnitScaleEnum minorUnitScale;
 
   /**
@@ -447,25 +449,25 @@ public class Axis {
     }
   }
 
-  @SerializedName("MinorTickMark")
+  @SerializedName(value = "minorTickMark", alternate = { "MinorTickMark" })
   private MinorTickMarkEnum minorTickMark;
 
-  @SerializedName("IsAutomaticMaxValue")
+  @SerializedName(value = "isAutomaticMaxValue", alternate = { "IsAutomaticMaxValue" })
   private Boolean isAutomaticMaxValue;
 
-  @SerializedName("MaxValue")
+  @SerializedName(value = "maxValue", alternate = { "MaxValue" })
   private Double maxValue;
 
-  @SerializedName("IsAutomaticMinValue")
+  @SerializedName(value = "isAutomaticMinValue", alternate = { "IsAutomaticMinValue" })
   private Boolean isAutomaticMinValue;
 
-  @SerializedName("MinValue")
+  @SerializedName(value = "minValue", alternate = { "MinValue" })
   private Double minValue;
 
-  @SerializedName("IsLogarithmic")
+  @SerializedName(value = "isLogarithmic", alternate = { "IsLogarithmic" })
   private Boolean isLogarithmic;
 
-  @SerializedName("LogBase")
+  @SerializedName(value = "logBase", alternate = { "LogBase" })
   private Double logBase;
 
   /**
@@ -515,22 +517,22 @@ public class Axis {
     }
   }
 
-  @SerializedName("CategoryAxisType")
+  @SerializedName(value = "categoryAxisType", alternate = { "CategoryAxisType" })
   private CategoryAxisTypeEnum categoryAxisType;
 
-  @SerializedName("AxisBetweenCategories")
+  @SerializedName(value = "axisBetweenCategories", alternate = { "AxisBetweenCategories" })
   private Boolean axisBetweenCategories;
 
-  @SerializedName("LabelOffset")
+  @SerializedName(value = "labelOffset", alternate = { "LabelOffset" })
   private Integer labelOffset;
 
-  @SerializedName("IsPlotOrderReversed")
+  @SerializedName(value = "isPlotOrderReversed", alternate = { "IsPlotOrderReversed" })
   private Boolean isPlotOrderReversed;
 
-  @SerializedName("IsNumberFormatLinkedToSource")
+  @SerializedName(value = "isNumberFormatLinkedToSource", alternate = { "IsNumberFormatLinkedToSource" })
   private Boolean isNumberFormatLinkedToSource;
 
-  @SerializedName("NumberFormat")
+  @SerializedName(value = "numberFormat", alternate = { "NumberFormat" })
   private String numberFormat;
 
   /**
@@ -582,22 +584,22 @@ public class Axis {
     }
   }
 
-  @SerializedName("CrossType")
+  @SerializedName(value = "crossType", alternate = { "CrossType" })
   private CrossTypeEnum crossType;
 
-  @SerializedName("CrossAt")
+  @SerializedName(value = "crossAt", alternate = { "CrossAt" })
   private Double crossAt;
 
-  @SerializedName("IsAutomaticTickMarksSpacing")
+  @SerializedName(value = "isAutomaticTickMarksSpacing", alternate = { "IsAutomaticTickMarksSpacing" })
   private Boolean isAutomaticTickMarksSpacing;
 
-  @SerializedName("TickMarksSpacing")
+  @SerializedName(value = "tickMarksSpacing", alternate = { "TickMarksSpacing" })
   private Integer tickMarksSpacing;
 
-  @SerializedName("IsAutomaticTickLabelSpacing")
+  @SerializedName(value = "isAutomaticTickLabelSpacing", alternate = { "IsAutomaticTickLabelSpacing" })
   private Boolean isAutomaticTickLabelSpacing;
 
-  @SerializedName("TickLabelSpacing")
+  @SerializedName(value = "tickLabelSpacing", alternate = { "TickLabelSpacing" })
   private Integer tickLabelSpacing;
 
   /**
@@ -651,19 +653,19 @@ public class Axis {
     }
   }
 
-  @SerializedName("TickLabelPosition")
+  @SerializedName(value = "tickLabelPosition", alternate = { "TickLabelPosition" })
   private TickLabelPositionEnum tickLabelPosition;
 
-  @SerializedName("TickLabelRotationAngle")
+  @SerializedName(value = "tickLabelRotationAngle", alternate = { "TickLabelRotationAngle" })
   private Double tickLabelRotationAngle;
 
-  @SerializedName("FillFormat")
+  @SerializedName(value = "fillFormat", alternate = { "FillFormat" })
   private FillFormat fillFormat;
 
-  @SerializedName("EffectFormat")
+  @SerializedName(value = "effectFormat", alternate = { "EffectFormat" })
   private EffectFormat effectFormat;
 
-  @SerializedName("LineFormat")
+  @SerializedName(value = "lineFormat", alternate = { "LineFormat" })
   private LineFormat lineFormat;
 
 
@@ -1394,5 +1396,8 @@ public class Axis {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

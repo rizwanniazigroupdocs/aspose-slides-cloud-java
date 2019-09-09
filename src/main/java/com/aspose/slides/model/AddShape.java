@@ -39,16 +39,18 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Add shape task.
  */
 @ApiModel(description = "Add shape task.")
 public class AddShape extends Task {
-  @SerializedName("Shape")
+  @SerializedName(value = "shape", alternate = { "Shape" })
   private ShapeBase shape;
 
-  @SerializedName("ShapePath")
+  @SerializedName(value = "shapePath", alternate = { "ShapePath" })
   private String shapePath;
 
 
@@ -134,5 +136,11 @@ public class AddShape extends Task {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+  static {
+      typeDeterminers.put("Type", TypeEnum.ADDSHAPE);
+  }
+}

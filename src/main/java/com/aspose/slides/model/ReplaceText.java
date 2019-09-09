@@ -38,22 +38,24 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Replace text task.
  */
 @ApiModel(description = "Replace text task.")
 public class ReplaceText extends Task {
-  @SerializedName("OldText")
+  @SerializedName(value = "oldText", alternate = { "OldText" })
   private String oldText;
 
-  @SerializedName("NewText")
+  @SerializedName(value = "newText", alternate = { "NewText" })
   private String newText;
 
-  @SerializedName("IgnoreCase")
+  @SerializedName(value = "ignoreCase", alternate = { "IgnoreCase" })
   private Boolean ignoreCase;
 
-  @SerializedName("SlidePosition")
+  @SerializedName(value = "slidePosition", alternate = { "SlidePosition" })
   private Integer slidePosition;
 
 
@@ -177,5 +179,11 @@ public class ReplaceText extends Task {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+  static {
+      typeDeterminers.put("Type", TypeEnum.REPLACETEXT);
+  }
+}

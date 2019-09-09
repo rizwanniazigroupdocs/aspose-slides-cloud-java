@@ -50,6 +50,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.lang.reflect.Type;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
@@ -274,7 +275,8 @@ public class ApiTest {
             if (classInfo.isEnum()) {
                 return searchEnum(classInfo, value.toString());
             }
-            return new Gson().fromJson((JsonObject)value, classInfo);
+            Type typeObject = new JSON().getObjectSubtype(classInfo, value.toString());
+            return new Gson().fromJson((JsonObject)value, typeObject);
         } catch (Exception ex) {
             //Exception just means not a model class; ignore it
         }

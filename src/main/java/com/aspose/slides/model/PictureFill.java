@@ -39,34 +39,36 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Picture fill.
  */
 @ApiModel(description = "Picture fill.")
 public class PictureFill extends FillFormat {
-  @SerializedName("CropBottom")
+  @SerializedName(value = "cropBottom", alternate = { "CropBottom" })
   private Double cropBottom;
 
-  @SerializedName("CropLeft")
+  @SerializedName(value = "cropLeft", alternate = { "CropLeft" })
   private Double cropLeft;
 
-  @SerializedName("CropRight")
+  @SerializedName(value = "cropRight", alternate = { "CropRight" })
   private Double cropRight;
 
-  @SerializedName("CropTop")
+  @SerializedName(value = "cropTop", alternate = { "CropTop" })
   private Double cropTop;
 
-  @SerializedName("Dpi")
+  @SerializedName(value = "dpi", alternate = { "Dpi" })
   private Integer dpi;
 
-  @SerializedName("Image")
+  @SerializedName(value = "image", alternate = { "Image" })
   private ResourceUriElement image;
 
-  @SerializedName("Base64Data")
+  @SerializedName(value = "base64Data", alternate = { "Base64Data" })
   private String base64Data;
 
-  @SerializedName("SvgData")
+  @SerializedName(value = "svgData", alternate = { "SvgData" })
   private String svgData;
 
   /**
@@ -116,7 +118,7 @@ public class PictureFill extends FillFormat {
     }
   }
 
-  @SerializedName("PictureFillMode")
+  @SerializedName(value = "pictureFillMode", alternate = { "PictureFillMode" })
   private PictureFillModeEnum pictureFillMode;
 
 
@@ -335,5 +337,11 @@ public class PictureFill extends FillFormat {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+  static {
+      typeDeterminers.put("Type", TypeEnum.PICTURE);
+  }
+}

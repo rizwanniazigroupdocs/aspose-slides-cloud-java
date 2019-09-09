@@ -51,6 +51,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents chart resource
@@ -248,34 +250,34 @@ public class Chart extends ShapeBase {
     }
   }
 
-  @SerializedName("ChartType")
+  @SerializedName(value = "chartType", alternate = { "ChartType" })
   private ChartTypeEnum chartType;
 
-  @SerializedName("Series")
+  @SerializedName(value = "series", alternate = { "Series" })
   private List<Series> series = null;
 
-  @SerializedName("Categories")
+  @SerializedName(value = "categories", alternate = { "Categories" })
   private List<String> categories = null;
 
-  @SerializedName("Title")
+  @SerializedName(value = "title", alternate = { "Title" })
   private ChartTitle title;
 
-  @SerializedName("BackWall")
+  @SerializedName(value = "backWall", alternate = { "BackWall" })
   private ChartWall backWall;
 
-  @SerializedName("SideWall")
+  @SerializedName(value = "sideWall", alternate = { "SideWall" })
   private ChartWall sideWall;
 
-  @SerializedName("Floor")
+  @SerializedName(value = "floor", alternate = { "Floor" })
   private ChartWall floor;
 
-  @SerializedName("Legend")
+  @SerializedName(value = "legend", alternate = { "Legend" })
   private Legend legend;
 
-  @SerializedName("Axes")
+  @SerializedName(value = "axes", alternate = { "Axes" })
   private Axes axes;
 
-  @SerializedName("PlotArea")
+  @SerializedName(value = "plotArea", alternate = { "PlotArea" })
   private PlotArea plotArea;
 
 
@@ -533,5 +535,14 @@ public class Chart extends ShapeBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+  static {
+      typeDeterminers.put("Type", TypeEnum.CHART);
+  }
+  static {
+      typeDeterminers.put("ShapeType", ShapeTypeEnum.CHART);
+  }
+}

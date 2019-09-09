@@ -41,22 +41,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Smart art node.
  */
 @ApiModel(description = "Smart art node.")
 public class SmartArtNode {
-  @SerializedName("Nodes")
+  @SerializedName(value = "nodes", alternate = { "Nodes" })
   private List<SmartArtNode> nodes = null;
 
-  @SerializedName("Shapes")
+  @SerializedName(value = "shapes", alternate = { "Shapes" })
   private ResourceUriElement shapes;
 
-  @SerializedName("IsAssistant")
+  @SerializedName(value = "isAssistant", alternate = { "IsAssistant" })
   private Boolean isAssistant;
 
-  @SerializedName("Text")
+  @SerializedName(value = "text", alternate = { "Text" })
   private String text;
 
   /**
@@ -112,7 +114,7 @@ public class SmartArtNode {
     }
   }
 
-  @SerializedName("OrgChartLayout")
+  @SerializedName(value = "orgChartLayout", alternate = { "OrgChartLayout" })
   private OrgChartLayoutEnum orgChartLayout;
 
 
@@ -263,5 +265,8 @@ public class SmartArtNode {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

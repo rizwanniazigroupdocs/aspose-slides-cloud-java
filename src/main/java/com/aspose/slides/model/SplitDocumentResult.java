@@ -41,13 +41,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Split document result.
  */
 @ApiModel(description = "Split document result.")
 public class SplitDocumentResult extends ResourceBase {
-  @SerializedName("Slides")
+  @SerializedName(value = "slides", alternate = { "Slides" })
   private List<ResourceUri> slides = null;
 
 
@@ -123,5 +125,8 @@ public class SplitDocumentResult extends ResourceBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

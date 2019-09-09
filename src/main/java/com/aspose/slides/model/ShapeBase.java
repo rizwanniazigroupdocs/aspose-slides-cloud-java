@@ -44,49 +44,51 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Slide shape.
  */
 @ApiModel(description = "Slide shape.")
 public class ShapeBase extends ResourceBase {
-  @SerializedName("Name")
+  @SerializedName(value = "name", alternate = { "Name" })
   private String name;
 
-  @SerializedName("Width")
+  @SerializedName(value = "width", alternate = { "Width" })
   private Double width;
 
-  @SerializedName("Height")
+  @SerializedName(value = "height", alternate = { "Height" })
   private Double height;
 
-  @SerializedName("AlternativeText")
+  @SerializedName(value = "alternativeText", alternate = { "AlternativeText" })
   private String alternativeText;
 
-  @SerializedName("AlternativeTextTitle")
+  @SerializedName(value = "alternativeTextTitle", alternate = { "AlternativeTextTitle" })
   private String alternativeTextTitle;
 
-  @SerializedName("Hidden")
+  @SerializedName(value = "hidden", alternate = { "Hidden" })
   private Boolean hidden;
 
-  @SerializedName("X")
-  private Double X;
+  @SerializedName(value = "x", alternate = { "X" })
+  private Double x;
 
-  @SerializedName("Y")
-  private Double Y;
+  @SerializedName(value = "y", alternate = { "Y" })
+  private Double y;
 
-  @SerializedName("ZOrderPosition")
+  @SerializedName(value = "zorderPosition", alternate = { "ZOrderPosition" })
   private Integer zorderPosition;
 
-  @SerializedName("Shapes")
+  @SerializedName(value = "shapes", alternate = { "Shapes" })
   private ResourceUriElement shapes;
 
-  @SerializedName("FillFormat")
+  @SerializedName(value = "fillFormat", alternate = { "FillFormat" })
   private FillFormat fillFormat;
 
-  @SerializedName("EffectFormat")
+  @SerializedName(value = "effectFormat", alternate = { "EffectFormat" })
   private EffectFormat effectFormat;
 
-  @SerializedName("LineFormat")
+  @SerializedName(value = "lineFormat", alternate = { "LineFormat" })
   private LineFormat lineFormat;
 
   /**
@@ -156,7 +158,7 @@ public class ShapeBase extends ResourceBase {
     }
   }
 
-  @SerializedName("Type")
+  @SerializedName(value = "type", alternate = { "Type" })
   private TypeEnum type;
 
   /**
@@ -598,7 +600,7 @@ public class ShapeBase extends ResourceBase {
     }
   }
 
-  @SerializedName("ShapeType")
+  @SerializedName(value = "shapeType", alternate = { "ShapeType" })
   private ShapeTypeEnum shapeType;
 
 
@@ -715,40 +717,40 @@ public class ShapeBase extends ResourceBase {
     this.hidden = hidden;
   }
 
-  public ShapeBase X(Double X) {
-    this.X = X;
+  public ShapeBase x(Double x) {
+    this.x = x;
     return this;
   }
 
    /**
    * Gets or sets the X
-   * @return X
+   * @return x
   **/
   @ApiModelProperty(value = "Gets or sets the X")
   public Double getX() {
-    return X;
+    return x;
   }
 
-  public void setX(Double X) {
-    this.X = X;
+  public void setX(Double x) {
+    this.x = x;
   }
 
-  public ShapeBase Y(Double Y) {
-    this.Y = Y;
+  public ShapeBase y(Double y) {
+    this.y = y;
     return this;
   }
 
    /**
    * Gets or sets the Y.
-   * @return Y
+   * @return y
   **/
   @ApiModelProperty(value = "Gets or sets the Y.")
   public Double getY() {
-    return Y;
+    return y;
   }
 
-  public void setY(Double Y) {
-    this.Y = Y;
+  public void setY(Double y) {
+    this.y = y;
   }
 
   public ShapeBase zorderPosition(Integer zorderPosition) {
@@ -887,12 +889,12 @@ public class ShapeBase extends ResourceBase {
       return false;
     }
     ShapeBase shapeBase = (ShapeBase) o;
-    return true && Objects.equals(this.name, shapeBase.name) && Objects.equals(this.width, shapeBase.width) && Objects.equals(this.height, shapeBase.height) && Objects.equals(this.alternativeText, shapeBase.alternativeText) && Objects.equals(this.alternativeTextTitle, shapeBase.alternativeTextTitle) && Objects.equals(this.hidden, shapeBase.hidden) && Objects.equals(this.X, shapeBase.X) && Objects.equals(this.Y, shapeBase.Y) && Objects.equals(this.zorderPosition, shapeBase.zorderPosition) && Objects.equals(this.shapes, shapeBase.shapes) && Objects.equals(this.fillFormat, shapeBase.fillFormat) && Objects.equals(this.effectFormat, shapeBase.effectFormat) && Objects.equals(this.lineFormat, shapeBase.lineFormat) && Objects.equals(this.type, shapeBase.type) && Objects.equals(this.shapeType, shapeBase.shapeType) && super.equals(o);
+    return true && Objects.equals(this.name, shapeBase.name) && Objects.equals(this.width, shapeBase.width) && Objects.equals(this.height, shapeBase.height) && Objects.equals(this.alternativeText, shapeBase.alternativeText) && Objects.equals(this.alternativeTextTitle, shapeBase.alternativeTextTitle) && Objects.equals(this.hidden, shapeBase.hidden) && Objects.equals(this.x, shapeBase.x) && Objects.equals(this.y, shapeBase.y) && Objects.equals(this.zorderPosition, shapeBase.zorderPosition) && Objects.equals(this.shapes, shapeBase.shapes) && Objects.equals(this.fillFormat, shapeBase.fillFormat) && Objects.equals(this.effectFormat, shapeBase.effectFormat) && Objects.equals(this.lineFormat, shapeBase.lineFormat) && Objects.equals(this.type, shapeBase.type) && Objects.equals(this.shapeType, shapeBase.shapeType) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, width, height, alternativeText, alternativeTextTitle, hidden, X, Y, zorderPosition, shapes, fillFormat, effectFormat, lineFormat, type, shapeType, super.hashCode());
+    return Objects.hash(name, width, height, alternativeText, alternativeTextTitle, hidden, x, y, zorderPosition, shapes, fillFormat, effectFormat, lineFormat, type, shapeType, super.hashCode());
   }
 
 
@@ -907,8 +909,8 @@ public class ShapeBase extends ResourceBase {
     sb.append("    alternativeText: ").append(toIndentedString(alternativeText)).append("\n");
     sb.append("    alternativeTextTitle: ").append(toIndentedString(alternativeTextTitle)).append("\n");
     sb.append("    hidden: ").append(toIndentedString(hidden)).append("\n");
-    sb.append("    X: ").append(toIndentedString(X)).append("\n");
-    sb.append("    Y: ").append(toIndentedString(Y)).append("\n");
+    sb.append("    x: ").append(toIndentedString(x)).append("\n");
+    sb.append("    y: ").append(toIndentedString(y)).append("\n");
     sb.append("    zorderPosition: ").append(toIndentedString(zorderPosition)).append("\n");
     sb.append("    shapes: ").append(toIndentedString(shapes)).append("\n");
     sb.append("    fillFormat: ").append(toIndentedString(fillFormat)).append("\n");
@@ -931,5 +933,8 @@ public class ShapeBase extends ResourceBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

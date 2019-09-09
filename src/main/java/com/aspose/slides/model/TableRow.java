@@ -40,19 +40,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Table Row.
  */
 @ApiModel(description = "Table Row.")
 public class TableRow {
-  @SerializedName("Cells")
+  @SerializedName(value = "cells", alternate = { "Cells" })
   private List<TableCell> cells = null;
 
-  @SerializedName("MinimalHeight")
+  @SerializedName(value = "minimalHeight", alternate = { "MinimalHeight" })
   private Double minimalHeight;
 
-  @SerializedName("Height")
+  @SerializedName(value = "height", alternate = { "Height" })
   private Double height;
 
 
@@ -165,5 +167,8 @@ public class TableRow {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

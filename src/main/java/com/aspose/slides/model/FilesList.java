@@ -40,13 +40,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Files list
  */
 @ApiModel(description = "Files list")
 public class FilesList {
-  @SerializedName("Value")
+  @SerializedName(value = "value", alternate = { "Value" })
   private List<StorageFile> value = null;
 
 
@@ -121,5 +123,8 @@ public class FilesList {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

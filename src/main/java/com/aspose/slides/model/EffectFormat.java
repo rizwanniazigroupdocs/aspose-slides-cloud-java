@@ -45,34 +45,36 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Effect format
  */
 @ApiModel(description = "Effect format")
 public class EffectFormat {
-  @SerializedName("Blur")
+  @SerializedName(value = "blur", alternate = { "Blur" })
   private BlurEffect blur;
 
-  @SerializedName("Glow")
+  @SerializedName(value = "glow", alternate = { "Glow" })
   private GlowEffect glow;
 
-  @SerializedName("InnerShadow")
+  @SerializedName(value = "innerShadow", alternate = { "InnerShadow" })
   private InnerShadowEffect innerShadow;
 
-  @SerializedName("OuterShadow")
+  @SerializedName(value = "outerShadow", alternate = { "OuterShadow" })
   private OuterShadowEffect outerShadow;
 
-  @SerializedName("PresetShadow")
+  @SerializedName(value = "presetShadow", alternate = { "PresetShadow" })
   private PresetShadowEffect presetShadow;
 
-  @SerializedName("SoftEdge")
+  @SerializedName(value = "softEdge", alternate = { "SoftEdge" })
   private SoftEdgeEffect softEdge;
 
-  @SerializedName("Reflection")
+  @SerializedName(value = "reflection", alternate = { "Reflection" })
   private ReflectionEffect reflection;
 
-  @SerializedName("FillOverlay")
+  @SerializedName(value = "fillOverlay", alternate = { "FillOverlay" })
   private FillOverlayEffect fillOverlay;
 
 
@@ -271,5 +273,8 @@ public class EffectFormat {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

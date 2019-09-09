@@ -38,28 +38,30 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Provides options that control how a presentation is saved in SVG format.
  */
 @ApiModel(description = "Provides options that control how a presentation is saved in SVG format.")
 public class SvgExportOptions extends ExportOptions {
-  @SerializedName("VectorizeText")
+  @SerializedName(value = "vectorizeText", alternate = { "VectorizeText" })
   private Boolean vectorizeText;
 
-  @SerializedName("MetafileRasterizationDpi")
+  @SerializedName(value = "metafileRasterizationDpi", alternate = { "MetafileRasterizationDpi" })
   private Integer metafileRasterizationDpi;
 
-  @SerializedName("Disable3DText")
+  @SerializedName(value = "disable3DText", alternate = { "Disable3DText" })
   private Boolean disable3DText;
 
-  @SerializedName("DisableGradientSplit")
+  @SerializedName(value = "disableGradientSplit", alternate = { "DisableGradientSplit" })
   private Boolean disableGradientSplit;
 
-  @SerializedName("DisableLineEndCropping")
+  @SerializedName(value = "disableLineEndCropping", alternate = { "DisableLineEndCropping" })
   private Boolean disableLineEndCropping;
 
-  @SerializedName("JpegQuality")
+  @SerializedName(value = "jpegQuality", alternate = { "JpegQuality" })
   private Integer jpegQuality;
 
   /**
@@ -117,10 +119,10 @@ public class SvgExportOptions extends ExportOptions {
     }
   }
 
-  @SerializedName("PicturesCompression")
+  @SerializedName(value = "picturesCompression", alternate = { "PicturesCompression" })
   private PicturesCompressionEnum picturesCompression;
 
-  @SerializedName("DeletePicturesCroppedAreas")
+  @SerializedName(value = "deletePicturesCroppedAreas", alternate = { "DeletePicturesCroppedAreas" })
   private Boolean deletePicturesCroppedAreas;
 
   /**
@@ -172,7 +174,7 @@ public class SvgExportOptions extends ExportOptions {
     }
   }
 
-  @SerializedName("ExternalFontsHandling")
+  @SerializedName(value = "externalFontsHandling", alternate = { "ExternalFontsHandling" })
   private ExternalFontsHandlingEnum externalFontsHandling;
 
 
@@ -391,5 +393,8 @@ public class SvgExportOptions extends ExportOptions {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

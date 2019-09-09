@@ -42,13 +42,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Layout slide.
  */
 @ApiModel(description = "Layout slide.")
 public class LayoutSlide extends ResourceBase {
-  @SerializedName("Name")
+  @SerializedName(value = "name", alternate = { "Name" })
   private String name;
 
   /**
@@ -166,13 +168,13 @@ public class LayoutSlide extends ResourceBase {
     }
   }
 
-  @SerializedName("Type")
+  @SerializedName(value = "type", alternate = { "Type" })
   private TypeEnum type;
 
-  @SerializedName("MasterSlide")
+  @SerializedName(value = "masterSlide", alternate = { "MasterSlide" })
   private ResourceUriElement masterSlide;
 
-  @SerializedName("DependingSlides")
+  @SerializedName(value = "dependingSlides", alternate = { "DependingSlides" })
   private List<ResourceUriElement> dependingSlides = null;
 
 
@@ -305,5 +307,8 @@ public class LayoutSlide extends ResourceBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

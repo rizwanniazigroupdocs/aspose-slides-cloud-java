@@ -40,19 +40,21 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Document property.
  */
 @ApiModel(description = "Document property.")
 public class DocumentProperty extends ResourceBase {
-  @SerializedName("Name")
+  @SerializedName(value = "name", alternate = { "Name" })
   private String name;
 
-  @SerializedName("Value")
+  @SerializedName(value = "value", alternate = { "Value" })
   private String value;
 
-  @SerializedName("BuiltIn")
+  @SerializedName(value = "builtIn", alternate = { "BuiltIn" })
   private Boolean builtIn;
 
 
@@ -157,5 +159,8 @@ public class DocumentProperty extends ResourceBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

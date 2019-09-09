@@ -38,13 +38,15 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents base64 inline encoded file.
  */
 @ApiModel(description = "Represents base64 inline encoded file.")
 public class Base64InputFile extends InputFile {
-  @SerializedName("Data")
+  @SerializedName(value = "data", alternate = { "Data" })
   private String data;
 
 
@@ -111,5 +113,11 @@ public class Base64InputFile extends InputFile {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+  static {
+      typeDeterminers.put("Type", TypeEnum.BASE64);
+  }
+}

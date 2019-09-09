@@ -38,16 +38,18 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents fileSystem file with path.
  */
 @ApiModel(description = "Represents fileSystem file with path.")
 public class PathOutputFile extends OutputFile {
-  @SerializedName("Path")
+  @SerializedName(value = "path", alternate = { "Path" })
   private String path;
 
-  @SerializedName("Storage")
+  @SerializedName(value = "storage", alternate = { "Storage" })
   private String storage;
 
 
@@ -133,5 +135,11 @@ public class PathOutputFile extends OutputFile {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+  static {
+      typeDeterminers.put("Type", TypeEnum.PATH);
+  }
+}

@@ -38,6 +38,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Provides options that control how a presentation is saved in TIFF format.
@@ -99,22 +101,22 @@ public class TiffExportOptions extends ExportOptions {
     }
   }
 
-  @SerializedName("Compression")
+  @SerializedName(value = "compression", alternate = { "Compression" })
   private CompressionEnum compression;
 
-  @SerializedName("Width")
+  @SerializedName(value = "width", alternate = { "Width" })
   private Integer width;
 
-  @SerializedName("Height")
+  @SerializedName(value = "height", alternate = { "Height" })
   private Integer height;
 
-  @SerializedName("DpiX")
+  @SerializedName(value = "dpiX", alternate = { "DpiX" })
   private Integer dpiX;
 
-  @SerializedName("DpiY")
+  @SerializedName(value = "dpiY", alternate = { "DpiY" })
   private Integer dpiY;
 
-  @SerializedName("ShowHiddenSlides")
+  @SerializedName(value = "showHiddenSlides", alternate = { "ShowHiddenSlides" })
   private Boolean showHiddenSlides;
 
   /**
@@ -170,7 +172,7 @@ public class TiffExportOptions extends ExportOptions {
     }
   }
 
-  @SerializedName("PixelFormat")
+  @SerializedName(value = "pixelFormat", alternate = { "PixelFormat" })
   private PixelFormatEnum pixelFormat;
 
   /**
@@ -222,7 +224,7 @@ public class TiffExportOptions extends ExportOptions {
     }
   }
 
-  @SerializedName("NotesPosition")
+  @SerializedName(value = "notesPosition", alternate = { "NotesPosition" })
   private NotesPositionEnum notesPosition;
 
   /**
@@ -274,16 +276,16 @@ public class TiffExportOptions extends ExportOptions {
     }
   }
 
-  @SerializedName("CommentsPosition")
+  @SerializedName(value = "commentsPosition", alternate = { "CommentsPosition" })
   private CommentsPositionEnum commentsPosition;
 
-  @SerializedName("CommentsAreaWidth")
+  @SerializedName(value = "commentsAreaWidth", alternate = { "CommentsAreaWidth" })
   private Integer commentsAreaWidth;
 
-  @SerializedName("CommentsAreaColor")
+  @SerializedName(value = "commentsAreaColor", alternate = { "CommentsAreaColor" })
   private String commentsAreaColor;
 
-  @SerializedName("ShowCommentsByNoAuthor")
+  @SerializedName(value = "showCommentsByNoAuthor", alternate = { "ShowCommentsByNoAuthor" })
   private Boolean showCommentsByNoAuthor;
 
 
@@ -559,5 +561,8 @@ public class TiffExportOptions extends ExportOptions {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

@@ -41,22 +41,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents Format Scheme for slide&#39;s theme
  */
 @ApiModel(description = "Represents Format Scheme for slide's theme")
 public class FormatScheme extends ResourceBase {
-  @SerializedName("BackgroundStyles")
+  @SerializedName(value = "backgroundStyles", alternate = { "BackgroundStyles" })
   private List<ResourceUri> backgroundStyles = null;
 
-  @SerializedName("EffectStyles")
+  @SerializedName(value = "effectStyles", alternate = { "EffectStyles" })
   private List<ResourceUri> effectStyles = null;
 
-  @SerializedName("FillStyles")
+  @SerializedName(value = "fillStyles", alternate = { "FillStyles" })
   private List<ResourceUri> fillStyles = null;
 
-  @SerializedName("LineStyles")
+  @SerializedName(value = "lineStyles", alternate = { "LineStyles" })
   private List<ResourceUri> lineStyles = null;
 
 
@@ -216,5 +218,8 @@ public class FormatScheme extends ResourceBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

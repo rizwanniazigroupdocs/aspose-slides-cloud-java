@@ -39,16 +39,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Request for presentations merge
  */
 @ApiModel(description = "Request for presentations merge")
 public class PresentationsMergeRequest {
-  @SerializedName("PresentationPaths")
+  @SerializedName(value = "presentationPaths", alternate = { "PresentationPaths" })
   private List<String> presentationPaths = null;
 
-  @SerializedName("PresentationPasswords")
+  @SerializedName(value = "presentationPasswords", alternate = { "PresentationPasswords" })
   private List<String> presentationPasswords = null;
 
 
@@ -151,5 +153,8 @@ public class PresentationsMergeRequest {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

@@ -38,16 +38,18 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents text item, referenced by TextItems
  */
 @ApiModel(description = "Represents text item, referenced by TextItems")
 public class TextItem {
-  @SerializedName("Uri")
+  @SerializedName(value = "uri", alternate = { "Uri" })
   private ResourceUri uri;
 
-  @SerializedName("Text")
+  @SerializedName(value = "text", alternate = { "Text" })
   private String text;
 
 
@@ -132,5 +134,8 @@ public class TextItem {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

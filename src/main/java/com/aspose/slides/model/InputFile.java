@@ -37,13 +37,15 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents abstract input file source for pipeline.
  */
 @ApiModel(description = "Represents abstract input file source for pipeline.")
 public class InputFile {
-  @SerializedName("Password")
+  @SerializedName(value = "password", alternate = { "Password" })
   private String password;
 
   /**
@@ -95,7 +97,7 @@ public class InputFile {
     }
   }
 
-  @SerializedName("Type")
+  @SerializedName(value = "type", alternate = { "Type" })
   private TypeEnum type;
 
 
@@ -180,5 +182,8 @@ public class InputFile {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

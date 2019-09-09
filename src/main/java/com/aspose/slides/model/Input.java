@@ -38,19 +38,21 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents input document for pipeline.
  */
 @ApiModel(description = "Represents input document for pipeline.")
 public class Input {
-  @SerializedName("Template")
+  @SerializedName(value = "template", alternate = { "Template" })
   private InputFile template;
 
-  @SerializedName("HtmlData")
+  @SerializedName(value = "htmlData", alternate = { "HtmlData" })
   private InputFile htmlData;
 
-  @SerializedName("TemplateData")
+  @SerializedName(value = "templateData", alternate = { "TemplateData" })
   private InputFile templateData;
 
 
@@ -154,5 +156,8 @@ public class Input {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

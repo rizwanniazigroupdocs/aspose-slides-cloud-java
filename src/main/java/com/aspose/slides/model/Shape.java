@@ -44,16 +44,18 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents AutoShape resource.
  */
 @ApiModel(description = "Represents AutoShape resource.")
 public class Shape extends GeometryShape {
-  @SerializedName("Text")
+  @SerializedName(value = "text", alternate = { "Text" })
   private String text;
 
-  @SerializedName("Paragraphs")
+  @SerializedName(value = "paragraphs", alternate = { "Paragraphs" })
   private ResourceUriElement paragraphs;
 
 
@@ -140,5 +142,11 @@ public class Shape extends GeometryShape {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+  static {
+      typeDeterminers.put("Type", TypeEnum.SHAPE);
+  }
+}

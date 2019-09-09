@@ -41,16 +41,18 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents notes slide DTO.
  */
 @ApiModel(description = "Represents notes slide DTO.")
 public class NotesSlide extends ResourceBase {
-  @SerializedName("Text")
+  @SerializedName(value = "text", alternate = { "Text" })
   private String text;
 
-  @SerializedName("Shapes")
+  @SerializedName(value = "shapes", alternate = { "Shapes" })
   private ResourceUriElement shapes;
 
 
@@ -136,5 +138,8 @@ public class NotesSlide extends ResourceBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

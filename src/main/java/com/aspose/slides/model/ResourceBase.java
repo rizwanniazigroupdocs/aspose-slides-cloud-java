@@ -40,16 +40,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Base class for all Slide&#39;s DTO objects 
  */
 @ApiModel(description = "Base class for all Slide's DTO objects ")
 public class ResourceBase {
-  @SerializedName("SelfUri")
+  @SerializedName(value = "selfUri", alternate = { "SelfUri" })
   private ResourceUri selfUri;
 
-  @SerializedName("AlternateLinks")
+  @SerializedName(value = "alternateLinks", alternate = { "AlternateLinks" })
   private List<ResourceUri> alternateLinks = null;
 
 
@@ -143,5 +145,8 @@ public class ResourceBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

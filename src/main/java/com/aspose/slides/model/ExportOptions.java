@@ -37,13 +37,15 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents export options for whole presentation.
  */
 @ApiModel(description = "Represents export options for whole presentation.")
 public class ExportOptions {
-  @SerializedName("Format")
+  @SerializedName(value = "format", alternate = { "Format" })
   private String format;
 
 
@@ -109,5 +111,8 @@ public class ExportOptions {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

@@ -44,6 +44,8 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents GeometryShape resource.
@@ -471,7 +473,7 @@ public class GeometryShape extends ShapeBase {
     }
   }
 
-  @SerializedName("GeometryShapeType")
+  @SerializedName(value = "geometryShapeType", alternate = { "GeometryShapeType" })
   private GeometryShapeTypeEnum geometryShapeType;
 
 
@@ -538,5 +540,8 @@ public class GeometryShape extends ShapeBase {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

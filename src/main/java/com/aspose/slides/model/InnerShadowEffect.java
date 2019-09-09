@@ -37,22 +37,24 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Represents inner shadow effect 
  */
 @ApiModel(description = "Represents inner shadow effect ")
 public class InnerShadowEffect {
-  @SerializedName("Direction")
+  @SerializedName(value = "direction", alternate = { "Direction" })
   private Double direction;
 
-  @SerializedName("Distance")
+  @SerializedName(value = "distance", alternate = { "Distance" })
   private Double distance;
 
-  @SerializedName("BlurRadius")
+  @SerializedName(value = "blurRadius", alternate = { "BlurRadius" })
   private Double blurRadius;
 
-  @SerializedName("ShadowColor")
+  @SerializedName(value = "shadowColor", alternate = { "ShadowColor" })
   private String shadowColor;
 
 
@@ -175,5 +177,8 @@ public class InnerShadowEffect {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+}

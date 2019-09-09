@@ -41,16 +41,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Update background task.
  */
 @ApiModel(description = "Update background task.")
 public class UpdateBackground extends Task {
-  @SerializedName("Slides")
+  @SerializedName(value = "slides", alternate = { "Slides" })
   private List<Integer> slides = null;
 
-  @SerializedName("Background")
+  @SerializedName(value = "background", alternate = { "Background" })
   private SlideBackground background;
 
 
@@ -145,5 +147,11 @@ public class UpdateBackground extends Task {
     return o.toString().replace("\n", "\n    ");
   }
 
-}
 
+
+  private static final Map<String, Object> typeDeterminers = new Hashtable<String, Object>();
+
+  static {
+      typeDeterminers.put("Type", TypeEnum.UPDATEBACKGROUND);
+  }
+}
