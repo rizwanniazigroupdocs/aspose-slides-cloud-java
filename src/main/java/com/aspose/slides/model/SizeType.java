@@ -76,7 +76,9 @@ public enum SizeType {
   
   ONSCREEN16X9("OnScreen16x9"),
   
-  ONSCREEN16X10("OnScreen16x10");
+  ONSCREEN16X10("OnScreen16x10"),
+  
+  WIDESCREEN("Widescreen");
 
   private String value;
 

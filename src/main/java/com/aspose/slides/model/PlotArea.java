@@ -60,6 +60,56 @@ public class PlotArea {
   @SerializedName(value = "height", alternate = { "Height" })
   private Double height;
 
+  /**
+   * If layout of the plot area is defined manually specifies whether to layout the plot area by its inside (not including axis and axis labels) or outside.
+   */
+  @JsonAdapter(LayoutTargetTypeEnum.Adapter.class)
+  public enum LayoutTargetTypeEnum {
+    INNER("Inner"),
+    
+    OUTER("Outer");
+
+    private String value;
+
+    LayoutTargetTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static LayoutTargetTypeEnum fromValue(String text) {
+      for (LayoutTargetTypeEnum b : LayoutTargetTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<LayoutTargetTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final LayoutTargetTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public LayoutTargetTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return LayoutTargetTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName(value = "layoutTargetType", alternate = { "LayoutTargetType" })
+  private LayoutTargetTypeEnum layoutTargetType;
+
   @SerializedName(value = "fillFormat", alternate = { "FillFormat" })
   private FillFormat fillFormat;
 
@@ -146,6 +196,24 @@ public class PlotArea {
     this.height = height;
   }
 
+  public PlotArea layoutTargetType(LayoutTargetTypeEnum layoutTargetType) {
+    this.layoutTargetType = layoutTargetType;
+    return this;
+  }
+
+   /**
+   * If layout of the plot area is defined manually specifies whether to layout the plot area by its inside (not including axis and axis labels) or outside.
+   * @return layoutTargetType
+  **/
+  @ApiModelProperty(required = true, value = "If layout of the plot area is defined manually specifies whether to layout the plot area by its inside (not including axis and axis labels) or outside.")
+  public LayoutTargetTypeEnum getLayoutTargetType() {
+    return layoutTargetType;
+  }
+
+  public void setLayoutTargetType(LayoutTargetTypeEnum layoutTargetType) {
+    this.layoutTargetType = layoutTargetType;
+  }
+
   public PlotArea fillFormat(FillFormat fillFormat) {
     this.fillFormat = fillFormat;
     return this;
@@ -210,12 +278,12 @@ public class PlotArea {
       return false;
     }
     PlotArea plotArea = (PlotArea) o;
-    return true && Objects.equals(this.x, plotArea.x) && Objects.equals(this.y, plotArea.y) && Objects.equals(this.width, plotArea.width) && Objects.equals(this.height, plotArea.height) && Objects.equals(this.fillFormat, plotArea.fillFormat) && Objects.equals(this.effectFormat, plotArea.effectFormat) && Objects.equals(this.lineFormat, plotArea.lineFormat);
+    return true && Objects.equals(this.x, plotArea.x) && Objects.equals(this.y, plotArea.y) && Objects.equals(this.width, plotArea.width) && Objects.equals(this.height, plotArea.height) && Objects.equals(this.layoutTargetType, plotArea.layoutTargetType) && Objects.equals(this.fillFormat, plotArea.fillFormat) && Objects.equals(this.effectFormat, plotArea.effectFormat) && Objects.equals(this.lineFormat, plotArea.lineFormat);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(x, y, width, height, fillFormat, effectFormat, lineFormat);
+    return Objects.hash(x, y, width, height, layoutTargetType, fillFormat, effectFormat, lineFormat);
   }
 
 
@@ -228,6 +296,7 @@ public class PlotArea {
     sb.append("    y: ").append(toIndentedString(y)).append("\n");
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
+    sb.append("    layoutTargetType: ").append(toIndentedString(layoutTargetType)).append("\n");
     sb.append("    fillFormat: ").append(toIndentedString(fillFormat)).append("\n");
     sb.append("    effectFormat: ").append(toIndentedString(effectFormat)).append("\n");
     sb.append("    lineFormat: ").append(toIndentedString(lineFormat)).append("\n");
