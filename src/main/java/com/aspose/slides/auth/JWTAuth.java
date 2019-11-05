@@ -47,7 +47,7 @@ public class JWTAuth extends Authentication {
     public JWTAuth(String baseUrl, String appSid, String appKey) {
         this.appSid = appSid;
         this.appKey = appKey;
-        apiClient = new ApiClient(baseUrl, new Authentication(), false, 0);
+        apiClient = new ApiClient(baseUrl, new Authentication());
     }
 
     @Override

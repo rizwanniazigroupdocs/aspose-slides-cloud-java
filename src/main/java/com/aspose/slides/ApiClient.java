@@ -88,7 +88,26 @@ public class ApiClient {
     /*
      * Constructor for ApiClient
      */
-    public ApiClient(String baseUrl, Authentication authentication, Boolean debugging, Integer timeout) {
+    public ApiClient(Configuration configuration) {
+        this(
+            configuration.getUrl(),
+            new JWTAuth(configuration.getBaseUrl(), configuration.getAppSid(), configuration.getAppKey()),
+            configuration.getDebug(),
+            configuration.getTimeout(),
+            configuration.getCustomHeaders());
+    }
+
+    /*
+     * Constructor for ApiClient
+     */
+    public ApiClient(String baseUrl, Authentication authentication) {
+        this(baseUrl, authentication, false, 0, null);
+    }
+
+    /*
+     * Constructor for ApiClient
+     */
+    private ApiClient(String baseUrl, Authentication authentication, Boolean debugging, Integer timeout, Map<String, String> customHeaders) {
         this.baseUrl = baseUrl;
         this.authentication = authentication;
         httpClient = new OkHttpClient();
@@ -103,6 +122,11 @@ public class ApiClient {
         addDefaultHeader("x-aspose-client-version", getVersion());
         if (timeout > 0) {
             addDefaultHeader("x-aspose-timeout", timeout.toString());
+        }
+        if (customHeaders != null) {
+            for (String key : customHeaders.keySet()) {
+                addDefaultHeader(key, customHeaders.get(key));
+            }
         }
     }
 
@@ -264,7 +288,7 @@ public class ApiClient {
      * @param value The header's value
      * @return ApiClient
      */
-    public ApiClient addDefaultHeader(String key, String value) {
+    private ApiClient addDefaultHeader(String key, String value) {
         defaultHeaderMap.put(key, value);
         return this;
     }

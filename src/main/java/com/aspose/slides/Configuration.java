@@ -28,6 +28,8 @@
 package com.aspose.slides;
 
 import com.google.gson.annotations.SerializedName;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Configuration {
     @SerializedName("BaseUrl")
@@ -97,6 +99,12 @@ public class Configuration {
 
     public void setTimeout(int value) {
         timeout = value;
+    }
+    
+    private Map<String, String> customHeaders = new HashMap<String, String>();
+
+    public Map<String, String> getCustomHeaders() {
+        return customHeaders;
     }
 
     public Configuration() {

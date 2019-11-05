@@ -253,6 +253,9 @@ public class Chart extends ShapeBase {
   @SerializedName(value = "chartType", alternate = { "ChartType" })
   private ChartTypeEnum chartType;
 
+  @SerializedName(value = "showDataLabelsOverMaximum", alternate = { "ShowDataLabelsOverMaximum" })
+  private Boolean showDataLabelsOverMaximum;
+
   @SerializedName(value = "series", alternate = { "Series" })
   private List<Series> series = null;
 
@@ -306,6 +309,24 @@ public class Chart extends ShapeBase {
 
   public void setChartType(ChartTypeEnum chartType) {
     this.chartType = chartType;
+  }
+
+  public Chart showDataLabelsOverMaximum(Boolean showDataLabelsOverMaximum) {
+    this.showDataLabelsOverMaximum = showDataLabelsOverMaximum;
+    return this;
+  }
+
+   /**
+   * True if data labels over the maximum of the chart shall be shown.
+   * @return showDataLabelsOverMaximum
+  **/
+  @ApiModelProperty(value = "True if data labels over the maximum of the chart shall be shown.")
+  public Boolean isShowDataLabelsOverMaximum() {
+    return showDataLabelsOverMaximum;
+  }
+
+  public void setShowDataLabelsOverMaximum(Boolean showDataLabelsOverMaximum) {
+    this.showDataLabelsOverMaximum = showDataLabelsOverMaximum;
   }
 
   public Chart series(List<Series> series) {
@@ -496,12 +517,12 @@ public class Chart extends ShapeBase {
       return false;
     }
     Chart chart = (Chart) o;
-    return true && Objects.equals(this.chartType, chart.chartType) && Objects.equals(this.series, chart.series) && Objects.equals(this.categories, chart.categories) && Objects.equals(this.title, chart.title) && Objects.equals(this.backWall, chart.backWall) && Objects.equals(this.sideWall, chart.sideWall) && Objects.equals(this.floor, chart.floor) && Objects.equals(this.legend, chart.legend) && Objects.equals(this.axes, chart.axes) && Objects.equals(this.plotArea, chart.plotArea) && super.equals(o);
+    return true && Objects.equals(this.chartType, chart.chartType) && Objects.equals(this.showDataLabelsOverMaximum, chart.showDataLabelsOverMaximum) && Objects.equals(this.series, chart.series) && Objects.equals(this.categories, chart.categories) && Objects.equals(this.title, chart.title) && Objects.equals(this.backWall, chart.backWall) && Objects.equals(this.sideWall, chart.sideWall) && Objects.equals(this.floor, chart.floor) && Objects.equals(this.legend, chart.legend) && Objects.equals(this.axes, chart.axes) && Objects.equals(this.plotArea, chart.plotArea) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(chartType, series, categories, title, backWall, sideWall, floor, legend, axes, plotArea, super.hashCode());
+    return Objects.hash(chartType, showDataLabelsOverMaximum, series, categories, title, backWall, sideWall, floor, legend, axes, plotArea, super.hashCode());
   }
 
 
@@ -511,6 +532,7 @@ public class Chart extends ShapeBase {
     sb.append("class Chart {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    chartType: ").append(toIndentedString(chartType)).append("\n");
+    sb.append("    showDataLabelsOverMaximum: ").append(toIndentedString(showDataLabelsOverMaximum)).append("\n");
     sb.append("    series: ").append(toIndentedString(series)).append("\n");
     sb.append("    categories: ").append(toIndentedString(categories)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");

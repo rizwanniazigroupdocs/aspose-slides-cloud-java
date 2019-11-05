@@ -63,4 +63,15 @@ public class AbstractClassTest extends ApiTest {
         assertTrue(shape instanceof Shape);
         assertTrue(((Shape)shape).getText().equals("1"));
     }
+
+    /**
+     * Check default model properties are set.
+     * @throws ApiException
+     */
+    @Test
+    public void chartTest() throws ApiException {
+        Chart chart = new Chart();
+        assertTrue(chart.getType().equals(Chart.TypeEnum.CHART));
+        assertTrue(chart.getShapeType().equals(Chart.ShapeTypeEnum.CHART));
+    }
 }

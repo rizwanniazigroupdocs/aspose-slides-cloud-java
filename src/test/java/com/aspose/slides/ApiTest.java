@@ -28,8 +28,10 @@
 package com.aspose.slides;
 
 import com.aspose.slides.api.SlidesApi;
+import com.aspose.slides.model.request.CopyFileRequest;
 import com.aspose.slides.model.request.UploadFileRequest;
 import com.aspose.slides.model.request.DeleteFileRequest;
+import com.aspose.slides.model.request.DownloadFileRequest;
 import com.aspose.slides.testrules.FileAction;
 import com.aspose.slides.testrules.FileRule;
 import com.aspose.slides.testrules.ResultRule;
@@ -44,6 +46,9 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,11 +62,15 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
 public class ApiTest {
+    private static boolean initialized;
     private Configuration configuration;
     private TestRules testRules;
     private SlidesApi api;
 
+    private final String expectedTestDataVersion = "1";
+    private final String tempFolderName = "TempTests";
     private final String folderName = "TempSlidesSDK";
+    private final String testDataFolderName = "TestData";
 
     public String getFolderName() {
         return folderName;
@@ -90,7 +99,7 @@ public class ApiTest {
     }
 
     public String getFilePath() {
-        return "TestData/" + getFileName();
+        return testDataFolderName + "/" + getFileName();
     }
 
     public String getFileUploadPath() {
@@ -136,11 +145,15 @@ public class ApiTest {
     }
 
     protected void initialize(String functionName, String invalidParameterName, Object invalidParameterValue) throws ApiException {
+        if (!initialized) {
+            initializeStorage();
+            initialized = true;
+        }
         Map<String, FileRule> files = new HashMap<String, FileRule>();
         for (TestRule r : getRules(testRules.getFiles(), functionName, invalidParameterName)) {
             FileRule fr = (FileRule)r;
             String actualName = (String)untemplatize(fr.getFile(), invalidParameterValue);
-            String path = "TempSlidesSDK";
+            String path = folderName;
             if (fr.getFolder() != null) {
                 path = (String)untemplatize(fr.getFolder(), invalidParameterValue);
             }
@@ -151,14 +164,10 @@ public class ApiTest {
         for (String path : files.keySet()) {
             FileRule rule = files.get(path);
             if (rule.getAction() == FileAction.Put) {
-                UploadFileRequest request = new UploadFileRequest();
-                try {
-                    request.setFile(Files.readAllBytes(Paths.get("TestData/" + rule.getActualName())));
-                } catch (IOException ex) {
-                    throw new ApiException(ex.getMessage());
-                }
-                request.setPath(path);
-                api.uploadFile(request);
+                CopyFileRequest request = new CopyFileRequest();
+                request.setSrcPath(tempFolderName + "/" + rule.getActualName());
+                request.setDestPath(path);
+                api.copyFile(request);
             }
             else if (rule.getAction() == FileAction.Delete)
             {
@@ -166,6 +175,37 @@ public class ApiTest {
                 request.setPath(path);
                 api.deleteFile(request);
             }
+        }
+    }
+
+    private void initializeStorage() throws ApiException {
+        String versionPath = tempFolderName + "/version.txt";
+        DownloadFileRequest request = new DownloadFileRequest();
+        request.setPath(versionPath);
+        String version = null;
+        try {
+            version = new BufferedReader(new FileReader(api.downloadFile(request))).readLine();
+        } catch (IOException ex) {
+            throw new ApiException(ex.getMessage());
+        }
+        if (!version.equals(expectedTestDataVersion)) {
+            File folder = new File(testDataFolderName);
+            for (File f : folder.listFiles()) {
+                if (f.isFile()) {
+                    UploadFileRequest fileRequest = new UploadFileRequest();
+                    try {
+                        fileRequest.setFile(Files.readAllBytes(Paths.get(testDataFolderName + "/" + f.getName())));
+                    } catch (IOException ex) {
+                        throw new ApiException(ex.getMessage());
+                    }
+                    fileRequest.setPath(tempFolderName + "/" + f.getName());
+                    api.uploadFile(fileRequest);
+                }
+            }
+            UploadFileRequest uploadRequest = new UploadFileRequest();
+            uploadRequest.setFile(expectedTestDataVersion.getBytes());
+            uploadRequest.setPath(versionPath);
+            api.uploadFile(uploadRequest);
         }
     }
 

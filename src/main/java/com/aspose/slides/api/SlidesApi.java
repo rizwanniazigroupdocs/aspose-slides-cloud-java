@@ -226,13 +226,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SlidesApi extends ApiBase {
+public class SlidesApi {
     public SlidesApi(Configuration configuration) {
-        super(configuration);
+        apiClient = new ApiClient(configuration);
     }
 
     public SlidesApi(String appSid, String appKey) {
-        super(appSid, appKey);
+        this(new Configuration(appSid, appKey));
     }
 
     /**
@@ -259,13 +259,13 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/storage/file/copy/{srcPath}"
-            .replaceAll("\\{" + "srcPath" + "\\}", getApiClient().escapeString(request.getSrcPath().toString()));
+            .replaceAll("\\{" + "srcPath" + "\\}", request.getSrcPath().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "destPath", request.getDestPath());
-        getApiClient().addQueryParameter(queryParams, "srcStorageName", request.getSrcStorageName());
-        getApiClient().addQueryParameter(queryParams, "destStorageName", request.getDestStorageName());
-        getApiClient().addQueryParameter(queryParams, "versionId", request.getVersionId());
+        apiClient.addQueryParameter(queryParams, "destPath", request.getDestPath());
+        apiClient.addQueryParameter(queryParams, "srcStorageName", request.getSrcStorageName());
+        apiClient.addQueryParameter(queryParams, "destStorageName", request.getDestStorageName());
+        apiClient.addQueryParameter(queryParams, "versionId", request.getVersionId());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -274,17 +274,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -294,7 +294,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -321,7 +321,7 @@ public class SlidesApi extends ApiBase {
      */
     public ApiResponse<Void> copyFileWithHttpInfo(CopyFileRequest request) throws ApiException {
         com.squareup.okhttp.Call call = copyFileCall(request, null, null);
-        return getApiClient().execute(call);
+        return apiClient.execute(call);
     }
 
     /**
@@ -354,7 +354,7 @@ public class SlidesApi extends ApiBase {
         }
 
         com.squareup.okhttp.Call call = copyFileCall(request, progressListener, progressRequestListener);
-        getApiClient().executeAsync(call, callback);
+        apiClient.executeAsync(call, callback);
         return call;
     }
     /**
@@ -381,12 +381,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/storage/folder/copy/{srcPath}"
-            .replaceAll("\\{" + "srcPath" + "\\}", getApiClient().escapeString(request.getSrcPath().toString()));
+            .replaceAll("\\{" + "srcPath" + "\\}", request.getSrcPath().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "destPath", request.getDestPath());
-        getApiClient().addQueryParameter(queryParams, "srcStorageName", request.getSrcStorageName());
-        getApiClient().addQueryParameter(queryParams, "destStorageName", request.getDestStorageName());
+        apiClient.addQueryParameter(queryParams, "destPath", request.getDestPath());
+        apiClient.addQueryParameter(queryParams, "srcStorageName", request.getSrcStorageName());
+        apiClient.addQueryParameter(queryParams, "destStorageName", request.getDestStorageName());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -395,17 +395,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -415,7 +415,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -442,7 +442,7 @@ public class SlidesApi extends ApiBase {
      */
     public ApiResponse<Void> copyFolderWithHttpInfo(CopyFolderRequest request) throws ApiException {
         com.squareup.okhttp.Call call = copyFolderCall(request, null, null);
-        return getApiClient().execute(call);
+        return apiClient.execute(call);
     }
 
     /**
@@ -475,7 +475,7 @@ public class SlidesApi extends ApiBase {
         }
 
         com.squareup.okhttp.Call call = copyFolderCall(request, progressListener, progressRequestListener);
-        getApiClient().executeAsync(call, callback);
+        apiClient.executeAsync(call, callback);
         return call;
     }
     /**
@@ -497,10 +497,10 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/storage/folder/{path}"
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()));
+            .replaceAll("\\{" + "path" + "\\}", request.getPath().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "storageName", request.getStorageName());
+        apiClient.addQueryParameter(queryParams, "storageName", request.getStorageName());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -509,17 +509,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -529,7 +529,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -556,7 +556,7 @@ public class SlidesApi extends ApiBase {
      */
     public ApiResponse<Void> createFolderWithHttpInfo(CreateFolderRequest request) throws ApiException {
         com.squareup.okhttp.Call call = createFolderCall(request, null, null);
-        return getApiClient().execute(call);
+        return apiClient.execute(call);
     }
 
     /**
@@ -589,7 +589,7 @@ public class SlidesApi extends ApiBase {
         }
 
         com.squareup.okhttp.Call call = createFolderCall(request, progressListener, progressRequestListener);
-        getApiClient().executeAsync(call, callback);
+        apiClient.executeAsync(call, callback);
         return call;
     }
     /**
@@ -611,11 +611,11 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/storage/file/{path}"
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()));
+            .replaceAll("\\{" + "path" + "\\}", request.getPath().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "storageName", request.getStorageName());
-        getApiClient().addQueryParameter(queryParams, "versionId", request.getVersionId());
+        apiClient.addQueryParameter(queryParams, "storageName", request.getStorageName());
+        apiClient.addQueryParameter(queryParams, "versionId", request.getVersionId());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -624,17 +624,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -644,7 +644,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -671,7 +671,7 @@ public class SlidesApi extends ApiBase {
      */
     public ApiResponse<Void> deleteFileWithHttpInfo(DeleteFileRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteFileCall(request, null, null);
-        return getApiClient().execute(call);
+        return apiClient.execute(call);
     }
 
     /**
@@ -704,7 +704,7 @@ public class SlidesApi extends ApiBase {
         }
 
         com.squareup.okhttp.Call call = deleteFileCall(request, progressListener, progressRequestListener);
-        getApiClient().executeAsync(call, callback);
+        apiClient.executeAsync(call, callback);
         return call;
     }
     /**
@@ -726,11 +726,11 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/storage/folder/{path}"
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()));
+            .replaceAll("\\{" + "path" + "\\}", request.getPath().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "storageName", request.getStorageName());
-        getApiClient().addQueryParameter(queryParams, "recursive", request.getRecursive());
+        apiClient.addQueryParameter(queryParams, "storageName", request.getStorageName());
+        apiClient.addQueryParameter(queryParams, "recursive", request.getRecursive());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -739,17 +739,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -759,7 +759,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -786,7 +786,7 @@ public class SlidesApi extends ApiBase {
      */
     public ApiResponse<Void> deleteFolderWithHttpInfo(DeleteFolderRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteFolderCall(request, null, null);
-        return getApiClient().execute(call);
+        return apiClient.execute(call);
     }
 
     /**
@@ -819,7 +819,7 @@ public class SlidesApi extends ApiBase {
         }
 
         com.squareup.okhttp.Call call = deleteFolderCall(request, progressListener, progressRequestListener);
-        getApiClient().executeAsync(call, callback);
+        apiClient.executeAsync(call, callback);
         return call;
     }
     /**
@@ -846,13 +846,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -861,17 +860,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -881,7 +880,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -911,7 +910,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Slide> deleteNotesSlideWithHttpInfo(DeleteNotesSlideRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteNotesSlideCall(request, null, null);
         Type returnType = new TypeToken<Slide>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -945,7 +944,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deleteNotesSlideCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Slide>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -987,16 +986,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()))
-            .replaceAll("\\{" + "paragraphIndex" + "\\}", getApiClient().escapeString(request.getParagraphIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString()).replaceAll("\\{" + "paragraphIndex" + "\\}", request.getParagraphIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -1005,17 +1000,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -1025,7 +1020,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -1055,7 +1050,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Paragraphs> deleteNotesSlideParagraphWithHttpInfo(DeleteNotesSlideParagraphRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteNotesSlideParagraphCall(request, null, null);
         Type returnType = new TypeToken<Paragraphs>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -1089,7 +1084,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deleteNotesSlideParagraphCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Paragraphs>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -1126,16 +1121,13 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "paragraphs", request.getParagraphs());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "paragraphs", request.getParagraphs());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -1144,17 +1136,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -1164,7 +1156,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -1194,7 +1186,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Paragraphs> deleteNotesSlideParagraphsWithHttpInfo(DeleteNotesSlideParagraphsRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteNotesSlideParagraphsCall(request, null, null);
         Type returnType = new TypeToken<Paragraphs>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -1228,7 +1220,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deleteNotesSlideParagraphsCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Paragraphs>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -1275,17 +1267,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()))
-            .replaceAll("\\{" + "paragraphIndex" + "\\}", getApiClient().escapeString(request.getParagraphIndex().toString()))
-            .replaceAll("\\{" + "portionIndex" + "\\}", getApiClient().escapeString(request.getPortionIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString()).replaceAll("\\{" + "paragraphIndex" + "\\}", request.getParagraphIndex().toString()).replaceAll("\\{" + "portionIndex" + "\\}", request.getPortionIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -1294,17 +1281,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -1314,7 +1301,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -1344,7 +1331,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Portions> deleteNotesSlidePortionWithHttpInfo(DeleteNotesSlidePortionRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteNotesSlidePortionCall(request, null, null);
         Type returnType = new TypeToken<Portions>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -1378,7 +1365,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deleteNotesSlidePortionCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Portions>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -1420,17 +1407,13 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()))
-            .replaceAll("\\{" + "paragraphIndex" + "\\}", getApiClient().escapeString(request.getParagraphIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString()).replaceAll("\\{" + "paragraphIndex" + "\\}", request.getParagraphIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "portions", request.getPortions());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "portions", request.getPortions());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -1439,17 +1422,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -1459,7 +1442,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -1489,7 +1472,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Portions> deleteNotesSlidePortionsWithHttpInfo(DeleteNotesSlidePortionsRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteNotesSlidePortionsCall(request, null, null);
         Type returnType = new TypeToken<Portions>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -1523,7 +1506,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deleteNotesSlidePortionsCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Portions>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -1560,15 +1543,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -1577,17 +1557,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -1597,7 +1577,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -1627,7 +1607,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Shapes> deleteNotesSlideShapeWithHttpInfo(DeleteNotesSlideShapeRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteNotesSlideShapeCall(request, null, null);
         Type returnType = new TypeToken<Shapes>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -1661,7 +1641,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deleteNotesSlideShapeCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Shapes>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -1693,15 +1673,13 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "shapes", request.getShapes());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "shapes", request.getShapes());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -1710,17 +1688,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -1730,7 +1708,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -1760,7 +1738,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Shapes> deleteNotesSlideShapesWithHttpInfo(DeleteNotesSlideShapesRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteNotesSlideShapesCall(request, null, null);
         Type returnType = new TypeToken<Shapes>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -1794,7 +1772,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deleteNotesSlideShapesCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Shapes>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -1836,16 +1814,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()))
-            .replaceAll("\\{" + "paragraphIndex" + "\\}", getApiClient().escapeString(request.getParagraphIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString()).replaceAll("\\{" + "paragraphIndex" + "\\}", request.getParagraphIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -1854,17 +1828,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -1874,7 +1848,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -1904,7 +1878,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Paragraphs> deleteParagraphWithHttpInfo(DeleteParagraphRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteParagraphCall(request, null, null);
         Type returnType = new TypeToken<Paragraphs>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -1938,7 +1912,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deleteParagraphCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Paragraphs>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -1975,16 +1949,13 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "paragraphs", request.getParagraphs());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "paragraphs", request.getParagraphs());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -1993,17 +1964,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -2013,7 +1984,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -2043,7 +2014,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Paragraphs> deleteParagraphsWithHttpInfo(DeleteParagraphsRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteParagraphsCall(request, null, null);
         Type returnType = new TypeToken<Paragraphs>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -2077,7 +2048,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deleteParagraphsCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Paragraphs>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -2124,17 +2095,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()))
-            .replaceAll("\\{" + "paragraphIndex" + "\\}", getApiClient().escapeString(request.getParagraphIndex().toString()))
-            .replaceAll("\\{" + "portionIndex" + "\\}", getApiClient().escapeString(request.getPortionIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString()).replaceAll("\\{" + "paragraphIndex" + "\\}", request.getParagraphIndex().toString()).replaceAll("\\{" + "portionIndex" + "\\}", request.getPortionIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -2143,17 +2109,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -2163,7 +2129,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -2193,7 +2159,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Portions> deletePortionWithHttpInfo(DeletePortionRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deletePortionCall(request, null, null);
         Type returnType = new TypeToken<Portions>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -2227,7 +2193,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deletePortionCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Portions>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -2269,17 +2235,13 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()))
-            .replaceAll("\\{" + "paragraphIndex" + "\\}", getApiClient().escapeString(request.getParagraphIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString()).replaceAll("\\{" + "paragraphIndex" + "\\}", request.getParagraphIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "portions", request.getPortions());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "portions", request.getPortions());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -2288,17 +2250,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -2308,7 +2270,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -2338,7 +2300,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Portions> deletePortionsWithHttpInfo(DeletePortionsRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deletePortionsCall(request, null, null);
         Type returnType = new TypeToken<Portions>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -2372,7 +2334,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deletePortionsCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Portions>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -2399,13 +2361,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/animation"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -2414,17 +2375,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -2434,7 +2395,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -2464,7 +2425,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<SlideAnimation> deleteSlideAnimationWithHttpInfo(DeleteSlideAnimationRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteSlideAnimationCall(request, null, null);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -2498,7 +2459,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deleteSlideAnimationCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -2530,14 +2491,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/animation/mainSequence/{effectIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "effectIndex" + "\\}", getApiClient().escapeString(request.getEffectIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "effectIndex" + "\\}", request.getEffectIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -2546,17 +2505,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -2566,7 +2525,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -2596,7 +2555,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<SlideAnimation> deleteSlideAnimationEffectWithHttpInfo(DeleteSlideAnimationEffectRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteSlideAnimationEffectCall(request, null, null);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -2630,7 +2589,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deleteSlideAnimationEffectCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -2662,14 +2621,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/animation/interactiveSequences/{sequenceIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "sequenceIndex" + "\\}", getApiClient().escapeString(request.getSequenceIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "sequenceIndex" + "\\}", request.getSequenceIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -2678,17 +2635,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -2698,7 +2655,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -2728,7 +2685,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<SlideAnimation> deleteSlideAnimationInteractiveSequenceWithHttpInfo(DeleteSlideAnimationInteractiveSequenceRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteSlideAnimationInteractiveSequenceCall(request, null, null);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -2762,7 +2719,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deleteSlideAnimationInteractiveSequenceCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -2799,15 +2756,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/animation/interactiveSequences/{sequenceIndex}/{effectIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "sequenceIndex" + "\\}", getApiClient().escapeString(request.getSequenceIndex().toString()))
-            .replaceAll("\\{" + "effectIndex" + "\\}", getApiClient().escapeString(request.getEffectIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "sequenceIndex" + "\\}", request.getSequenceIndex().toString()).replaceAll("\\{" + "effectIndex" + "\\}", request.getEffectIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -2816,17 +2770,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -2836,7 +2790,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -2866,7 +2820,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<SlideAnimation> deleteSlideAnimationInteractiveSequenceEffectWithHttpInfo(DeleteSlideAnimationInteractiveSequenceEffectRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteSlideAnimationInteractiveSequenceEffectCall(request, null, null);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -2900,7 +2854,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deleteSlideAnimationInteractiveSequenceEffectCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -2927,13 +2881,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/animation/interactiveSequences"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -2942,17 +2895,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -2962,7 +2915,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -2992,7 +2945,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<SlideAnimation> deleteSlideAnimationInteractiveSequencesWithHttpInfo(DeleteSlideAnimationInteractiveSequencesRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteSlideAnimationInteractiveSequencesCall(request, null, null);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -3026,7 +2979,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deleteSlideAnimationInteractiveSequencesCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -3053,13 +3006,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/animation/mainSequence"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -3068,17 +3020,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -3088,7 +3040,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -3118,7 +3070,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<SlideAnimation> deleteSlideAnimationMainSequenceWithHttpInfo(DeleteSlideAnimationMainSequenceRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteSlideAnimationMainSequenceCall(request, null, null);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -3152,7 +3104,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deleteSlideAnimationMainSequenceCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -3179,13 +3131,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -3194,17 +3145,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -3214,7 +3165,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -3244,7 +3195,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Slides> deleteSlideByIndexWithHttpInfo(DeleteSlideByIndexRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteSlideByIndexCall(request, null, null);
         Type returnType = new TypeToken<Slides>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -3278,7 +3229,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deleteSlideByIndexCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Slides>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -3315,15 +3266,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -3332,17 +3280,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -3352,7 +3300,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -3382,7 +3330,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Shapes> deleteSlideShapeWithHttpInfo(DeleteSlideShapeRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteSlideShapeCall(request, null, null);
         Type returnType = new TypeToken<Shapes>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -3416,7 +3364,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deleteSlideShapeCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Shapes>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -3448,15 +3396,13 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/shapes/{path}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "shapes", request.getShapes());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "shapes", request.getShapes());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -3465,17 +3411,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -3485,7 +3431,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -3515,7 +3461,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Shapes> deleteSlideShapesWithHttpInfo(DeleteSlideShapesRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteSlideShapesCall(request, null, null);
         Type returnType = new TypeToken<Shapes>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -3549,7 +3495,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deleteSlideShapesCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Shapes>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -3571,13 +3517,13 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "slides", request.getSlides());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "slides", request.getSlides());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -3586,17 +3532,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -3606,7 +3552,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -3636,7 +3582,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Slides> deleteSlidesCleanSlidesListWithHttpInfo(DeleteSlidesCleanSlidesListRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteSlidesCleanSlidesListCall(request, null, null);
         Type returnType = new TypeToken<Slides>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -3670,7 +3616,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deleteSlidesCleanSlidesListCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Slides>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -3692,12 +3638,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/documentproperties"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -3706,17 +3652,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -3726,7 +3672,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -3756,7 +3702,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<DocumentProperties> deleteSlidesDocumentPropertiesWithHttpInfo(DeleteSlidesDocumentPropertiesRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteSlidesDocumentPropertiesCall(request, null, null);
         Type returnType = new TypeToken<DocumentProperties>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -3790,7 +3736,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deleteSlidesDocumentPropertiesCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<DocumentProperties>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -3817,13 +3763,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/documentproperties/{propertyName}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "propertyName" + "\\}", getApiClient().escapeString(request.getPropertyName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "propertyName" + "\\}", request.getPropertyName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -3832,17 +3777,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -3852,7 +3797,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -3882,7 +3827,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<DocumentProperties> deleteSlidesDocumentPropertyWithHttpInfo(DeleteSlidesDocumentPropertyRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteSlidesDocumentPropertyCall(request, null, null);
         Type returnType = new TypeToken<DocumentProperties>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -3916,7 +3861,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deleteSlidesDocumentPropertyCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<DocumentProperties>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -3943,13 +3888,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/background"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -3958,17 +3902,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -3978,7 +3922,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "DELETE", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -4008,7 +3952,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<SlideBackground> deleteSlidesSlideBackgroundWithHttpInfo(DeleteSlidesSlideBackgroundRequest request) throws ApiException {
         com.squareup.okhttp.Call call = deleteSlidesSlideBackgroundCall(request, null, null);
         Type returnType = new TypeToken<SlideBackground>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -4042,7 +3986,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = deleteSlidesSlideBackgroundCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<SlideBackground>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -4064,11 +4008,11 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/storage/file/{path}"
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()));
+            .replaceAll("\\{" + "path" + "\\}", request.getPath().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "storageName", request.getStorageName());
-        getApiClient().addQueryParameter(queryParams, "versionId", request.getVersionId());
+        apiClient.addQueryParameter(queryParams, "storageName", request.getStorageName());
+        apiClient.addQueryParameter(queryParams, "versionId", request.getVersionId());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -4077,17 +4021,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "multipart/form-data"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -4097,7 +4041,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -4127,7 +4071,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<File> downloadFileWithHttpInfo(DownloadFileRequest request) throws ApiException {
         com.squareup.okhttp.Call call = downloadFileCall(request, null, null);
         Type returnType = new TypeToken<File>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -4161,7 +4105,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = downloadFileCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<File>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -4177,10 +4121,11 @@ public class SlidesApi extends ApiBase {
         Object postBody = null;
 
         // create path and map variables
-        String path = "/slides/storage/disc";
+        String path = "/slides/storage/disc"
+            ;
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "storageName", request.getStorageName());
+        apiClient.addQueryParameter(queryParams, "storageName", request.getStorageName());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -4189,17 +4134,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -4209,7 +4154,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -4239,7 +4184,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<DiscUsage> getDiscUsageWithHttpInfo(GetDiscUsageRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getDiscUsageCall(request, null, null);
         Type returnType = new TypeToken<DiscUsage>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -4273,7 +4218,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getDiscUsageCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<DiscUsage>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -4295,10 +4240,10 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/storage/version/{path}"
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()));
+            .replaceAll("\\{" + "path" + "\\}", request.getPath().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "storageName", request.getStorageName());
+        apiClient.addQueryParameter(queryParams, "storageName", request.getStorageName());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -4307,17 +4252,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -4327,7 +4272,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -4357,7 +4302,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<FileVersions> getFileVersionsWithHttpInfo(GetFileVersionsRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getFileVersionsCall(request, null, null);
         Type returnType = new TypeToken<FileVersions>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -4391,7 +4336,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getFileVersionsCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<FileVersions>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -4413,10 +4358,10 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/storage/folder/{path}"
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()));
+            .replaceAll("\\{" + "path" + "\\}", request.getPath().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "storageName", request.getStorageName());
+        apiClient.addQueryParameter(queryParams, "storageName", request.getStorageName());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -4425,17 +4370,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -4445,7 +4390,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -4475,7 +4420,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<FilesList> getFilesListWithHttpInfo(GetFilesListRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getFilesListCall(request, null, null);
         Type returnType = new TypeToken<FilesList>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -4509,7 +4454,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getFilesListCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<FilesList>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -4536,13 +4481,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/layoutSlides/{slideIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -4551,17 +4495,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -4571,7 +4515,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -4601,7 +4545,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<LayoutSlide> getLayoutSlideWithHttpInfo(GetLayoutSlideRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getLayoutSlideCall(request, null, null);
         Type returnType = new TypeToken<LayoutSlide>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -4635,7 +4579,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getLayoutSlideCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<LayoutSlide>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -4657,12 +4601,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/layoutSlides"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -4671,17 +4615,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -4691,7 +4635,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -4721,7 +4665,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<LayoutSlides> getLayoutSlidesListWithHttpInfo(GetLayoutSlidesListRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getLayoutSlidesListCall(request, null, null);
         Type returnType = new TypeToken<LayoutSlides>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -4755,7 +4699,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getLayoutSlidesListCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<LayoutSlides>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -4782,13 +4726,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/masterSlides/{slideIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -4797,17 +4740,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -4817,7 +4760,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -4847,7 +4790,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<MasterSlide> getMasterSlideWithHttpInfo(GetMasterSlideRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getMasterSlideCall(request, null, null);
         Type returnType = new TypeToken<MasterSlide>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -4881,7 +4824,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getMasterSlideCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<MasterSlide>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -4903,12 +4846,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/masterSlides"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -4917,17 +4860,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -4937,7 +4880,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -4967,7 +4910,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<MasterSlides> getMasterSlidesListWithHttpInfo(GetMasterSlidesListRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getMasterSlidesListCall(request, null, null);
         Type returnType = new TypeToken<MasterSlides>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -5001,7 +4944,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getMasterSlidesListCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<MasterSlides>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -5028,13 +4971,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -5043,17 +4985,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -5063,7 +5005,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -5093,7 +5035,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<NotesSlide> getNotesSlideWithHttpInfo(GetNotesSlideRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getNotesSlideCall(request, null, null);
         Type returnType = new TypeToken<NotesSlide>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -5127,7 +5069,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getNotesSlideCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<NotesSlide>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -5164,15 +5106,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -5181,17 +5120,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -5201,7 +5140,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -5231,7 +5170,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<ShapeBase> getNotesSlideShapeWithHttpInfo(GetNotesSlideShapeRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getNotesSlideShapeCall(request, null, null);
         Type returnType = new TypeToken<ShapeBase>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -5265,7 +5204,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getNotesSlideShapeCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<ShapeBase>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -5307,16 +5246,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()))
-            .replaceAll("\\{" + "paragraphIndex" + "\\}", getApiClient().escapeString(request.getParagraphIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString()).replaceAll("\\{" + "paragraphIndex" + "\\}", request.getParagraphIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -5325,17 +5260,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -5345,7 +5280,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -5375,7 +5310,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Paragraph> getNotesSlideShapeParagraphWithHttpInfo(GetNotesSlideShapeParagraphRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getNotesSlideShapeParagraphCall(request, null, null);
         Type returnType = new TypeToken<Paragraph>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -5409,7 +5344,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getNotesSlideShapeParagraphCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Paragraph>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -5446,15 +5381,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -5463,17 +5395,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -5483,7 +5415,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -5513,7 +5445,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Paragraphs> getNotesSlideShapeParagraphsWithHttpInfo(GetNotesSlideShapeParagraphsRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getNotesSlideShapeParagraphsCall(request, null, null);
         Type returnType = new TypeToken<Paragraphs>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -5547,7 +5479,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getNotesSlideShapeParagraphsCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Paragraphs>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -5594,17 +5526,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()))
-            .replaceAll("\\{" + "paragraphIndex" + "\\}", getApiClient().escapeString(request.getParagraphIndex().toString()))
-            .replaceAll("\\{" + "portionIndex" + "\\}", getApiClient().escapeString(request.getPortionIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString()).replaceAll("\\{" + "paragraphIndex" + "\\}", request.getParagraphIndex().toString()).replaceAll("\\{" + "portionIndex" + "\\}", request.getPortionIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -5613,17 +5540,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -5633,7 +5560,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -5663,7 +5590,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Portion> getNotesSlideShapePortionWithHttpInfo(GetNotesSlideShapePortionRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getNotesSlideShapePortionCall(request, null, null);
         Type returnType = new TypeToken<Portion>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -5697,7 +5624,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getNotesSlideShapePortionCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Portion>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -5739,16 +5666,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()))
-            .replaceAll("\\{" + "paragraphIndex" + "\\}", getApiClient().escapeString(request.getParagraphIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString()).replaceAll("\\{" + "paragraphIndex" + "\\}", request.getParagraphIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -5757,17 +5680,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -5777,7 +5700,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -5807,7 +5730,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Portions> getNotesSlideShapePortionsWithHttpInfo(GetNotesSlideShapePortionsRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getNotesSlideShapePortionsCall(request, null, null);
         Type returnType = new TypeToken<Portions>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -5841,7 +5764,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getNotesSlideShapePortionsCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Portions>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -5873,14 +5796,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -5889,17 +5810,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -5909,7 +5830,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -5939,7 +5860,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Shapes> getNotesSlideShapesWithHttpInfo(GetNotesSlideShapesRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getNotesSlideShapesCall(request, null, null);
         Type returnType = new TypeToken<Shapes>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -5973,7 +5894,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getNotesSlideShapesCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Shapes>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -6005,17 +5926,15 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide/{format}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "format" + "\\}", getApiClient().escapeString(request.getFormat().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "format" + "\\}", request.getFormat().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "width", request.getWidth());
-        getApiClient().addQueryParameter(queryParams, "height", request.getHeight());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
+        apiClient.addQueryParameter(queryParams, "width", request.getWidth());
+        apiClient.addQueryParameter(queryParams, "height", request.getHeight());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -6024,17 +5943,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "multipart/form-data"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -6044,7 +5963,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -6074,7 +5993,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<File> getNotesSlideWithFormatWithHttpInfo(GetNotesSlideWithFormatRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getNotesSlideWithFormatCall(request, null, null);
         Type returnType = new TypeToken<File>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -6108,7 +6027,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getNotesSlideWithFormatCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<File>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -6155,17 +6074,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()))
-            .replaceAll("\\{" + "paragraphIndex" + "\\}", getApiClient().escapeString(request.getParagraphIndex().toString()))
-            .replaceAll("\\{" + "portionIndex" + "\\}", getApiClient().escapeString(request.getPortionIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString()).replaceAll("\\{" + "paragraphIndex" + "\\}", request.getParagraphIndex().toString()).replaceAll("\\{" + "portionIndex" + "\\}", request.getPortionIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -6174,17 +6088,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -6194,7 +6108,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -6224,7 +6138,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Portion> getParagraphPortionWithHttpInfo(GetParagraphPortionRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getParagraphPortionCall(request, null, null);
         Type returnType = new TypeToken<Portion>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -6258,7 +6172,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getParagraphPortionCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Portion>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -6300,16 +6214,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()))
-            .replaceAll("\\{" + "paragraphIndex" + "\\}", getApiClient().escapeString(request.getParagraphIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString()).replaceAll("\\{" + "paragraphIndex" + "\\}", request.getParagraphIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -6318,17 +6228,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -6338,7 +6248,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -6368,7 +6278,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Portions> getParagraphPortionsWithHttpInfo(GetParagraphPortionsRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getParagraphPortionsCall(request, null, null);
         Type returnType = new TypeToken<Portions>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -6402,7 +6312,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getParagraphPortionsCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Portions>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -6434,14 +6344,13 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/animation"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "shapeIndex", request.getShapeIndex());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "shapeIndex", request.getShapeIndex());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -6450,17 +6359,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -6470,7 +6379,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -6500,7 +6409,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<SlideAnimation> getSlideAnimationWithHttpInfo(GetSlideAnimationRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlideAnimationCall(request, null, null);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -6534,7 +6443,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlideAnimationCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -6571,15 +6480,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -6588,17 +6494,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -6608,7 +6514,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -6638,7 +6544,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<ShapeBase> getSlideShapeWithHttpInfo(GetSlideShapeRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlideShapeCall(request, null, null);
         Type returnType = new TypeToken<ShapeBase>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -6672,7 +6578,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlideShapeCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<ShapeBase>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -6714,16 +6620,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()))
-            .replaceAll("\\{" + "paragraphIndex" + "\\}", getApiClient().escapeString(request.getParagraphIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString()).replaceAll("\\{" + "paragraphIndex" + "\\}", request.getParagraphIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -6732,17 +6634,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -6752,7 +6654,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -6782,7 +6684,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Paragraph> getSlideShapeParagraphWithHttpInfo(GetSlideShapeParagraphRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlideShapeParagraphCall(request, null, null);
         Type returnType = new TypeToken<Paragraph>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -6816,7 +6718,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlideShapeParagraphCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Paragraph>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -6853,15 +6755,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -6870,17 +6769,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -6890,7 +6789,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -6920,7 +6819,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Paragraphs> getSlideShapeParagraphsWithHttpInfo(GetSlideShapeParagraphsRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlideShapeParagraphsCall(request, null, null);
         Type returnType = new TypeToken<Paragraphs>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -6954,7 +6853,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlideShapeParagraphsCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Paragraphs>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -6986,14 +6885,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/shapes/{path}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -7002,17 +6899,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -7022,7 +6919,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -7052,7 +6949,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Shapes> getSlideShapesWithHttpInfo(GetSlideShapesRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlideShapesCall(request, null, null);
         Type returnType = new TypeToken<Shapes>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -7086,7 +6983,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlideShapesCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Shapes>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -7102,7 +6999,8 @@ public class SlidesApi extends ApiBase {
         Object postBody = null;
 
         // create path and map variables
-        String path = "/slides/info";
+        String path = "/slides/info"
+            ;
 
         List<Pair> queryParams = new ArrayList<Pair>();
 
@@ -7113,17 +7011,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -7133,7 +7031,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -7163,7 +7061,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<ApiInfo> getSlidesApiInfoWithHttpInfo(GetSlidesApiInfoRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlidesApiInfoCall(request, null, null);
         Type returnType = new TypeToken<ApiInfo>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -7197,7 +7095,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlidesApiInfoCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<ApiInfo>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -7219,12 +7117,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -7233,17 +7131,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -7253,7 +7151,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -7283,7 +7181,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Document> getSlidesDocumentWithHttpInfo(GetSlidesDocumentRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlidesDocumentCall(request, null, null);
         Type returnType = new TypeToken<Document>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -7317,7 +7215,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlidesDocumentCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Document>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -7339,12 +7237,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/documentproperties"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -7353,17 +7251,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -7373,7 +7271,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -7403,7 +7301,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<DocumentProperties> getSlidesDocumentPropertiesWithHttpInfo(GetSlidesDocumentPropertiesRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlidesDocumentPropertiesCall(request, null, null);
         Type returnType = new TypeToken<DocumentProperties>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -7437,7 +7335,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlidesDocumentPropertiesCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<DocumentProperties>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -7464,13 +7362,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/documentproperties/{propertyName}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "propertyName" + "\\}", getApiClient().escapeString(request.getPropertyName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "propertyName" + "\\}", request.getPropertyName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -7479,17 +7376,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -7499,7 +7396,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -7529,7 +7426,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<DocumentProperty> getSlidesDocumentPropertyWithHttpInfo(GetSlidesDocumentPropertyRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlidesDocumentPropertyCall(request, null, null);
         Type returnType = new TypeToken<DocumentProperty>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -7563,7 +7460,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlidesDocumentPropertyCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<DocumentProperty>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -7590,13 +7487,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/images/{index}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "index" + "\\}", getApiClient().escapeString(request.getIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "index" + "\\}", request.getIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -7605,17 +7501,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "multipart/form-data"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -7625,7 +7521,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -7655,7 +7551,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<File> getSlidesImageWithDefaultFormatWithHttpInfo(GetSlidesImageWithDefaultFormatRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlidesImageWithDefaultFormatCall(request, null, null);
         Type returnType = new TypeToken<File>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -7689,7 +7585,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlidesImageWithDefaultFormatCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<File>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -7721,14 +7617,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/images/{index}/{format}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "index" + "\\}", getApiClient().escapeString(request.getIndex().toString()))
-            .replaceAll("\\{" + "format" + "\\}", getApiClient().escapeString(request.getFormat().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "index" + "\\}", request.getIndex().toString()).replaceAll("\\{" + "format" + "\\}", request.getFormat().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -7737,17 +7631,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "multipart/form-data"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -7757,7 +7651,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -7787,7 +7681,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<File> getSlidesImageWithFormatWithHttpInfo(GetSlidesImageWithFormatRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlidesImageWithFormatCall(request, null, null);
         Type returnType = new TypeToken<File>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -7821,7 +7715,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlidesImageWithFormatCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<File>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -7843,12 +7737,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/images"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -7857,17 +7751,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -7877,7 +7771,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -7907,7 +7801,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Images> getSlidesImagesWithHttpInfo(GetSlidesImagesRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlidesImagesCall(request, null, null);
         Type returnType = new TypeToken<Images>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -7941,7 +7835,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlidesImagesCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Images>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -7973,14 +7867,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/placeholders/{placeholderIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "placeholderIndex" + "\\}", getApiClient().escapeString(request.getPlaceholderIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "placeholderIndex" + "\\}", request.getPlaceholderIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -7989,17 +7881,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -8009,7 +7901,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -8039,7 +7931,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Placeholder> getSlidesPlaceholderWithHttpInfo(GetSlidesPlaceholderRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlidesPlaceholderCall(request, null, null);
         Type returnType = new TypeToken<Placeholder>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -8073,7 +7965,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlidesPlaceholderCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Placeholder>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -8100,13 +7992,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/placeholders"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -8115,17 +8006,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -8135,7 +8026,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -8165,7 +8056,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Placeholders> getSlidesPlaceholdersWithHttpInfo(GetSlidesPlaceholdersRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlidesPlaceholdersCall(request, null, null);
         Type returnType = new TypeToken<Placeholders>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -8199,7 +8090,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlidesPlaceholdersCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Placeholders>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -8221,13 +8112,13 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/textItems"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "withEmpty", request.getWithEmpty());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "withEmpty", request.getWithEmpty());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -8236,17 +8127,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -8256,7 +8147,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -8286,7 +8177,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<TextItems> getSlidesPresentationTextItemsWithHttpInfo(GetSlidesPresentationTextItemsRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlidesPresentationTextItemsCall(request, null, null);
         Type returnType = new TypeToken<TextItems>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -8320,7 +8211,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlidesPresentationTextItemsCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<TextItems>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -8347,13 +8238,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -8362,17 +8252,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -8382,7 +8272,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -8412,7 +8302,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Slide> getSlidesSlideWithHttpInfo(GetSlidesSlideRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlidesSlideCall(request, null, null);
         Type returnType = new TypeToken<Slide>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -8446,7 +8336,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlidesSlideCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Slide>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -8473,13 +8363,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/background"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -8488,17 +8377,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -8508,7 +8397,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -8538,7 +8427,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<SlideBackground> getSlidesSlideBackgroundWithHttpInfo(GetSlidesSlideBackgroundRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlidesSlideBackgroundCall(request, null, null);
         Type returnType = new TypeToken<SlideBackground>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -8572,7 +8461,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlidesSlideBackgroundCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<SlideBackground>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -8599,13 +8488,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/comments"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -8614,17 +8502,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -8634,7 +8522,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -8664,7 +8552,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<SlideComments> getSlidesSlideCommentsWithHttpInfo(GetSlidesSlideCommentsRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlidesSlideCommentsCall(request, null, null);
         Type returnType = new TypeToken<SlideComments>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -8698,7 +8586,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlidesSlideCommentsCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<SlideComments>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -8725,13 +8613,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/images"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -8740,17 +8627,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -8760,7 +8647,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -8790,7 +8677,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Images> getSlidesSlideImagesWithHttpInfo(GetSlidesSlideImagesRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlidesSlideImagesCall(request, null, null);
         Type returnType = new TypeToken<Images>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -8824,7 +8711,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlidesSlideImagesCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Images>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -8851,14 +8738,13 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/textItems"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "withEmpty", request.getWithEmpty());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "withEmpty", request.getWithEmpty());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -8867,17 +8753,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -8887,7 +8773,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -8917,7 +8803,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<TextItems> getSlidesSlideTextItemsWithHttpInfo(GetSlidesSlideTextItemsRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlidesSlideTextItemsCall(request, null, null);
         Type returnType = new TypeToken<TextItems>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -8951,7 +8837,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlidesSlideTextItemsCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<TextItems>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -8973,12 +8859,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -8987,17 +8873,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -9007,7 +8893,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -9037,7 +8923,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Slides> getSlidesSlidesListWithHttpInfo(GetSlidesSlidesListRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlidesSlidesListCall(request, null, null);
         Type returnType = new TypeToken<Slides>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -9071,7 +8957,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlidesSlidesListCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Slides>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -9098,13 +8984,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/theme"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -9113,17 +8998,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -9133,7 +9018,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -9163,7 +9048,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Theme> getSlidesThemeWithHttpInfo(GetSlidesThemeRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlidesThemeCall(request, null, null);
         Type returnType = new TypeToken<Theme>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -9197,7 +9082,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlidesThemeCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Theme>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -9224,13 +9109,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/theme/colorScheme"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -9239,17 +9123,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -9259,7 +9143,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -9289,7 +9173,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<ColorScheme> getSlidesThemeColorSchemeWithHttpInfo(GetSlidesThemeColorSchemeRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlidesThemeColorSchemeCall(request, null, null);
         Type returnType = new TypeToken<ColorScheme>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -9323,7 +9207,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlidesThemeColorSchemeCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<ColorScheme>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -9350,13 +9234,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/theme/fontScheme"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -9365,17 +9248,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -9385,7 +9268,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -9415,7 +9298,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<FontScheme> getSlidesThemeFontSchemeWithHttpInfo(GetSlidesThemeFontSchemeRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlidesThemeFontSchemeCall(request, null, null);
         Type returnType = new TypeToken<FontScheme>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -9449,7 +9332,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlidesThemeFontSchemeCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<FontScheme>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -9476,13 +9359,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/theme/formatScheme"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -9491,17 +9373,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -9511,7 +9393,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -9541,7 +9423,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<FormatScheme> getSlidesThemeFormatSchemeWithHttpInfo(GetSlidesThemeFormatSchemeRequest request) throws ApiException {
         com.squareup.okhttp.Call call = getSlidesThemeFormatSchemeCall(request, null, null);
         Type returnType = new TypeToken<FormatScheme>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -9575,7 +9457,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = getSlidesThemeFormatSchemeCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<FormatScheme>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -9602,13 +9484,13 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/storage/file/move/{srcPath}"
-            .replaceAll("\\{" + "srcPath" + "\\}", getApiClient().escapeString(request.getSrcPath().toString()));
+            .replaceAll("\\{" + "srcPath" + "\\}", request.getSrcPath().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "destPath", request.getDestPath());
-        getApiClient().addQueryParameter(queryParams, "srcStorageName", request.getSrcStorageName());
-        getApiClient().addQueryParameter(queryParams, "destStorageName", request.getDestStorageName());
-        getApiClient().addQueryParameter(queryParams, "versionId", request.getVersionId());
+        apiClient.addQueryParameter(queryParams, "destPath", request.getDestPath());
+        apiClient.addQueryParameter(queryParams, "srcStorageName", request.getSrcStorageName());
+        apiClient.addQueryParameter(queryParams, "destStorageName", request.getDestStorageName());
+        apiClient.addQueryParameter(queryParams, "versionId", request.getVersionId());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -9617,17 +9499,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -9637,7 +9519,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -9664,7 +9546,7 @@ public class SlidesApi extends ApiBase {
      */
     public ApiResponse<Void> moveFileWithHttpInfo(MoveFileRequest request) throws ApiException {
         com.squareup.okhttp.Call call = moveFileCall(request, null, null);
-        return getApiClient().execute(call);
+        return apiClient.execute(call);
     }
 
     /**
@@ -9697,7 +9579,7 @@ public class SlidesApi extends ApiBase {
         }
 
         com.squareup.okhttp.Call call = moveFileCall(request, progressListener, progressRequestListener);
-        getApiClient().executeAsync(call, callback);
+        apiClient.executeAsync(call, callback);
         return call;
     }
     /**
@@ -9724,12 +9606,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/storage/folder/move/{srcPath}"
-            .replaceAll("\\{" + "srcPath" + "\\}", getApiClient().escapeString(request.getSrcPath().toString()));
+            .replaceAll("\\{" + "srcPath" + "\\}", request.getSrcPath().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "destPath", request.getDestPath());
-        getApiClient().addQueryParameter(queryParams, "srcStorageName", request.getSrcStorageName());
-        getApiClient().addQueryParameter(queryParams, "destStorageName", request.getDestStorageName());
+        apiClient.addQueryParameter(queryParams, "destPath", request.getDestPath());
+        apiClient.addQueryParameter(queryParams, "srcStorageName", request.getSrcStorageName());
+        apiClient.addQueryParameter(queryParams, "destStorageName", request.getDestStorageName());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -9738,17 +9620,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -9758,7 +9640,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -9785,7 +9667,7 @@ public class SlidesApi extends ApiBase {
      */
     public ApiResponse<Void> moveFolderWithHttpInfo(MoveFolderRequest request) throws ApiException {
         com.squareup.okhttp.Call call = moveFolderCall(request, null, null);
-        return getApiClient().execute(call);
+        return apiClient.execute(call);
     }
 
     /**
@@ -9818,7 +9700,7 @@ public class SlidesApi extends ApiBase {
         }
 
         com.squareup.okhttp.Call call = moveFolderCall(request, progressListener, progressRequestListener);
-        getApiClient().executeAsync(call, callback);
+        apiClient.executeAsync(call, callback);
         return call;
     }
     /**
@@ -9840,11 +9722,11 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/storage/exist/{path}"
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()));
+            .replaceAll("\\{" + "path" + "\\}", request.getPath().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "storageName", request.getStorageName());
-        getApiClient().addQueryParameter(queryParams, "versionId", request.getVersionId());
+        apiClient.addQueryParameter(queryParams, "storageName", request.getStorageName());
+        apiClient.addQueryParameter(queryParams, "versionId", request.getVersionId());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -9853,17 +9735,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -9873,7 +9755,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -9903,7 +9785,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<ObjectExist> objectExistsWithHttpInfo(ObjectExistsRequest request) throws ApiException {
         com.squareup.okhttp.Call call = objectExistsCall(request, null, null);
         Type returnType = new TypeToken<ObjectExist>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -9937,7 +9819,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = objectExistsCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<ObjectExist>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -9974,16 +9856,13 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "position", request.getPosition());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "position", request.getPosition());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -9992,17 +9871,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -10012,7 +9891,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -10042,7 +9921,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Paragraph> postAddNewParagraphWithHttpInfo(PostAddNewParagraphRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postAddNewParagraphCall(request, null, null);
         Type returnType = new TypeToken<Paragraph>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -10076,7 +9955,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postAddNewParagraphCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Paragraph>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -10118,17 +9997,13 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()))
-            .replaceAll("\\{" + "paragraphIndex" + "\\}", getApiClient().escapeString(request.getParagraphIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString()).replaceAll("\\{" + "paragraphIndex" + "\\}", request.getParagraphIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "position", request.getPosition());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "position", request.getPosition());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -10137,17 +10012,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -10157,7 +10032,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -10187,7 +10062,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Portion> postAddNewPortionWithHttpInfo(PostAddNewPortionRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postAddNewPortionCall(request, null, null);
         Type returnType = new TypeToken<Portion>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -10221,7 +10096,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postAddNewPortionCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Portion>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -10253,16 +10128,14 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/shapes/{path}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "shapeToClone", request.getShapeToClone());
-        getApiClient().addQueryParameter(queryParams, "position", request.getPosition());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "shapeToClone", request.getShapeToClone());
+        apiClient.addQueryParameter(queryParams, "position", request.getPosition());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -10271,17 +10144,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -10291,7 +10164,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -10321,7 +10194,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<ShapeBase> postAddNewShapeWithHttpInfo(PostAddNewShapeRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postAddNewShapeCall(request, null, null);
         Type returnType = new TypeToken<ShapeBase>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -10355,7 +10228,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postAddNewShapeCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<ShapeBase>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -10382,13 +10255,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -10397,17 +10269,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -10417,7 +10289,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -10447,7 +10319,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<NotesSlide> postAddNotesSlideWithHttpInfo(PostAddNotesSlideRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postAddNotesSlideCall(request, null, null);
         Type returnType = new TypeToken<NotesSlide>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -10481,7 +10353,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postAddNotesSlideCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<NotesSlide>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -10513,16 +10385,16 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/layoutSlides"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "cloneFrom", request.getCloneFrom());
-        getApiClient().addQueryParameter(queryParams, "cloneFromPosition", request.getCloneFromPosition());
-        getApiClient().addQueryParameter(queryParams, "cloneFromPassword", request.getCloneFromPassword());
-        getApiClient().addQueryParameter(queryParams, "cloneFromStorage", request.getCloneFromStorage());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "cloneFrom", request.getCloneFrom());
+        apiClient.addQueryParameter(queryParams, "cloneFromPosition", request.getCloneFromPosition());
+        apiClient.addQueryParameter(queryParams, "cloneFromPassword", request.getCloneFromPassword());
+        apiClient.addQueryParameter(queryParams, "cloneFromStorage", request.getCloneFromStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -10531,17 +10403,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -10551,7 +10423,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -10581,7 +10453,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<LayoutSlide> postCopyLayoutSlideFromSourcePresentationWithHttpInfo(PostCopyLayoutSlideFromSourcePresentationRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postCopyLayoutSlideFromSourcePresentationCall(request, null, null);
         Type returnType = new TypeToken<LayoutSlide>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -10615,7 +10487,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postCopyLayoutSlideFromSourcePresentationCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<LayoutSlide>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -10647,17 +10519,17 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/masterSlides"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "cloneFrom", request.getCloneFrom());
-        getApiClient().addQueryParameter(queryParams, "cloneFromPosition", request.getCloneFromPosition());
-        getApiClient().addQueryParameter(queryParams, "cloneFromPassword", request.getCloneFromPassword());
-        getApiClient().addQueryParameter(queryParams, "cloneFromStorage", request.getCloneFromStorage());
-        getApiClient().addQueryParameter(queryParams, "applyToAll", request.getApplyToAll());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "cloneFrom", request.getCloneFrom());
+        apiClient.addQueryParameter(queryParams, "cloneFromPosition", request.getCloneFromPosition());
+        apiClient.addQueryParameter(queryParams, "cloneFromPassword", request.getCloneFromPassword());
+        apiClient.addQueryParameter(queryParams, "cloneFromStorage", request.getCloneFromStorage());
+        apiClient.addQueryParameter(queryParams, "applyToAll", request.getApplyToAll());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -10666,17 +10538,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -10686,7 +10558,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -10716,7 +10588,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<MasterSlide> postCopyMasterSlideFromSourcePresentationWithHttpInfo(PostCopyMasterSlideFromSourcePresentationRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postCopyMasterSlideFromSourcePresentationCall(request, null, null);
         Type returnType = new TypeToken<MasterSlide>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -10750,7 +10622,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postCopyMasterSlideFromSourcePresentationCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<MasterSlide>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -10787,16 +10659,13 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "position", request.getPosition());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "position", request.getPosition());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -10805,17 +10674,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -10825,7 +10694,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -10855,7 +10724,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Paragraph> postNotesSlideAddNewParagraphWithHttpInfo(PostNotesSlideAddNewParagraphRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postNotesSlideAddNewParagraphCall(request, null, null);
         Type returnType = new TypeToken<Paragraph>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -10889,7 +10758,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postNotesSlideAddNewParagraphCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Paragraph>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -10931,17 +10800,13 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()))
-            .replaceAll("\\{" + "paragraphIndex" + "\\}", getApiClient().escapeString(request.getParagraphIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString()).replaceAll("\\{" + "paragraphIndex" + "\\}", request.getParagraphIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "position", request.getPosition());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "position", request.getPosition());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -10950,17 +10815,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -10970,7 +10835,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -11000,7 +10865,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Portion> postNotesSlideAddNewPortionWithHttpInfo(PostNotesSlideAddNewPortionRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postNotesSlideAddNewPortionCall(request, null, null);
         Type returnType = new TypeToken<Portion>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -11034,7 +10899,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postNotesSlideAddNewPortionCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Portion>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -11066,16 +10931,14 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "shapeToClone", request.getShapeToClone());
-        getApiClient().addQueryParameter(queryParams, "position", request.getPosition());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "shapeToClone", request.getShapeToClone());
+        apiClient.addQueryParameter(queryParams, "position", request.getPosition());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -11084,17 +10947,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -11104,7 +10967,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -11134,7 +10997,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<ShapeBase> postNotesSlideAddNewShapeWithHttpInfo(PostNotesSlideAddNewShapeRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postNotesSlideAddNewShapeCall(request, null, null);
         Type returnType = new TypeToken<ShapeBase>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -11168,7 +11031,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postNotesSlideAddNewShapeCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<ShapeBase>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -11210,20 +11073,16 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/{format}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()))
-            .replaceAll("\\{" + "format" + "\\}", getApiClient().escapeString(request.getFormat().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString()).replaceAll("\\{" + "format" + "\\}", request.getFormat().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "scaleX", request.getScaleX());
-        getApiClient().addQueryParameter(queryParams, "scaleY", request.getScaleY());
-        getApiClient().addQueryParameter(queryParams, "bounds", request.getBounds());
-        getApiClient().addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "scaleX", request.getScaleX());
+        apiClient.addQueryParameter(queryParams, "scaleY", request.getScaleY());
+        apiClient.addQueryParameter(queryParams, "bounds", request.getBounds());
+        apiClient.addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -11232,17 +11091,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "multipart/form-data"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -11252,7 +11111,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -11282,7 +11141,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<File> postNotesSlideShapeSaveAsWithHttpInfo(PostNotesSlideShapeSaveAsRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postNotesSlideShapeSaveAsCall(request, null, null);
         Type returnType = new TypeToken<File>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -11316,7 +11175,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postNotesSlideShapeSaveAsCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<File>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -11338,12 +11197,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/merge"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -11352,17 +11211,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -11372,7 +11231,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -11402,7 +11261,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Document> postPresentationMergeWithHttpInfo(PostPresentationMergeRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postPresentationMergeCall(request, null, null);
         Type returnType = new TypeToken<Document>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -11436,7 +11295,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postPresentationMergeCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Document>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -11478,20 +11337,16 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/{format}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()))
-            .replaceAll("\\{" + "format" + "\\}", getApiClient().escapeString(request.getFormat().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString()).replaceAll("\\{" + "format" + "\\}", request.getFormat().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "scaleX", request.getScaleX());
-        getApiClient().addQueryParameter(queryParams, "scaleY", request.getScaleY());
-        getApiClient().addQueryParameter(queryParams, "bounds", request.getBounds());
-        getApiClient().addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "scaleX", request.getScaleX());
+        apiClient.addQueryParameter(queryParams, "scaleY", request.getScaleY());
+        apiClient.addQueryParameter(queryParams, "bounds", request.getBounds());
+        apiClient.addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -11500,17 +11355,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "multipart/form-data"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -11520,7 +11375,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -11550,7 +11405,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<File> postShapeSaveAsWithHttpInfo(PostShapeSaveAsRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postShapeSaveAsCall(request, null, null);
         Type returnType = new TypeToken<File>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -11584,7 +11439,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postShapeSaveAsCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<File>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -11611,13 +11466,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/animation/mainSequence"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -11626,17 +11480,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -11646,7 +11500,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -11676,7 +11530,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<SlideAnimation> postSlideAnimationEffectWithHttpInfo(PostSlideAnimationEffectRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postSlideAnimationEffectCall(request, null, null);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -11710,7 +11564,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postSlideAnimationEffectCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -11737,13 +11591,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/animation/interactiveSequences"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -11752,17 +11605,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -11772,7 +11625,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -11802,7 +11655,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<SlideAnimation> postSlideAnimationInteractiveSequenceWithHttpInfo(PostSlideAnimationInteractiveSequenceRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postSlideAnimationInteractiveSequenceCall(request, null, null);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -11836,7 +11689,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postSlideAnimationInteractiveSequenceCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -11868,14 +11721,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/animation/interactiveSequences/{sequenceIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "sequenceIndex" + "\\}", getApiClient().escapeString(request.getSequenceIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "sequenceIndex" + "\\}", request.getSequenceIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -11884,17 +11735,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -11904,7 +11755,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -11934,7 +11785,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<SlideAnimation> postSlideAnimationInteractiveSequenceEffectWithHttpInfo(PostSlideAnimationInteractiveSequenceEffectRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postSlideAnimationInteractiveSequenceEffectCall(request, null, null);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -11968,7 +11819,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postSlideAnimationInteractiveSequenceEffectCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -12000,17 +11851,15 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/{format}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "format" + "\\}", getApiClient().escapeString(request.getFormat().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "format" + "\\}", request.getFormat().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "width", request.getWidth());
-        getApiClient().addQueryParameter(queryParams, "height", request.getHeight());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
+        apiClient.addQueryParameter(queryParams, "width", request.getWidth());
+        apiClient.addQueryParameter(queryParams, "height", request.getHeight());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -12019,17 +11868,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "multipart/form-data"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -12039,7 +11888,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -12069,7 +11918,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<File> postSlideSaveAsWithHttpInfo(PostSlideSaveAsRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postSlideSaveAsCall(request, null, null);
         Type returnType = new TypeToken<File>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -12103,7 +11952,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postSlideSaveAsCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<File>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -12125,14 +11974,14 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "position", request.getPosition());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "layoutAlias", request.getLayoutAlias());
+        apiClient.addQueryParameter(queryParams, "position", request.getPosition());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "layoutAlias", request.getLayoutAlias());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -12141,17 +11990,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -12161,7 +12010,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -12191,7 +12040,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Slides> postSlidesAddWithHttpInfo(PostSlidesAddRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postSlidesAddCall(request, null, null);
         Type returnType = new TypeToken<Slides>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -12225,7 +12074,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postSlidesAddCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Slides>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -12247,11 +12096,11 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/convert/{format}"
-            .replaceAll("\\{" + "format" + "\\}", getApiClient().escapeString(request.getFormat().toString()));
+            .replaceAll("\\{" + "format" + "\\}", request.getFormat().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -12260,17 +12109,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "multipart/form-data"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/octet-stream", "multipart/form-data"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -12280,7 +12129,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -12310,7 +12159,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<File> postSlidesConvertWithHttpInfo(PostSlidesConvertRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postSlidesConvertCall(request, null, null);
         Type returnType = new TypeToken<File>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -12344,7 +12193,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postSlidesConvertCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<File>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -12371,17 +12220,17 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/copy"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "slideToCopy", request.getSlideToCopy());
-        getApiClient().addQueryParameter(queryParams, "position", request.getPosition());
-        getApiClient().addQueryParameter(queryParams, "source", request.getSource());
-        getApiClient().addQueryParameter(queryParams, "sourcePassword", request.getSourcePassword());
-        getApiClient().addQueryParameter(queryParams, "sourceStorage", request.getSourceStorage());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "slideToCopy", request.getSlideToCopy());
+        apiClient.addQueryParameter(queryParams, "position", request.getPosition());
+        apiClient.addQueryParameter(queryParams, "source", request.getSource());
+        apiClient.addQueryParameter(queryParams, "sourcePassword", request.getSourcePassword());
+        apiClient.addQueryParameter(queryParams, "sourceStorage", request.getSourceStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -12390,17 +12239,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -12410,7 +12259,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -12440,7 +12289,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Slides> postSlidesCopyWithHttpInfo(PostSlidesCopyRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postSlidesCopyCall(request, null, null);
         Type returnType = new TypeToken<Slides>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -12474,7 +12323,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postSlidesCopyCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Slides>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -12496,13 +12345,13 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "inputPassword", request.getInputPassword());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "inputPassword", request.getInputPassword());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -12511,17 +12360,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/octet-stream", "multipart/form-data"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -12531,7 +12380,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -12561,7 +12410,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Document> postSlidesDocumentWithHttpInfo(PostSlidesDocumentRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postSlidesDocumentCall(request, null, null);
         Type returnType = new TypeToken<Document>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -12595,7 +12444,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postSlidesDocumentCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Document>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -12617,12 +12466,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/fromHtml"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -12631,17 +12480,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -12651,7 +12500,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -12681,7 +12530,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Document> postSlidesDocumentFromHtmlWithHttpInfo(PostSlidesDocumentFromHtmlRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postSlidesDocumentFromHtmlCall(request, null, null);
         Type returnType = new TypeToken<Document>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -12715,7 +12564,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postSlidesDocumentFromHtmlCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Document>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -12737,15 +12586,15 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/fromSource"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "sourcePath", request.getSourcePath());
-        getApiClient().addQueryParameter(queryParams, "sourcePassword", request.getSourcePassword());
-        getApiClient().addQueryParameter(queryParams, "sourceStorage", request.getSourceStorage());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "sourcePath", request.getSourcePath());
+        apiClient.addQueryParameter(queryParams, "sourcePassword", request.getSourcePassword());
+        apiClient.addQueryParameter(queryParams, "sourceStorage", request.getSourceStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -12754,17 +12603,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -12774,7 +12623,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -12804,7 +12653,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Document> postSlidesDocumentFromSourceWithHttpInfo(PostSlidesDocumentFromSourceRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postSlidesDocumentFromSourceCall(request, null, null);
         Type returnType = new TypeToken<Document>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -12838,7 +12687,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postSlidesDocumentFromSourceCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Document>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -12865,16 +12714,16 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/fromTemplate"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "templatePath", request.getTemplatePath());
-        getApiClient().addQueryParameter(queryParams, "templatePassword", request.getTemplatePassword());
-        getApiClient().addQueryParameter(queryParams, "templateStorage", request.getTemplateStorage());
-        getApiClient().addQueryParameter(queryParams, "isImageDataEmbedded", request.getIsImageDataEmbedded());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "templatePath", request.getTemplatePath());
+        apiClient.addQueryParameter(queryParams, "templatePassword", request.getTemplatePassword());
+        apiClient.addQueryParameter(queryParams, "templateStorage", request.getTemplateStorage());
+        apiClient.addQueryParameter(queryParams, "isImageDataEmbedded", request.getIsImageDataEmbedded());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -12883,17 +12732,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -12903,7 +12752,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -12933,7 +12782,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Document> postSlidesDocumentFromTemplateWithHttpInfo(PostSlidesDocumentFromTemplateRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postSlidesDocumentFromTemplateCall(request, null, null);
         Type returnType = new TypeToken<Document>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -12967,7 +12816,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postSlidesDocumentFromTemplateCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Document>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -12983,7 +12832,8 @@ public class SlidesApi extends ApiBase {
         Object postBody = request.getPipeline();
 
         // create path and map variables
-        String path = "/slides/pipeline";
+        String path = "/slides/pipeline"
+            ;
 
         List<Pair> queryParams = new ArrayList<Pair>();
 
@@ -12994,17 +12844,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "multipart/form-data"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "multipart/form-data"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -13018,7 +12868,7 @@ public class SlidesApi extends ApiBase {
         if (request.getFiles() != null) {
             files.addAll(request.getFiles());
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, files, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, files, progressRequestListener);
     }
 
     /**
@@ -13048,7 +12898,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<File> postSlidesPipelineWithHttpInfo(PostSlidesPipelineRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postSlidesPipelineCall(request, null, null);
         Type returnType = new TypeToken<File>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -13082,7 +12932,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postSlidesPipelineCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<File>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -13114,15 +12964,15 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/replaceText"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "oldValue", request.getOldValue());
-        getApiClient().addQueryParameter(queryParams, "newValue", request.getNewValue());
-        getApiClient().addQueryParameter(queryParams, "ignoreCase", request.getIgnoreCase());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "oldValue", request.getOldValue());
+        apiClient.addQueryParameter(queryParams, "newValue", request.getNewValue());
+        apiClient.addQueryParameter(queryParams, "ignoreCase", request.getIgnoreCase());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -13131,17 +12981,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -13151,7 +13001,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -13181,7 +13031,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<DocumentReplaceResult> postSlidesPresentationReplaceTextWithHttpInfo(PostSlidesPresentationReplaceTextRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postSlidesPresentationReplaceTextCall(request, null, null);
         Type returnType = new TypeToken<DocumentReplaceResult>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -13215,7 +13065,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postSlidesPresentationReplaceTextCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<DocumentReplaceResult>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -13247,14 +13097,13 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/move"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "newPosition", request.getNewPosition());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "newPosition", request.getNewPosition());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -13263,17 +13112,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -13283,7 +13132,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -13313,7 +13162,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Slides> postSlidesReorderWithHttpInfo(PostSlidesReorderRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postSlidesReorderCall(request, null, null);
         Type returnType = new TypeToken<Slides>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -13347,7 +13196,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postSlidesReorderCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Slides>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -13369,14 +13218,14 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/reorder"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "oldPositions", request.getOldPositions());
-        getApiClient().addQueryParameter(queryParams, "newPositions", request.getNewPositions());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "oldPositions", request.getOldPositions());
+        apiClient.addQueryParameter(queryParams, "newPositions", request.getNewPositions());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -13385,17 +13234,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -13405,7 +13254,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -13435,7 +13284,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Slides> postSlidesReorderManyWithHttpInfo(PostSlidesReorderManyRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postSlidesReorderManyCall(request, null, null);
         Type returnType = new TypeToken<Slides>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -13469,7 +13318,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postSlidesReorderManyCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Slides>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -13496,14 +13345,13 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/{format}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "format" + "\\}", getApiClient().escapeString(request.getFormat().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "format" + "\\}", request.getFormat().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -13512,17 +13360,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "multipart/form-data"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -13532,7 +13380,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -13562,7 +13410,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<File> postSlidesSaveAsWithHttpInfo(PostSlidesSaveAsRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postSlidesSaveAsCall(request, null, null);
         Type returnType = new TypeToken<File>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -13596,7 +13444,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postSlidesSaveAsCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<File>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -13618,12 +13466,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/documentproperties"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -13632,17 +13480,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -13652,7 +13500,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -13682,7 +13530,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<DocumentProperties> postSlidesSetDocumentPropertiesWithHttpInfo(PostSlidesSetDocumentPropertiesRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postSlidesSetDocumentPropertiesCall(request, null, null);
         Type returnType = new TypeToken<DocumentProperties>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -13716,7 +13564,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postSlidesSetDocumentPropertiesCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<DocumentProperties>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -13753,16 +13601,15 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/replaceText"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "oldValue", request.getOldValue());
-        getApiClient().addQueryParameter(queryParams, "newValue", request.getNewValue());
-        getApiClient().addQueryParameter(queryParams, "ignoreCase", request.getIgnoreCase());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "oldValue", request.getOldValue());
+        apiClient.addQueryParameter(queryParams, "newValue", request.getNewValue());
+        apiClient.addQueryParameter(queryParams, "ignoreCase", request.getIgnoreCase());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -13771,17 +13618,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -13791,7 +13638,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -13821,7 +13668,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<SlideReplaceResult> postSlidesSlideReplaceTextWithHttpInfo(PostSlidesSlideReplaceTextRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postSlidesSlideReplaceTextCall(request, null, null);
         Type returnType = new TypeToken<SlideReplaceResult>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -13855,7 +13702,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postSlidesSlideReplaceTextCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<SlideReplaceResult>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -13877,19 +13724,19 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/split"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "format", request.getFormat());
-        getApiClient().addQueryParameter(queryParams, "width", request.getWidth());
-        getApiClient().addQueryParameter(queryParams, "height", request.getHeight());
-        getApiClient().addQueryParameter(queryParams, "to", request.getTo());
-        getApiClient().addQueryParameter(queryParams, "from", request.getFrom());
-        getApiClient().addQueryParameter(queryParams, "destFolder", request.getDestFolder());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
+        apiClient.addQueryParameter(queryParams, "format", request.getFormat());
+        apiClient.addQueryParameter(queryParams, "width", request.getWidth());
+        apiClient.addQueryParameter(queryParams, "height", request.getHeight());
+        apiClient.addQueryParameter(queryParams, "to", request.getTo());
+        apiClient.addQueryParameter(queryParams, "from", request.getFrom());
+        apiClient.addQueryParameter(queryParams, "destFolder", request.getDestFolder());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -13898,17 +13745,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -13918,7 +13765,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "POST", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -13948,7 +13795,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<SplitDocumentResult> postSlidesSplitWithHttpInfo(PostSlidesSplitRequest request) throws ApiException {
         com.squareup.okhttp.Call call = postSlidesSplitCall(request, null, null);
         Type returnType = new TypeToken<SplitDocumentResult>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -13982,7 +13829,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = postSlidesSplitCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<SplitDocumentResult>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -14009,13 +13856,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/layoutSlides/{slideIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -14024,17 +13870,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -14044,7 +13890,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -14074,7 +13920,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<LayoutSlide> putLayoutSlideWithHttpInfo(PutLayoutSlideRequest request) throws ApiException {
         com.squareup.okhttp.Call call = putLayoutSlideCall(request, null, null);
         Type returnType = new TypeToken<LayoutSlide>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -14108,7 +13954,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = putLayoutSlideCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<LayoutSlide>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -14155,21 +14001,17 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/{format}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()))
-            .replaceAll("\\{" + "format" + "\\}", getApiClient().escapeString(request.getFormat().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString()).replaceAll("\\{" + "format" + "\\}", request.getFormat().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "outPath", request.getOutPath());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "scaleX", request.getScaleX());
-        getApiClient().addQueryParameter(queryParams, "scaleY", request.getScaleY());
-        getApiClient().addQueryParameter(queryParams, "bounds", request.getBounds());
-        getApiClient().addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
+        apiClient.addQueryParameter(queryParams, "outPath", request.getOutPath());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "scaleX", request.getScaleX());
+        apiClient.addQueryParameter(queryParams, "scaleY", request.getScaleY());
+        apiClient.addQueryParameter(queryParams, "bounds", request.getBounds());
+        apiClient.addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -14178,17 +14020,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -14198,7 +14040,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -14225,7 +14067,7 @@ public class SlidesApi extends ApiBase {
      */
     public ApiResponse<Void> putNotesSlideShapeSaveAsWithHttpInfo(PutNotesSlideShapeSaveAsRequest request) throws ApiException {
         com.squareup.okhttp.Call call = putNotesSlideShapeSaveAsCall(request, null, null);
-        return getApiClient().execute(call);
+        return apiClient.execute(call);
     }
 
     /**
@@ -14258,7 +14100,7 @@ public class SlidesApi extends ApiBase {
         }
 
         com.squareup.okhttp.Call call = putNotesSlideShapeSaveAsCall(request, progressListener, progressRequestListener);
-        getApiClient().executeAsync(call, callback);
+        apiClient.executeAsync(call, callback);
         return call;
     }
     /**
@@ -14280,12 +14122,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/merge"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -14294,17 +14136,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -14314,7 +14156,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -14344,7 +14186,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Document> putPresentationMergeWithHttpInfo(PutPresentationMergeRequest request) throws ApiException {
         com.squareup.okhttp.Call call = putPresentationMergeCall(request, null, null);
         Type returnType = new TypeToken<Document>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -14378,7 +14220,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = putPresentationMergeCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Document>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -14425,17 +14267,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()))
-            .replaceAll("\\{" + "paragraphIndex" + "\\}", getApiClient().escapeString(request.getParagraphIndex().toString()))
-            .replaceAll("\\{" + "portionIndex" + "\\}", getApiClient().escapeString(request.getPortionIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString()).replaceAll("\\{" + "paragraphIndex" + "\\}", request.getParagraphIndex().toString()).replaceAll("\\{" + "portionIndex" + "\\}", request.getPortionIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -14444,17 +14281,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -14464,7 +14301,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -14494,7 +14331,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Portion> putSetParagraphPortionPropertiesWithHttpInfo(PutSetParagraphPortionPropertiesRequest request) throws ApiException {
         com.squareup.okhttp.Call call = putSetParagraphPortionPropertiesCall(request, null, null);
         Type returnType = new TypeToken<Portion>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -14528,7 +14365,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = putSetParagraphPortionPropertiesCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Portion>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -14570,16 +14407,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()))
-            .replaceAll("\\{" + "paragraphIndex" + "\\}", getApiClient().escapeString(request.getParagraphIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString()).replaceAll("\\{" + "paragraphIndex" + "\\}", request.getParagraphIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -14588,17 +14421,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -14608,7 +14441,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -14638,7 +14471,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Paragraph> putSetParagraphPropertiesWithHttpInfo(PutSetParagraphPropertiesRequest request) throws ApiException {
         com.squareup.okhttp.Call call = putSetParagraphPropertiesCall(request, null, null);
         Type returnType = new TypeToken<Paragraph>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -14672,7 +14505,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = putSetParagraphPropertiesCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Paragraph>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -14719,21 +14552,17 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/{format}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()))
-            .replaceAll("\\{" + "format" + "\\}", getApiClient().escapeString(request.getFormat().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString()).replaceAll("\\{" + "format" + "\\}", request.getFormat().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "outPath", request.getOutPath());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "scaleX", request.getScaleX());
-        getApiClient().addQueryParameter(queryParams, "scaleY", request.getScaleY());
-        getApiClient().addQueryParameter(queryParams, "bounds", request.getBounds());
-        getApiClient().addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
+        apiClient.addQueryParameter(queryParams, "outPath", request.getOutPath());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "scaleX", request.getScaleX());
+        apiClient.addQueryParameter(queryParams, "scaleY", request.getScaleY());
+        apiClient.addQueryParameter(queryParams, "bounds", request.getBounds());
+        apiClient.addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -14742,17 +14571,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -14762,7 +14591,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -14789,7 +14618,7 @@ public class SlidesApi extends ApiBase {
      */
     public ApiResponse<Void> putShapeSaveAsWithHttpInfo(PutShapeSaveAsRequest request) throws ApiException {
         com.squareup.okhttp.Call call = putShapeSaveAsCall(request, null, null);
-        return getApiClient().execute(call);
+        return apiClient.execute(call);
     }
 
     /**
@@ -14822,7 +14651,7 @@ public class SlidesApi extends ApiBase {
         }
 
         com.squareup.okhttp.Call call = putShapeSaveAsCall(request, progressListener, progressRequestListener);
-        getApiClient().executeAsync(call, callback);
+        apiClient.executeAsync(call, callback);
         return call;
     }
     /**
@@ -14849,13 +14678,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/animation"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -14864,17 +14692,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -14884,7 +14712,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -14914,7 +14742,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<SlideAnimation> putSlideAnimationWithHttpInfo(PutSlideAnimationRequest request) throws ApiException {
         com.squareup.okhttp.Call call = putSlideAnimationCall(request, null, null);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -14948,7 +14776,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = putSlideAnimationCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -14980,14 +14808,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/animation/mainSequence/{effectIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "effectIndex" + "\\}", getApiClient().escapeString(request.getEffectIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "effectIndex" + "\\}", request.getEffectIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -14996,17 +14822,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -15016,7 +14842,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -15046,7 +14872,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<SlideAnimation> putSlideAnimationEffectWithHttpInfo(PutSlideAnimationEffectRequest request) throws ApiException {
         com.squareup.okhttp.Call call = putSlideAnimationEffectCall(request, null, null);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -15080,7 +14906,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = putSlideAnimationEffectCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -15117,15 +14943,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/animation/interactiveSequences/{sequenceIndex}/{effectIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "sequenceIndex" + "\\}", getApiClient().escapeString(request.getSequenceIndex().toString()))
-            .replaceAll("\\{" + "effectIndex" + "\\}", getApiClient().escapeString(request.getEffectIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "sequenceIndex" + "\\}", request.getSequenceIndex().toString()).replaceAll("\\{" + "effectIndex" + "\\}", request.getEffectIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -15134,17 +14957,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -15154,7 +14977,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -15184,7 +15007,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<SlideAnimation> putSlideAnimationInteractiveSequenceEffectWithHttpInfo(PutSlideAnimationInteractiveSequenceEffectRequest request) throws ApiException {
         com.squareup.okhttp.Call call = putSlideAnimationInteractiveSequenceEffectCall(request, null, null);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -15218,7 +15041,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = putSlideAnimationInteractiveSequenceEffectCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<SlideAnimation>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -15255,18 +15078,16 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/{format}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "format" + "\\}", getApiClient().escapeString(request.getFormat().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "format" + "\\}", request.getFormat().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "outPath", request.getOutPath());
-        getApiClient().addQueryParameter(queryParams, "width", request.getWidth());
-        getApiClient().addQueryParameter(queryParams, "height", request.getHeight());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
+        apiClient.addQueryParameter(queryParams, "outPath", request.getOutPath());
+        apiClient.addQueryParameter(queryParams, "width", request.getWidth());
+        apiClient.addQueryParameter(queryParams, "height", request.getHeight());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -15275,17 +15096,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -15295,7 +15116,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -15322,7 +15143,7 @@ public class SlidesApi extends ApiBase {
      */
     public ApiResponse<Void> putSlideSaveAsWithHttpInfo(PutSlideSaveAsRequest request) throws ApiException {
         com.squareup.okhttp.Call call = putSlideSaveAsCall(request, null, null);
-        return getApiClient().execute(call);
+        return apiClient.execute(call);
     }
 
     /**
@@ -15355,7 +15176,7 @@ public class SlidesApi extends ApiBase {
         }
 
         com.squareup.okhttp.Call call = putSlideSaveAsCall(request, progressListener, progressRequestListener);
-        getApiClient().executeAsync(call, callback);
+        apiClient.executeAsync(call, callback);
         return call;
     }
     /**
@@ -15392,15 +15213,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -15409,17 +15227,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -15429,7 +15247,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -15459,7 +15277,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<ShapeBase> putSlideShapeInfoWithHttpInfo(PutSlideShapeInfoRequest request) throws ApiException {
         com.squareup.okhttp.Call call = putSlideShapeInfoCall(request, null, null);
         Type returnType = new TypeToken<ShapeBase>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -15493,7 +15311,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = putSlideShapeInfoCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<ShapeBase>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -15520,12 +15338,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/convert/{format}"
-            .replaceAll("\\{" + "format" + "\\}", getApiClient().escapeString(request.getFormat().toString()));
+            .replaceAll("\\{" + "format" + "\\}", request.getFormat().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "outPath", request.getOutPath());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
+        apiClient.addQueryParameter(queryParams, "outPath", request.getOutPath());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -15534,17 +15352,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/octet-stream", "multipart/form-data"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -15554,7 +15372,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -15581,7 +15399,7 @@ public class SlidesApi extends ApiBase {
      */
     public ApiResponse<Void> putSlidesConvertWithHttpInfo(PutSlidesConvertRequest request) throws ApiException {
         com.squareup.okhttp.Call call = putSlidesConvertCall(request, null, null);
-        return getApiClient().execute(call);
+        return apiClient.execute(call);
     }
 
     /**
@@ -15614,7 +15432,7 @@ public class SlidesApi extends ApiBase {
         }
 
         com.squareup.okhttp.Call call = putSlidesConvertCall(request, progressListener, progressRequestListener);
-        getApiClient().executeAsync(call, callback);
+        apiClient.executeAsync(call, callback);
         return call;
     }
     /**
@@ -15636,12 +15454,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/fromHtml"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -15650,17 +15468,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -15670,7 +15488,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -15700,7 +15518,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Document> putSlidesDocumentFromHtmlWithHttpInfo(PutSlidesDocumentFromHtmlRequest request) throws ApiException {
         com.squareup.okhttp.Call call = putSlidesDocumentFromHtmlCall(request, null, null);
         Type returnType = new TypeToken<Document>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -15734,7 +15552,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = putSlidesDocumentFromHtmlCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Document>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -15766,15 +15584,14 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/{format}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "format" + "\\}", getApiClient().escapeString(request.getFormat().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "format" + "\\}", request.getFormat().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "outPath", request.getOutPath());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
+        apiClient.addQueryParameter(queryParams, "outPath", request.getOutPath());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "fontsFolder", request.getFontsFolder());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -15783,17 +15600,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -15803,7 +15620,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -15830,7 +15647,7 @@ public class SlidesApi extends ApiBase {
      */
     public ApiResponse<Void> putSlidesSaveAsWithHttpInfo(PutSlidesSaveAsRequest request) throws ApiException {
         com.squareup.okhttp.Call call = putSlidesSaveAsCall(request, null, null);
-        return getApiClient().execute(call);
+        return apiClient.execute(call);
     }
 
     /**
@@ -15863,7 +15680,7 @@ public class SlidesApi extends ApiBase {
         }
 
         com.squareup.okhttp.Call call = putSlidesSaveAsCall(request, progressListener, progressRequestListener);
-        getApiClient().executeAsync(call, callback);
+        apiClient.executeAsync(call, callback);
         return call;
     }
     /**
@@ -15890,13 +15707,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/documentproperties/{propertyName}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "propertyName" + "\\}", getApiClient().escapeString(request.getPropertyName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "propertyName" + "\\}", request.getPropertyName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -15905,17 +15721,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -15925,7 +15741,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -15955,7 +15771,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<DocumentProperty> putSlidesSetDocumentPropertyWithHttpInfo(PutSlidesSetDocumentPropertyRequest request) throws ApiException {
         com.squareup.okhttp.Call call = putSlidesSetDocumentPropertyCall(request, null, null);
         Type returnType = new TypeToken<DocumentProperty>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -15989,7 +15805,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = putSlidesSetDocumentPropertyCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<DocumentProperty>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -16016,13 +15832,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -16031,17 +15846,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -16051,7 +15866,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -16081,7 +15896,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Slide> putSlidesSlideWithHttpInfo(PutSlidesSlideRequest request) throws ApiException {
         com.squareup.okhttp.Call call = putSlidesSlideCall(request, null, null);
         Type returnType = new TypeToken<Slide>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -16115,7 +15930,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = putSlidesSlideCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Slide>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -16142,13 +15957,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/background"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -16157,17 +15971,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -16177,7 +15991,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -16207,7 +16021,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<SlideBackground> putSlidesSlideBackgroundWithHttpInfo(PutSlidesSlideBackgroundRequest request) throws ApiException {
         com.squareup.okhttp.Call call = putSlidesSlideBackgroundCall(request, null, null);
         Type returnType = new TypeToken<SlideBackground>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -16241,7 +16055,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = putSlidesSlideBackgroundCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<SlideBackground>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -16273,14 +16087,13 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/backgroundColor"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "color", request.getColor());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "color", request.getColor());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -16289,17 +16102,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -16309,7 +16122,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -16339,7 +16152,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<SlideBackground> putSlidesSlideBackgroundColorWithHttpInfo(PutSlidesSlideBackgroundColorRequest request) throws ApiException {
         com.squareup.okhttp.Call call = putSlidesSlideBackgroundColorCall(request, null, null);
         Type returnType = new TypeToken<SlideBackground>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -16373,7 +16186,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = putSlidesSlideBackgroundColorCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<SlideBackground>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -16395,16 +16208,16 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slideSize"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "width", request.getWidth());
-        getApiClient().addQueryParameter(queryParams, "height", request.getHeight());
-        getApiClient().addQueryParameter(queryParams, "sizeType", request.getSizeType());
-        getApiClient().addQueryParameter(queryParams, "scaleType", request.getScaleType());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "width", request.getWidth());
+        apiClient.addQueryParameter(queryParams, "height", request.getHeight());
+        apiClient.addQueryParameter(queryParams, "sizeType", request.getSizeType());
+        apiClient.addQueryParameter(queryParams, "scaleType", request.getScaleType());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -16413,17 +16226,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -16433,7 +16246,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -16463,7 +16276,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Document> putSlidesSlideSizeWithHttpInfo(PutSlidesSlideSizeRequest request) throws ApiException {
         com.squareup.okhttp.Call call = putSlidesSlideSizeCall(request, null, null);
         Type returnType = new TypeToken<Document>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -16497,7 +16310,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = putSlidesSlideSizeCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Document>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -16524,13 +16337,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -16539,17 +16351,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -16559,7 +16371,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -16589,7 +16401,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<NotesSlide> putUpdateNotesSlideWithHttpInfo(PutUpdateNotesSlideRequest request) throws ApiException {
         com.squareup.okhttp.Call call = putUpdateNotesSlideCall(request, null, null);
         Type returnType = new TypeToken<NotesSlide>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -16623,7 +16435,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = putUpdateNotesSlideCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<NotesSlide>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -16660,15 +16472,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -16677,17 +16486,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -16697,7 +16506,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -16727,7 +16536,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<ShapeBase> putUpdateNotesSlideShapeWithHttpInfo(PutUpdateNotesSlideShapeRequest request) throws ApiException {
         com.squareup.okhttp.Call call = putUpdateNotesSlideShapeCall(request, null, null);
         Type returnType = new TypeToken<ShapeBase>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -16761,7 +16570,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = putUpdateNotesSlideShapeCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<ShapeBase>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -16803,16 +16612,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()))
-            .replaceAll("\\{" + "paragraphIndex" + "\\}", getApiClient().escapeString(request.getParagraphIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString()).replaceAll("\\{" + "paragraphIndex" + "\\}", request.getParagraphIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -16821,17 +16626,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -16841,7 +16646,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -16871,7 +16676,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Paragraph> putUpdateNotesSlideShapeParagraphWithHttpInfo(PutUpdateNotesSlideShapeParagraphRequest request) throws ApiException {
         com.squareup.okhttp.Call call = putUpdateNotesSlideShapeParagraphCall(request, null, null);
         Type returnType = new TypeToken<Paragraph>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -16905,7 +16710,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = putUpdateNotesSlideShapeParagraphCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Paragraph>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -16952,17 +16757,12 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}"
-            .replaceAll("\\{" + "name" + "\\}", getApiClient().escapeString(request.getName().toString()))
-            .replaceAll("\\{" + "slideIndex" + "\\}", getApiClient().escapeString(request.getSlideIndex().toString()))
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()))
-            .replaceAll("\\{" + "shapeIndex" + "\\}", getApiClient().escapeString(request.getShapeIndex().toString()))
-            .replaceAll("\\{" + "paragraphIndex" + "\\}", getApiClient().escapeString(request.getParagraphIndex().toString()))
-            .replaceAll("\\{" + "portionIndex" + "\\}", getApiClient().escapeString(request.getPortionIndex().toString()));
+            .replaceAll("\\{" + "name" + "\\}", request.getName().toString()).replaceAll("\\{" + "slideIndex" + "\\}", request.getSlideIndex().toString()).replaceAll("\\{" + "path" + "\\}", request.getPath().toString()).replaceAll("\\{" + "shapeIndex" + "\\}", request.getShapeIndex().toString()).replaceAll("\\{" + "paragraphIndex" + "\\}", request.getParagraphIndex().toString()).replaceAll("\\{" + "portionIndex" + "\\}", request.getPortionIndex().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "password", request.getPassword());
-        getApiClient().addQueryParameter(queryParams, "folder", request.getFolder());
-        getApiClient().addQueryParameter(queryParams, "storage", request.getStorage());
+        apiClient.addQueryParameter(queryParams, "password", request.getPassword());
+        apiClient.addQueryParameter(queryParams, "folder", request.getFolder());
+        apiClient.addQueryParameter(queryParams, "storage", request.getStorage());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -16971,17 +16771,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -16991,7 +16791,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -17021,7 +16821,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<Portion> putUpdateNotesSlideShapePortionWithHttpInfo(PutUpdateNotesSlideShapePortionRequest request) throws ApiException {
         com.squareup.okhttp.Call call = putUpdateNotesSlideShapePortionCall(request, null, null);
         Type returnType = new TypeToken<Portion>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -17055,7 +16855,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = putUpdateNotesSlideShapePortionCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<Portion>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -17077,7 +16877,7 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/storage/{storageName}/exist"
-            .replaceAll("\\{" + "storageName" + "\\}", getApiClient().escapeString(request.getStorageName().toString()));
+            .replaceAll("\\{" + "storageName" + "\\}", request.getStorageName().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
 
@@ -17088,17 +16888,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "application/json"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -17108,7 +16908,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "GET", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -17138,7 +16938,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<StorageExist> storageExistsWithHttpInfo(StorageExistsRequest request) throws ApiException {
         com.squareup.okhttp.Call call = storageExistsCall(request, null, null);
         Type returnType = new TypeToken<StorageExist>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -17172,7 +16972,7 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = storageExistsCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<StorageExist>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
     /**
@@ -17199,10 +16999,10 @@ public class SlidesApi extends ApiBase {
 
         // create path and map variables
         String path = "/slides/storage/file/{path}"
-            .replaceAll("\\{" + "path" + "\\}", getApiClient().escapeString(request.getPath().toString()));
+            .replaceAll("\\{" + "path" + "\\}", request.getPath().toString());
 
         List<Pair> queryParams = new ArrayList<Pair>();
-        getApiClient().addQueryParameter(queryParams, "storageName", request.getStorageName());
+        apiClient.addQueryParameter(queryParams, "storageName", request.getStorageName());
 
         Map<String, String> headerParams = new HashMap<String, String>();
 
@@ -17213,17 +17013,17 @@ public class SlidesApi extends ApiBase {
         final String[] accepts = {
             "application/json"
         };
-        final String accept = getApiClient().selectHeaderAccept(accepts);
+        final String accept = apiClient.selectHeaderAccept(accepts);
         if (accept != null) headerParams.put("Accept", accept);
 
         final String[] contentTypes = {
             "multipart/form-data"
         };
-        final String contentType = getApiClient().selectHeaderContentType(contentTypes);
+        final String contentType = apiClient.selectHeaderContentType(contentTypes);
         headerParams.put("Content-Type", contentType);
 
         if(progressListener != null) {
-            getApiClient().getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
@@ -17233,7 +17033,7 @@ public class SlidesApi extends ApiBase {
                 }
             });
         }
-        return getApiClient().buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
+        return apiClient.buildCall(path, "PUT", queryParams, postBody, headerParams, formParams, null, progressRequestListener);
     }
 
     /**
@@ -17263,7 +17063,7 @@ public class SlidesApi extends ApiBase {
     public ApiResponse<FilesUploadResult> uploadFileWithHttpInfo(UploadFileRequest request) throws ApiException {
         com.squareup.okhttp.Call call = uploadFileCall(request, null, null);
         Type returnType = new TypeToken<FilesUploadResult>(){}.getType();
-        return getApiClient().execute(call, returnType);
+        return apiClient.execute(call, returnType);
     }
 
     /**
@@ -17297,7 +17097,9 @@ public class SlidesApi extends ApiBase {
 
         com.squareup.okhttp.Call call = uploadFileCall(request, progressListener, progressRequestListener);
         Type returnType = new TypeToken<FilesUploadResult>(){}.getType();
-        getApiClient().executeAsync(call, returnType, callback);
+        apiClient.executeAsync(call, returnType, callback);
         return call;
     }
+
+    private final ApiClient apiClient;
 }
