@@ -111,6 +111,9 @@ public class ApiClient {
         this.baseUrl = baseUrl;
         this.authentication = authentication;
         httpClient = new OkHttpClient();
+        List<Protocol> protocols = new ArrayList<Protocol>();
+        protocols.add(Protocol.HTTP_1_1);
+        httpClient.setProtocols(protocols);
         httpClient.setConnectTimeout(1, TimeUnit.MINUTES);
         httpClient.setReadTimeout(1, TimeUnit.MINUTES);
         httpClient.setWriteTimeout(1, TimeUnit.MINUTES);
@@ -1093,6 +1096,13 @@ public class ApiClient {
         }
     }
 
+    public String objectToString(Object object) {
+        if (object == null) {
+            return "";
+        }
+        return object.toString();
+    }
+    
     private String getVersion() {
         if (version == null) {
             InputStream propertiesStream = getClass().getResourceAsStream("/project.properties");
