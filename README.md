@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/api-v3.0-lightgrey) [![GitHub license](https://img.shields.io/github/license/aspose-slides-cloud/aspose-slides-cloud-java)](https://github.com/aspose-slides-cloud/aspose-slides-cloud-java/blob/master/LICENSE) 
+![](https://img.shields.io/badge/api-v3.0-lightgrey) [![GitHub license](https://img.shields.io/github/license/aspose-slides-cloud/aspose-slides-cloud-java)](https://github.com/aspose-slides-cloud/aspose-slides-cloud-java/blob/master/LICENSE)
 # Aspose.Slides Cloud SDK for Java
 This repository contains Aspose.Slides Cloud SDK for Java source code. This SDK allows you to work with Aspose.Slides Cloud REST APIs in your Java applications.
 
